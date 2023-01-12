@@ -1,8 +1,13 @@
 import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 import { Box, List, ListItem, LinkBox } from '@chakra-ui/layout'
 import { navItems } from '../data/static'
 
 export function Navigation() {
+  const router = useRouter()
+  const isActive: (pathname: string) => boolean = (pathname) =>
+    router.pathname === pathname
+
   return (
     <Box>
       <nav>

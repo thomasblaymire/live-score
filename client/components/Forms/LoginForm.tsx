@@ -6,6 +6,10 @@ import {
   InputGroup,
   Stack,
   Text,
+  FormControl,
+  FormHelperText,
+  FormErrorMessage,
+  FormLabel,
   Center,
 } from '@chakra-ui/react'
 import { signIn } from 'next-auth/react'
@@ -17,6 +21,8 @@ export const LoginForm = () => {
   const [password, setPassword] = useState('')
 
   const router = useRouter()
+
+  const isError = false
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -34,39 +40,48 @@ export const LoginForm = () => {
           </Text>
           <form onSubmit={handleSubmit}>
             <Stack paddingBottom="25px">
-              <InputGroup marginBottom="15px">
+              <FormControl isInvalid={isError}>
+                <FormLabel>Email</FormLabel>
                 <Input
                   placeholder="Email"
                   type="email"
                   height="50px"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-              </InputGroup>
-              <InputGroup>
+                {!isError ? (
+                  <FormHelperText>
+                    Enter the email you'd like to receive the newsletter on.
+                  </FormHelperText>
+                ) : (
+                  <FormErrorMessage>Email is required.</FormErrorMessage>
+                )}
+              </FormControl>
+
+              <FormControl isInvalid={isError}>
+                <FormLabel>Password</FormLabel>
                 <Input
                   placeholder="Password"
                   type="password"
                   height="50px"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-              </InputGroup>
+                {isError ? (
+                  <FormHelperText>
+                    Enter the email you would like to receive the newsletter on.
+                  </FormHelperText>
+                ) : (
+                  <FormErrorMessage>Email is required.</FormErrorMessage>
+                )}
+              </FormControl>
             </Stack>
 
             <Text marginBottom="2rem">
               By continuing, you agree to the{' '}
-              <a
-                href="https://www.okta.com/auth0-pss-self-service/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Self Service PSS
+              <a href="/" target="_blank" rel="noopener noreferrer">
+                Terms & Conditions
               </a>{' '}
               and{' '}
-              <a
-                href="https://www.okta.com/privacy-policy/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href="/" target="_blank" rel="noopener noreferrer">
                 Privacy Policy
               </a>
               .

@@ -1,17 +1,13 @@
 import Image from 'next/image'
-import Link from 'next/link'
-import { Box, Flex } from '@chakra-ui/layout'
-import { Avatar, WrapItem } from '@chakra-ui/react'
-import { Navigation } from './Navigation'
 import { useRouter } from 'next/router'
+import { Box, Flex } from '@chakra-ui/layout'
+import { Avatar, WrapItem, Stack, Button } from '@chakra-ui/react'
+import { Navigation } from './Navigation'
 import { AuthDropdown } from './AuthDropdown'
 import { useSession } from 'next-auth/react'
 
 export function Header() {
   const router = useRouter()
-  const isActive: (pathname: string) => boolean = (pathname) =>
-    router.pathname === pathname
-
   const { data: session } = useSession()
 
   return (
@@ -35,14 +31,21 @@ export function Header() {
           <Navigation />
           <Box>
             {!session && (
-              <>
-                <Link href="/api/auth/signup" legacyBehavior>
-                  <a data-active={isActive('/api/auth/signup')}>Signup</a>
-                </Link>
-                <Link href="/api/auth/signin" legacyBehavior>
-                  <a data-active={isActive('/api/auth/signin')}>Log in</a>
-                </Link>
-              </>
+              <Stack direction="row" spacing={6} align="center">
+                <Button
+                  colorScheme="gray"
+                  variant="link"
+                  onClick={() => router.push('/api/auth/signin')}
+                >
+                  Log In
+                </Button>
+                <Button
+                  colorScheme="gray"
+                  onClick={() => router.push('/api/auth/signup')}
+                >
+                  Sign Up
+                </Button>
+              </Stack>
             )}
             {session?.user && (
               <Flex alignItems="center">
