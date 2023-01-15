@@ -1,10 +1,13 @@
 import { LoginForm } from '../../components/forms/login-form'
-import { Flex, Box, Stack, Button, Center } from '@chakra-ui/react'
-import { BsGithub, BsGoogle } from 'react-icons/bs'
-import { HiOutlineMail } from 'react-icons/hi'
-import { getProviders, signIn, getSession, getCsrfToken } from 'next-auth/react'
+import { Flex, Box, Center } from '@chakra-ui/react'
+import { getProviders } from 'next-auth/react'
+import { Provider } from '../../types'
 
-function Signin({ providers }: any) {
+interface SigninProps {
+  providers: Provider[]
+}
+
+function Signin({ providers }: SigninProps) {
   return (
     <Flex>
       <Box

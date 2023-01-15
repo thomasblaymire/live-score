@@ -1,27 +1,16 @@
-import {
-  Box,
-  List,
-  ListItem,
-  LinkBox,
-  LinkOverlay,
-  ListIcon,
-  Text,
-} from '@chakra-ui/layout'
-import NextLink from 'next/link'
+import { Box, LinkBox } from '@chakra-ui/layout'
 import { useQuery } from 'react-query'
+import { getMatches } from '../lib/api-helpers'
 import NextImage from 'next/image'
 
 export function ScoreBoard() {
-  const getMatches = async () => {
-    const response = await fetch('http://localhost:3030/api/matches')
-    return response.json()
-  }
-
-  const { data, error, isLoading } = useQuery('matches', getMatches)
-
-  console.log('matches', data)
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['matches'],
+    queryFn: getMatches,
+  })
 
   if (error) return <div>Request Failed</div>
+  if (isLoading) return <div>Loading...</div>
 
   return (
     <Box
@@ -32,7 +21,7 @@ export function ScoreBoard() {
     >
       <Box padding={{ base: '1rem' }}>
         {data &&
-          data.matches.map((match: any) => (
+          data?.matches.map((match: any) => (
             <Box
               margin={{ base: '0px' }}
               marginBottom={{ base: '1rem', md: '0' }}

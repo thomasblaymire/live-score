@@ -3,8 +3,9 @@ import { Box, Flex } from '@chakra-ui/layout'
 import Sidebar from '../components/sidebar'
 import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery } from '@chakra-ui/react'
-import { getCompetitions } from '../lib/competitions'
+import { getCompetitions, getMatches } from '../lib/api-helpers'
 import { CompetitionList } from '../components/competition-list'
+import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
 
 export default function Home({ competitions }: any) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
@@ -13,7 +14,7 @@ export default function Home({ competitions }: any) {
     <Flex
       marginTop={{ base: '1rem', md: '3rem' }}
       paddingX={{ md: '4rem' }}
-      flexWrap="wrap"
+      justifyContent="space-between"
     >
       {isTablet && (
         <Box minWidth="300px">
@@ -23,13 +24,15 @@ export default function Home({ competitions }: any) {
         </Box>
       )}
 
-      <Box flex="1 1 auto">
+      <Box flexGrow="1" minWidth="100px">
         <ScoreBoard />
       </Box>
 
       {isTablet && (
-        <Box>
-          <h1>Hi</h1>
+        <Box minWidth="100px">
+          <Sidebar>
+            <CompetitionList competitions={competitions} />
+          </Sidebar>
         </Box>
       )}
     </Flex>
@@ -39,9 +42,16 @@ export default function Home({ competitions }: any) {
 // Leagues dont tend to change so we can use getStaticProps to render the data at build time.
 export async function getStaticProps() {
   const competitions = await getCompetitions()
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(['matches'], getMatches)
+
   return {
     props: {
+      dehydratedState: dehydrate(queryClient),
       competitions: competitions,
     },
   }
 }
+
+export async function getServerProps() {}

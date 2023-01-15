@@ -3,7 +3,6 @@ import {
   Flex,
   Input,
   Button,
-  InputGroup,
   Stack,
   Text,
   FormControl,
@@ -12,14 +11,19 @@ import {
   FormLabel,
   Center,
 } from '@chakra-ui/react'
+import Link from 'next/link'
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
 import { HiOutlineMail } from 'react-icons/hi'
-import { getProviders, signIn, getSession, getCsrfToken } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
+import { Provider, PROVIDERS } from '../../types'
 
-import { useState } from 'react'
+interface LoginProps {
+  providers: Provider[]
+}
 
-export const LoginForm = ({ providers }: any) => {
+export const LoginForm = ({ providers }: LoginProps) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -27,15 +31,14 @@ export const LoginForm = ({ providers }: any) => {
 
   const isError = false
 
-  function renderProviderIcon(name: any) {
-    if (name === 'GitHub') return <BsGithub />
-    if (name === 'Google') return <BsGoogle />
+  function renderProviderIcon(name: string): JSX.Element {
+    if (name === PROVIDERS.GITHUB) return <BsGithub />
+    if (name === PROVIDERS.GOOGLE) return <BsGoogle />
     return <HiOutlineMail />
   }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    // await auth({ email, password })
     signIn()
     router.push('/')
   }
@@ -82,13 +85,13 @@ export const LoginForm = ({ providers }: any) => {
 
             <Text marginBottom="2rem">
               By continuing, you agree to the
-              <a href="/" target="_blank" rel="noopener noreferrer">
+              <Link href="/" target="_blank" rel="noopener noreferrer">
                 Terms & Conditions
-              </a>
+              </Link>
               and
-              <a href="/" target="_blank" rel="noopener noreferrer">
+              <Link href="/" target="_blank" rel="noopener noreferrer">
                 Privacy Policy
-              </a>
+              </Link>
               .
             </Text>
 
@@ -105,24 +108,22 @@ export const LoginForm = ({ providers }: any) => {
             </Button>
 
             <Box>
-              {Object.values(providers).map((provider: any) => {
-                return (
-                  <Box key={provider.name}>
-                    <Stack direction="row" spacing={4}>
-                      <Button
-                        width="100%"
-                        onClick={() => signIn(provider.id)}
-                        leftIcon={renderProviderIcon(provider.name)}
-                        colorScheme="teal"
-                        variant="solid"
-                        marginBottom="1rem"
-                      >
-                        Sign in with {provider.name}
-                      </Button>
-                    </Stack>
-                  </Box>
-                )
-              })}
+              {Object.values(providers).map((provider: Provider) => (
+                <Box key={provider.name}>
+                  <Stack direction="row" spacing={4}>
+                    <Button
+                      width="100%"
+                      onClick={() => signIn(provider.id)}
+                      leftIcon={renderProviderIcon(provider.name)}
+                      colorScheme="teal"
+                      variant="solid"
+                      marginBottom="1rem"
+                    >
+                      Sign in with {provider.name}
+                    </Button>
+                  </Stack>
+                </Box>
+              ))}
             </Box>
           </form>
         </Box>

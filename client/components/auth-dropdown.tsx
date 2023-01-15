@@ -50,9 +50,9 @@ export function AuthDropdown({ user }: any) {
         <MenuDivider />
         <MenuGroup>
           <MenuItem>
-            <a href={`/api/auth/signout`} onClick={(e) => handleSignout(e)}>
+            <Link href={`/api/auth/signout`} onClick={(e) => handleSignout(e)}>
               Sign out
-            </a>
+            </Link>
           </MenuItem>
         </MenuGroup>
       </MenuList>

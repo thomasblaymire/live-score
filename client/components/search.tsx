@@ -1,7 +1,11 @@
 import { Input, InputGroup, InputLeftElement } from '@chakra-ui/react'
 import { MdSearch } from 'react-icons/md'
 
-export function Search({ handleSearch }: any) {
+interface SearchProps {
+  handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+export function Search({ handleSearch }: SearchProps) {
   return (
     <InputGroup>
       <InputLeftElement pointerEvents="none">

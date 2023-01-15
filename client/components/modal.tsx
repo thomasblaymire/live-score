@@ -1,6 +1,4 @@
 import {
-  useDisclosure,
-  IconButton,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -11,7 +9,19 @@ import {
   Button,
 } from '@chakra-ui/react'
 
-export function ModalElement({ isOpen, onClose, title, children }: any) {
+interface ModalElementProps {
+  isOpen: boolean
+  onClose: () => void
+  title?: string
+  children: React.ReactChild
+}
+
+export function ModalElement({
+  isOpen,
+  onClose,
+  title,
+  children,
+}: ModalElementProps) {
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />

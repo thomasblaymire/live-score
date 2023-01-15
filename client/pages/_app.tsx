@@ -1,6 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react'
 import { Header } from '../components/header'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider, Hydrate } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { SessionProvider } from 'next-auth/react'
 import { theme } from '../styles/theme'
@@ -23,21 +23,23 @@ export default function App({
 }: CustomAppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <ChakraProvider theme={theme}>
-        <SessionProvider session={session}>
-          <main className={inter.className}>
-            {Component.authPath ? (
-              <Component {...pageProps} />
-            ) : (
-              <>
-                <Header />
+      <Hydrate state={pageProps.dehydratedState}>
+        <ChakraProvider theme={theme}>
+          <SessionProvider session={session}>
+            <main className={inter.className}>
+              {Component.authPath ? (
                 <Component {...pageProps} />
-              </>
-            )}
-          </main>
-        </SessionProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
-      </ChakraProvider>
+              ) : (
+                <>
+                  <Header />
+                  <Component {...pageProps} />
+                </>
+              )}
+            </main>
+          </SessionProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </ChakraProvider>
+      </Hydrate>
     </QueryClientProvider>
   )
 }

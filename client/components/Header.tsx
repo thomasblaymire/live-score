@@ -5,7 +5,6 @@ import { Avatar, WrapItem, Stack, Button } from '@chakra-ui/react'
 import { Navigation } from './navigation'
 import { AuthDropdown } from './auth-dropdown'
 import { useSession } from 'next-auth/react'
-import { device } from '../lib/device'
 import { useMediaQuery } from '@chakra-ui/react'
 
 export function Header() {
@@ -54,7 +53,7 @@ export function Header() {
             </Box>
           )}
 
-          {/* {session?.user && !isTablet && (
+          {session?.user && isTablet && (
             <Box>
               <Flex alignItems="center">
                 {session.user.image ? (
@@ -68,7 +67,7 @@ export function Header() {
                 )}
               </Flex>
             </Box>
-          )} */}
+          )}
         </Flex>
       </Box>
     </header>

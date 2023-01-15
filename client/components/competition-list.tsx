@@ -4,20 +4,26 @@ import { useQuery } from 'react-query'
 import { Search } from './search'
 import { Box, List, ListItem, Divider } from '@chakra-ui/layout'
 import { Stack, Skeleton } from '@chakra-ui/react'
-import { getCompetitions } from '../lib/competitions'
+import { getCompetitions } from '../lib/api-helpers'
 
 export function CompetitionList({ competitions }: any) {
   const [searchField, setSearchField] = useState('')
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ['competitions'],
     queryFn: getCompetitions,
     initialData: competitions,
   })
 
-  const handleSearch = (e: any) => {
-    setSearchField(e.target.value)
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target
+    setSearchField(value.toLowerCase())
   }
+
+  const filteredCompetitions = data.filter(
+    (competition: any) =>
+      competition.name.toLowerCase().includes(searchField) || searchField === ''
+  )
 
   return (
     <Box>
@@ -31,36 +37,31 @@ export function CompetitionList({ competitions }: any) {
             <Skeleton height="25px" />
           </Stack>
         )}
-        {data
-          .filter(
-            (competition: any) =>
-              competition.name.includes(searchField) || searchField === ''
-          )
-          .map((competition: any) => (
-            <ListItem
-              key={competition.name}
-              display="flex"
-              alignItems="center"
-              paddingY="0.5rem"
-              color="#a8a7a7"
-              sx={{
-                '&:hover': {
-                  bg: 'gray.200',
-                  cursor: 'pointer',
-                },
-              }}
-            >
-              <Box marginX="10px">
-                <NextImage
-                  src={competition.emblem}
-                  width={30}
-                  height={30}
-                  alt={competition.name}
-                />
-              </Box>
-              {competition.name}
-            </ListItem>
-          ))}
+        {filteredCompetitions.map((competition: any) => (
+          <ListItem
+            key={competition.name}
+            display="flex"
+            alignItems="center"
+            paddingY="0.5rem"
+            color="#a8a7a7"
+            sx={{
+              '&:hover': {
+                bg: 'gray.200',
+                cursor: 'pointer',
+              },
+            }}
+          >
+            <Box marginX="10px">
+              <NextImage
+                src={competition.emblem}
+                width={30}
+                height={30}
+                alt={competition.name}
+              />
+            </Box>
+            {competition.name}
+          </ListItem>
+        ))}
       </List>
     </Box>
   )
