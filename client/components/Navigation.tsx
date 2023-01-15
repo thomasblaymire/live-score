@@ -1,13 +1,15 @@
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import { Box, List, ListItem, LinkBox } from '@chakra-ui/layout'
+import { useDisclosure, IconButton } from '@chakra-ui/react'
+import { ModalElement } from './modal'
 import { navItems } from '../data/static'
+import { RxHamburgerMenu } from 'react-icons/rx'
+import { useState } from 'react'
+import { device } from '../lib/device'
+import { useMediaQuery } from '@chakra-ui/react'
 
-export function Navigation() {
-  const router = useRouter()
-  const isActive: (pathname: string) => boolean = (pathname) =>
-    router.pathname === pathname
-
+function renderNavItems(items: any) {
   return (
     <Box>
       <nav>
@@ -37,5 +39,33 @@ export function Navigation() {
         </List>
       </nav>
     </Box>
+  )
+}
+
+export function Navigation({ type }: any): JSX.Element {
+  const [isTablet] = useMediaQuery('(min-width: 780px)')
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  return (
+    <>
+      {!isTablet ? (
+        <>
+          <Box>
+            <IconButton
+              aria-label="Search database"
+              icon={<RxHamburgerMenu />}
+              onClick={onOpen}
+            />
+          </Box>
+          {isOpen && (
+            <ModalElement isOpen={isOpen} onClose={onClose}>
+              {renderNavItems(navItems)}
+            </ModalElement>
+          )}
+        </>
+      ) : (
+        <div>{renderNavItems(navItems)}</div>
+      )}
+    </>
   )
 }

@@ -20,7 +20,7 @@ export const navItems = [
     href: '/news',
   },
   {
-    id: 4,
+    id: 5,
     name: 'Transfers',
     href: '/transfers',
   },

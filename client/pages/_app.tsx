@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import { Header } from '../components/Header'
+import { Header } from '../components/header'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { SessionProvider } from 'next-auth/react'

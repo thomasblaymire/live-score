@@ -24,16 +24,22 @@ export function ScoreBoard() {
   if (error) return <div>Request Failed</div>
 
   return (
-    <Box borderRadius="15px" background="#111111" width="80%" margin="0 auto">
-      <Box padding="10px">
+    <Box
+      borderRadius="15px"
+      background={{ md: '#161b22' }}
+      width={{ md: '80%' }}
+      margin="0 auto"
+    >
+      <Box padding={{ base: '1rem' }}>
         {data &&
           data.matches.map((match: any) => (
             <Box
-              margin="20px"
+              margin={{ base: '0px' }}
+              marginBottom={{ base: '1rem', md: '0' }}
               fontSize="16px"
               key={match.homeTeam.name}
               color="#a8a7a7"
-              background="#181818"
+              background="#0d1116"
               borderRadius="15px"
               sx={{
                 '&:hover': {
@@ -42,8 +48,17 @@ export function ScoreBoard() {
                 },
               }}
             >
-              <LinkBox display="flex" padding="10px">
-                <Box display="flex" alignItems="center" flex=" 1 1 0%">
+              <LinkBox
+                display="flex"
+                padding={{ base: '0.5rem 1rem' }}
+                marginBottom="1rem"
+              >
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  flex=" 1 1 0%"
+                  fontSize={{ base: '14px', md: 'auto' }}
+                >
                   <Box
                     flex="0 0 50px"
                     flexDirection="column"
@@ -62,8 +77,9 @@ export function ScoreBoard() {
                         src={match.homeTeam.crest}
                         color="white"
                         alt={match.homeTeam.name}
-                        width={25}
-                        height={25}
+                        width={20}
+                        height={20}
+                        style={{ marginRight: '15px' }}
                       />
                       {match.homeTeam.name}
                     </Box>
@@ -72,13 +88,24 @@ export function ScoreBoard() {
                         src={match.awayTeam.crest}
                         color="white"
                         alt={match.awayTeam.name}
-                        width={25}
-                        height={25}
+                        width={20}
+                        height={20}
+                        style={{ marginRight: '15px' }}
                       />
                       {match.awayTeam.name}
                     </Box>
                   </Box>
-                  <Box>00</Box>
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    minWidth="0"
+                    marginLeft="auto"
+                  >
+                    <Box display="flex" marginBottom="10px">
+                      0
+                    </Box>
+                    <Box display="flex">0</Box>
+                  </Box>
                 </Box>
               </LinkBox>
             </Box>

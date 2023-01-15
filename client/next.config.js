@@ -13,6 +13,11 @@ const nextConfig = {
         hostname: 'avatars.githubusercontent.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+        port: '',
+      },
     ],
   },
 }

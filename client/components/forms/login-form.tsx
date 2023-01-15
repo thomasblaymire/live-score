@@ -12,17 +12,26 @@ import {
   FormLabel,
   Center,
 } from '@chakra-ui/react'
-import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/router'
+import { BsGithub, BsGoogle } from 'react-icons/bs'
+import { HiOutlineMail } from 'react-icons/hi'
+import { getProviders, signIn, getSession, getCsrfToken } from 'next-auth/react'
+
 import { useState } from 'react'
 
-export const LoginForm = () => {
+export const LoginForm = ({ providers }: any) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const router = useRouter()
 
   const isError = false
+
+  function renderProviderIcon(name: any) {
+    if (name === 'GitHub') return <BsGithub />
+    if (name === 'Google') return <BsGoogle />
+    return <HiOutlineMail />
+  }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
@@ -34,13 +43,13 @@ export const LoginForm = () => {
   return (
     <Center color="white">
       <Flex justify="center" align="center" height="100vh">
-        <Box padding="50px" borderRadius="6px" minWidth="500px" height="400px">
+        <Box padding="50px" borderRadius="6px" minWidth="500px">
           <Text fontSize="2rem" lineHeight="4rem" marginBottom="1.5rem">
             Login
           </Text>
           <form onSubmit={handleSubmit}>
             <Stack paddingBottom="25px">
-              <FormControl isInvalid={isError}>
+              <FormControl isInvalid={isError} marginBottom="1rem">
                 <FormLabel>Email</FormLabel>
                 <Input
                   placeholder="Email"
@@ -48,11 +57,7 @@ export const LoginForm = () => {
                   height="50px"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                {!isError ? (
-                  <FormHelperText>
-                    Enter the email you'd like to receive the newsletter on.
-                  </FormHelperText>
-                ) : (
+                {isError && (
                   <FormErrorMessage>Email is required.</FormErrorMessage>
                 )}
               </FormControl>
@@ -76,11 +81,11 @@ export const LoginForm = () => {
             </Stack>
 
             <Text marginBottom="2rem">
-              By continuing, you agree to the{' '}
+              By continuing, you agree to the
               <a href="/" target="_blank" rel="noopener noreferrer">
                 Terms & Conditions
-              </a>{' '}
-              and{' '}
+              </a>
+              and
               <a href="/" target="_blank" rel="noopener noreferrer">
                 Privacy Policy
               </a>
@@ -98,6 +103,27 @@ export const LoginForm = () => {
             >
               Login
             </Button>
+
+            <Box>
+              {Object.values(providers).map((provider: any) => {
+                return (
+                  <Box key={provider.name}>
+                    <Stack direction="row" spacing={4}>
+                      <Button
+                        width="100%"
+                        onClick={() => signIn(provider.id)}
+                        leftIcon={renderProviderIcon(provider.name)}
+                        colorScheme="teal"
+                        variant="solid"
+                        marginBottom="1rem"
+                      >
+                        Sign in with {provider.name}
+                      </Button>
+                    </Stack>
+                  </Box>
+                )
+              })}
+            </Box>
           </form>
         </Box>
       </Flex>

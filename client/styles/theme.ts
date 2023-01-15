@@ -6,7 +6,7 @@ export const theme = extendTheme({
       'html, body': {
         color: 'gray.600',
         lineHeight: 'tall',
-        background: '#161616',
+        background: '#0d1116',
       },
       fonts: {
         heading: `'Inter', sans-serif`,
