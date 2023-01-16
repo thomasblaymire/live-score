@@ -50,7 +50,12 @@ router.get(
       }
     );
 
-    const data = await response.json();
+    let data = await response.json();
+
+    const filtred = data.matches
+      .sort((a: any, b: any) => a.status.localeCompare(b.status === "IN_PLAY"))
+      .reverse();
+
     res.json(data);
   })
 );
