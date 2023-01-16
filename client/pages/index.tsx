@@ -39,7 +39,7 @@ export default function Home({ competitions }: any) {
   )
 }
 
-// Leagues dont tend to change so we can use getStaticProps to render the data at build time.
+// Build time fetch leagues and inital score data
 export async function getStaticProps() {
   const competitions = await getCompetitions()
   const queryClient = new QueryClient()
