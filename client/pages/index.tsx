@@ -3,7 +3,7 @@ import { Box, Flex } from '@chakra-ui/layout'
 import Sidebar from '../components/sidebar'
 import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery } from '@chakra-ui/react'
-import { getCompetitions, getMatches } from '../lib/api-helpers'
+import { getCompetitions, getMatches, getStandings } from '../lib/api-helpers'
 import { CompetitionList } from '../components/competition-list'
 import { dehydrate, QueryClient, useQuery } from '@tanstack/react-query'
 
@@ -29,9 +29,9 @@ export default function Home({ competitions }: any) {
       </Box>
 
       {isTablet && (
-        <Box minWidth="100px">
+        <Box minWidth="300px">
           <Sidebar>
-            <CompetitionList competitions={competitions} />
+            <div>HEYY SIDEBAR DO</div>
           </Sidebar>
         </Box>
       )}
