@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Box, Flex } from '@chakra-ui/layout'
 import { Avatar, WrapItem, Stack, Button } from '@chakra-ui/react'
+import { Logo } from './logo'
 import { Navigation } from './navigation'
 import { AuthDropdown } from './auth-dropdown'
 import { useSession } from 'next-auth/react'
@@ -22,13 +22,7 @@ export function Header() {
           paddingX={{ base: '1rem', md: '4rem' }}
         >
           <Box>
-            <Image
-              src="/logo.svg"
-              alt="Live Score Logo"
-              width={170}
-              height={50}
-              priority
-            />
+            <Logo />
           </Box>
 
           <Navigation />
