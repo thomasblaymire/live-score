@@ -22,7 +22,6 @@ function Account({ session }: any) {
 
 export async function getServerSideProps(context: any) {
   const session = await getSession(context)
-  console.log('debug session', session)
 
   return {
     props: { session },

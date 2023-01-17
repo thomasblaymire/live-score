@@ -42,6 +42,7 @@ export default function Home({ competitions }: any) {
 // Build time fetch leagues and inital score data
 export async function getStaticProps() {
   const competitions = await getCompetitions()
+
   const queryClient = new QueryClient()
 
   await queryClient.prefetchQuery(['matches'], getMatches)
@@ -53,5 +54,3 @@ export async function getStaticProps() {
     },
   }
 }
-
-export async function getServerProps() {}
