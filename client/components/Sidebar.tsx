@@ -6,12 +6,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ children }: SidebarProps) => (
-  <Box
-    width="100%"
-    border="solid 1px"
-    borderColor="gray.800"
-    borderRadius="15px"
-  >
+  <Box width="100%" borderRadius="15px">
     {children}
   </Box>
 )

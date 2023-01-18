@@ -14,7 +14,7 @@ export function Header() {
 
   return (
     <header>
-      <Box width="100%" height="4rem" position="sticky" background="#161b22">
+      <Box width="100%" height="4rem" position="sticky" background="#121212">
         <Flex
           justifyContent="space-between"
           height="100%"

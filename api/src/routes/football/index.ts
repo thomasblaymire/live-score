@@ -62,7 +62,7 @@ router.get(
     const response = await fetchApi(`/competitions/${league}/standings`);
     const data = await response.json();
 
-    res.json(data.standings[0].table);
+    res.json(data);
   })
 );
 

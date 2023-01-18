@@ -1,20 +1,12 @@
 import Image from 'next/image'
-import {
-  Table,
-  Thead,
-  Td,
-  Th,
-  Tr,
-  Tbody,
-  IconButton,
-  Flex,
-  Text,
-} from '@chakra-ui/react'
-import { Box } from '@chakra-ui/layout'
-import Link from 'next/link'
+import { Table, Thead, Td, Th, Tr, Tbody, Flex, Text } from '@chakra-ui/react'
+import { Standings } from '../types/index'
 
-export function Standings({ standings }: any) {
-  console.log('debug standings', standings)
+interface StandingsProps {
+  standings: Standings[]
+}
+
+export function StandingsTable({ standings }: StandingsProps) {
   return (
     <div>
       <Table variant="unstyled">
@@ -22,7 +14,6 @@ export function Standings({ standings }: any) {
           <Tr>
             <Th>#</Th>
             <Th>Team</Th>
-
             <Th>GF</Th>
             <Th>GA</Th>
             <Th>GD</Th>
@@ -48,11 +39,11 @@ export function Standings({ standings }: any) {
                 <Flex align="center">
                   <Image
                     width={20}
-                    alt={standing.team.name}
+                    alt={standing.team.shortName}
                     height={20}
                     src={standing.team.crest}
                   />
-                  <Text marginLeft="10px"> {standing.team.name}</Text>
+                  <Text marginLeft="10px"> {standing.team.shortName}</Text>
                 </Flex>
               </Td>
 
