@@ -58,6 +58,7 @@ export const LoginForm = ({ providers }: LoginProps) => {
                   placeholder="Email"
                   type="email"
                   height="50px"
+                  data-test="signin-input-email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 {isError && (
@@ -71,6 +72,7 @@ export const LoginForm = ({ providers }: LoginProps) => {
                   placeholder="Password"
                   type="password"
                   height="50px"
+                  data-test="signin-input-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 {isError ? (
@@ -115,6 +117,7 @@ export const LoginForm = ({ providers }: LoginProps) => {
                       width="100%"
                       onClick={() => signIn(provider.id)}
                       leftIcon={renderProviderIcon(provider.name)}
+                      data-test="sign-in-submit"
                       colorScheme="teal"
                       variant="solid"
                       marginBottom="1rem"
