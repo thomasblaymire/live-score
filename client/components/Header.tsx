@@ -14,12 +14,13 @@ export function Header() {
 
   return (
     <header>
-      <Box width="100%" height="4rem" position="sticky" background="#121212">
+      <Box height="4rem" position="sticky" background="#121212">
         <Flex
           justifyContent="space-between"
+          width="1300px"
+          margin="0 auto"
           height="100%"
           alignItems="center"
-          paddingX={{ base: '1rem', md: '4rem' }}
         >
           <Box>
             <Logo />
