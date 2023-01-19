@@ -33,7 +33,7 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
   )
 
   return (
-    <Box background="#121212">
+    <Box>
       {/* <Search handleSearch={handleSearch} /> */}
       <Box
         padding="1rem 1.5rem"
@@ -47,6 +47,9 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
       </Box>
       <Divider color="gray.800" />
       <List
+        background="#121212"
+        borderBottomLeftRadius="15px"
+        borderBottomRightRadius="15px"
         sx={{
           'ul:last-child li': {
             borderBottomLeftRadius: '15px',

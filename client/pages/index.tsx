@@ -1,5 +1,5 @@
 import Sidebar from '../components/sidebar'
-import { Box, Flex, Container } from '@chakra-ui/layout'
+import { Box, Flex, Container, Grid, GridItem } from '@chakra-ui/layout'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
@@ -17,28 +17,45 @@ export default function Home({ competitions }: HomeProps) {
 
   return (
     <Box width="1300px" margin="0 auto">
-      <Flex
+      <Grid
         marginTop={{ base: '1rem', md: '2rem' }}
-        justifyContent="space-between"
+        columnGap="2.4rem"
+        rowGap="2.4rem"
+        height="1000px"
+        templateAreas={{
+          base: `"sidebar main" ". aside"`,
+          sm: `"sidebar main"`,
+          md: `"sidebar main aside"`,
+        }}
+        gridTemplateRows="auto"
+        // gridTemplateColumns={{
+        //   base: 'minmax(0,5fr) minmax(0,12fr) minmax(300px,7fr)',
+        //   xs: 'minmax(0,1fr)',
+        //   md: 'minmax(0,5fr) minmax(0,12fr) minmax(300px,7fr)',
+        // }}
+        gridTemplateColumns={{
+          sm: 'minmax(0,6fr) minmax(0,12fr) minmax(300px,7fr)',
+          base: 'minmax(0,1fr)',
+        }}
       >
         {isTablet && (
-          <Box width="20vw">
+          <GridItem area={'sidebar'}>
             <Sidebar>
               <CompetitionList competitions={competitions} />
             </Sidebar>
-          </Box>
+          </GridItem>
         )}
 
-        <Box flexGrow="1" minWidth="100px" marginX="2rem">
+        <GridItem area={'main'}>
           <BetCard />
           <Heading fontSize="1.5rem" color="white" marginBottom="1.5rem">
             Football Matches
           </Heading>
           <ScoreBoard />
-        </Box>
+        </GridItem>
 
         {isTablet && (
-          <Box width="25vw">
+          <GridItem area={'aside'}>
             <Sidebar>
               <Box
                 background="#1F1F1F"
@@ -48,9 +65,9 @@ export default function Home({ competitions }: HomeProps) {
               ></Box>
               <Box background="#1F1F1F" height="45vh" borderRadius="15px"></Box>
             </Sidebar>
-          </Box>
+          </GridItem>
         )}
-      </Flex>
+      </Grid>
     </Box>
   )
 }

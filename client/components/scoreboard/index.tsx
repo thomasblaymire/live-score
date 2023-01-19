@@ -51,10 +51,10 @@ export function ScoreBoard() {
                     <Box
                       margin={{ base: '0px' }}
                       marginBottom={{ base: '1rem', md: '0' }}
-                      fontSize="16px"
-                      color="#a8a7a7"
-                      background="#0d1116"
-                      borderRadius="15px"
+                      fontSize="1.25rem"
+                      fontWeight="600"
+                      color="white"
+                      borderRadius="5px"
                       sx={{
                         '&:hover': {
                           background: '#313131',
@@ -94,19 +94,19 @@ export function ScoreBoard() {
                                 src={homeTeam.crest}
                                 color="white"
                                 alt={homeTeam.name}
-                                width={20}
-                                height={20}
+                                width={25}
+                                height={25}
                                 style={{ marginRight: '15px' }}
                               />
                               {homeTeam.name}
                             </Box>
-                            <Box display="flex">
+                            <Box display="flex" alignItems="center">
                               <NextImage
                                 src={awayTeam.crest}
                                 color="white"
                                 alt={awayTeam.name}
-                                width={20}
-                                height={20}
+                                width={25}
+                                height={25}
                                 style={{ marginRight: '15px' }}
                               />
                               {awayTeam.name}

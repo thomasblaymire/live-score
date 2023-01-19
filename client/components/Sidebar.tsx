@@ -6,9 +6,7 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ children }: SidebarProps) => (
-  <Box width="100%" borderRadius="15px">
-    {children}
-  </Box>
+  <Box borderRadius="15px">{children}</Box>
 )
 
 export default Sidebar
