@@ -29,7 +29,8 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
 
   const filteredCompetitions = data.filter(
     (competition: any) =>
-      competition.name.toLowerCase().includes(searchField) || searchField === ''
+      competition.league.name.toLowerCase().includes(searchField) ||
+      searchField === ''
   )
 
   return (
@@ -72,13 +73,13 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
 
         {isError && <ErrorState />}
 
-        {filteredCompetitions.map((competition: any) => (
+        {filteredCompetitions.map((competition: any, i: number) => (
           <Link
-            key={competition.name}
+            key={i}
             passHref
             href={{
               pathname: '/league',
-              query: { code: competition.code },
+              query: { code: competition.league.name },
             }}
           >
             <ListItem
@@ -99,13 +100,13 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
             >
               <Box marginX="10px">
                 <NextImage
-                  src={competition.emblem}
+                  src={competition.league.logo}
                   width={30}
                   height={30}
-                  alt={competition.name}
+                  alt={competition.league.name}
                 />
               </Box>
-              {competition.name}
+              {competition.league.name}
             </ListItem>
           </Link>
         ))}

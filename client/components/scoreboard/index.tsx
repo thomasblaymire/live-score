@@ -1,3 +1,6 @@
+import Link from 'next/link'
+import { useState } from 'react'
+import { useRouter } from 'next/router'
 import { Box, LinkBox } from '@chakra-ui/layout'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
@@ -6,15 +9,33 @@ import { getMatches } from '../../lib/api-helpers'
 import { hypenateMatchString } from '../../lib/string'
 import { ScoreBoardStatus } from './scoreboard-status'
 import { ScoreBoardHeader } from './scoreboard-header'
+
 import NextImage from 'next/image'
-import Link from 'next/link'
+
+import { Icon } from '@chakra-ui/react'
+import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 
 export function ScoreBoard() {
+  const [favourites, setFavourites]: any = useState([600532, 600526])
+  const router = useRouter()
+
   const { data, error, isLoading } = useQuery({
     queryKey: ['matches'],
     queryFn: getMatches,
-    refetchInterval: 30000,
+    // refetchInterval: 30000,
   })
+
+  const addToFavorite = (e: any, id: number) => {
+    e.preventDefault()
+    if (!favourites.includes(id)) setFavourites(favourites.concat(id))
+  }
+
+  const removeFavorite = (e: any, id: number) => {
+    e.preventDefault()
+    const arr = favourites
+    arr.splice(favourites.indexOf(id), 1)
+    setFavourites([...arr])
+  }
 
   return (
     <Box
@@ -36,19 +57,20 @@ export function ScoreBoard() {
               {isLoading && <div>Loading...</div>}
               {error && <div>Error...</div>}
 
-              {data?.matches?.map(
-                ({ homeTeam, awayTeam, score, status, utcDate, id }: any) => (
+              {data?.map(
+                ({ i, teams, score, leagues, fixture, goals }: any) => (
                   <Link
                     href={hypenateMatchString(
                       '/football/',
-                      id,
-                      homeTeam.shortName,
-                      awayTeam.shortName
+                      fixture.id,
+                      teams.home.name,
+                      teams.away.name
                     )}
                     passHref
-                    key={homeTeam.name}
+                    key={teams.home.name}
                   >
                     <Box
+                      key={teams.home.name}
                       margin={{ base: '0px' }}
                       marginBottom={{ base: '1rem', md: '0' }}
                       fontSize="1.25rem"
@@ -78,10 +100,34 @@ export function ScoreBoard() {
                             flexDirection="column"
                             position="relative"
                           >
-                            <ScoreBoardStatus
-                              status={status}
-                              utcDate={utcDate}
-                            />
+                            {favourites.includes(fixture.id) ? (
+                              <button
+                                type="button"
+                                onClick={(e) => removeFavorite(e, fixture.id)}
+                              >
+                                <Icon as={AiFillStar} boxSize={5} fill="teal" />
+                              </button>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={(e) => addToFavorite(e, fixture.id)}
+                              >
+                                <Icon as={AiOutlineStar} boxSize={5} />
+                              </button>
+                            )}
+                          </Box>
+
+                          <Box
+                            flex="0 0 50px"
+                            flexDirection="column"
+                            position="relative"
+                          >
+                            {fixture.status ? (
+                              <ScoreBoardStatus
+                                status={fixture.status}
+                                utcDate={fixture.date}
+                              />
+                            ) : null}
                           </Box>
                           <Box
                             display="flex"
@@ -91,25 +137,25 @@ export function ScoreBoard() {
                           >
                             <Box display="flex" marginBottom="10px">
                               <NextImage
-                                src={homeTeam.crest}
+                                src={teams.home.logo}
                                 color="white"
-                                alt={homeTeam.name}
+                                alt={teams.home.name}
                                 width={25}
                                 height={25}
                                 style={{ marginRight: '15px' }}
                               />
-                              {homeTeam.name}
+                              {teams.home.name}
                             </Box>
                             <Box display="flex" alignItems="center">
                               <NextImage
-                                src={awayTeam.crest}
+                                src={teams.away.logo}
                                 color="white"
-                                alt={awayTeam.name}
+                                alt={teams.away.name}
                                 width={25}
                                 height={25}
                                 style={{ marginRight: '15px' }}
                               />
-                              {awayTeam.name}
+                              {teams.away.name}
                             </Box>
                           </Box>
                           <Box
@@ -119,9 +165,9 @@ export function ScoreBoard() {
                             marginLeft="auto"
                           >
                             <Box display="flex" marginBottom="10px">
-                              {score.fullTime.home}
+                              {goals.home}
                             </Box>
-                            <Box display="flex">{score.fullTime.away}</Box>
+                            <Box display="flex">{goals.away}</Box>
                           </Box>
                         </Box>
                       </LinkBox>

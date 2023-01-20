@@ -18,6 +18,11 @@ const nextConfig = {
         hostname: 'upload.wikimedia.org',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'media-3.api-sports.io',
+        port: '',
+      },
     ],
   },
 }
