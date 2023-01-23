@@ -23,6 +23,11 @@ const nextConfig = {
         hostname: 'media-3.api-sports.io',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'media.api-sports.io',
+        port: '',
+      },
     ],
   },
 }

@@ -1,7 +1,8 @@
-import { LoginForm } from '../../components/forms/login-form'
-import { Flex, Box, Center } from '@chakra-ui/react'
-import { getProviders } from 'next-auth/react'
+import { SigninForm } from '../../components/forms/signin-form'
+import { Flex, Box, Center, Button, Stack } from '@chakra-ui/react'
+import { getProviders, getSession } from 'next-auth/react'
 import { Provider } from '../../types'
+import { signIn } from 'next-auth/react'
 
 interface SigninProps {
   providers: Provider[]
@@ -21,13 +22,41 @@ function Signin({ providers }: SigninProps) {
       />
 
       <Center width="55vw">
-        <LoginForm providers={providers} />
+        {/* <SigninForm providers={providers} /> */}
+        <Box>
+          {Object.values(providers).map((provider: Provider) => (
+            <Box key={provider.name}>
+              <Stack direction="row" spacing={4}>
+                <Button
+                  width="100%"
+                  onClick={() => signIn(provider.id)}
+                  data-test="sign-in-submit"
+                  marginBottom="1rem"
+                  border="solid 1.5px #7c8085"
+                  background="none"
+                >
+                  Sign in with {provider.name}
+                </Button>
+              </Stack>
+            </Box>
+          ))}
+        </Box>
       </Center>
     </Flex>
   )
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
+  const { req } = context
+  const session = await getSession({ req })
+
+  console.log('debug session', session)
+
+  if (session) {
+    return {
+      redirect: { destination: '/' },
+    }
+  }
   return {
     props: {
       providers: await getProviders(),

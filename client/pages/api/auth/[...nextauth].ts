@@ -8,6 +8,23 @@ import GoogleProvider from 'next-auth/providers/google'
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
+  callbacks: {
+    session: async ({ session, token }: any) => {
+      if (session?.user) {
+        session.user.id = token.uid
+      }
+      return session
+    },
+    jwt: async ({ user, token }) => {
+      if (user) {
+        token.uid = user.id
+      }
+      return token
+    },
+  },
+  session: {
+    strategy: 'jwt',
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
@@ -32,8 +49,8 @@ export default NextAuth({
   pages: {
     signIn: '/auth/signin',
     signOut: '/auth/signout',
-    error: '/auth/error', // Error code passed in query string as ?error=
-    verifyRequest: '/auth/verify-request', // (used for check email message)
-    newUser: '/auth/new-user', // New users will be directed here on first sign in (leave the property out if not of interest)
+    error: '/auth/error',
+    verifyRequest: '/auth/verify-request',
+    newUser: '/auth/new-user',
   },
 })

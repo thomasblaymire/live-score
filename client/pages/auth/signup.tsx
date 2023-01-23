@@ -1,4 +1,3 @@
-import { LoginForm } from '../../components/forms/login-form'
 import { Flex, Box } from '@chakra-ui/react'
 
 const Signup = () => {
