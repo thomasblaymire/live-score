@@ -33,5 +33,9 @@ export function ScoreBoardStatus({ status, utcDate }: ScoreBoardProps) {
     }
   }
 
-  return <>{renderStatus()}</>
+  return (
+    <Box flex="0 0 50px" flexDirection="column" position="relative">
+      {renderStatus()}
+    </Box>
+  )
 }
