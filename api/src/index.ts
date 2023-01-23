@@ -6,6 +6,8 @@ import { createServer } from "http";
 import { clientUrl } from "./constants";
 import { Server } from "socket.io";
 import { footballRouter } from "./routes/football";
+import { favouritesRouter } from "./routes/favourites";
+import { searchRouter } from "./routes/search";
 
 dotenv.config();
 
@@ -13,8 +15,11 @@ const app: Express = express();
 const port = process.env.PORT;
 
 app.use(express.json({ limit: "10kb" }));
+
 app.use(cors(corsOptions));
 app.use(footballRouter);
+app.use(favouritesRouter);
+app.use(searchRouter);
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {

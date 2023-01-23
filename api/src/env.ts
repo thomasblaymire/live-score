@@ -6,6 +6,8 @@ const envVariables = z.object({
   FOOTBALL_TOKEN: z.string(),
   FOOTBALL_API_URL: z.string(),
   GOOGLE_API_KEY: z.string(),
+  MOCKY_SEARCH_API_URL: z.string(),
+  MOCKY_TOP_COMPETITIONS_API_URL: z.string(),
 });
 
 envVariables.parse(process.env);
