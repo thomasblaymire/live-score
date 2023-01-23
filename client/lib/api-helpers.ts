@@ -23,3 +23,15 @@ export const getStandings = async (league: string) => {
   const standings = await response.json()
   return standings
 }
+
+export const getFavourites = async () => {
+  const response = await fetch(`${API_URL}/favourites/`)
+  const favourites = await response.json()
+  return favourites
+}
+
+export const getSearchResults = async (query: any) => {
+  const response = await fetch(`${API_URL}/search?query=${query}`)
+  const favourites = await response.json()
+  return favourites
+}

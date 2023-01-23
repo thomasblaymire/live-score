@@ -11,10 +11,10 @@ export interface Provider {
 }
 
 export enum PROVIDERS {
-  GITHUB = 'github',
-  FACEBOOK = 'facebook',
-  EMAIL = 'email',
-  GOOGLE = 'google',
+  GITHUB = 'GitHub',
+  FACEBOOK = 'Facebook',
+  EMAIL = 'Email',
+  GOOGLE = 'Google',
 }
 
 export interface Competition {
