@@ -2,7 +2,7 @@ import NextImage from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { useQuery } from 'react-query'
-import { Search } from './search'
+
 import { Box, List, ListItem, Divider, Heading } from '@chakra-ui/layout'
 import { Stack, Skeleton } from '@chakra-ui/react'
 import { getCompetitions } from '../lib/api-helpers'
@@ -14,28 +14,20 @@ interface CompetitionListProps {
 }
 
 export function CompetitionList({ competitions }: CompetitionListProps) {
-  const [searchField, setSearchField] = useState('')
-
   const { data, isLoading, isError } = useQuery({
     queryKey: ['competitions'],
     queryFn: getCompetitions,
     initialData: competitions,
   })
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target
-    setSearchField(value.toLowerCase())
-  }
-
-  const filteredCompetitions = data.filter(
-    (competition: any) =>
-      competition.league.name.toLowerCase().includes(searchField) ||
-      searchField === ''
-  )
+  // const filteredCompetitions = data.filter(
+  //   (competition: any) =>
+  //     competition.league.name.toLowerCase().includes(searchField) ||
+  //     searchField === ''
+  // )
 
   return (
     <Box>
-      {/* <Search handleSearch={handleSearch} /> */}
       <Box
         padding="1rem 1.5rem"
         background="#1F1F1F"
@@ -73,7 +65,7 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
 
         {isError && <ErrorState />}
 
-        {filteredCompetitions.map((competition: any, i: number) => (
+        {competitions.map((competition: any, i: number) => (
           <Link
             key={i}
             passHref
