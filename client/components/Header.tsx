@@ -28,7 +28,7 @@ export function Header() {
       <Box height="4rem" position="sticky" background="#121212">
         <Flex
           justifyContent="space-between"
-          width={{ sm: '1300px' }}
+          width={{ sm: '1200px' }}
           margin="0 auto"
           height="100%"
           alignItems="center"

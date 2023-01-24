@@ -28,17 +28,6 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
 
   return (
     <Box>
-      <Box
-        padding="1rem 1.5rem"
-        background="#1F1F1F"
-        borderTopLeftRadius="15px"
-        borderTopRightRadius="15px"
-      >
-        <Heading color="#FFF" fontSize="1.1rem">
-          Popular Leagues
-        </Heading>
-      </Box>
-      <Divider color="gray.800" />
       <List
         background="#121212"
         borderBottomLeftRadius="15px"

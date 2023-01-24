@@ -35,7 +35,7 @@ export function ScoreBoard() {
       margin="0 auto"
     >
       <Tabs isFitted variant="enclosed" colorScheme="red">
-        <TabList mb="1em">
+        <TabList>
           {tabs.map((tab) => (
             <Tab key={tab.title} _selected={{ color: 'white', bg: '#029143' }}>
               {tab.title}
