@@ -5,18 +5,22 @@ import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
 import { getCompetitions, getMatches } from '../lib/api-helpers'
 import { CompetitionList } from '../components/competition-list'
+import { StandingsTable } from '../components/standings'
 import { BetCard } from '../components/bet-card'
+import { Card } from '../components/card'
+import { getStandings } from '../lib/api-helpers'
 import { Competition } from '../types/index'
 
 interface HomeProps {
   competitions: Competition[]
+  league: any
 }
 
-export default function Home({ competitions }: HomeProps) {
+export default function Home({ competitions, league }: HomeProps) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
 
   return (
-    <Box width="1300px" margin="0 auto">
+    <Box width="1200px" margin="0 auto">
       <Grid
         marginTop={{ base: '1rem', md: '2rem' }}
         columnGap="2.4rem"
@@ -41,14 +45,28 @@ export default function Home({ competitions }: HomeProps) {
         {isTablet && (
           <GridItem area={'sidebar'}>
             <Sidebar>
-              <CompetitionList competitions={competitions} />
+              <Card
+                color="#FFF"
+                heading="Top Competitions"
+                background="#1F1F1F"
+                margin="0 0 2rem 0"
+                height="45vh"
+                radius="15px"
+              >
+                <CompetitionList competitions={competitions} />
+              </Card>
             </Sidebar>
           </GridItem>
         )}
 
         <GridItem area={'main'}>
           <BetCard />
-          <Heading fontSize="1.5rem" color="white" marginBottom="1.5rem">
+          <Heading
+            fontSize="1.3rem"
+            color="white"
+            marginBottom="1rem"
+            fontFamily="inherit"
+          >
             Football Matches
           </Heading>
           <ScoreBoard />
@@ -57,13 +75,22 @@ export default function Home({ competitions }: HomeProps) {
         {isTablet && (
           <GridItem area={'aside'}>
             <Sidebar>
-              <Box
-                background="#1F1F1F"
-                marginBottom="2rem"
+              <Card
+                background="#121212"
+                margin="0 0 2rem 0"
                 height="45vh"
-                borderRadius="15px"
-              ></Box>
-              <Box background="#1F1F1F" height="45vh" borderRadius="15px"></Box>
+                radius="15px"
+              />
+              <Card
+                heading="Standings"
+                background="#121212"
+                color="#FFF"
+                radius="15px"
+              >
+                <Box padding="0 1rem">
+                  <StandingsTable standings={league.standings} size="sm" />
+                </Box>
+              </Card>
             </Sidebar>
           </GridItem>
         )}
@@ -78,10 +105,15 @@ export async function getStaticProps() {
   const queryClient = new QueryClient()
   await queryClient.prefetchQuery(['matches'], getMatches)
 
+  const data = await getStandings('39')
+
+  console.log('server side ', data.standings[0].league)
+
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
       competitions: competitions,
+      league: data.standings[0].league,
     },
   }
 }

@@ -8,14 +8,16 @@ export const theme = extendTheme({
         lineHeight: 'tall',
         background: '#000',
       },
-      fonts: {
-        heading: `'Nunito', sans-serif`,
-        body: `'Nunito', sans-serif`,
-      },
+
       a: {
         color: 'teal.500',
       },
     },
+  },
+  fonts: {
+    heading: `Nunito, sans-serif`,
+    body: `Nunito, sans-serif`,
+    h2: `Nunito, sans-serif`,
   },
   colors: {
     gray: {
