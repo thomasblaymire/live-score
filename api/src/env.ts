@@ -8,6 +8,8 @@ const envVariables = z.object({
   GOOGLE_API_KEY: z.string(),
   MOCKY_SEARCH_API_URL: z.string(),
   MOCKY_TOP_COMPETITIONS_API_URL: z.string(),
+  MOCKY_STANDINGS_API_URL: z.string(),
+  MOCKY_TOP_SCORERS_API_URL: z.string(),
 });
 
 envVariables.parse(process.env);

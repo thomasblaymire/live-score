@@ -64,10 +64,22 @@ router.get(
   "/api/standings/:league",
   catchAsync(async (req: Request, res: Response) => {
     const { league } = req.params;
-    const response = await fetchApi(`/competitions/${league}/standings`, false);
-    const data = await response.json();
 
-    res.json(data);
+    const urls = [
+      process.env.MOCKY_STANDINGS_API_URL,
+      process.env.MOCKY_TOP_SCORERS_API_URL,
+    ];
+
+    const response = await Promise.all(
+      urls.map((url) => fetch(url).then((res) => res.json()))
+    );
+
+    const formatted = {
+      standings: response[0].response,
+      topScorers: response[1].response,
+    };
+
+    res.json(formatted);
   })
 );
 
