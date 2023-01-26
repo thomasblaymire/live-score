@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
+import morgan from "morgan";
 import { corsOptions } from "./helpers/cors";
 import { createServer } from "http";
 import { clientUrl } from "./constants";
@@ -13,6 +14,9 @@ dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT;
+
+// Middleware for API logging
+app.use(morgan("dev"));
 
 app.use(express.json({ limit: "10kb" }));
 
