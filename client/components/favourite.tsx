@@ -1,47 +1,52 @@
 import { useMutation, useQuery } from 'react-query'
-import { getFavourites } from '../lib/api-helpers'
+import { getFavourites, addFavourite } from '../lib/api-helpers'
+import { Favourite, Fixture } from '../types'
 import { Box } from '@chakra-ui/layout'
 import { useState, ChangeEvent, useEffect } from 'react'
-import { Icon } from '@chakra-ui/react'
+import { Icon, useToast } from '@chakra-ui/react'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 
-export function Favourite({ fixture, userId }: any) {
-  const [favourites, setFavourites]: any = useState([])
-  const { data, error, isLoading } = useQuery({
+interface FavouriteProps {
+  userId: string
+  fixture: Fixture
+}
+
+export function Favourite({ fixture, userId }: FavouriteProps) {
+  const [favourites, setFavourites] = useState<Favourite>([])
+  const toast = useToast()
+
+  console.log('debug fixture', fixture)
+
+  const { data } = useQuery({
     queryKey: ['favourites'],
     queryFn: getFavourites,
   })
 
+  const mutation = useMutation({
+    mutationFn: (id: number) => addFavourite(id, userId),
+  })
+
   useEffect(() => {
-    if (data) {
+    if (data && userId) {
       const favouriteMatches = data.map((match: any) => match.matchId)
       const updatedMatches = [...favourites, ...favouriteMatches]
       if (favouriteMatches) setFavourites(updatedMatches)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data])
-
-  const mutation = useMutation({
-    mutationFn: (id: any) => {
-      console.log('debug posting id', id)
-      return fetch('http://localhost:3030/api/favourites', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ matchId: id, userId: userId }),
-      })
-    },
-    onSuccess: async () => {
-      console.log("I'm first!")
-    },
-    onSettled: async () => {
-      console.log("I'm second!")
-    },
-  })
+  }, [data, userId])
 
   const addToFavorite = (e: any, id: number) => {
     e.preventDefault()
+    if (!userId) {
+      return toast({
+        title: 'Unable to add to favorites',
+        description: 'Please create an account to get started.',
+        status: 'error',
+        duration: 2000,
+        isClosable: true,
+      })
+    }
+
     if (!favourites.includes(id)) {
       setFavourites(favourites.concat(id))
       console.log('debug id', id)
