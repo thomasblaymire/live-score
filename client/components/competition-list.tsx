@@ -66,8 +66,8 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
             <ListItem
               display="flex"
               alignItems="center"
-              paddingY="1rem"
-              paddingX="1rem"
+              paddingY="0.5rem"
+              paddingX="0.5rem"
               color="#FFF"
               fontWeight="700"
               borderBottom="solid 0.5px"

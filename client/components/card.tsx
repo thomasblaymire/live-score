@@ -2,10 +2,10 @@ import { Box, Heading, Divider, Text } from '@chakra-ui/layout'
 
 export function Card({
   heading,
-  background,
-  radius,
+  background = '#121212',
+  radius = '15px',
   children,
-  color,
+  color = '#FFFFFF',
   margin,
 }: any) {
   return (
