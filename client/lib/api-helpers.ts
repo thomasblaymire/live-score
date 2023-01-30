@@ -26,8 +26,21 @@ export const getStandings = async (league: string) => {
 
 export const getFavourites = async () => {
   const response = await fetch(`${API_URL}/favourites/`)
-  const favourites = await response.json()
-  return favourites
+  if (!response.ok) {
+    throw new Error('Network response was not ok')
+  }
+  return response.json()
+}
+
+export const addFavourite = async (id: number, userId: any) => {
+  console.log('debug posting id', id)
+  return fetch('http://localhost:3030/api/favourites', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ matchId: id, userId: userId }),
+  })
 }
 
 export const getSearchResults = async (query: any) => {

@@ -49,7 +49,7 @@ export function Navigation(): JSX.Element {
         <>
           <Box>
             <IconButton
-              aria-label="Search database"
+              aria-label="Mobile Navigation"
               icon={<RxHamburgerMenu />}
               onClick={onOpen}
             />

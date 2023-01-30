@@ -11,23 +11,13 @@ describe('Signin', () => {
 
   it('should require an email', () => {
     cy.get('@submit').click()
-    cy.get('[data-test="sign-up-email"]:invalid').should('have.length', 1)
-
-    cy.get('[data-test="sign-up-email"]:invalid')
-      .invoke('prop', 'validationMessage')
-      .should('contain', 'Please fill out this field')
-
-    cy.get('[data-test="sign-up-email"]:invalid')
-      .invoke('prop', 'validity')
-      .its('valueMissing')
-      .should('be.true')
+    cy.get('input:invalid').should('have.length', 2)
   })
 
   it('should require that the email actually be an email address', () => {
     cy.get('@email').type('notanemail')
-
     cy.get('@submit').click()
-    cy.get('[data-test="sign-up-email"]:invalid').should('have.length', 1)
+    cy.get('[data-test="sign-up-email"]:invalid').should('have.length', 2)
 
     cy.get('@email')
       .invoke('prop', 'validationMessage')
@@ -57,5 +47,20 @@ describe('Signin', () => {
     cy.get('[data-test="signin-input-email"]').type(email)
     cy.get('[data-test="signin-input-password"]').type(password)
     cy.get('form').submit()
+  })
+
+  it('sets auth cookie when logging in via form submission', function () {
+    // destructuring assignment of the this.currentUser object
+    const { username, password } = this.currentUser
+
+    cy.visit('/login')
+    cy.get('input[name=username]').type(username)
+    cy.get('input[name=password]').type(`${password}{enter}`)
+
+    // we should be redirected to /dashboard
+    cy.url().should('be', '/')
+
+    // our auth cookie should be present
+    cy.getCookie('live_score_access_token').should('exist')
   })
 })

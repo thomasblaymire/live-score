@@ -10,12 +10,15 @@ import {
   FormErrorMessage,
   FormLabel,
   Center,
+  Spinner,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { BsGithub, BsGoogle } from 'react-icons/bs'
-import { HiOutlineMail } from 'react-icons/hi'
+import { FcGoogle } from 'react-icons/fc'
+import { MdOutlineMail } from 'react-icons/md'
 import { signIn } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import { Provider, PROVIDERS } from '../../types'
 
 interface SigninFormProps {
@@ -25,6 +28,7 @@ interface SigninFormProps {
 export const SigninForm = ({ providers }: SigninFormProps) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loadingProvider, setLoadingProvider] = useState(new Set())
 
   const router = useRouter()
 
@@ -32,41 +36,56 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
 
   function renderProviderIcon(name: string): JSX.Element {
     if (name === PROVIDERS.GITHUB) return <BsGithub />
-    if (name === PROVIDERS.GOOGLE) return <BsGoogle />
-    return <HiOutlineMail />
+    if (name === PROVIDERS.GOOGLE) return <FcGoogle />
+    return <MdOutlineMail />
   }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    signIn()
+
+    console.log('debug handleSubmit', {
+      email,
+      password,
+    })
+
+    const response = await fetch('http://localhost:3030/api/signin', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+    const data = await response.json()
+    console.log('dbueeeee', data)
+    // signIn()
     router.push('/')
+  }
+
+  const handleProviderSignin = (providerId: string) => {
+    setLoadingProvider(() => new Set([providerId]))
+    signIn(providerId)
   }
 
   return (
     <Center color="white">
-      <Flex justify="center" align="center" height="100vh">
+      <Flex justify="center" align="center">
         <Box
           borderRadius="6px"
           width="450px"
           padding="2rem"
           background="#121212"
         >
-          <Heading
-            fontSize="2rem"
-            lineHeight="4rem"
-            marginBottom="1.5rem"
-            textAlign="center"
-          >
-            Login
-          </Heading>
           <form onSubmit={handleSubmit}>
             <Stack paddingBottom="25px">
-              <FormControl isInvalid={isError} marginBottom="1rem">
+              <FormControl isRequired isInvalid={isError} marginBottom="1rem">
                 <FormLabel>Email</FormLabel>
                 <Input
                   placeholder="Email"
                   type="email"
-                  height="50px"
                   data-test="signin-input-email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -75,12 +94,11 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
                 )}
               </FormControl>
 
-              <FormControl isInvalid={isError}>
+              <FormControl isRequired isInvalid={isError}>
                 <FormLabel>Password</FormLabel>
                 <Input
                   placeholder="Password"
                   type="password"
-                  height="50px"
                   data-test="signin-input-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -96,8 +114,10 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
 
             <Button
               type="submit"
-              bg="#029143"
+              data-test="sign-in-submit"
               width="100%"
+              marginTop="1rem"
+              bg="green.500"
               sx={{
                 '&:hover': {
                   bg: 'green.300',
@@ -151,13 +171,31 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
                   <Stack direction="row" spacing={4}>
                     <Button
                       width="100%"
-                      onClick={() => signIn(provider.id)}
+                      isLoading={loadingProvider.has(provider.id)}
+                      spinner={
+                        <Spinner
+                          thickness="4px"
+                          speed="0.65s"
+                          emptyColor="gray.200"
+                          color="#029143"
+                          size="lg"
+                        />
+                      }
+                      onClick={() => handleProviderSignin(provider.id)}
                       leftIcon={renderProviderIcon(provider.name)}
-                      data-test="sign-in-submit"
+                      data-test="provider-sign-in-submit"
                       marginBottom="1rem"
                       border="solid 1.5px #7c8085"
                       background="none"
+                      sx={{
+                        '&:hover': {
+                          bg: 'green.300',
+                          border: 'solid 1.5px',
+                          borderColor: 'green.300',
+                        },
+                      }}
                     >
+                      {loadingProvider.has(provider.id) && <div>Loading..</div>}
                       Sign in with {provider.name}
                     </Button>
                   </Stack>

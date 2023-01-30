@@ -70,14 +70,16 @@ export function Header() {
                   <Box marginRight="1rem">
                     <IconButton
                       variant="transparent"
-                      aria-label="Send email"
+                      aria-label="Notification Button"
+                      data-test="notification-button"
                       size="lg"
                       icon={<HiOutlineBell />}
                     />
 
                     <IconButton
                       variant="transparent"
-                      aria-label="Send email"
+                      aria-label="Search Button"
+                      data-test="search-button"
                       size="lg"
                       icon={<HiOutlineSearch />}
                       onClick={onOpen}

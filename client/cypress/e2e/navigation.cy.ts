@@ -16,7 +16,7 @@ describe('Navigation', () => {
   it('should navigate to the leagues page', () => {
     cy.visit('http://localhost:3000/')
     cy.get('a[href*="leagues"]').click()
-    cy.url().should('include', '/matches')
+    cy.url().should('include', '/leagues')
     cy.get('h1').contains('Leagues Page')
   })
 

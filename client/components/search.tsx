@@ -88,6 +88,7 @@ export function Search({ isOpen, onClose }: SearchProps) {
                   borderRadius="0px"
                   type="text"
                   borderBottom="solid 3px white"
+                  data-test="search-input"
                   onChange={(e) => handleSearch(e)}
                 />
               </InputGroup>
@@ -98,7 +99,7 @@ export function Search({ isOpen, onClose }: SearchProps) {
                 data.response.map((result: any, i: any) => {
                   return (
                     <>
-                      <Card color="white">
+                      <Card color="white" data-test="search-result">
                         <CardBody padding="1rem 0rem">
                           <Stack divider={<StackDivider />} spacing="2">
                             <Flex alignItems="center">
