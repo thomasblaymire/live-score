@@ -1,6 +1,5 @@
 import { useMutation, useQuery } from 'react-query'
 import { getFavourites, addFavourite } from '../lib/api-helpers'
-import { Favourite, Fixture } from '../types'
 import { Box } from '@chakra-ui/layout'
 import { useState, ChangeEvent, useEffect } from 'react'
 import { Icon, useToast } from '@chakra-ui/react'
@@ -11,11 +10,9 @@ interface FavouriteProps {
   fixture: Fixture
 }
 
-export function Favourite({ fixture, userId }: FavouriteProps) {
+export function Favourite({ fixture, userId }: FavouriteProps): JSX.Element {
   const [favourites, setFavourites] = useState<Favourite>([])
   const toast = useToast()
-
-  console.log('debug fixture', fixture)
 
   const { data } = useQuery({
     queryKey: ['favourites'],
@@ -28,15 +25,24 @@ export function Favourite({ fixture, userId }: FavouriteProps) {
 
   useEffect(() => {
     if (data && userId) {
-      const favouriteMatches = data.map((match: any) => match.matchId)
-      const updatedMatches = [...favourites, ...favouriteMatches]
-      if (favouriteMatches) setFavourites(updatedMatches)
+      updateMatchState(data)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, userId])
 
-  const addToFavorite = (e: any, id: number) => {
-    e.preventDefault()
+  const updateMatchState = (data: Match[]) => {
+    const favouriteMatchIds: Favourite = data.map(
+      (match: Match) => match.matchId
+    )
+
+    if (favouriteMatchIds) setFavourites([...favourites, ...favouriteMatchIds])
+  }
+
+  const addToFavorite = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: number
+  ) => {
+    event.preventDefault()
     if (!userId) {
       return toast({
         title: 'Unable to add to favorites',
@@ -49,13 +55,15 @@ export function Favourite({ fixture, userId }: FavouriteProps) {
 
     if (!favourites.includes(id)) {
       setFavourites(favourites.concat(id))
-      console.log('debug id', id)
       mutation.mutate(id)
     }
   }
 
-  const removeFavorite = (e: ChangeEvent<HTMLInputElement>, id: number) => {
-    e.preventDefault()
+  const removeFavorite = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    id: number
+  ) => {
+    event.preventDefault()
     const arr = favourites
     arr.splice(favourites.indexOf(id), 1)
     setFavourites([...arr])
@@ -66,12 +74,15 @@ export function Favourite({ fixture, userId }: FavouriteProps) {
       {favourites.includes(fixture.id) ? (
         <button
           type="button"
-          onClick={(e: any) => removeFavorite(e, fixture.id)}
+          onClick={(event) => removeFavorite(event, fixture.id)}
         >
           <Icon as={AiFillStar} boxSize={5} fill="#029143" />
         </button>
       ) : (
-        <button type="button" onClick={(e) => addToFavorite(e, fixture.id)}>
+        <button
+          type="button"
+          onClick={(event) => addToFavorite(event, fixture.id)}
+        >
           <Icon as={AiOutlineStar} boxSize={5} />
         </button>
       )}
