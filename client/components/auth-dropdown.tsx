@@ -19,7 +19,11 @@ interface User {
   image: string
 }
 
-export function AuthDropdown({ user }: any) {
+interface AuthDropdownProps {
+  user: User
+}
+
+export function AuthDropdown({ user }: AuthDropdownProps) {
   const handleSignout = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
     signOut()

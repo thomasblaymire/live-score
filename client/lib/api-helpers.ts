@@ -1,6 +1,6 @@
 const API_URL = 'http://localhost:3030/api'
 
-export const getCompetitions = async () => {
+export const getCompetitions = async (): Promise<Competitions[]> => {
   const response = await fetch(`${API_URL}/competitions`)
   const competitions = await response.json()
   return competitions
@@ -15,16 +15,19 @@ export const getMatches = async () => {
 export const getMatchData = async (id: any) => {
   const response = await fetch(`${API_URL}/match/${id}`)
   const match = await response.json()
+
+  console.log('debug match', match)
+
   return match
 }
 
-export const getStandings = async (league: string) => {
-  const response = await fetch(`${API_URL}/standings/${league}`)
-  const standings = await response.json()
-  return standings
+export const getLeague = async (leagueId: string) => {
+  const response = await fetch(`${API_URL}/league/${leagueId}`)
+  const league = await response.json()
+  return league
 }
 
-export const getFavourites = async () => {
+export const getFavourites = async (): Promise<FavouriteMatch[]> => {
   const response = await fetch(`${API_URL}/favourites/`)
   if (!response.ok) {
     throw new Error('Network response was not ok')
@@ -33,7 +36,6 @@ export const getFavourites = async () => {
 }
 
 export const addFavourite = async (id: number, userId: any) => {
-  console.log('debug posting id', id)
   return fetch('http://localhost:3030/api/favourites', {
     method: 'POST',
     headers: {
@@ -43,7 +45,7 @@ export const addFavourite = async (id: number, userId: any) => {
   })
 }
 
-export const getSearchResults = async (query: any) => {
+export const getSearchResults = async (query: any): Promise<SearchResult> => {
   const response = await fetch(`${API_URL}/search?query=${query}`)
   const favourites = await response.json()
   return favourites

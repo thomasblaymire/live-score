@@ -1,4 +1,4 @@
-export const navItems = [
+export const navItems: NavItem[] = [
   {
     id: 1,
     name: 'Matches',
@@ -26,7 +26,7 @@ export const navItems = [
   },
 ]
 
-export const authMenuItems = [
+export const authMenuItems: NavItem[] = [
   {
     id: 1,
     name: 'My Account',

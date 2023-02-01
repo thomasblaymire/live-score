@@ -1,16 +1,13 @@
 import NextImage from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
 import { useQuery } from 'react-query'
-
-import { Box, List, ListItem, Divider, Heading } from '@chakra-ui/layout'
+import { Box, List, ListItem } from '@chakra-ui/layout'
 import { Stack, Skeleton } from '@chakra-ui/react'
 import { getCompetitions } from '../lib/api-helpers'
-import { Competition } from '../types/index'
 import { ErrorState } from './error'
 
 interface CompetitionListProps {
-  competitions: Competition[]
+  competitions: Competitions[]
 }
 
 export function CompetitionList({ competitions }: CompetitionListProps) {
@@ -19,12 +16,6 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
     queryFn: getCompetitions,
     initialData: competitions,
   })
-
-  // const filteredCompetitions = data.filter(
-  //   (competition: any) =>
-  //     competition.league.name.toLowerCase().includes(searchField) ||
-  //     searchField === ''
-  // )
 
   return (
     <Box>
@@ -54,7 +45,7 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
 
         {isError && <ErrorState />}
 
-        {competitions.map((competition: any, i: number) => (
+        {competitions.map((competition: Competitions, i: number) => (
           <Link
             key={i}
             passHref

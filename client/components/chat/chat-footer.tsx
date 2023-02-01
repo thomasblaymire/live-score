@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { Box } from '@chakra-ui/layout'
 
-export const ChatFooter = () => {
-  const [message, setMessage] = useState('')
+export const ChatFooter = (): JSX.Element => {
+  const [message, setMessage] = useState<string>('')
 
-  const handleSendMessage = (e: any) => {
-    e.preventDefault()
+  const handleSendMessage = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     console.log({ userName: localStorage.getItem('userName'), message })
     setMessage('')
   }
   return (
     <Box padding="10px" backgroundColor="#f9f5eb" height="10vh">
-      <form className="form" onSubmit={handleSendMessage}>
+      <form className="form" onSubmit={(event) => handleSendMessage(event)}>
         <input
           type="text"
           placeholder="Write message"

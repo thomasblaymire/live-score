@@ -16,7 +16,7 @@ import { useMediaQuery } from '@chakra-ui/react'
 import { HiOutlineBell, HiOutlineSearch } from 'react-icons/hi'
 import { Search } from './search'
 
-export function Header() {
+export function Header(): JSX.Element {
   const router = useRouter()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { data: session } = useSession()
@@ -24,7 +24,7 @@ export function Header() {
 
   return (
     <header>
-      <Search isOpen={isOpen} onOpen={onOpen} onClose={onClose} />
+      <Search isOpen={isOpen} onClose={onClose} />
       <Box height="4rem" position="sticky" background="#121212">
         <Flex
           justifyContent="space-between"

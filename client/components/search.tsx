@@ -1,61 +1,51 @@
-// import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import {
   Input,
   InputGroup,
   InputLeftElement,
-  Button,
   Box,
   Modal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
   ModalCloseButton,
   ModalBody,
-  ModalFooter,
-  useDisclosure,
   Flex,
   Stack,
   Image,
   Heading,
   Card,
   StackDivider,
-  CardHeader,
   CardBody,
-  CardFooter,
-  Text,
-  SimpleGrid,
 } from '@chakra-ui/react'
+import { useDebounce } from '../hooks/useDebounce'
 import { getSearchResults } from '../lib/api-helpers'
 import { MdSearch } from 'react-icons/md'
 
 interface SearchProps {
-  // handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
-  isOpen: any
-  onOpen: any
-  onClose: any
+  isOpen: boolean
+  onClose: () => void
 }
 
-// Lets split this up into seperate components
 export function Search({ isOpen, onClose }: SearchProps) {
-  const [searchField, setSearchField] = useState('')
-  const [data, setData] = useState()
+  const [value, setValue] = useState('')
+  const [data, setData] = useState<SearchResult | undefined>()
+  const debouncedValue = useDebounce<string>(value, 500)
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target
-    setSearchField(value.toLowerCase())
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(event.target.value.toLowerCase())
   }
 
   useEffect(() => {
-    if (searchField.length > 3) {
-      renderResults()
+    const renderResults = async () => {
+      const result = await getSearchResults(debouncedValue)
+      setData(result)
     }
-  }, [searchField])
-
-  const renderResults = async () => {
-    const result = await getSearchResults(searchField)
-    setData(result)
-  }
+    if (value.length > 3) {
+      renderResults()
+    } else {
+      setData(undefined)
+    }
+  }, [debouncedValue, value])
 
   return (
     <Modal isCentered isOpen={isOpen} onClose={onClose} size="full">
@@ -70,7 +60,6 @@ export function Search({ isOpen, onClose }: SearchProps) {
         color="white"
         fontFamily="__Nunito_81bb96"
       >
-        {' '}
         <ModalCloseButton />
         <Box width="70vw" margin="0 auto" position="relative" marginTop="6rem">
           <ModalBody>
@@ -89,40 +78,41 @@ export function Search({ isOpen, onClose }: SearchProps) {
                   type="text"
                   borderBottom="solid 3px white"
                   data-test="search-input"
-                  onChange={(e) => handleSearch(e)}
+                  value={value}
+                  onChange={handleChange}
                 />
               </InputGroup>
             </Box>
             <Box paddingTop="2rem">
-              {data &&
-                //@ts-ignore
-                data.response.map((result: any, i: any) => {
-                  return (
-                    <>
-                      <Card color="white" data-test="search-result">
-                        <CardBody padding="1rem 0rem">
-                          <Stack divider={<StackDivider />} spacing="2">
-                            <Flex alignItems="center">
-                              <Image
-                                src={result.team.logo}
-                                alt={result.team.name}
-                                width={35}
-                                height={35}
-                              />
-                              <Heading
-                                size="xs"
-                                textTransform="uppercase"
-                                marginLeft="1rem"
-                              >
-                                {result.team.name}
-                              </Heading>
-                            </Flex>
-                          </Stack>
-                        </CardBody>
-                      </Card>
-                    </>
-                  )
-                })}
+              {data
+                ? data.response.map((result: SearchResponse) => (
+                    <Card
+                      color="white"
+                      data-test="search-result"
+                      key={result.team.name}
+                    >
+                      <CardBody padding="1rem 0rem">
+                        <Stack divider={<StackDivider />} spacing="2">
+                          <Flex alignItems="center">
+                            <Image
+                              src={result.team.logo}
+                              alt={result.team.name}
+                              width={35}
+                              height={35}
+                            />
+                            <Heading
+                              size="xs"
+                              textTransform="uppercase"
+                              marginLeft="1rem"
+                            >
+                              {result.team.name}
+                            </Heading>
+                          </Flex>
+                        </Stack>
+                      </CardBody>
+                    </Card>
+                  ))
+                : null}
             </Box>
           </ModalBody>
         </Box>

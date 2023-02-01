@@ -1,4 +1,14 @@
-import { Box, Heading, Divider, Text } from '@chakra-ui/layout'
+import { Box, Heading } from '@chakra-ui/layout'
+
+interface CardProps {
+  heading: string
+  background?: string
+  radius?: string
+  height?: string
+  children: React.ReactNode
+  color?: string
+  margin?: string
+}
 
 export function Card({
   heading,
@@ -7,7 +17,7 @@ export function Card({
   children,
   color = '#FFFFFF',
   margin,
-}: any) {
+}: CardProps) {
   return (
     <Box
       background={background}

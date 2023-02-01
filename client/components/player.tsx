@@ -1,6 +1,10 @@
 import { Box } from '@chakra-ui/layout'
 
-export function Player({ embedId }: any) {
+interface PlayerProps {
+  embedId: string
+}
+
+export function Player({ embedId }: PlayerProps) {
   return (
     <Box>
       <iframe

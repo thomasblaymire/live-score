@@ -61,7 +61,7 @@ router.get(
 );
 
 router.get(
-  "/api/standings/:league",
+  "/api/league/:league",
   catchAsync(async (req: Request, res: Response) => {
     const { league } = req.params;
 
@@ -75,11 +75,23 @@ router.get(
     );
 
     const formatted = {
-      standings: response[0].response,
+      league: response[0].response[0].league,
       topScorers: response[1].response,
     };
 
     res.json(formatted);
+  })
+);
+
+router.get(
+  "/api/fixtures/:team",
+  catchAsync(async (req: Request, res: Response) => {
+    const { team } = req.params;
+
+    const response = await fetch(process.env.MOCKY_TEAM_FIXTURES_API_URL);
+    const data = await response.json();
+
+    res.json(data);
   })
 );
 

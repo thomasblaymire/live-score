@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from 'react-query'
 import { getFavourites, addFavourite } from '../lib/api-helpers'
 import { Box } from '@chakra-ui/layout'
-import { useState, ChangeEvent, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Icon, useToast } from '@chakra-ui/react'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 
@@ -11,7 +11,7 @@ interface FavouriteProps {
 }
 
 export function Favourite({ fixture, userId }: FavouriteProps): JSX.Element {
-  const [favourites, setFavourites] = useState<Favourite>([])
+  const [favourites, setFavourites] = useState<Number[]>([])
   const toast = useToast()
 
   const { data } = useQuery({
@@ -30,10 +30,8 @@ export function Favourite({ fixture, userId }: FavouriteProps): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, userId])
 
-  const updateMatchState = (data: Match[]) => {
-    const favouriteMatchIds: Favourite = data.map(
-      (match: Match) => match.matchId
-    )
+  const updateMatchState = (data: FavouriteMatch[]) => {
+    const favouriteMatchIds = data.map((match: FavouriteMatch) => match.matchId)
 
     if (favouriteMatchIds) setFavourites([...favourites, ...favouriteMatchIds])
   }

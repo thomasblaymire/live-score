@@ -6,7 +6,7 @@ import { navItems } from '../data/static'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { useMediaQuery } from '@chakra-ui/react'
 
-function renderNavItems(items: any) {
+function renderNavItems() {
   return (
     <Box>
       <nav>
@@ -56,12 +56,12 @@ export function Navigation(): JSX.Element {
           </Box>
           {isOpen && (
             <ModalElement isOpen={isOpen} onClose={onClose}>
-              {renderNavItems(navItems)}
+              {renderNavItems()}
             </ModalElement>
           )}
         </>
       ) : (
-        <div>{renderNavItems(navItems)}</div>
+        <div>{renderNavItems()}</div>
       )}
     </>
   )

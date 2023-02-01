@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import {
   Table,
   TableContainer,
@@ -11,17 +12,34 @@ import {
   Text,
   Box,
 } from '@chakra-ui/react'
-import { Standings } from '../types/index'
 
 interface StandingsProps {
-  standings: any
-  size?: any
-  width?: any
+  standings: Standings[]
+  size?: string
+  width?: string
 }
 
 export function StandingsTable({ standings, size, width }: StandingsProps) {
+  const router = useRouter()
+
+  const handleTeamSelection = (
+    event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
+    team: Team
+  ) => {
+    event.preventDefault()
+    const name = `${team.name}`.replace(/\s+/g, '_').toLowerCase()
+    console.log('team', team.id)
+    router.push(
+      {
+        pathname: `/team/${name}`,
+        query: { code: team.id },
+      },
+      `/team/${name}`
+    )
+  }
+
   return (
-    <Box paddingY="1rem" width={width}>
+    <Box width={width}>
       <TableContainer overflowX="scroll">
         <Table variant="unstyled" color="white" borderRadius="15px" size={size}>
           <Thead borderBottom="1px solid" borderColor="rgba(255,255,255,0.2)">
@@ -36,7 +54,7 @@ export function StandingsTable({ standings, size, width }: StandingsProps) {
             </Tr>
           </Thead>
           <Tbody>
-            {standings[0].map((standing: any, i: any) => (
+            {standings[0].map((standing: Standings, i: number) => (
               <Tr
                 sx={{
                   transition: 'all .3s',
@@ -44,8 +62,8 @@ export function StandingsTable({ standings, size, width }: StandingsProps) {
                     bg: 'rgba(255,255,255,0.1)',
                   },
                 }}
-                key={i}
-                //onClick => team page
+                key={standing.team.id}
+                onClick={(event) => handleTeamSelection(event, standing.team)}
                 cursor="pointer"
               >
                 <Td>{i + 1}</Td>

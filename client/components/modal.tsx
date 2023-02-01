@@ -1,3 +1,4 @@
+import { ReactNode } from 'react'
 import {
   Modal,
   ModalOverlay,
@@ -13,7 +14,7 @@ interface ModalElementProps {
   isOpen: boolean
   onClose: () => void
   title?: string
-  children: React.ReactChild
+  children: ReactNode
 }
 
 export function ModalElement({

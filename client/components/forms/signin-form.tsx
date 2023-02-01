@@ -14,12 +14,18 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { BsGithub, BsGoogle } from 'react-icons/bs'
+import { BsGithub } from 'react-icons/bs'
 import { FcGoogle } from 'react-icons/fc'
 import { MdOutlineMail } from 'react-icons/md'
 import { signIn } from 'next-auth/react'
 import { useSession } from 'next-auth/react'
-import { Provider, PROVIDERS } from '../../types'
+
+enum PROVIDERS {
+  GITHUB = 'GitHub',
+  FACEBOOK = 'Facebook',
+  EMAIL = 'Email',
+  GOOGLE = 'Google',
+}
 
 interface SigninFormProps {
   providers: Provider[]
@@ -40,13 +46,8 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
     return <MdOutlineMail />
   }
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault()
-
-    console.log('debug handleSubmit', {
-      email,
-      password,
-    })
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
 
     const response = await fetch('http://localhost:3030/api/signin', {
       method: 'POST',

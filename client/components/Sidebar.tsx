@@ -1,8 +1,8 @@
+import { ReactNode } from 'react'
 import { Box } from '@chakra-ui/layout'
-import React from 'react'
 
 interface SidebarProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const Sidebar = ({ children }: SidebarProps) => (

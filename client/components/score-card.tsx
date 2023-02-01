@@ -1,15 +1,8 @@
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  Avatar,
-  Button,
-} from '@chakra-ui/react'
-import { Flex, Box, Heading, Text } from '@chakra-ui/layout'
+import { Card, CardHeader, CardFooter, Avatar, Button } from '@chakra-ui/react'
+import { Flex, Box, Text } from '@chakra-ui/layout'
 import { BiLike, BiChat, BiShare } from 'react-icons/bi'
 
-export function ScoreCard({ homeTeam, awayTeam, status, venue, score }: any) {
+export function ScoreCard({ homeTeam, awayTeam, score }: any) {
   return (
     <Card maxW="md" border="solid 0.5px #eee">
       <CardHeader>
