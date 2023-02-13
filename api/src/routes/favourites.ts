@@ -11,8 +11,6 @@ router.post(
   catchAsync(async (req: Request, res: Response) => {
     const { matchId, userId } = req.body;
 
-    console.log("adding favourite", { matchId: matchId, userId: userId });
-
     if (!matchId) {
       return res
         .status(400)

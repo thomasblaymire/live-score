@@ -9,6 +9,8 @@ import { Server } from "socket.io";
 import { footballRouter } from "./routes/football";
 import { favouritesRouter } from "./routes/favourites";
 import { searchRouter } from "./routes/search";
+import { signupRouter } from "./routes/auth/signup";
+import { signinRouter } from "./routes/auth/signin";
 
 dotenv.config();
 
@@ -19,11 +21,14 @@ const port = process.env.PORT;
 app.use(morgan("dev"));
 
 app.use(express.json({ limit: "10kb" }));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors(corsOptions));
 app.use(footballRouter);
 app.use(favouritesRouter);
 app.use(searchRouter);
+app.use(signupRouter);
+app.use(signinRouter);
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
