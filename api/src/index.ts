@@ -6,11 +6,13 @@ import { corsOptions } from "./helpers/cors";
 import { createServer } from "http";
 import { clientUrl } from "./constants";
 import { Server } from "socket.io";
-import { footballRouter } from "./routes/football";
-import { favouritesRouter } from "./routes/favourites";
+import { newsRouter } from "./routes/football/news";
+import { favouritesRouter } from "./routes/football/favourites";
+import { leaguesRouter } from "./routes/football/leagues";
 import { searchRouter } from "./routes/search";
 import { signupRouter } from "./routes/auth/signup";
 import { signinRouter } from "./routes/auth/signin";
+import { fixturesRouter } from "./routes/football/fixtures";
 
 dotenv.config();
 
@@ -24,11 +26,15 @@ app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors(corsOptions));
-app.use(footballRouter);
+
+// Routers
+app.use(newsRouter);
 app.use(favouritesRouter);
 app.use(searchRouter);
 app.use(signupRouter);
 app.use(signinRouter);
+app.use(leaguesRouter);
+app.use(fixturesRouter);
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {

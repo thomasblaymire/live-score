@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
-import { catchAsync } from "../helpers/async";
-import { prisma } from "../helpers/prisma";
+import { catchAsync } from "../../helpers/async";
+import { prisma } from "../../helpers/prisma";
 
 const router = express.Router();
 
@@ -35,9 +35,7 @@ router.post(
 router.delete(
   "/api/favourites",
   catchAsync(async (req: Request, res: Response) => {
-    const { matchId, userId } = req.body;
-
-    console.log("removing favourite", { matchId: matchId, userId: userId });
+    const { matchId } = req.body;
 
     if (!matchId) {
       return res.status(400).json({
