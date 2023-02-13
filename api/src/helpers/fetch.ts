@@ -10,3 +10,12 @@ export const fetchApi = (url: string, type?: any) => {
     },
   });
 };
+
+// future
+// const options = {
+//   method: "GET",
+//   headers: {
+//     "X-RapidAPI-Key": process.env.PAID_FOOTBALL_API_KEY,
+//     "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
+//   },
+// };

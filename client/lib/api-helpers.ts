@@ -50,3 +50,10 @@ export const getSearchResults = async (query: any): Promise<SearchResult> => {
   const favourites = await response.json()
   return favourites
 }
+
+export const getNews = async (): Promise<any> => {
+  const response = await fetch(`${API_URL}/news`)
+  const news = await response.json()
+  const top5Articles = news.articles.slice(0, 5)
+  return top5Articles
+}

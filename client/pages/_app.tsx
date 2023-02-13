@@ -8,7 +8,6 @@ import { theme } from '../styles/theme'
 import type { AppProps } from 'next/app'
 import type { NextComponentType } from 'next'
 import { Nunito } from '@next/font/google'
-
 import 'reset-css'
 
 const nunito = Nunito({ subsets: ['latin'] })

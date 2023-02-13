@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Flex, Box } from '@chakra-ui/layout'
 import { useRouter } from 'next/router'
 import { Player } from '../../../components/player'

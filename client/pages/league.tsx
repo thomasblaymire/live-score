@@ -1,19 +1,16 @@
 import Image from 'next/image'
-import { getStandings } from '../lib/api-helpers'
+import { getLeague } from '../lib/api-helpers'
 import { StandingsTable } from '../components/standings'
 import { Flex, Box, Heading } from '@chakra-ui/layout'
 import { Card } from '../components/card'
-import { Standings, Competition } from '../types'
+import { TopScorers } from '../components/top-scorers'
 
 interface LeagueProps {
-  league: any
-  competition: Competition
+  league: League
+  topScorers: TopScorer[]
 }
 
-export default function League({ league, topScorers }: any) {
-  console.log('debug stangings', { league })
-  console.log('debug top scoreers', { topScorers })
-
+export default function League({ league, topScorers }: LeagueProps) {
   return (
     <Box>
       <Box
@@ -51,21 +48,7 @@ export default function League({ league, topScorers }: any) {
           height="45vh"
           radius="15px"
         >
-          {topScorers.map((scorer: any, i: any) => (
-            <div key={i}>
-              <Box>
-                {scorer.player.name}
-                <Box borderRadius="50px">
-                  <Image
-                    src={scorer.player.photo}
-                    alt={scorer.player.name}
-                    width={100}
-                    height={100}
-                  />
-                </Box>
-              </Box>
-            </div>
-          ))}
+          <TopScorers players={topScorers} />
         </Card>
       </Flex>
     </Box>
@@ -74,13 +57,13 @@ export default function League({ league, topScorers }: any) {
 
 export async function getServerSideProps(context: any) {
   const { code } = context.query
-  const data = await getStandings(code)
+  const data = await getLeague('39')
 
-  console.log('server side ', data.topScorers)
+  console.log('debug data', data)
 
   return {
     props: {
-      league: data.standings[0].league,
+      competition: data.league,
       topScorers: data.topScorers,
     },
   }

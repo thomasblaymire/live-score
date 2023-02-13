@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start",
     "lint": "next lint",
     "cypress": "cypress open",
@@ -35,7 +35,8 @@
     "react-query": "^3.39.2",
     "reset-css": "^5.0.1",
     "socket.io-client": "^4.5.4",
-    "typescript": "4.9.4"
+    "typescript": "4.9.4",
+    "wretch": "^2.4.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.37",

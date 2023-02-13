@@ -24,7 +24,7 @@ export function ScoreBoard() {
   const { data, error, isLoading } = useQuery({
     queryKey: ['matches'],
     queryFn: getMatches,
-    // refetchInterval: 30000,
+    refetchInterval: 30000,
   })
 
   return (

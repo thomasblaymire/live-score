@@ -1,23 +1,30 @@
 import Sidebar from '../components/sidebar'
+import { useState } from 'react'
 import { Box, Grid, GridItem } from '@chakra-ui/layout'
 import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
-import { getCompetitions, getMatches } from '../lib/api-helpers'
+import {
+  getCompetitions,
+  getMatches,
+  getLeague,
+  getNews,
+} from '../lib/api-helpers'
 import { CompetitionList } from '../components/competition-list'
 import { StandingsTable } from '../components/standings'
 import { BetCard } from '../components/bet-card'
 import { Card } from '../components/card'
 import { Footer } from '../components/footer'
-import { getLeague } from '../lib/api-helpers'
 
 interface HomeProps {
   competitions: Competitions[]
   competition: Competition
+  news: NewsResponse[]
 }
 
-export default function Home({ competitions, competition }: HomeProps) {
+export default function Home({ competitions, competition, news }: HomeProps) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
+  const [reveiws, setReviews] = useState(null)
 
   return (
     <>
@@ -79,7 +86,16 @@ export default function Home({ competitions, competition }: HomeProps) {
             <GridItem area={'aside'}>
               <Sidebar>
                 <Card margin="0 0 2rem 0" height="45vh" heading="Latest News">
-                  News
+                  {news.map((article: any, i: number) => (
+                    <Box
+                      fontSize="0.75rem"
+                      color="white"
+                      padding="1rem"
+                      key={i}
+                    >
+                      {article.title}
+                    </Box>
+                  ))}
                 </Card>
                 <Card heading="Standings">
                   <Box padding="0 1rem">
@@ -105,6 +121,7 @@ export async function getStaticProps() {
 
   const competitions = await getCompetitions()
   const competition = await getLeague('39')
+  const news = await getNews()
 
   await queryClient.prefetchQuery(['matches'], getMatches)
 
@@ -113,6 +130,7 @@ export async function getStaticProps() {
       dehydratedState: dehydrate(queryClient),
       competitions: competitions,
       competition: competition.league,
+      news: news,
     },
   }
 }
