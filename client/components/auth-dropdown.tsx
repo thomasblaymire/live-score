@@ -14,9 +14,9 @@ import { signOut } from 'next-auth/react'
 import Link from 'next/link'
 
 interface User {
-  name: string
-  email: string
-  image: string
+  name?: string | null | undefined
+  email?: string | null | undefined
+  image?: string | null | undefined
 }
 
 interface AuthDropdownProps {
@@ -39,7 +39,11 @@ export function AuthDropdown({ user }: AuthDropdownProps) {
         _expanded={{ bg: 'none' }}
         _focus={{ boxShadow: 'none' }}
       >
-        <Avatar name={user.name || 'Avatar'} src={user.image} size="sm">
+        <Avatar
+          name={user.name || 'Avatar'}
+          src={user.image ? user.image : ''}
+          size="sm"
+        >
           <AvatarBadge boxSize="1em" bg="green.500" />
         </Avatar>
       </MenuButton>

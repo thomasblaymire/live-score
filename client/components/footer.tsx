@@ -79,12 +79,6 @@ export function Footer() {
             <Link href={'#'}>Terms of Service</Link>
             <Link href={'#'}>Law Enforcement</Link>
           </Stack>
-
-          <Stack align={'flex-start'}>
-            <ListHeader>Install App</ListHeader>
-            {/* <AppStoreBadge />
-            <PlayStoreBadge /> */}
-          </Stack>
         </SimpleGrid>
       </Container>
 

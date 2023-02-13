@@ -32,7 +32,6 @@ export function Favourite({ fixture, userId }: FavouriteProps): JSX.Element {
 
   const updateMatchState = (data: FavouriteMatch[]) => {
     const favouriteMatchIds = data.map((match: FavouriteMatch) => match.matchId)
-
     if (favouriteMatchIds) setFavourites([...favourites, ...favouriteMatchIds])
   }
 
