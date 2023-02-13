@@ -15,7 +15,7 @@ import { hypenateMatchString } from '../../lib/string'
 import { ErrorState } from '../error'
 import { ScoreBoardStatus } from './scoreboard-status'
 import { ScoreBoardTeams } from './scoreboard-teams'
-import { tabs } from '../../data/scoreboard'
+import { tabs } from './data'
 import { useSession } from 'next-auth/react'
 
 export function ScoreBoard() {

@@ -2,7 +2,33 @@ import { Card, CardHeader, CardFooter, Avatar, Button } from '@chakra-ui/react'
 import { Flex, Box, Text } from '@chakra-ui/layout'
 import { BiLike, BiChat, BiShare } from 'react-icons/bi'
 
-export function ScoreCard({ homeTeam, awayTeam, score }: any) {
+interface ScoreTeam {
+  id: number
+  name: string
+  shortName: string
+  tla: string
+  crest: string
+}
+
+interface ScoreAtInterval {
+  home: number
+  away: number
+}
+
+interface Score {
+  winner: 'HOME_TEAM' | 'AWAY_TEAM'
+  duration: 'REGULAR' | 'EXTRA'
+  fullTime: ScoreAtInterval
+  halfTime: ScoreAtInterval
+}
+
+interface ScoreCardProps {
+  homeTeam: ScoreTeam
+  awayTeam: ScoreTeam
+  score: Score
+}
+
+export function ScoreCard({ homeTeam, awayTeam, score }: ScoreCardProps) {
   return (
     <Card maxW="md" border="solid 0.5px #eee">
       <CardHeader>
