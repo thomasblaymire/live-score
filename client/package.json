@@ -1,5 +1,5 @@
 {
-  "name": "live-score",
+  "name": "@live-score/client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
