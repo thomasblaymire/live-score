@@ -1,0 +1,34 @@
+version: "3.7"
+services:
+  client:
+    build:
+      context: .
+    container_name: client
+    ports: "3000:3000"
+    entrypoint: ["yarn", "workspace", "@live-scores/client", "dev"]
+    environment: 
+      REGION: us-east-1
+      ACCESS_KEY: local
+      SECRET_KEY: local
+      HOST_NAME: http://localhost:3000
+      NEXT_PUBLIC_API_URL: http://localhost:3000
+    depends_on:
+      - api
+    volumes:
+      - .:/home/app
+      - /home/app/node_modules
+
+  api:
+    build:
+      context: .
+    container_name: api
+    ports: "3030:3030"
+    entrypoint: ["yarn", "workspace", "@live-scores/api", "dev"]
+    environment: 
+      REGION: us-east-1
+      ACCESS_KEY: local
+      SECRET_KEY: local
+      HOST_NAME: http://localhost:3000
+    volumes:
+      - .:/home/app
+      - /home/app/node_modules
