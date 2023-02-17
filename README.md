@@ -3,18 +3,17 @@
   <br>
 </h1>
 
-<h4>A FullStack Football Live Score Application.</h4>
+A work in progress FullStack Football Live Score Application.
 
 ## Features
-- Live Score Tracking (In Play and Finished
+- Live Score Tracking (In-Play and Complete)
 - Top League Tables / Standings
 - Team Search
 - Top Scorers By League
 - Post Match Highlights (Via YouTube API)
-- Full Authentication (Singup, Login, Register, Reset)
+- Full Authentication (Signup, Login, Register, Reset)
 - Live Chat (Post Match)
 - Latest News 
-- More TBC...
 
 ## Live URL
 
@@ -54,29 +53,33 @@
 - Lambda Edge
 
 ## Future Plans
-
+TBC....
 
 
 ## How To Use
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+In this project I have opted to use Yarn workspaces to allow a clear seperation of concerns and future extendability.
 
-```bash
-# Clone this repository
-$ git clone https://github.com/thomasblaymire/live-score
+The most simple way to run this application is by using Docker. 
 
-# Go into the client repository
-$ cd live-score
+#### Run App:
+`$ docker-compose up`
 
-# Install dependencies
-$ npm
+This will start both the API and Client services, note the CLI is a non-service and acts as a utility for performing operations.
 
-# Run the web app
-$ npm run dev
+#### Running individual services
+
+##### Go into relevant directory:
+`$ cd live-score/api or live-score/client`
+
+##### Install dependencies
+`$ yarn`
+
+##### Run the service
+`$ yarn dev`
 
 # Build the web app
-$ npm run build
+`$ yarn build`
 
-# Run ESLint
-$ npm lint:fix
-```
+Please check out the package.json files for more information on additional commands.
+
