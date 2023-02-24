@@ -58,8 +58,6 @@ TBC....
 
 ## How To Use
 
-In this project I have opted to use Yarn workspaces to allow a clear seperation of concerns and future extendability.
-
 The most simple way to run this application is by using Docker. 
 
 #### Run App:

@@ -1,9 +1,11 @@
 const API_URL = 'http://localhost:3030/api'
 
 export const getCompetitions = async (): Promise<Competitions[]> => {
-  const response = await fetch(`${API_URL}/competitions`)
-  const competitions = await response.json()
-  return competitions
+  const response = await fetch(`${API_URL}/leagues`)
+  if (!response.ok) {
+    throw new Error('Network response was not ok')
+  }
+  return response.json()
 }
 
 export const getMatches = async () => {
