@@ -15,9 +15,9 @@ export const theme = extendTheme({
     },
   },
   fonts: {
-    heading: `Nunito, sans-serif`,
-    body: `Nunito, sans-serif`,
-    h2: `Nunito, sans-serif`,
+    heading: `Poppins, sans-serif`,
+    body: `Poppins, sans-serif`,
+    h2: `Poppins, sans-serif`,
   },
   colors: {
     gray: {

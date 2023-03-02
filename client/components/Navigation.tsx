@@ -15,7 +15,8 @@ function renderNavItems() {
           alignItems="center"
           alignSelf="stretch"
           width="100%"
-          fontWeight="800"
+          fontWeight="700"
+          fontSize="0.9rem"
         >
           {navItems.map(({ id, name, href }) => (
             <ListItem

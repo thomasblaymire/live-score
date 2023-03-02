@@ -60,7 +60,8 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
               paddingY="0.5rem"
               paddingX="0.5rem"
               color="#FFF"
-              fontWeight="700"
+              fontWeight="500"
+              fontSize="0.9rem"
               borderBottom="solid 0.5px"
               borderColor="gray.900"
               sx={{

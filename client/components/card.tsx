@@ -33,7 +33,12 @@ export function Card({
             borderTopLeftRadius="15px"
             borderTopRightRadius="15px"
           >
-            <Heading color={color} fontSize="1rem" fontFamily="inherit">
+            <Heading
+              color={color}
+              fontSize="0.9rem"
+              fontWeight="600"
+              fontFamily="inherit"
+            >
               {heading}
             </Heading>
           </Box>

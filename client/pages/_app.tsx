@@ -7,10 +7,15 @@ import { SessionProvider } from 'next-auth/react'
 import { theme } from '../styles/theme'
 import type { AppProps } from 'next/app'
 import type { NextComponentType } from 'next'
-import { Nunito } from '@next/font/google'
+import { Poppins } from '@next/font/google'
 import 'reset-css'
 
-const nunito = Nunito({ subsets: ['latin'] })
+// @ts-ignore
+const poppins = Poppins({
+  subsets: ['latin'],
+  display: 'fallback',
+  weight: ['400', '500', '600', '700', '800', '900'],
+})
 
 type CustomAppProps = AppProps & {
   Component: NextComponentType & { authPath?: boolean }
@@ -27,7 +32,7 @@ export default function App({
       <Hydrate state={pageProps.dehydratedState}>
         <ChakraProvider theme={theme}>
           <SessionProvider session={session}>
-            <main className={nunito.className}>
+            <main className={poppins.className}>
               {Component.authPath ? (
                 <Component {...pageProps} />
               ) : (
