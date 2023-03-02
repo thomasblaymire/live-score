@@ -5,6 +5,6 @@ interface CleanFileOptions {
 interface ProcessOptions {
   command: string;
   arguments: string[];
-  environment?: SpawnOptions;
+  environment?: any;
   wait?: number;
 }
