@@ -19,10 +19,10 @@ export function BetCard() {
         paddingX="0.75rem"
       >
         <Text>Premier League</Text>
-        <Heading fontSize="1.2rem" paddingY="0.75rem" fontFamily="inherit">
+        <Heading fontSize="1rem" paddingY="0.75rem" fontFamily="inherit">
           Liverpool FC vs Manchester United
         </Heading>
-        <Text maxWidth="290px" fontSize="0.9rem">
+        <Text maxWidth="290px" fontSize="0.8rem">
           Mohamed Salah is the first away player to score a hat-trick at Old
           Trafford since Ronaldo did so for Real Madrid in the UEFA Champions
           League.

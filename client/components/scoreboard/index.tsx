@@ -37,7 +37,11 @@ export function ScoreBoard() {
       <Tabs isFitted variant="enclosed" colorScheme="red">
         <TabList>
           {tabs.map((tab) => (
-            <Tab key={tab.title} _selected={{ color: 'white', bg: '#029143' }}>
+            <Tab
+              key={tab.title}
+              _selected={{ color: 'white', bg: '#029143' }}
+              fontSize="0.9rem"
+            >
               {tab.title}
             </Tab>
           ))}
@@ -89,6 +93,7 @@ export function ScoreBoard() {
                       display="flex"
                       padding={{ base: '0.5rem 1rem' }}
                       marginBottom="1rem"
+                      fontWeight="500"
                     >
                       <Box
                         display="flex"
@@ -116,7 +121,7 @@ export function ScoreBoard() {
                           minWidth="0"
                           marginLeft="auto"
                         >
-                          <Box display="flex" marginBottom="10px">
+                          <Box display="flex" marginBottom="5px">
                             {goals.home}
                           </Box>
                           <Box display="flex">{goals.away}</Box>

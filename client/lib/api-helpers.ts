@@ -9,7 +9,7 @@ export const getCompetitions = async (): Promise<Competitions[]> => {
 }
 
 export const getMatches = async () => {
-  const response = await fetch(`${API_URL}/matches`)
+  const response = await fetch(`${API_URL}/fixtures`)
   const matches = await response.json()
   return matches
 }
