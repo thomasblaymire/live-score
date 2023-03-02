@@ -21,6 +21,8 @@ A work in progress FullStack Football Live Score Application.
 
 ## Screenshot
 
+![](https://github.com/thomasblaymire/live-score/blob/main/home.png)
+
 
 ## Frontend 
 
