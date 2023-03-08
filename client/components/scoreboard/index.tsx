@@ -1,20 +1,14 @@
 import Link from 'next/link'
 import { Box, LinkBox, Center } from '@chakra-ui/layout'
 import { Favourite } from '../favourite'
-import {
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  Spinner,
-} from '@chakra-ui/react'
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { useQuery } from 'react-query'
 import { getMatches } from '../../lib/api-helpers'
 import { hypenateMatchString } from '../../lib/string'
 import { ErrorState } from '../error'
 import { ScoreBoardStatus } from './scoreboard-status'
 import { ScoreBoardTeams } from './scoreboard-teams'
+import { Loading } from '../loading'
 import { tabs } from './data'
 import { useSession } from 'next-auth/react'
 
@@ -49,17 +43,9 @@ export function ScoreBoard() {
         <TabPanels>
           <TabPanel>
             <Box>
-              {isLoading && (
-                <Center>
-                  <Spinner
-                    thickness="4px"
-                    speed="0.65s"
-                    emptyColor="gray.200"
-                    color="#029143"
-                    size="lg"
-                  />
-                </Center>
-              )}
+              <Center>
+                <Loading loading={isLoading} />
+              </Center>
 
               {error && <ErrorState />}
 
