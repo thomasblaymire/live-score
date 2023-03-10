@@ -22,8 +22,6 @@ export default function League() {
     queryFn: () => getLeague('39'),
   })
 
-  console.log('debug data', data)
-
   if (isLoading) return <Loading loading={isLoading} />
 
   return (
