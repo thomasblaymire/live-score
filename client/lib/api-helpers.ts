@@ -14,6 +14,14 @@ export const getMatches = async () => {
   return matches
 }
 
+export const getMatchesByTeamName = async (
+  teamName: string | string[] | undefined
+) => {
+  const response = await fetch(`${API_URL}/fixtures/${teamName}`)
+  const matches = await response.json()
+  return matches
+}
+
 export const getMatchData = async (id: any) => {
   const response = await fetch(`${API_URL}/match/${id}`)
   const match = await response.json()
