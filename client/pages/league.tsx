@@ -22,8 +22,6 @@ export default function League() {
     queryFn: () => getLeague('39'),
   })
 
-  if (isLoading) return <Loading loading={isLoading} />
-
   return (
     <Box>
       <Box
@@ -32,23 +30,25 @@ export default function League() {
         height="45vh"
         background="linear-gradient(to right, #1CB5E0, #000046)"
       >
-        <Flex direction="column" gap="1rem" width="1200px" margin="0 auto">
-          <Image
-            src={data.league.logo}
-            alt={data.league.name}
-            width={80}
-            height={80}
-          />
-          <Heading
-            color="white"
-            fontFamily="inherit"
-            fontWeight={700}
-            fontSize="3rem"
-            lineHeight="1"
-          >
-            {data.league.name}
-          </Heading>
-        </Flex>
+        {data && (
+          <Flex direction="column" gap="1rem" width="1200px" margin="0 auto">
+            <Image
+              src={data.league.logo}
+              alt={data.league.name}
+              width={80}
+              height={80}
+            />
+            <Heading
+              color="white"
+              fontFamily="inherit"
+              fontWeight={700}
+              fontSize="3rem"
+              lineHeight="1"
+            >
+              {data.league.name}
+            </Heading>
+          </Flex>
+        )}
       </Box>
 
       <Box margin={{ base: '1rem', md: '3rem' }}>
@@ -61,7 +61,13 @@ export default function League() {
               height="45vh"
               radius="15px"
             >
-              <StandingsTable standings={data.league.standings} width="50vw" />
+              {data ? (
+                <StandingsTable
+                  standings={data.league.standings}
+                  loading={isLoading}
+                  width="50vw"
+                />
+              ) : null}
             </Card>
           </Box>
           <Card
@@ -71,7 +77,7 @@ export default function League() {
             height="45vh"
             radius="15px"
           >
-            <TopScorers players={data.topScorers} />
+            {data ? <TopScorers players={data.topScorers} /> : null}
           </Card>
         </Flex>
       </Box>

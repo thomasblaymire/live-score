@@ -37,6 +37,16 @@ export const getLeague = async (leagueId: string) => {
   return league
 }
 
+export const getTeams = async () => {
+  const response = await fetch(`${API_URL}/teams`)
+  if (!response.ok) {
+    throw new Error('Network response was not ok')
+  }
+
+  const teams = await response.json()
+  return teams
+}
+
 export const getFavourites = async (): Promise<FavouriteMatch[]> => {
   const response = await fetch(`${API_URL}/favourites/`)
   if (!response.ok) {
