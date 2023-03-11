@@ -13,6 +13,7 @@ import { searchRouter } from "./routes/search";
 import { signupRouter } from "./routes/auth/signup";
 import { signinRouter } from "./routes/auth/signin";
 import { fixturesRouter } from "./routes/football/fixtures";
+import { teamsRouter } from "./routes/football/teams";
 
 dotenv.config();
 
@@ -35,6 +36,7 @@ app.use(signupRouter);
 app.use(signinRouter);
 app.use(leaguesRouter);
 app.use(fixturesRouter);
+app.use(teamsRouter);
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
