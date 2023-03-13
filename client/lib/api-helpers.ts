@@ -1,59 +1,44 @@
-import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-
-const API_URL = 'http://localhost:3030/api'
+import { API_URL } from '../lib/constants'
 
 export const getMatchesByTeamName = async (
   teamName: string | string[] | undefined
 ) => {
-  const response = await fetch(`${API_URL}/fixtures/${teamName}`)
-  const matches = await response.json()
-  return matches
+  const { data } = await axios.get(`${API_URL}/fixtures/${teamName}`)
+  return data
 }
 
 export const getMatchData = async (id: any) => {
-  const response = await fetch(`${API_URL}/match/${id}`)
-  const match = await response.json()
-  return match
+  const { data } = await axios.get(`${API_URL}/match/${id}`)
+  return data
 }
 
 export const getLeague = async (leagueId: string) => {
-  const response = await fetch(`${API_URL}/league/${leagueId}`)
-  const league = await response.json()
-  return league
+  const { data } = await axios.get(`${API_URL}/league/${leagueId}`)
+  return data
 }
 
 export const getTeams = async () => {
-  const response = await fetch(`${API_URL}/teams`)
-  if (!response.ok) {
-    throw new Error('Network response was not ok')
-  }
-
-  const teams = await response.json()
-  return teams
+  const { data } = await axios.get(`${API_URL}/teams`)
+  return data
 }
 
 export const getFavourites = async (): Promise<FavouriteMatch[]> => {
-  const response = await fetch(`${API_URL}/favourites/`)
-  if (!response.ok) {
-    throw new Error('Network response was not ok')
-  }
-  return response.json()
+  const { data } = await axios.get(`${API_URL}/favourites/`)
+  return data
 }
 
 export const addFavourite = async (id: number, userId: any) => {
-  return fetch('http://localhost:3030/api/favourites', {
-    method: 'POST',
+  const { data } = await axios.post(`${API_URL}/favourites/`, {
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ matchId: id, userId: userId }),
   })
+  return data
 }
 
 export const getNews = async (): Promise<any> => {
-  const response = await fetch(`${API_URL}/news`)
-  const news = await response.json()
-  const top5Articles = news.articles.slice(0, 5)
-  return top5Articles
+  const { data } = await axios.get(`${API_URL}/news`)
+  return data.articles.slice(0, 5)
 }
