@@ -1,3 +1,3 @@
 export default function Match() {
-  return <h1>About Page</h1>
+  return <h2>Matches Page</h2>
 }

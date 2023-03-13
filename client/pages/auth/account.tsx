@@ -20,12 +20,12 @@ function Account({ session }: any) {
   )
 }
 
-export async function getServerSideProps(context: any) {
-  const session = await getSession(context)
+// export async function getServerSideProps(context: any) {
+//   const session = await getSession(context)
 
-  return {
-    props: { session },
-  }
-}
+//   return {
+//     props: { session },
+//   }
+// }
 
 export default Account

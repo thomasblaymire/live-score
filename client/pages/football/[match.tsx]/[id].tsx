@@ -32,13 +32,7 @@ export default function Match() {
       <Box minWidth="450px">
         <Box marginBottom="2rem">
           {homeTeam && (
-            <ScoreCard
-              homeTeam={homeTeam}
-              awayTeam={awayTeam}
-              status={status}
-              venue={venue}
-              score={score}
-            />
+            <ScoreCard homeTeam={homeTeam} awayTeam={awayTeam} score={score} />
           )}
         </Box>
 
@@ -48,12 +42,4 @@ export default function Match() {
       </Box>
     </Flex>
   )
-}
-
-export async function getServerSideProps(context: any) {
-  console.log('debug server side props')
-  const { id } = context.query
-
-  console.log('id', id)
-  return { props: {} }
 }

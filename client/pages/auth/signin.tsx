@@ -27,7 +27,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 import { useState } from 'react'
-function Signin({ providers }: SigninProps) {
+function Signin() {
   // return (
   //   <Flex>
   //     <Box
@@ -62,28 +62,28 @@ function Signin({ providers }: SigninProps) {
               Signin
             </Heading>
           </Stack>
-          <SigninForm providers={providers} />
+          {/* <SigninForm providers={providers} /> */}
         </Box>
       </Stack>
     </Flex>
   )
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { req } = context
-  const session = await getSession({ req })
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   const { req } = context
+//   const session = await getSession({ req })
 
-  if (session) {
-    return {
-      redirect: { destination: '/' },
-    }
-  }
-  return {
-    props: {
-      providers: await getProviders(),
-    },
-  }
-}
+//   if (session) {
+//     return {
+//       redirect: { destination: '/' },
+//     }
+//   }
+//   return {
+//     props: {
+//       providers: await getProviders(),
+//     },
+//   }
+// }
 
 Signin.authPath = true
 
