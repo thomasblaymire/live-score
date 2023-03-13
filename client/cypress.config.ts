@@ -1,11 +1,12 @@
-import { loadEnvConfig } from '@next/env'
-import { defineConfig } from 'cypress'
+import { loadEnvConfig } from "@next/env";
+import { defineConfig } from "cypress";
 
-const { combinedEnv } = loadEnvConfig(process.cwd())
+const { combinedEnv } = loadEnvConfig(process.cwd());
 export default defineConfig({
   env: combinedEnv,
+
   e2e: {
-    baseUrl: 'http://localhost:3000',
+    baseUrl: "http://localhost:3000",
     supportFile: false,
     retries: {
       runMode: 3,
@@ -14,4 +15,11 @@ export default defineConfig({
     viewportWidth: 1920,
     video: false,
   },
-})
+
+  component: {
+    devServer: {
+      framework: "next",
+      bundler: "webpack",
+    },
+  },
+});

@@ -23,6 +23,7 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
         background="#121212"
         borderBottomLeftRadius="15px"
         borderBottomRightRadius="15px"
+        data-test="competition-list"
         sx={{
           'ul:last-child li': {
             borderBottomLeftRadius: '15px',

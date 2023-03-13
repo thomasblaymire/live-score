@@ -25,9 +25,6 @@ export const getMatchesByTeamName = async (
 export const getMatchData = async (id: any) => {
   const response = await fetch(`${API_URL}/match/${id}`)
   const match = await response.json()
-
-  console.log('debug match', match)
-
   return match
 }
 

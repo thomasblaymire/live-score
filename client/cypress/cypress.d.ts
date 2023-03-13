@@ -5,5 +5,6 @@ declare namespace Cypress {
      * @example cy.dataCy('greeting')
      */
     signinUser(user: any): Chainable<Element>
+    mount: typeof mount
   }
 }

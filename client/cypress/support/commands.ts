@@ -1,3 +1,5 @@
+import { mount } from 'cypress/react18'
+
 Cypress.Commands.add('signinUser', (user) => {
   cy.session(
     user,
@@ -13,6 +15,10 @@ Cypress.Commands.add('signinUser', (user) => {
       },
     }
   )
+})
+
+Cypress.Commands.add('mount', (component, options: any) => {
+  return mount(component, options)
 })
 
 export {}

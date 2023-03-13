@@ -3,7 +3,7 @@ describe('Navigation', () => {
     cy.visit('http://localhost:3000')
   })
 
-  context('desktop resolution', () => {
+  context('Desktop resolution', () => {
     beforeEach(() => {
       cy.viewport(1920, 1080)
     })
@@ -30,7 +30,7 @@ describe('Navigation', () => {
     })
   })
 
-  context('mobile resolution', () => {
+  context('Mobile resolution', () => {
     beforeEach(() => {
       cy.viewport('iphone-8')
     })
