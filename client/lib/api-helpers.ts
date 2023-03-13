@@ -1,18 +1,7 @@
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+
 const API_URL = 'http://localhost:3030/api'
-
-export const getCompetitions = async (): Promise<Competitions[]> => {
-  const response = await fetch(`${API_URL}/leagues`)
-  if (!response.ok) {
-    throw new Error('Network response was not ok')
-  }
-  return response.json()
-}
-
-export const getMatches = async () => {
-  const response = await fetch(`${API_URL}/fixtures`)
-  const matches = await response.json()
-  return matches
-}
 
 export const getMatchesByTeamName = async (
   teamName: string | string[] | undefined
@@ -60,12 +49,6 @@ export const addFavourite = async (id: number, userId: any) => {
     },
     body: JSON.stringify({ matchId: id, userId: userId }),
   })
-}
-
-export const getSearchResults = async (query: any): Promise<SearchResult> => {
-  const response = await fetch(`${API_URL}/search?query=${query}`)
-  const favourites = await response.json()
-  return favourites
 }
 
 export const getNews = async (): Promise<any> => {

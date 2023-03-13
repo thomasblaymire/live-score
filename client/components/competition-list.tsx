@@ -1,22 +1,21 @@
 import NextImage from 'next/image'
 import Link from 'next/link'
-import { useQuery } from 'react-query'
 import { Box, List, ListItem } from '@chakra-ui/layout'
 import { Stack, Skeleton } from '@chakra-ui/react'
-import { getCompetitions } from '../lib/api-helpers'
+
 import { ErrorState } from './error'
 
 interface CompetitionListProps {
-  competitions: Competitions[]
+  competitions: Competitions[] | undefined
+  isLoading: boolean
+  error: Error | null
 }
 
-export function CompetitionList({ competitions }: CompetitionListProps) {
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ['competitions'],
-    queryFn: getCompetitions,
-    initialData: competitions,
-  })
-
+export function CompetitionList({
+  competitions,
+  isLoading,
+  error,
+}: CompetitionListProps) {
   return (
     <Box>
       <List
@@ -31,7 +30,7 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
           },
         }}
       >
-        {isLoading && data && (
+        {isLoading && (
           <Stack spacing={5} padding="1rem">
             {new Array(12).fill(1).map((i: number) => (
               <Skeleton
@@ -44,9 +43,9 @@ export function CompetitionList({ competitions }: CompetitionListProps) {
           </Stack>
         )}
 
-        {isError && <ErrorState />}
+        {error && <ErrorState />}
 
-        {competitions.map((competition: Competitions, i: number) => (
+        {competitions?.map((competition: Competitions, i: number) => (
           <Link
             key={i}
             passHref
