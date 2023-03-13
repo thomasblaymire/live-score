@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   Input,
   InputGroup,
   InputLeftElement,
   Box,
   Modal,
+  Center,
   ModalOverlay,
   ModalContent,
   ModalCloseButton,
@@ -17,8 +18,10 @@ import {
   StackDivider,
   CardBody,
 } from '@chakra-ui/react'
+import { ErrorState } from './error'
+import { Loading } from './loading'
+import { useSearch } from '../hooks/useSearch'
 import { useDebounce } from '../hooks/useDebounce'
-import { getSearchResults } from '../lib/api-helpers'
 import { MdSearch } from 'react-icons/md'
 
 interface SearchProps {
@@ -28,24 +31,13 @@ interface SearchProps {
 
 export function Search({ isOpen, onClose }: SearchProps) {
   const [value, setValue] = useState('')
-  const [data, setData] = useState<SearchResult | undefined>()
   const debouncedValue = useDebounce<string>(value, 500)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value.toLowerCase())
   }
 
-  useEffect(() => {
-    const renderResults = async () => {
-      const result = await getSearchResults(debouncedValue)
-      setData(result)
-    }
-    if (value.length > 3) {
-      renderResults()
-    } else {
-      setData(undefined)
-    }
-  }, [debouncedValue, value])
+  const { data, isLoading, error } = useSearch(debouncedValue)
 
   return (
     <Modal isCentered isOpen={isOpen} onClose={onClose} size="full">
@@ -55,11 +47,7 @@ export function Search({ isOpen, onClose }: SearchProps) {
         backdropInvert="10%"
         backdropBlur="2px"
       />
-      <ModalContent
-        background="#000000e8"
-        color="white"
-        fontFamily="__Nunito_81bb96"
-      >
+      <ModalContent background="#000000e8" color="white">
         <ModalCloseButton />
         <Box width="70vw" margin="0 auto" position="relative" marginTop="6rem">
           <ModalBody>
@@ -72,6 +60,7 @@ export function Search({ isOpen, onClose }: SearchProps) {
                   fontSize="1.75rem"
                   padding="1rem 3rem;"
                   placeholder="Search...."
+                  fontFamily="inherit"
                   outline="none"
                   border="none"
                   borderRadius="0px"
@@ -84,35 +73,37 @@ export function Search({ isOpen, onClose }: SearchProps) {
               </InputGroup>
             </Box>
             <Box paddingTop="2rem">
-              {data
-                ? data.response.map((result: SearchResponse) => (
-                    <Card
-                      color="white"
-                      data-test="search-result"
-                      key={result.team.name}
-                    >
-                      <CardBody padding="1rem 0rem">
-                        <Stack divider={<StackDivider />} spacing="2">
-                          <Flex alignItems="center">
-                            <Image
-                              src={result.team.logo}
-                              alt={result.team.name}
-                              width={35}
-                              height={35}
-                            />
-                            <Heading
-                              size="xs"
-                              textTransform="uppercase"
-                              marginLeft="1rem"
-                            >
-                              {result.team.name}
-                            </Heading>
-                          </Flex>
-                        </Stack>
-                      </CardBody>
-                    </Card>
-                  ))
-                : null}
+              <Center>
+                <Loading loading={isLoading} />
+              </Center>
+              {error ? <ErrorState /> : null}
+              {data?.response.map((result: SearchResponse) => (
+                <Card
+                  color="white"
+                  data-test="search-result"
+                  key={result.team.name}
+                >
+                  <CardBody padding="1rem 0rem">
+                    <Stack divider={<StackDivider />} spacing="2">
+                      <Flex alignItems="center">
+                        <Image
+                          src={result.team.logo}
+                          alt={result.team.name}
+                          width={35}
+                          height={35}
+                        />
+                        <Heading
+                          size="xs"
+                          textTransform="uppercase"
+                          marginLeft="1rem"
+                        >
+                          {result.team.name}
+                        </Heading>
+                      </Flex>
+                    </Stack>
+                  </CardBody>
+                </Card>
+              ))}
             </Box>
           </ModalBody>
         </Box>
