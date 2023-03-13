@@ -64,3 +64,5 @@ describe('Signin', () => {
     cy.getCookie('live_score_access_token').should('exist')
   })
 })
+
+export {}

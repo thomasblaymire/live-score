@@ -53,6 +53,7 @@ export function Navigation(): JSX.Element {
               aria-label="Mobile Navigation"
               icon={<RxHamburgerMenu />}
               onClick={onOpen}
+              data-test="hamburger-button"
             />
           </Box>
           {isOpen && (

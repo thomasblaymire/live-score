@@ -20,3 +20,5 @@ describe('Search', () => {
     cy.get('[data-test="search-result"]').should('have.length', 1)
   })
 })
+
+export {}

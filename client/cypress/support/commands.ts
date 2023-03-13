@@ -14,3 +14,5 @@ Cypress.Commands.add('signinUser', (user) => {
     }
   )
 })
+
+export {}
