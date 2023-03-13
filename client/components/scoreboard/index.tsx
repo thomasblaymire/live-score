@@ -2,8 +2,7 @@ import Link from 'next/link'
 import { Box, LinkBox, Center } from '@chakra-ui/layout'
 import { Favourite } from '../favourite'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import { useQuery } from 'react-query'
-import { getMatches } from '../../lib/api-helpers'
+import { useMatches } from '../../hooks/useMatches'
 import { hypenateMatchString } from '../../lib/string'
 import { ErrorState } from '../error'
 import { ScoreBoardStatus } from './scoreboard-status'
@@ -13,13 +12,8 @@ import { tabs } from './data'
 import { useSession } from 'next-auth/react'
 
 export function ScoreBoard() {
-  const { data: session }: any = useSession()
-
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['matches'],
-    queryFn: getMatches,
-    refetchInterval: 30000,
-  })
+  const { data: session } = useSession()
+  const { data, error, isLoading } = useMatches()
 
   return (
     <Box
