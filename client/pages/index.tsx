@@ -1,20 +1,15 @@
 import Sidebar from '../components/sidebar'
 import { useState } from 'react'
 import { Box, Grid, GridItem } from '@chakra-ui/layout'
-import { dehydrate, QueryClient } from '@tanstack/react-query'
 import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
-import {
-  getCompetitions,
-  getMatches,
-  getLeague,
-  getNews,
-} from '../lib/api-helpers'
+import { getLeague, getNews } from '../lib/api-helpers'
 import { CompetitionList } from '../components/competition-list'
 import { StandingsTable } from '../components/standings'
 import { BetCard } from '../components/bet-card'
 import { Card } from '../components/card'
 import { Footer } from '../components/footer'
+import { useCompetitions } from '../hooks/useCompetitions'
 
 interface HomeProps {
   competitions: Competitions[]
@@ -22,9 +17,10 @@ interface HomeProps {
   news: NewsResponse[]
 }
 
-export default function Home({ competitions, competition, news }: HomeProps) {
+export default function Home({ competition, news }: HomeProps) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
-  const [reveiws, setReviews] = useState(null)
+
+  const { data: competitions, error, isLoading } = useCompetitions()
 
   return (
     <>
@@ -63,7 +59,11 @@ export default function Home({ competitions, competition, news }: HomeProps) {
                   margin="0 0 2rem 0"
                   height="45vh"
                 >
-                  <CompetitionList competitions={competitions} />
+                  <CompetitionList
+                    competitions={competitions}
+                    isLoading={isLoading}
+                    error={error}
+                  />
                 </Card>
               </Sidebar>
             </GridItem>
@@ -115,20 +115,13 @@ export default function Home({ competitions, competition, news }: HomeProps) {
   )
 }
 
-// Build time fetch leagues and inital score data
+// Build time fetch leagues and news
 export async function getStaticProps() {
-  const queryClient = new QueryClient()
-
-  const competitions = await getCompetitions()
   const competition = await getLeague('39')
   const news = await getNews()
 
-  await queryClient.prefetchQuery(['matches'], getMatches)
-
   return {
     props: {
-      dehydratedState: dehydrate(queryClient),
-      competitions: competitions,
       competition: competition.league,
       news: news,
     },

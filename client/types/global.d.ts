@@ -176,6 +176,14 @@ enum LEAGUE_CODE {
   WC = 'WC',
 }
 
+interface Match {
+  fixture: Fixture
+  league: League
+  teams: Teams
+  goals: Goals
+  score: Score
+}
+
 interface FavouriteMatch {
   id: string
   matchId: number
@@ -371,4 +379,296 @@ interface NewsResponse {
 interface NewsSource {
   Id: string
   Name: string
+}
+
+interface Periods {
+  first: number
+  second: number
+}
+
+interface Venue {
+  id: number
+  name: string
+  city: string
+}
+
+interface Status {
+  long: string
+  short: string
+  elapsed: number
+}
+
+interface Fixture {
+  id: number
+  referee: string
+  timezone: string
+  date: Date
+  timestamp: number
+  periods: Periods
+  venue: Venue
+  status: Status
+}
+
+interface League {
+  id: number
+  name: string
+  country: string
+  logo: string
+  flag: string
+  season: number
+  round: string
+}
+
+interface Home {
+  id: number
+  name: string
+  logo: string
+  winner: boolean
+}
+
+interface Away {
+  id: number
+  name: string
+  logo: string
+  winner: boolean
+}
+
+interface SingleMatch {
+  fixture: Fixture
+  league: League
+  teams: Teams
+  goals: Goals
+  score: Score
+  events: Event[]
+  lineups: Lineup[]
+  statistics: Statistic[]
+  players: Player4[]
+}
+
+interface Teams {
+  home: Home
+  away: Away
+}
+
+interface Goals {
+  home: number
+  away: number
+}
+
+interface Halftime {
+  home: number
+  away: number
+}
+
+interface Fulltime {
+  home: number
+  away: number
+}
+
+interface Extratime {
+  home?: any
+  away?: any
+}
+
+interface Penalty {
+  home?: any
+  away?: any
+}
+
+interface Score {
+  halftime: Halftime
+  fulltime: Fulltime
+  extratime: Extratime
+  penalty: Penalty
+}
+
+interface Time {
+  elapsed: number
+  extra?: any
+}
+
+interface Team {
+  id: number
+  name: string
+  logo: string
+}
+
+interface Player {
+  id: number
+  name: string
+}
+
+interface Assist {
+  id?: number
+  name: string
+}
+
+interface Event {
+  time: Time
+  team: Team
+  player: Player
+  assist: Assist
+  type: string
+  detail: string
+  comments?: any
+}
+
+interface Team2 {
+  id: number
+  name: string
+  logo: string
+  colors?: any
+}
+
+interface Coach {
+  id: number
+  name: string
+  photo: string
+}
+
+interface Player2 {
+  id: number
+  name: string
+  number: number
+  pos: string
+  grid: string
+}
+
+interface StartXI {
+  player: Player2
+}
+
+interface Player3 {
+  id: number
+  name: string
+  number: number
+  pos: string
+  grid?: any
+}
+
+interface Substitute {
+  player: Player3
+}
+
+interface Lineup {
+  team: Team2
+  coach: Coach
+  formation: string
+  startXI: StartXI[]
+  substitutes: Substitute[]
+}
+
+interface Team3 {
+  id: number
+  name: string
+  logo: string
+}
+
+interface Statistic2 {
+  type: string
+  value: any
+}
+
+interface Statistic {
+  team: Team3
+  statistics: Statistic2[]
+}
+
+interface Team4 {
+  id: number
+  name: string
+  logo: string
+  update: Date
+}
+
+interface Player6 {
+  id: number
+  name: string
+  photo: string
+}
+
+interface Games {
+  minutes: number
+  number: number
+  position: string
+  rating: string
+  captain: boolean
+  substitute: boolean
+}
+
+interface Shots {
+  total: number
+  on: number
+}
+
+interface Goals2 {
+  total?: number
+  conceded: number
+  assists?: number
+  saves?: number
+}
+
+interface Passes {
+  total: number
+  key: number
+  accuracy: string
+}
+
+interface Tackles {
+  total?: number
+  blocks: number
+  interceptions: number
+}
+
+interface Duels {
+  total: number
+  won: number
+}
+
+interface Dribbles {
+  attempts: number
+  success: number
+  past?: number
+}
+
+interface Fouls {
+  drawn: number
+  committed: number
+}
+
+interface Cards {
+  yellow: number
+  red: number
+}
+
+interface Penalty2 {
+  won?: any
+  commited?: any
+  scored: number
+  missed: number
+  saved?: number
+}
+
+interface Statistic3 {
+  games: Games
+  offsides?: number
+  shots: Shots
+  goals: Goals2
+  passes: Passes
+  tackles: Tackles
+  duels: Duels
+  dribbles: Dribbles
+  fouls: Fouls
+  cards: Cards
+  penalty: Penalty2
+}
+
+interface Player5 {
+  player: Player6
+  statistics: Statistic3[]
+}
+
+interface Player4 {
+  team: Team4
+  players: Player5[]
 }

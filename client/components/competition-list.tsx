@@ -2,6 +2,7 @@ import NextImage from 'next/image'
 import Link from 'next/link'
 import { Box, List, ListItem } from '@chakra-ui/layout'
 import { Stack, Skeleton } from '@chakra-ui/react'
+import { hypenate } from '../lib/string'
 
 import { ErrorState } from './error'
 
@@ -50,8 +51,8 @@ export function CompetitionList({
             key={i}
             passHref
             href={{
-              pathname: '/league',
-              query: { code: competition.league.name },
+              pathname: '/football/[league]',
+              query: { league: `${hypenate(`${competition.league.name}`)}` },
             }}
           >
             <ListItem

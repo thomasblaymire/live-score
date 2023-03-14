@@ -9,7 +9,7 @@ export const getMatchesByTeamName = async (
 }
 
 export const getMatchData = async (id: any) => {
-  const { data } = await axios.get(`${API_URL}/match/${id}`)
+  const { data } = await axios.get(`${API_URL}/fixture/${id}`)
   return data
 }
 

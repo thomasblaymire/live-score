@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
-import { getLeague } from '../lib/api-helpers'
-import { StandingsTable } from '../components/standings'
+import { getLeague } from '../../lib/api-helpers'
+import { StandingsTable } from '../../components/standings'
 import { Flex, Box, Heading } from '@chakra-ui/layout'
-import { Card } from '../components/card'
-import { TopScorers } from '../components/top-scorers'
-import { Loading } from '../components/loading'
+import { Card } from '../../components/card'
+import { TopScorers } from '../../components/top-scorers'
+import { Loading } from '../../components/loading'
 
 interface LeagueProps {
   league: League
@@ -16,6 +16,8 @@ interface LeagueProps {
 export default function League() {
   const router = useRouter()
   const { id } = router.query
+
+  console.log('debug id', id)
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['teamFixtures'],

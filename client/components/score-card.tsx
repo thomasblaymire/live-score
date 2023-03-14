@@ -1,4 +1,11 @@
-import { Card, CardHeader, CardFooter, Avatar, Button } from '@chakra-ui/react'
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Avatar,
+  Button,
+} from '@chakra-ui/react'
 import { Flex, Box, Text } from '@chakra-ui/layout'
 import { BiLike, BiChat, BiShare } from 'react-icons/bi'
 
@@ -23,70 +30,82 @@ interface Score {
 }
 
 interface ScoreCardProps {
-  homeTeam: ScoreTeam
-  awayTeam: ScoreTeam
-  score: Score
+  data: SingleMatch
 }
 
-export function ScoreCard({ homeTeam, awayTeam, score }: ScoreCardProps) {
+export function ScoreCard({
+  data: { league, teams, goals, fixture },
+}: ScoreCardProps) {
   return (
-    <Card maxW="md" border="solid 0.5px #eee">
-      <CardHeader>
-        <Flex width="100%" justifyContent="center">
-          <Flex
-            alignItems="center"
-            color="gray.500"
-            width="100%"
-            justifyContent="space-evenly"
-          >
+    <Card width="80%" margin="0 auto" background="#121212" borderRadius="15px">
+      <CardHeader
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        paddingY="2rem"
+        color="white"
+      >
+        <Box background="red">LIVE</Box>
+        <Box display="flex" alignItems="center">
+          <Avatar
+            name="League"
+            size="sm"
+            marginBottom="0.5rem"
+            src={league.logo}
+            marginRight="0.5rem"
+          />
+          {league.name}
+        </Box>
+        <Box>SOCIAL</Box>
+      </CardHeader>
+      <CardBody color="white" paddingBottom="2rem">
+        <Flex justifyContent="center" width="100%">
+          <Flex alignItems="center" width="100%" justifyContent="space-evenly">
             <Flex alignItems="center" direction="column">
               <Avatar
-                name={homeTeam.name}
-                size="sm"
+                name={teams.home.name}
+                size="lg"
                 marginBottom="0.5rem"
-                src={homeTeam.crest}
+                src={teams.home.logo}
               />
-              <Text>{homeTeam.name}</Text>
+              <Text>{teams.home.name}</Text>
             </Flex>
 
             <Box>
               <Flex>
-                <Box>{score.fullTime.home}</Box>
-                <Box>{score.fullTime.away}</Box>
+                <Box>{goals.home}</Box>
+                <Box>{goals.away}</Box>
               </Flex>
             </Box>
 
             <Flex alignItems="center" direction="column">
               <Avatar
-                name={awayTeam.name}
-                size="sm"
+                name={teams.away.name}
+                size="lg"
                 marginBottom="0.5rem"
-                src={awayTeam.crest}
+                src={teams.away.logo}
               />
-              <Text>{awayTeam.name}</Text>
+              <Text>{teams.away.name}</Text>
             </Flex>
           </Flex>
         </Flex>
-      </CardHeader>
+      </CardBody>
 
       <CardFooter
         justify="space-between"
-        color="gray.500"
+        color="white"
+        paddingBottom="1.5rem"
         sx={{
           '& > button': {
             minW: '136px',
           },
         }}
       >
-        <Button flex="1" variant="ghost" leftIcon={<BiLike />}>
-          Like
-        </Button>
-        <Button flex="1" variant="ghost" leftIcon={<BiChat />}>
-          Comment
-        </Button>
-        <Button flex="1" variant="ghost" leftIcon={<BiShare />}>
-          Share
-        </Button>
+        <Box>{fixture.date}</Box>
+        <Box>
+          {fixture.venue.name},{fixture.venue.city}
+        </Box>
+        <Box>{fixture.referee}</Box>
       </CardFooter>
     </Card>
   )

@@ -1,28 +1,34 @@
 import { Box, Heading } from '@chakra-ui/layout'
+import { ResponsiveValue } from '@chakra-ui/react'
 
 interface CardProps {
-  heading: string
+  heading: string | undefined
   background?: string
   radius?: string
   height?: string
+  headingAlign?: ResponsiveValue<any> | undefined
   children: React.ReactNode
   color?: string
   margin?: string
+  width?: string
 }
 
 export function Card({
   heading,
   background = '#121212',
+  headingAlign = 'left',
   radius = '15px',
   children,
   color = '#FFFFFF',
   margin,
+  width,
 }: CardProps) {
   return (
     <Box
       background={background}
       borderRadius={radius}
       margin={margin}
+      width={width}
       minHeight="300px"
     >
       {heading ? (
@@ -38,6 +44,7 @@ export function Card({
               fontSize="0.9rem"
               fontWeight="600"
               fontFamily="inherit"
+              textAlign={headingAlign}
             >
               {heading}
             </Heading>

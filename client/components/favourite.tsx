@@ -6,7 +6,7 @@ import { Icon, useToast } from '@chakra-ui/react'
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 
 interface FavouriteProps {
-  userId: string
+  userId: number | undefined
   fixture: Fixture
 }
 
