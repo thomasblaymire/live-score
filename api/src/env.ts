@@ -12,6 +12,7 @@ const envVariables = z.object({
   MOCKY_TOP_SCORERS_API_URL: z.string(),
   MOCKY_TEAM_FIXTURES_API_URL: z.string(),
   MOCKY_ALL_TEAMS_API_URL: z.string(),
+  MOCKY_FIXTURE_BY_ID_API_URL: z.string(),
   JWT_SECRET: z.string(),
   FOOTBALL_NEWS_API_KEY: z.string(),
 });

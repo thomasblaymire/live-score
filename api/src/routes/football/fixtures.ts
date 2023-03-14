@@ -38,11 +38,18 @@ router.get(
   "/api/fixture/:id",
   catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
-    const response = await fetchApi(`/matches/${id}`, false);
-    const footballAPIData = await response.json();
-    const youtubeQuery = `${footballAPIData.homeTeam.name} vs ${footballAPIData.awayTeam.name}`;
-    const youtubeVideoID = await getVideoTagByQuery(youtubeQuery);
-    res.json({ ...footballAPIData, ...{ youtubeID: youtubeVideoID } });
+
+    const response = await fetch(`${process.env.MOCKY_FIXTURE_BY_ID_API_URL}`);
+    const data = await response.json();
+
+    // const response = await fetchApi(`/matches/${id}`, false);
+    // const footballAPIData = await response.json();
+
+    res.json(data.response[0]);
+
+    // const youtubeQuery = `${footballAPIData.response.fixture.teams.home.name} vs ${footballAPIData.response.fixture.teams.away.name}`;
+    // const youtubeVideoID = await getVideoTagByQuery(youtubeQuery);
+    // res.json({ ...footballAPIData, ...{ youtubeID: youtubeVideoID } });
   })
 );
 
