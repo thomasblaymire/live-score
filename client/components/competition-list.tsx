@@ -51,7 +51,7 @@ export function CompetitionList({
             key={i}
             passHref
             href={{
-              pathname: '/football/[league]',
+              pathname: '/league/[league]',
               query: { league: `${hypenate(`${competition.league.name}`)}` },
             }}
           >

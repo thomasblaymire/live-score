@@ -46,13 +46,13 @@ export function ScoreBoard() {
               {data?.map(({ teams, score, leagues, fixture, goals }: any) => (
                 <Link
                   href={{
-                    pathname: '/football/[match]',
+                    pathname: '/matches/[match]',
                     query: {
                       id: fixture.id,
                     },
                   }}
                   passHref
-                  as={`/football/${hypenateMatchString(
+                  as={`/matches/${hypenateMatchString(
                     teams.home.name,
                     teams.away.name
                   )}`}
