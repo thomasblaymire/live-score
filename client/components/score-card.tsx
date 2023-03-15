@@ -7,6 +7,7 @@ import {
   Button,
 } from '@chakra-ui/react'
 import { Flex, Box, Text } from '@chakra-ui/layout'
+import { Status } from './status'
 import { BiLike, BiChat, BiShare } from 'react-icons/bi'
 
 interface ScoreTeam {
@@ -42,10 +43,11 @@ export function ScoreCard({
         display="flex"
         justifyContent="space-between"
         alignItems="center"
-        paddingY="2rem"
+        paddingY="1.5rem"
         color="white"
       >
-        <Box background="red">LIVE</Box>
+        <Status status={fixture.status} />
+
         <Box display="flex" alignItems="center">
           <Avatar
             name="League"
@@ -58,7 +60,7 @@ export function ScoreCard({
         </Box>
         <Box>SOCIAL</Box>
       </CardHeader>
-      <CardBody color="white" paddingBottom="2rem">
+      <CardBody color="white" paddingY="2.5rem">
         <Flex justifyContent="center" width="100%">
           <Flex alignItems="center" width="100%" justifyContent="space-evenly">
             <Flex alignItems="center" direction="column">
@@ -94,7 +96,7 @@ export function ScoreCard({
       <CardFooter
         justify="space-between"
         color="white"
-        paddingBottom="1.5rem"
+        paddingY="1.5rem"
         sx={{
           '& > button': {
             minW: '136px',

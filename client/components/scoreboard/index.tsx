@@ -5,7 +5,7 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { useMatches } from '../../hooks/useMatches'
 import { hypenateMatchString } from '../../lib/string'
 import { ErrorState } from '../error'
-import { ScoreBoardStatus } from './scoreboard-status'
+import { Status } from '../status'
 import { ScoreBoardTeams } from './scoreboard-teams'
 import { Loading } from '../loading'
 import { tabs } from './data'
@@ -90,12 +90,12 @@ export function ScoreBoard() {
                           userId={session?.user.id}
                         />
 
-                        {fixture.status ? (
-                          <ScoreBoardStatus
+                        {/* {fixture.status ? (
+                          <Status
                             status={fixture.status}
                             utcDate={fixture.date}
                           />
-                        ) : null}
+                        ) : null} */}
 
                         {teams ? <ScoreBoardTeams teams={teams} /> : null}
 
