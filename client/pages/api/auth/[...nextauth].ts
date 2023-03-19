@@ -7,20 +7,23 @@ import GoogleProvider from 'next-auth/providers/google'
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
-  callbacks: {
-    session: async ({ session, token }: any) => {
-      if (session?.user) {
-        session.user.id = token.uid
-      }
-      return session
-    },
-    jwt: async ({ user, token }) => {
-      if (user) {
-        token.uid = user.id
-      }
-      return token
-    },
-  },
+  // callbacks: {
+  //   async signIn({ user, account, profile, email, credentials }) {
+  //     return true
+  //   },
+  //   session: async ({ session, token }: any) => {
+  //     if (session?.user) {
+  //       session.user.id = token.uid
+  //     }
+  //     return session
+  //   },
+  //   jwt: async ({ user, token }) => {
+  //     if (user) {
+  //       token.uid = user.id
+  //     }
+  //     return token
+  //   },
+  // },
   session: {
     strategy: 'jwt',
   },

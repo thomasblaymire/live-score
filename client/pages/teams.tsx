@@ -1,16 +1,39 @@
+import { useState } from 'react'
 import Image from 'next/image'
 import { useQuery } from 'react-query'
 import { Heading, Flex, Text, Box } from '@chakra-ui/react'
 import { getTeams } from '../lib/api-helpers'
 
 export default function Teams() {
+  const [selectedItemIndex, setSelectedItemIndex] = useState<number>(0)
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    switch (e.key) {
+      case 'ArrowUp':
+        setSelectedItemIndex((prevIndex) => prevIndex - 4)
+        break
+      case 'ArrowDown':
+        setSelectedItemIndex((prevIndex) => prevIndex + 4)
+        break
+      case 'ArrowLeft':
+        setSelectedItemIndex((prevIndex) => prevIndex - 1)
+        break
+      case 'ArrowRight':
+        setSelectedItemIndex((prevIndex) => prevIndex + 1)
+        break
+      default:
+        break
+    }
+  }
+
   const { data, isLoading, error } = useQuery({
     queryKey: ['teams'],
     queryFn: () => getTeams(),
   })
 
-  const sortedTeams = data?.response.sort((a: any, b: any) =>
-    a.team.name.localeCompare(b.team.name)
+  const sortedTeams = data?.response.sort(
+    (a: { team: { name: string } }, b: { team: { name: string } }) =>
+      a.team.name.localeCompare(b.team.name)
   )
 
   return (
@@ -41,8 +64,11 @@ export default function Teams() {
         margin="0 auto"
         marginY="2rem"
         gap="1rem"
+        outline="none"
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
       >
-        {sortedTeams?.map(({ team }: any) => {
+        {sortedTeams?.map(({ team }: any, index: number) => {
           return (
             <Box
               borderRadius="5px"
@@ -50,9 +76,10 @@ export default function Teams() {
               minHeight="150px"
               key={team.id}
               cursor="pointer"
-              color="white"
               padding="1rem"
+              color="white"
               background="gray.900"
+              bg={index === selectedItemIndex ? '#1a1a1a' : 'gray.900'}
               sx={{
                 '&:hover': {
                   bg: '#1a1a1a',
