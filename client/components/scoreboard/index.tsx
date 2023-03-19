@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Box, LinkBox, Center } from '@chakra-ui/layout'
 import { Favourite } from '../favourite'
+import { SkeletonLoading } from '../skeleton'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { useMatches } from '../../hooks/useMatches'
 import { hypenateMatchString } from '../../lib/string'
@@ -13,7 +14,7 @@ import { useSession } from 'next-auth/react'
 
 export function ScoreBoard() {
   const { data: session } = useSession()
-  const { data, error, isLoading } = useMatches()
+  const { data, error, isLoading, isFetching } = useMatches()
 
   return (
     <Box
@@ -37,8 +38,16 @@ export function ScoreBoard() {
         <TabPanels>
           <TabPanel>
             <Box>
+              <SkeletonLoading
+                loading={isLoading}
+                ammount={12}
+                startColor="gray.800"
+                endColor="gray.400"
+                height="70px"
+                borderRadius="5px"
+              />
               <Center>
-                <Loading loading={isLoading} />
+                <Loading loading={isFetching} />
               </Center>
 
               {error && <ErrorState />}

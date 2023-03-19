@@ -9,7 +9,7 @@ import {
 import { Flex, Box, Text } from '@chakra-ui/layout'
 import { Status } from '../status'
 import { formatUTCDate } from '../../lib/time'
-import { BiLike, BiChat, BiShare, BiTime } from 'react-icons/bi'
+import { BiTime } from 'react-icons/bi'
 import { MdOutlineStadium } from 'react-icons/md'
 import { GiWhistle } from 'react-icons/gi'
 import { FiShare2 } from 'react-icons/fi'

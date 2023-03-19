@@ -29,7 +29,6 @@ export function Card({
       borderRadius={radius}
       margin={margin}
       width={width}
-      minHeight="300px"
     >
       {heading ? (
         <>

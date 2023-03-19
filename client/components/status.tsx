@@ -22,12 +22,22 @@ export function Status({ status }: ScoreBoardProps) {
       ) : (
         <Box
           background="red"
-          minWidth="60px"
+          minWidth="65px"
           borderRadius="5px"
           display="flex"
           justifyContent="center"
+          alignItems="center"
         >
-          <Text fontWeight="600">Live</Text>
+          <Box
+            background="white"
+            borderRadius="50%"
+            width="7px"
+            height="7px"
+            marginRight="0.25rem"
+          />
+          <Text fontWeight="600" textTransform="uppercase">
+            Live
+          </Text>
         </Box>
       )}
     </Box>

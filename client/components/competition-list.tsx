@@ -1,7 +1,7 @@
 import NextImage from 'next/image'
 import Link from 'next/link'
 import { Box, List, ListItem } from '@chakra-ui/layout'
-import { Stack, Skeleton } from '@chakra-ui/react'
+import { SkeletonLoading } from './skeleton'
 import { hypenate } from '../lib/string'
 
 import { ErrorState } from './error'
@@ -31,18 +31,13 @@ export function CompetitionList({
           },
         }}
       >
-        {isLoading && (
-          <Stack spacing={5} padding="1rem">
-            {new Array(12).fill(1).map((i: number) => (
-              <Skeleton
-                key={i}
-                height="35px"
-                startColor="gray.100"
-                endColor="gray.700"
-              />
-            ))}
-          </Stack>
-        )}
+        <SkeletonLoading
+          loading={isLoading}
+          ammount={12}
+          height="35px"
+          startColor="gray.100"
+          endColor="gray.700"
+        />
 
         {error && <ErrorState />}
 
