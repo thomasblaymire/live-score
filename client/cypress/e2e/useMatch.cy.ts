@@ -38,3 +38,5 @@ describe('useMatch', () => {
     cy.wait('@matchRequest')
   })
 })
+
+export {}

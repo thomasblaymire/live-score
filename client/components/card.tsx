@@ -7,7 +7,7 @@ interface CardProps {
   radius?: string
   height?: string
   headingAlign?: ResponsiveValue<any> | undefined
-  children: React.ReactNode
+  children?: React.ReactNode
   color?: string
   margin?: string
   width?: string

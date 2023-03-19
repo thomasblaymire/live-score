@@ -66,8 +66,6 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
     router.push('/')
   }
 
-  console.log('debug providers', providers)
-
   const handleProviderSignin = (providerId: string) => {
     setLoadingProvider(() => new Set([providerId]))
     signIn(providerId)

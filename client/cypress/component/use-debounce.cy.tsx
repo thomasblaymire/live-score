@@ -23,3 +23,5 @@ describe('useDebounce', () => {
     cy.get('p').should('have.text', 'Debounced value: hello')
   })
 })
+
+export {}

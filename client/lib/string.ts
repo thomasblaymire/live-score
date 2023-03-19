@@ -1,4 +1,3 @@
-// TODO: Refactor everyting about this this
 export const hypenateMatchString = (
   firstString: string,
   secondString: string
@@ -11,8 +10,12 @@ export const hypenate = (string: string): string => {
 }
 
 export const formatSlug = (slug: string): string => {
-  const words: string[] = slug.split('_')
-  return words
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+  const formattedWord = (word: string) =>
+    word?.charAt(0).toUpperCase() + word?.slice(1)
+
+  const formattedSlug = slug?.includes('_')
+    ? slug.split('_').map(formattedWord).join(' ')
+    : formattedWord(slug)
+
+  return formattedSlug
 }

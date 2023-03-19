@@ -4,7 +4,6 @@ import {
   CardBody,
   CardFooter,
   Avatar,
-  Button,
 } from '@chakra-ui/react'
 import { Flex, Box, Text } from '@chakra-ui/layout'
 import { Status } from '../status'

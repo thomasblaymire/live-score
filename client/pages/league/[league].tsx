@@ -17,8 +17,6 @@ export default function League() {
   const router = useRouter()
   const { id } = router.query
 
-  console.log('debug id', id)
-
   const { data, isLoading, error } = useQuery({
     queryKey: ['teamFixtures'],
     queryFn: () => getLeague('39'),

@@ -50,8 +50,6 @@ function Signin({ providers }: SigninProps) {
   //   </Flex>
   // )
 
-  console.log('debug in signin', providers)
-
   const [showPassword, setShowPassword] = useState(false)
 
   return (

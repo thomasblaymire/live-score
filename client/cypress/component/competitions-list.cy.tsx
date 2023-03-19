@@ -7,11 +7,16 @@ const queryClient = new QueryClient()
 
 describe('Competitions list component', () => {
   const competitionList = '[data-test=competition-list]'
+  const errorMsg = new Error('Error')
 
   beforeEach(() => {
     cy.mount(
       <QueryClientProvider client={queryClient}>
-        <CompetitionList competitions={competitionData} />
+        <CompetitionList
+          competitions={competitionData}
+          isLoading={false}
+          error={errorMsg}
+        />
       </QueryClientProvider>
     )
   })
@@ -22,3 +27,5 @@ describe('Competitions list component', () => {
     cy.get(competitionList).find('img').should('be.visible')
   })
 })
+
+export {}

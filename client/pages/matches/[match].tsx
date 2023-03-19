@@ -17,8 +17,6 @@ export default function Match() {
   const { data, isLoading, error } = useMatch(id)
   const youtubeID = 'lA5uJuQA7DQ'
 
-  console.log('debug data', data)
-
   return (
     <Box
       marginTop={{ base: '1rem', md: '3rem' }}
