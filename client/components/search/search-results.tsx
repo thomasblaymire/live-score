@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useSearchResults } from '../../hooks/useSearchResults'
 import {
   Flex,
   Stack,
@@ -14,29 +14,11 @@ interface SearchResultsProps {
 }
 
 export function SearchResults({ results }: SearchResultsProps) {
-  const [selectedResultIndex, setSelectedResultIndex] = useState<number>(0)
-
-  const handleKeyDown = useRef((e: KeyboardEvent) => {
-    if (e.key === 'ArrowDown') {
-      setSelectedResultIndex((prevIndex) => (prevIndex + 1) % results.length)
-    } else if (e.key === 'ArrowUp') {
-      setSelectedResultIndex(
-        (prevIndex) => (prevIndex - 1 + results.length) % results.length
-      )
-    }
-  })
-
-  useEffect(() => {
-    const keydownRefCurrent = handleKeyDown.current
-    document.addEventListener('keydown', keydownRefCurrent)
-    return () => {
-      document.removeEventListener('keydown', keydownRefCurrent)
-    }
-  }, [])
+  const { selectedResultIndex, resultData } = useSearchResults({ results })
 
   return (
     <>
-      {results.map((result: SearchResponse, index: number) => (
+      {resultData.map((result: SearchResponse, index: number) => (
         <Card
           color="white"
           data-test="search-result"
