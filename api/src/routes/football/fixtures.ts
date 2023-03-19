@@ -1,7 +1,7 @@
 import express, { Request, Response } from "express";
 import { catchAsync } from "../../helpers/async";
 import { getVideoTagByQuery } from "../../helpers/youtube";
-import { fetchApi } from "../../helpers/fetch";
+// import { fetchApi } from "../../helpers/fetch";
 
 const router = express.Router();
 
