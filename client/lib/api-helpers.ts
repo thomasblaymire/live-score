@@ -19,11 +19,17 @@ export const getLeague = async (leagueId: string) => {
 }
 
 export const getTeams = async () => {
+  console.log(
+    'debug API_URL',
+    API_URL,
+    process.env.API_URL,
+    process.env.SMTP_HOST
+  )
   const { data } = await axios.get(`${API_URL}/teams`)
   return data
 }
 
-export const getFavourites = async (): Promise<FavouriteMatch[]> => {
+export const getFavourites = async () => {
   const { data } = await axios.get(`${API_URL}/favourites/`)
   return data
 }
