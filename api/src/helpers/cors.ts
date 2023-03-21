@@ -7,6 +7,7 @@ const allowedOrigins: string[] = [
   "http://localhost:3000",
   "http://127.0.0.0",
   "http://127.0.0.1:8080",
+  "https://live-score-tblaymire1994.vercel.app",
 ];
 
 export const corsOptions: cors.CorsOptions = {

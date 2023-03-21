@@ -6,14 +6,14 @@ import { corsOptions } from "./helpers/cors";
 import { createServer } from "http";
 import { clientUrl } from "./constants";
 import { Server } from "socket.io";
-import { newsRouter } from "./routes/football/news";
-import { favouritesRouter } from "./routes/football/favourites";
-import { leaguesRouter } from "./routes/football/leagues";
+import { newsRouter } from "./routes/news";
+import { favouritesRouter } from "./routes/fixtures/favourite";
+import { leaguesRouter } from "./routes/leagues";
 import { searchRouter } from "./routes/search";
 import { signupRouter } from "./routes/auth/signup";
 import { signinRouter } from "./routes/auth/signin";
-import { fixturesRouter } from "./routes/football/fixtures";
-import { teamsRouter } from "./routes/football/teams";
+import { fixturesRouter } from "./routes/fixtures";
+import { teamsRouter } from "./routes/teams";
 
 dotenv.config();
 

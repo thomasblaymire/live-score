@@ -13,6 +13,8 @@ router.post(
     const salt = bcrypt.genSaltSync();
     const { email, password, name } = req.body;
 
+    console.log("debug", { email, password, name });
+
     let user;
 
     try {

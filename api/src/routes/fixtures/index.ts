@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
 import { catchAsync } from "../../helpers/async";
 import { getVideoTagByQuery } from "../../helpers/youtube";
-// import { fetchApi } from "../../helpers/fetch";
 
 const router = express.Router();
 
@@ -11,6 +10,11 @@ router.get(
   catchAsync(async (req: Request, res: Response) => {
     const { team } = req.params;
     const response = await fetch(process.env.MOCKY_TEAM_FIXTURES_API_URL);
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data from API: ${response.statusText}`);
+    }
+
     const data = await response.json();
     res.json(data);
   })
@@ -20,15 +24,18 @@ router.get(
 router.get(
   "/api/fixtures",
   catchAsync(async (req: Request, res: Response) => {
+    const { getDate } = Date.prototype;
     const today = new Date();
-    let tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
+    const tomorrow = new Date(getDate.call(today) + 1);
 
-    const response = await fetch(
-      `${process.env.PAID_FOOTBALL_MOCK_LIVE_SCORES}`
-    );
+    const apiUrl = `${process.env.PAID_FOOTBALL_MOCK_LIVE_SCORES}`;
+    const response = await fetch(apiUrl);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch data from API.");
+    }
+
     const data = await response.json();
-
     res.json(data);
   })
 );
