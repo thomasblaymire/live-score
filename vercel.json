@@ -2,25 +2,17 @@
   "version": 2,
   "builds": [
     {
-      "src": "client",
-      "use": "@vercel/next",
-      "config": {
-        "maxLambdaSize": "512mb"
-      }
-    },
-    {
-      "src": "api",
+      "src": "client/package.json",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "api/$1"
-    },
-    {
       "src": "/(.*)",
-      "dest": "client/$1"
+      "dest": "/client/$1",
+      "headers": {
+        "cache-control": "s-maxage=1, stale-while-revalidate"
+      }
     }
   ]
 }
