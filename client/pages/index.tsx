@@ -10,6 +10,8 @@ import { BetCard } from '../components/bet-card'
 import { Card } from '../components/card'
 import { Footer } from '../components/footer'
 import { useCompetitions } from '../hooks/useCompetitions'
+import { GetServerSideProps } from 'next'
+import { getSession } from 'next-auth/react'
 
 interface HomeProps {
   competitions: Competitions[]
@@ -115,13 +117,14 @@ export default function Home({ competition, news }: HomeProps) {
   )
 }
 
-// Build time fetch leagues and news
-export async function getStaticProps() {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context)
   const competition = await getLeague('39')
   const news = await getNews()
 
   return {
     props: {
+      session,
       competition: competition.league,
       news: news,
     },

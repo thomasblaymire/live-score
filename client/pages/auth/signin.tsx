@@ -32,24 +32,6 @@ interface SigninProps {
   providers: Provider[]
 }
 function Signin({ providers }: SigninProps) {
-  // return (
-  //   <Flex>
-  //     <Box
-  //       width="45vw"
-  //       height="100vh"
-  //       sx={{
-  //         bgImage: `url(/images/football-login.jpg)`,
-  //         backgroundSize: 'cover',
-  //         backgroundRepeat: 'no-repeat',
-  //       }}
-  //     />
-
-  //     <Center width="55vw">
-  //       <SigninForm providers={providers} />
-  //     </Center>
-  //   </Flex>
-  // )
-
   const [showPassword, setShowPassword] = useState(false)
 
   return (

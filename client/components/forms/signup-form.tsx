@@ -2,7 +2,6 @@ import {
   Box,
   Flex,
   Input,
-  Heading,
   Button,
   Stack,
   FormControl,
@@ -14,27 +13,28 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-
-import { signIn } from 'next-auth/react'
 import { useAuth } from '../../hooks/useAuth'
-import { AuthProviders } from './auth-providers'
 
-interface SigninFormProps {
-  providers: Provider[]
-}
-
-export const SigninForm = ({ providers }: SigninFormProps) => {
+export const SignupForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { signInUser } = useAuth()
+  const [name, setName] = useState('')
+
+  const { signUpUser } = useAuth({
+    onSignUpSuccess: () => {
+      router.push('/')
+    },
+    onSignUpError: (error) => {
+      console.log('debug signup hook error', error)
+    },
+  })
 
   const router = useRouter()
   const isError = false
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    await signInUser({ email, password })
-    router.push('/')
+    await signUpUser({ email, password, name })
   }
 
   return (
@@ -48,6 +48,19 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
         >
           <form onSubmit={handleSubmit}>
             <Stack paddingBottom="25px">
+              <FormControl isRequired isInvalid={isError} marginBottom="1rem">
+                <FormLabel>Name</FormLabel>
+                <Input
+                  placeholder="Name"
+                  type="name"
+                  data-test="signin-input-name"
+                  onChange={(e) => setName(e.target.value)}
+                />
+                {isError && (
+                  <FormErrorMessage>Email is required.</FormErrorMessage>
+                )}
+              </FormControl>
+
               <FormControl isRequired isInvalid={isError} marginBottom="1rem">
                 <FormLabel>Email</FormLabel>
                 <Input
@@ -91,7 +104,7 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
                 },
               }}
             >
-              Login
+              Signup
             </Button>
 
             <Box
@@ -130,10 +143,6 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
               >
                 OR
               </span>
-            </Box>
-
-            <Box>
-              <AuthProviders providers={providers} />
             </Box>
           </form>
         </Box>

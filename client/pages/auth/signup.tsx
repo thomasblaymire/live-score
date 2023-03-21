@@ -1,80 +1,25 @@
-import { Flex, Box } from '@chakra-ui/react'
-import {
-  Button,
-  Checkbox,
-  HStack,
-  FormControl,
-  FormLabel,
-  Heading,
-  Input,
-  InputGroup,
-  Link,
-  Stack,
-  Text,
-  Image,
-} from '@chakra-ui/react'
+import { SignupForm } from '../../components/forms/signup-form'
+import { Box } from '@chakra-ui/react'
+import { Flex, Heading, Stack } from '@chakra-ui/react'
 
-const Signup = () => {
+function Signup() {
   return (
-    <Flex>
-      <Box
-        width="40vw"
-        height="100vh"
-        sx={{
-          bgImage: `url(/images/football-login.jpg)`,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
-      <Box width="60vw" height="100vh">
-        <Stack spacing={4}>
-          <HStack>
-            <Box>
-              <FormControl id="firstName" isRequired>
-                <FormLabel>First Name</FormLabel>
-                <Input type="text" />
-              </FormControl>
-            </Box>
-            <Box>
-              <FormControl id="lastName">
-                <FormLabel>Last Name</FormLabel>
-                <Input type="text" />
-              </FormControl>
-            </Box>
-          </HStack>
-          <FormControl id="email" isRequired>
-            <FormLabel>Email address</FormLabel>
-            <Input type="email" />
-          </FormControl>
-          <FormControl id="password" isRequired>
-            <FormLabel>Password</FormLabel>
-            <InputGroup>
-              {/* <Input type={showPassword ? 'text' : 'password'} /> */}
-            </InputGroup>
-          </FormControl>
-          <Stack spacing={8} pt={6}>
-            <Button
-              loadingText="Submitting"
-              size="md"
-              bg={'blue.400'}
-              color={'white'}
-              _hover={{
-                bg: 'blue.500',
-              }}
+    <Flex align={'center'} justify={'center'}>
+      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
+        <Box rounded={'lg'} bg="#121212" boxShadow={'lg'} color="white">
+          <Stack align={'center'} color="white">
+            <Heading
+              fontSize={'2xl'}
+              textAlign={'center'}
+              fontFamily="inherit"
+              paddingTop="2rem"
             >
-              Sign up
-            </Button>
+              Sign Up
+            </Heading>
           </Stack>
-          <Stack pt={6}>
-            <Text align={'center'}>
-              Already a user?{' '}
-              <Link href="/auth/signin" color={'blue.400'}>
-                Signin
-              </Link>
-            </Text>
-          </Stack>
-        </Stack>
-      </Box>
+          <SignupForm />
+        </Box>
+      </Stack>
     </Flex>
   )
 }

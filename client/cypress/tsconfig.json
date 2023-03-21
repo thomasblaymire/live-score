@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["./**/*.ts", "./cypress.d.ts", "src", "e2e/competitions-list.cy.tsx",],
+  "include": ["./**/*.ts", "./**/*.tsx", "./cypress.d.ts", "src"],
   "exclude": [],
   "compilerOptions": {
     "types": ["cypress"],

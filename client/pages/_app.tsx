@@ -27,6 +27,8 @@ export default function App({
 }: CustomAppProps) {
   const [queryClient] = useState(() => new QueryClient())
 
+  console.log('debug session in APPs', session)
+
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>

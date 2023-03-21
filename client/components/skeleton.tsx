@@ -1,4 +1,5 @@
 import { Stack, Skeleton } from '@chakra-ui/react'
+import { uniqueId } from '../lib/generators'
 
 interface SkeletonLoadingProps {
   loading: boolean
@@ -23,7 +24,7 @@ export function SkeletonLoading({
         <Stack spacing={5} padding="1rem">
           {new Array(ammount).fill(1).map((i: number) => (
             <Skeleton
-              key={i}
+              key={uniqueId()}
               height={height}
               startColor={startColor}
               borderRadius={borderRadius}

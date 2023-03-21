@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { Box, List, ListItem } from '@chakra-ui/layout'
 import { SkeletonLoading } from './skeleton'
 import { hypenate } from '../lib/string'
-
 import { ErrorState } from './error'
 
 interface CompetitionListProps {
@@ -41,9 +40,9 @@ export function CompetitionList({
 
         {error && <ErrorState />}
 
-        {competitions?.map((competition: Competitions, i: number) => (
+        {competitions?.map((competition: Competitions) => (
           <Link
-            key={i}
+            key={competition.league.id}
             passHref
             href={{
               pathname: '/league/[league]',
@@ -58,6 +57,7 @@ export function CompetitionList({
               color="#FFF"
               fontWeight="500"
               fontSize="0.9rem"
+              height="60px"
               borderBottom="solid 0.5px"
               borderColor="gray.900"
               sx={{
@@ -67,11 +67,12 @@ export function CompetitionList({
                 },
               }}
             >
-              <Box marginX="10px">
+              <Box marginX="10px" width="30px">
                 <NextImage
                   src={competition.league.logo}
                   width={30}
                   height={30}
+                  style={{ width: 'auto', height: 'auto' }}
                   alt={competition.league.name}
                 />
               </Box>

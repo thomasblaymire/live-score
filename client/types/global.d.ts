@@ -184,6 +184,11 @@ interface Match {
   score: Score
 }
 
+interface FavouriteMatches {
+  favourites: FavouriteMatch[]
+  totalCount: number
+}
+
 interface FavouriteMatch {
   id: string
   matchId: number

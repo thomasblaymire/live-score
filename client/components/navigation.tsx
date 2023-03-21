@@ -54,12 +54,18 @@ export function Navigation(): JSX.Element {
               icon={<RxHamburgerMenu />}
               onClick={onOpen}
               data-test="hamburger-button"
+              background="#313131"
+              _hover={{
+                bg: '#313131',
+              }}
             />
           </Box>
           {isOpen && (
-            <ModalElement isOpen={isOpen} onClose={onClose}>
-              {renderNavItems()}
-            </ModalElement>
+            <Box>
+              <ModalElement isOpen={isOpen} onClose={onClose}>
+                {renderNavItems()}
+              </ModalElement>
+            </Box>
           )}
         </>
       ) : (
