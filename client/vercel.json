@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [{ "src": "client/**/!(*.test|*.spec).js", "use": "@vercel/node" }],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "client/public/$1",
+      "headers": { "cache-control": "s-maxage=31536000,immutable" }
+    }
+  ]
+}
