@@ -17,7 +17,7 @@ A work in progress FullStack Football Live Score Application.
 
 ## Live URL
 
-<strong>www.livescores.click</strong>
+<strong>www.currentscore.live</strong>
 
 ## Screenshot
 
@@ -46,13 +46,10 @@ A work in progress FullStack Football Live Score Application.
 - Zod
 - Socket.io
 
-## Infrastructure
-- S3
-- AWS SSL
-- Route 53 Domain
-- Cloudfront
-- OIA
-- Lambda Edge
+## Infrastructure / Production
+- Vercel (NextJS)
+- Render (NodeJS API)
+- Raleway (PostgreSQL)
 
 ## Future Plans
 TBC....
