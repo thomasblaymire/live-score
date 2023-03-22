@@ -61,13 +61,7 @@ export default function League() {
               height="45vh"
               radius="15px"
             >
-              {data ? (
-                <StandingsTable
-                  standings={data.league.standings}
-                  loading={isLoading}
-                  width="50vw"
-                />
-              ) : null}
+              {/* <StandingsTable leagueId="39" width="50vw" /> */}
             </Card>
           </Box>
           <Card

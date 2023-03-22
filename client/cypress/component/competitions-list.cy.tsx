@@ -12,11 +12,7 @@ describe('Competitions list component', () => {
   beforeEach(() => {
     cy.mount(
       <QueryClientProvider client={queryClient}>
-        <CompetitionList
-          competitions={competitionData}
-          isLoading={false}
-          error={errorMsg}
-        />
+        <CompetitionList />
       </QueryClientProvider>
     )
   })

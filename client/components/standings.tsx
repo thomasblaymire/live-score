@@ -20,14 +20,19 @@ import { Loading } from './loading'
 interface StandingsProps {
   size?: string
   width?: string
+  leagueId?: string
 }
 
-export function StandingsTable({ size, width }: StandingsProps) {
+export function StandingsTable({
+  size,
+  width,
+  leagueId = '39',
+}: StandingsProps) {
   const router = useRouter()
 
   const { data, isLoading, error, isFetching } = useQuery({
     queryKey: ['standings'],
-    queryFn: () => getStandings('39'),
+    queryFn: () => getStandings(leagueId),
   })
 
   const standingData = data.league.standings[0]
