@@ -4,18 +4,10 @@ import { Box, List, ListItem } from '@chakra-ui/layout'
 import { SkeletonLoading } from './skeleton'
 import { hypenate } from '../lib/string'
 import { ErrorState } from './error'
+import { useCompetitions } from '../hooks/useCompetitions'
 
-interface CompetitionListProps {
-  competitions: Competitions[] | undefined
-  isLoading: boolean
-  error: Error | null
-}
-
-export function CompetitionList({
-  competitions,
-  isLoading,
-  error,
-}: CompetitionListProps) {
+export function CompetitionList() {
+  const { data: competitions, error, isLoading } = useCompetitions()
   return (
     <Box>
       <List

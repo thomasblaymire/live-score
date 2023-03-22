@@ -1,9 +1,10 @@
 import Link from 'next/link'
+import { useQuery } from 'react-query'
 import { Box, LinkBox, Center } from '@chakra-ui/layout'
 import { Favourite } from '../favourite'
 import { SkeletonLoading } from '../skeleton'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import { useMatches } from '../../hooks/useMatches'
+import { getMatches } from '../../lib/api-helpers'
 import { hypenateMatchString } from '../../lib/string'
 import { ErrorState } from '../error'
 import { Status } from '../status'
@@ -14,7 +15,12 @@ import { useSession } from 'next-auth/react'
 
 export function ScoreBoard() {
   const { data: session } = useSession()
-  const { data, error, isLoading, isFetching } = useMatches()
+
+  const { data, isLoading, error, isFetching } = useQuery<Match[], Error>({
+    queryKey: ['fixtures'],
+    queryFn: () => getMatches(),
+    refetchInterval: 30000,
+  })
 
   return (
     <Box
@@ -52,78 +58,79 @@ export function ScoreBoard() {
 
               {error && <ErrorState />}
 
-              {data?.map(({ teams, score, leagues, fixture, goals }: any) => (
-                <Link
-                  href={{
-                    pathname: '/matches/[match]',
-                    query: {
-                      id: fixture.id,
-                    },
-                  }}
-                  passHref
-                  as={`/matches/${hypenateMatchString(
-                    teams.home.name,
-                    teams.away.name
-                  )}`}
-                  key={teams.home.name}
-                >
-                  <Box
-                    key={teams.home.name}
-                    margin={{ base: '0px' }}
-                    marginBottom={{ base: '1rem', md: '0' }}
-                    fontSize="1.25rem"
-                    fontWeight="600"
-                    color="white"
-                    borderRadius="5px"
-                    sx={{
-                      '&:hover': {
-                        background: '#313131',
-                        cursor: 'pointer',
+              {data &&
+                data.map(({ teams, score, leagues, fixture, goals }: any) => (
+                  <Link
+                    href={{
+                      pathname: '/matches/[match]',
+                      query: {
+                        id: fixture.id,
                       },
                     }}
+                    passHref
+                    as={`/matches/${hypenateMatchString(
+                      teams.home.name,
+                      teams.away.name
+                    )}`}
+                    key={teams.home.name}
                   >
-                    <LinkBox
-                      display="flex"
-                      padding={{ base: '0.5rem 1rem' }}
-                      marginBottom="1rem"
-                      fontWeight="500"
+                    <Box
+                      key={teams.home.name}
+                      margin={{ base: '0px' }}
+                      marginBottom={{ base: '1rem', md: '0' }}
+                      fontSize="1.25rem"
+                      fontWeight="600"
+                      color="white"
+                      borderRadius="5px"
+                      sx={{
+                        '&:hover': {
+                          background: '#313131',
+                          cursor: 'pointer',
+                        },
+                      }}
                     >
-                      <Box
+                      <LinkBox
                         display="flex"
-                        alignItems="center"
-                        flex=" 1 1 0%"
-                        fontSize={{ base: '14px', md: 'auto' }}
+                        padding={{ base: '0.5rem 1rem' }}
+                        marginBottom="1rem"
+                        fontWeight="500"
                       >
-                        <Favourite
-                          fixture={fixture}
-                          userId={session?.user.id}
-                        />
-
-                        {/* {fixture.status ? (
-                          <Status
-                            status={fixture.status}
-                            utcDate={fixture.date}
-                          />
-                        ) : null} */}
-
-                        {teams ? <ScoreBoardTeams teams={teams} /> : null}
-
                         <Box
                           display="flex"
-                          flexDirection="column"
-                          minWidth="0"
-                          marginLeft="auto"
+                          alignItems="center"
+                          flex=" 1 1 0%"
+                          fontSize={{ base: '14px', md: 'auto' }}
                         >
-                          <Box display="flex" marginBottom="5px">
-                            {goals.home}
+                          <Favourite
+                            fixture={fixture}
+                            userId={session?.user.id}
+                          />
+
+                          {/* {fixture.status ? (
+                            <Status
+                              status={fixture.status}
+                              utcDate={fixture.date}
+                            />
+                          ) : null} */}
+
+                          {teams ? <ScoreBoardTeams teams={teams} /> : null}
+
+                          <Box
+                            display="flex"
+                            flexDirection="column"
+                            minWidth="0"
+                            marginLeft="auto"
+                          >
+                            <Box display="flex" marginBottom="5px">
+                              {goals.home}
+                            </Box>
+                            <Box display="flex">{goals.away}</Box>
                           </Box>
-                          <Box display="flex">{goals.away}</Box>
                         </Box>
-                      </Box>
-                    </LinkBox>
-                  </Box>
-                </Link>
-              ))}
+                      </LinkBox>
+                    </Box>
+                  </Link>
+                ))}
             </Box>
           </TabPanel>
           <TabPanel>

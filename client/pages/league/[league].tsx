@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
-import { getLeague } from '../../lib/api-helpers'
+import { getStandings } from '../../lib/api-helpers'
 import { StandingsTable } from '../../components/standings'
 import { Flex, Box, Heading } from '@chakra-ui/layout'
 import { Card } from '../../components/card'
@@ -18,8 +18,8 @@ export default function League() {
   const { id } = router.query
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ['teamFixtures'],
-    queryFn: () => getLeague('39'),
+    queryKey: ['standings'],
+    queryFn: () => getStandings('39'),
   })
 
   return (

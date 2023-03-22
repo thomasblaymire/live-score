@@ -1,16 +1,17 @@
 import Sidebar from '../components/sidebar'
-import { useState } from 'react'
+import { dehydrate } from 'react-query/hydration'
+import { QueryClient, useQuery } from 'react-query'
+import { GetServerSideProps } from 'next'
 import { Box, Grid, GridItem } from '@chakra-ui/layout'
 import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
-import { getLeague, getNews } from '../lib/api-helpers'
+import { getMatches, getNews, getStandings } from '../lib/api-helpers'
 import { CompetitionList } from '../components/competition-list'
 import { StandingsTable } from '../components/standings'
 import { BetCard } from '../components/bet-card'
 import { Card } from '../components/card'
 import { Footer } from '../components/footer'
-import { useCompetitions } from '../hooks/useCompetitions'
-import { GetServerSideProps } from 'next'
+
 import { getSession } from 'next-auth/react'
 
 interface HomeProps {
@@ -19,10 +20,17 @@ interface HomeProps {
   news: NewsResponse[]
 }
 
-export default function Home({ competition, news }: HomeProps) {
+export default function Home({ competition }: HomeProps) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
 
-  const { data: competitions, error, isLoading } = useCompetitions()
+  const {
+    data: news,
+    isLoading: newsLoading,
+    error: newsError,
+  } = useQuery({
+    queryKey: ['news'],
+    queryFn: () => getNews(),
+  })
 
   return (
     <>
@@ -61,11 +69,7 @@ export default function Home({ competition, news }: HomeProps) {
                   margin="0 0 2rem 0"
                   height="45vh"
                 >
-                  <CompetitionList
-                    competitions={competitions}
-                    isLoading={isLoading}
-                    error={error}
-                  />
+                  <CompetitionList />
                 </Card>
               </Sidebar>
             </GridItem>
@@ -101,10 +105,7 @@ export default function Home({ competition, news }: HomeProps) {
                 </Card>
                 <Card heading="Standings">
                   <Box padding="0 1rem">
-                    <StandingsTable
-                      standings={competition.standings}
-                      size="sm"
-                    />
+                    <StandingsTable size="sm" />
                   </Box>
                 </Card>
               </Sidebar>
@@ -119,14 +120,16 @@ export default function Home({ competition, news }: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context)
-  const competition = await getLeague('39')
-  const news = await getNews()
+  const queryClient = new QueryClient()
+
+  await queryClient.prefetchQuery(['fixtures'], () => getMatches())
+  await queryClient.prefetchQuery(['news'], () => getNews())
+  await queryClient.prefetchQuery(['standings'], () => getStandings('39'))
 
   return {
     props: {
       session,
-      competition: competition.league,
-      news: news,
+      dehydratedState: dehydrate(queryClient),
     },
   }
 }

@@ -10,7 +10,6 @@ import type { NextComponentType } from 'next'
 import { Poppins } from '@next/font/google'
 import 'reset-css'
 
-// @ts-ignore
 const poppins = Poppins({
   subsets: ['latin'],
   display: 'fallback',
@@ -26,8 +25,6 @@ export default function App({
   pageProps: { session, ...pageProps },
 }: CustomAppProps) {
   const [queryClient] = useState(() => new QueryClient())
-
-  console.log('debug session in APPs', session)
 
   return (
     <QueryClientProvider client={queryClient}>

@@ -13,7 +13,7 @@ export const getMatchData = async (id: any) => {
   return data
 }
 
-export const getLeague = async (leagueId: string) => {
+export const getStandings = async (leagueId: string) => {
   const { data } = await axios.get(`${API_URL}/league/${leagueId}`)
   return data
 }
@@ -44,7 +44,24 @@ export const addFavourite = async (id: number, userId: any) => {
   return data
 }
 
+export const getMatches = async () => {
+  const { data } = await axios.get(`${API_URL}/fixtures`)
+  return data
+}
+
 export const getNews = async (): Promise<any> => {
   const { data } = await axios.get(`${API_URL}/news`)
   return data.articles.slice(0, 5)
+}
+
+export const getNewsByTeam = async (
+  teamName: string | string[] | undefined,
+  page: number,
+  limit: number
+) => {
+  const { data } = await axios.post(`${API_URL}/news/${teamName}`, {
+    page,
+    limit,
+  })
+  return data
 }

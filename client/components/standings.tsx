@@ -1,3 +1,5 @@
+import { useQuery } from 'react-query'
+import { getStandings } from '../lib/api-helpers'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import {
@@ -16,19 +18,19 @@ import {
 import { Loading } from './loading'
 
 interface StandingsProps {
-  standings: Standings[]
   size?: string
   width?: string
-  loading?: boolean
 }
 
-export function StandingsTable({
-  standings,
-  size,
-  width,
-  loading,
-}: StandingsProps) {
+export function StandingsTable({ size, width }: StandingsProps) {
   const router = useRouter()
+
+  const { data, isLoading, error, isFetching } = useQuery({
+    queryKey: ['standings'],
+    queryFn: () => getStandings('39'),
+  })
+
+  const standingData = data.league.standings[0]
 
   const handleTeamSelection = (
     event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
@@ -45,14 +47,12 @@ export function StandingsTable({
     )
   }
 
-  const standingData = standings[0]
-
   return (
     <Box width={width}>
       <TableContainer overflowX="scroll">
-        {loading ? (
+        {isLoading ? (
           <Center marginTop="3rem">
-            <Loading loading={loading} />
+            <Loading loading={isLoading} />
           </Center>
         ) : null}
 
