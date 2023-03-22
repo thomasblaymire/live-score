@@ -17,7 +17,7 @@ A work in progress FullStack Football Live Score Application.
 
 ## Live URL
 
-<strong>www.currentscore.live</strong>
+<strong>https://currentscore.live/</strong>
 
 ## Screenshot
 
@@ -57,26 +57,20 @@ TBC....
 
 ## How To Use
 
-The most simple way to run this application is by using Docker. 
+The most simple way to run this application is by using npm or yarn.
 
-#### Run App:
-`$ docker-compose up`
-
-This will start both the API and Client services, note the CLI is a non-service and acts as a utility for performing operations.
-
-#### Running individual services
 
 ##### Go into relevant directory:
 `$ cd live-score/api or live-score/client`
 
 ##### Install dependencies
-`$ yarn`
+`$ npm install`
 
 ##### Run the service
-`$ yarn dev`
+`$ npm run dev`
 
 # Build the web app
-`$ yarn build`
+`$ npm run build`
 
 Please check out the package.json files for more information on additional commands.
 
