@@ -22,6 +22,7 @@ router.get(
 );
 
 // Returns all fixtures for a date range
+// including (live matches, odds, finished matches)
 router.get(
   "/api/fixtures",
   catchAsync(async (req: Request, res: Response) => {
@@ -29,15 +30,51 @@ router.get(
     const today = new Date();
     const tomorrow = new Date(getDate.call(today) + 1);
 
-    const apiUrl = `${process.env.PAID_FOOTBALL_MOCK_LIVE_SCORES}`;
-    const response = await fetch(apiUrl);
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch data from API.");
+    async function fetchLiveScores(apiUrl: string) {
+      const response = await fetch(apiUrl);
+      return response.json();
     }
 
-    const data = await response.json();
-    res.json(data);
+    async function fetchFixturesByDate(fixturesByDate: string) {
+      const response = await fetch(fixturesByDate);
+      return response.json();
+    }
+
+    async function fetchOddsInPlay(oddsInPlay: string) {
+      const response = await fetch(oddsInPlay);
+      return response.json();
+    }
+
+    async function fetchFixturesByStatus(fixturesBtStatus: string) {
+      const response = await fetch(fixturesBtStatus);
+      return response.json();
+    }
+
+    try {
+      const [
+        liveScores,
+        fixturesByDateData,
+        oddsInPlayData,
+        fixturesBtStatusData,
+      ] = await Promise.allSettled([
+        fetchLiveScores(`${process.env.MOCKY_LIVE_SCORES}`),
+        fetchFixturesByDate(`${process.env.MOCKY_FIXTURES_BY_DATE}`),
+        fetchOddsInPlay(`${process.env.MOCKY_LIVE_ODDS}`),
+        fetchFixturesByStatus(`${process.env.MOCKY_FIXTURES_BY_STATUS}`),
+      ]);
+
+      const responseData = {
+        liveScores: liveScores,
+        fixturesByDateData: fixturesByDateData,
+        oddsInPlayData: oddsInPlayData,
+        fixturesBtStatusData: fixturesBtStatusData,
+      };
+
+      res.json(responseData);
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Failed to fetch data from API");
+    }
   })
 );
 
