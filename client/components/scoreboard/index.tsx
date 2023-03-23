@@ -52,21 +52,18 @@ export function ScoreBoard() {
               />
 
               {error && <ErrorState />}
-              <ScoreBoardLive
-                session={session}
-                liveScores={data?.liveScores.value}
-              />
+              <ScoreBoardLive session={session} liveScores={data?.liveScores} />
             </Box>
           </TabPanel>
           <TabPanel>
             <ScoreBoardUpcoming
-              upcomingMatches={data?.fixturesByDateData.value}
+              upcomingMatches={data?.fixturesByDateData}
               session={session}
             />
           </TabPanel>
           {/* <TabPanel>
             <ScoreBoardOdds
-              odds={data?.oddsInPlayData.value}
+              odds={data?.oddsInPlayData}
               session={session}
             />
           </TabPanel>

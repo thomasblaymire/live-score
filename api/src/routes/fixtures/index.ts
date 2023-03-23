@@ -46,7 +46,7 @@ router.get(
 
     async function fetchFixturesByDate(fixturesByDate: string) {
       const response = await retry(async () => {
-        const response = await fetch(fixturesByDate + "1");
+        const response = await fetch(fixturesByDate);
         if (!response.ok) {
           throw new Error(`Failed to fetch fixtures: ${response.statusText}`);
         }
@@ -72,7 +72,7 @@ router.get(
 
     try {
       const [liveScores, fixturesByDateData, fixturesByStatusData] =
-        await Promise.allSettled([
+        await Promise.all([
           retry(() => fetchLiveScores(`${process.env.MOCKY_LIVE_SCORES}`)),
           retry(() =>
             fetchFixturesByDate(`${process.env.MOCKY_FIXTURES_BY_DATE}`)
