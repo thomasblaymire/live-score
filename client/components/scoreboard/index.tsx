@@ -9,7 +9,6 @@ import { tabs } from './data'
 import { useSession } from 'next-auth/react'
 import { ScoreBoardLive } from './scoreboard-live'
 import { ScoreBoardUpcoming } from './scoreboard-upcoming'
-import { ScoreBoardOdds } from './scoreboard-odds'
 
 export function ScoreBoard() {
   const { data: session } = useSession()
@@ -65,7 +64,7 @@ export function ScoreBoard() {
               session={session}
             />
           </TabPanel>
-          <TabPanel>
+          {/* <TabPanel>
             <ScoreBoardOdds
               odds={data?.oddsInPlayData.value}
               session={session}
@@ -73,7 +72,7 @@ export function ScoreBoard() {
           </TabPanel>
           <TabPanel>
             <p>four!</p>
-          </TabPanel>
+          </TabPanel> */}
         </TabPanels>
       </Tabs>
     </Box>

@@ -10,9 +10,6 @@ export const tabs: Tab[] = [
     title: 'Upcoming',
   },
   {
-    title: 'Odds',
-  },
-  {
     title: 'Finished',
   },
 ]
