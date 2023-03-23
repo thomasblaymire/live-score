@@ -11,8 +11,6 @@ interface ScoreBoardOddsProps {
 }
 
 export function ScoreBoardOdds({ odds, session }: ScoreBoardOddsProps) {
-  console.log('debug oddsMatches', odds)
-
   return (
     <>
       {odds?.map(({ teams, fixture }: any) => (

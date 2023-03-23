@@ -5,8 +5,6 @@ import NextImage from 'next/image'
 function Account({ session }: any) {
   // const { data, status } = useSession({ required: true })
 
-  console.log('in props', session)
-
   return (
     <Box>
       <NextImage

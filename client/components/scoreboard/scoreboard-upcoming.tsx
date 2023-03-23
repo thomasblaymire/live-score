@@ -14,8 +14,6 @@ export function ScoreBoardUpcoming({
   upcomingMatches,
   session,
 }: ScoreBoardUpcomingProps) {
-  console.log('debug upcomingMatches', upcomingMatches)
-
   return (
     <>
       {upcomingMatches?.map(({ teams, fixture }: any) => (

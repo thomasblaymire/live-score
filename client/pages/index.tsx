@@ -32,8 +32,6 @@ export default function Home({ competition }: HomeProps) {
     queryFn: () => getNews(),
   })
 
-  console.log('debug in page', news?.articles)
-
   return (
     <>
       <Box
