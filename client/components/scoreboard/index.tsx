@@ -20,8 +20,6 @@ export function ScoreBoard() {
     refetchInterval: 30000,
   })
 
-  console.log('debug data', data)
-
   return (
     <Box
       borderRadius="15px"
