@@ -1,7 +1,13 @@
-import express, { Express, Request, Response } from "express";
+import express, {
+  Express,
+  Request,
+  Response,
+  ErrorRequestHandler,
+} from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
+import * as Sentry from "@sentry/node";
 import { corsOptions } from "./helpers/cors";
 import { createServer } from "http";
 import { clientUrl } from "./constants";
@@ -17,15 +23,20 @@ import { teamsRouter } from "./routes/teams";
 
 dotenv.config();
 
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  tracesSampleRate: 1.0,
+});
+
 const app: Express = express();
 const port = process.env.PORT;
 
-// Middleware for API logging
-app.use(morgan("dev"));
+// Sentry for general error logging
+app.use(Sentry.Handlers.requestHandler());
 
+app.use(morgan("dev"));
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true }));
-
 app.use(cors(corsOptions));
 
 // Routers
@@ -52,9 +63,18 @@ io.on("connection", (socket) => {
   });
 });
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Footy API + TypeScript Server");
+app.get("/", (res: Response) => {
+  res.send("Footy API");
 });
+
+app.use(Sentry.Handlers.errorHandler());
+
+const onError: ErrorRequestHandler = (res) => {
+  res.statusCode = 500;
+  res.end(`${res.sentry}\n`);
+};
+
+app.use(onError);
 
 httpServer.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

@@ -13,6 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^4.9.0",
+    "@sentry/node": "^7.44.2",
+    "@sentry/tracing": "^7.44.2",
     "@types/cors": "^2.8.13",
     "@types/jsonwebtoken": "^9.0.1",
     "bcrypt": "^5.1.0",
