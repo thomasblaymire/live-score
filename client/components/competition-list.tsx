@@ -8,6 +8,7 @@ import { useCompetitions } from '../hooks/useCompetitions'
 
 export function CompetitionList() {
   const { data: competitions, error, isLoading } = useCompetitions()
+
   return (
     <Box>
       <List

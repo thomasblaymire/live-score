@@ -25,12 +25,14 @@ export default function Home({ competition }: HomeProps) {
 
   const {
     data: news,
-    isLoading: newsLoading,
-    error: newsError,
+    isLoading,
+    error,
   } = useQuery({
-    queryKey: ['news'],
+    queryKey: ['teams'],
     queryFn: () => getNews(),
   })
+
+  console.log('debug in page', news?.articles)
 
   return (
     <>
@@ -92,7 +94,7 @@ export default function Home({ competition }: HomeProps) {
             <GridItem area={'aside'}>
               <Sidebar>
                 <Card margin="0 0 2rem 0" height="45vh" heading="Latest News">
-                  {news.map((article: any, i: number) => (
+                  {news?.map((article: any, i: number) => (
                     <Box
                       fontSize="0.75rem"
                       color="white"
@@ -120,16 +122,10 @@ export default function Home({ competition }: HomeProps) {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context)
-  const queryClient = new QueryClient()
-
-  await queryClient.prefetchQuery(['fixtures'], () => getMatches())
-  await queryClient.prefetchQuery(['news'], () => getNews())
-  await queryClient.prefetchQuery(['standings'], () => getStandings('39'))
 
   return {
     props: {
       session,
-      dehydratedState: dehydrate(queryClient),
     },
   }
 }

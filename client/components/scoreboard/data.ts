@@ -4,10 +4,10 @@ interface Tab {
 
 export const tabs: Tab[] = [
   {
-    title: 'All Games',
+    title: 'Live Matches',
   },
   {
-    title: 'Live Matches',
+    title: 'Upcoming',
   },
   {
     title: 'Odds',

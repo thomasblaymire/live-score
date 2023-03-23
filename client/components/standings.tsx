@@ -35,6 +35,7 @@ export function StandingsTable({
     queryFn: () => getStandings(leagueId),
   })
 
+  console.log('standings yable', data)
   const standingData = data.league.standings[0]
 
   const handleTeamSelection = (
