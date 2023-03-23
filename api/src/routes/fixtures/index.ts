@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import express, { Request, Response } from "express";
 import { catchAsync } from "../../helpers/async";
+import { retry } from "../../helpers/retry";
 import { getVideoTagByQuery } from "../../helpers/youtube";
 
 const router = express.Router();
@@ -31,46 +32,68 @@ router.get(
     const tomorrow = new Date(getDate.call(today) + 1);
 
     async function fetchLiveScores(apiUrl: string) {
-      const response = await fetch(apiUrl);
+      const response = await retry(async () => {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch live scores: ${response.statusText}`
+          );
+        }
+        return response;
+      });
       return await response.json();
     }
 
     async function fetchFixturesByDate(fixturesByDate: string) {
-      const response = await fetch(fixturesByDate);
+      const response = await retry(async () => {
+        const response = await fetch(fixturesByDate + "1");
+        if (!response.ok) {
+          throw new Error(`Failed to fetch fixtures: ${response.statusText}`);
+        }
+        return response;
+      });
       const data = await response.json();
       return data.response.slice(0, 15);
     }
 
-    async function fetchOddsInPlay(oddsInPlay: string) {
-      const response = await fetch(oddsInPlay);
-      const data = await response.json();
-      return data.response.slice(0, 15);
-    }
-
-    async function fetchFixturesByStatus(fixturesBtStatus: string) {
-      const response = await fetch(fixturesBtStatus);
+    async function fetchFixturesByStatus(fixturesByStatus: string) {
+      const response = await retry(async () => {
+        const response = await fetch(fixturesByStatus);
+        if (!response.ok) {
+          throw new Error(
+            `Failed to fetch fixtures by status: ${response.statusText}`
+          );
+        }
+        return response;
+      });
       const data = await response.json();
       return data.response.slice(0, 15);
     }
 
     try {
-      const [
-        liveScores,
-        fixturesByDateData,
-        oddsInPlayData,
-        fixturesBtStatusData,
-      ] = await Promise.allSettled([
-        fetchLiveScores(`${process.env.MOCKY_LIVE_SCORES}`),
-        fetchFixturesByDate(`${process.env.MOCKY_FIXTURES_BY_DATE}`),
-        fetchOddsInPlay(`${process.env.MOCKY_LIVE_ODDS}`),
-        fetchFixturesByStatus(`${process.env.MOCKY_FIXTURES_BY_STATUS}`),
-      ]);
+      const [liveScores, fixturesByDateData, fixturesByStatusData] =
+        await Promise.allSettled([
+          retry(() => fetchLiveScores(`${process.env.MOCKY_LIVE_SCORES}`)),
+          retry(() =>
+            fetchFixturesByDate(`${process.env.MOCKY_FIXTURES_BY_DATE}`)
+          ),
+          retry(() =>
+            fetchFixturesByStatus(`${process.env.MOCKY_FIXTURES_BY_STATUS}`)
+          ),
+        ]);
+
+      // if (
+      //   liveScores.status === "rejected" ||
+      //   fixturesByDateData.status === "rejected" ||
+      //   fixturesByStatusData.status === "rejected"
+      // ) {
+      //   throw new Error("Failed to fetch one or more data sets from API");
+      // }
 
       const responseData = {
-        liveScores: liveScores,
-        fixturesByDateData: fixturesByDateData,
-        oddsInPlayData: oddsInPlayData,
-        fixturesBtStatusData: fixturesBtStatusData,
+        liveScores,
+        fixturesByDateData,
+        fixturesByStatusData,
       };
 
       res.json(responseData);
