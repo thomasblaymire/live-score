@@ -10,7 +10,7 @@ router.get(
   "/api/fixtures/:team",
   catchAsync(async (req: Request, res: Response) => {
     const { team } = req.params;
-    const response = await fetch(process.env.MOCKY_TEAM_FIXTURES_API_URL);
+    const response = await fetch(`${process.env.MOCKY_TEAM_FIXTURES_API_URL}`);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch data from API: ${response.statusText}`);
@@ -32,22 +32,25 @@ router.get(
 
     async function fetchLiveScores(apiUrl: string) {
       const response = await fetch(apiUrl);
-      return response.json();
+      return await response.json();
     }
 
     async function fetchFixturesByDate(fixturesByDate: string) {
       const response = await fetch(fixturesByDate);
-      return response.json();
+      const data = await response.json();
+      return data.response.slice(0, 15);
     }
 
     async function fetchOddsInPlay(oddsInPlay: string) {
       const response = await fetch(oddsInPlay);
-      return response.json();
+      const data = await response.json();
+      return data.response.slice(0, 15);
     }
 
     async function fetchFixturesByStatus(fixturesBtStatus: string) {
       const response = await fetch(fixturesBtStatus);
-      return response.json();
+      const data = await response.json();
+      return data.response.slice(0, 15);
     }
 
     try {

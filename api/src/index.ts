@@ -71,7 +71,7 @@ app.use(Sentry.Handlers.errorHandler());
 
 const onError: ErrorRequestHandler = (res) => {
   res.statusCode = 500;
-  res.end(`${res.sentry}\n`);
+  res.send(`${res.sentry}\n`);
 };
 
 app.use(onError);

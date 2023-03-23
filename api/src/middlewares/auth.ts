@@ -16,6 +16,6 @@ export const verifyAuth: RequestHandler = (
     next();
   } else {
     // Redirect to login page
-    res.redirect("/auth/login");
+    res.status(401).json({ message: "Authorization failed." });
   }
 };
