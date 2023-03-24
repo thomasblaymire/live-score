@@ -16,7 +16,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { signIn } from 'next-auth/react'
-import { useAuth } from '../../hooks/useAuth'
 import { AuthProviders } from './auth-providers'
 
 interface SigninFormProps {
@@ -26,15 +25,27 @@ interface SigninFormProps {
 export const SigninForm = ({ providers }: SigninFormProps) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { signInUser } = useAuth()
+  const [error, setError] = useState<unknown>(null)
+  const [loading, setLoading] = useState(false)
 
   const router = useRouter()
-  const isError = false
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    await signInUser({ email, password })
-    router.push('/')
+    try {
+      setLoading(true)
+      const success = await signIn('credentials', { email, password })
+      if (success) {
+        router.push('/')
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Sign in error:', error)
+        setError(error)
+      }
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -48,7 +59,7 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
         >
           <form onSubmit={handleSubmit}>
             <Stack paddingBottom="25px">
-              <FormControl isRequired isInvalid={isError} marginBottom="1rem">
+              <FormControl isRequired marginBottom="1rem">
                 <FormLabel>Email</FormLabel>
                 <Input
                   placeholder="Email"
@@ -56,12 +67,12 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
                   data-test="signin-input-email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                {isError && (
+                {error && (
                   <FormErrorMessage>Email is required.</FormErrorMessage>
                 )}
               </FormControl>
 
-              <FormControl isRequired isInvalid={isError}>
+              <FormControl isRequired>
                 <FormLabel>Password</FormLabel>
                 <Input
                   placeholder="Password"
@@ -69,7 +80,7 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
                   data-test="signin-input-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                {isError ? (
+                {error ? (
                   <FormHelperText>
                     Enter the email you would like to receive the newsletter on.
                   </FormHelperText>
@@ -85,6 +96,7 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
               width="100%"
               marginTop="1rem"
               bg="green.500"
+              isLoading={loading}
               sx={{
                 '&:hover': {
                   bg: 'green.300',

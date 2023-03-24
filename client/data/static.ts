@@ -29,16 +29,21 @@ export const navItems: NavItem[] = [
 export const authMenuItems: NavItem[] = [
   {
     id: 1,
+    name: 'Dashboard',
+    href: '/dashboard',
+  },
+  {
+    id: 2,
     name: 'My Account',
     href: '/account',
   },
   {
-    id: 2,
+    id: 3,
     name: 'Team',
     href: '/team',
   },
   {
-    id: 3,
+    id: 4,
     name: 'Payments',
     href: '/payments',
   },
