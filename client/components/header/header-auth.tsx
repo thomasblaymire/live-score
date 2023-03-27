@@ -10,13 +10,19 @@ export function AuthenticationButtons() {
         <Button
           colorScheme="gray"
           variant="link"
+          fontSize="0.9rem"
+          fontWeight="600"
           data-test="login-button"
           onClick={() => router.push('/auth/signin')}
         >
           Log In
         </Button>
         <Button
-          colorScheme="gray"
+          background="#029143"
+          fontWeight="600"
+          color="white"
+          fontSize="0.9rem"
+          _hover={{ background: '#056e34' }}
           data-test="signup-button"
           onClick={() => router.push('/auth/signup')}
         >

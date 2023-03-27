@@ -1,51 +1,61 @@
-import NextLink from 'next/link'
-import { Box, List, ListItem, LinkBox } from '@chakra-ui/layout'
+import { useState } from 'react'
+import { Box, Flex, List, ListItem } from '@chakra-ui/layout'
 import { useDisclosure, IconButton } from '@chakra-ui/react'
 import { ModalElement } from './modal'
 import { navItems } from '../data/static'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { useMediaQuery } from '@chakra-ui/react'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 
-function renderNavItems() {
-  return (
-    <Box>
-      <nav>
-        <List
-          display="flex"
-          alignItems="center"
-          alignSelf="stretch"
-          width="100%"
-          fontWeight="700"
-          fontSize="0.9rem"
-        >
-          {navItems.map(({ id, name, href }) => (
-            <ListItem
-              key={id}
-              sx={{
-                '&:not(:last-of-type)': {
-                  marginRight: '2rem',
-                },
-              }}
-            >
-              <LinkBox>
-                <NextLink href={href} passHref style={{ color: 'white' }}>
-                  {name}
-                </NextLink>
-              </LinkBox>
-            </ListItem>
-          ))}
-        </List>
-      </nav>
-    </Box>
-  )
-}
-
-export function Navigation(): JSX.Element {
+export function Navigation() {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [activeItem, setActiveItem] = useState<null | number>(null)
+  const router = useRouter()
+
+  const renderNavItems = () => {
+    const isHomeRoute = router.pathname === '/'
+    const activeColor = isHomeRoute || activeItem === null ? 'white' : '#029143'
+    return (
+      <List
+        display="flex"
+        alignItems="center"
+        fontWeight="700"
+        fontSize="0.9rem"
+      >
+        {navItems.map(({ id, name, href, icon }) => (
+          <ListItem
+            key={id}
+            sx={{
+              '&:not(:last-of-type)': {
+                marginRight: '2rem',
+              },
+            }}
+          >
+            <NextLink href={href} passHref>
+              <Box
+                as="a"
+                color={activeItem === id ? activeColor : 'white'}
+                textDecoration="none"
+                cursor="pointer"
+                _hover={{
+                  color: '#029143',
+                }}
+                onClick={() => setActiveItem(id)}
+              >
+                {icon}
+                {name}
+              </Box>
+            </NextLink>
+          </ListItem>
+        ))}
+      </List>
+    )
+  }
 
   return (
-    <>
+    <Flex alignItems="center">
       {!isTablet ? (
         <>
           <Box>
@@ -69,8 +79,8 @@ export function Navigation(): JSX.Element {
           )}
         </>
       ) : (
-        <div>{renderNavItems()}</div>
+        <Box>{renderNavItems()}</Box>
       )}
-    </>
+    </Flex>
   )
 }

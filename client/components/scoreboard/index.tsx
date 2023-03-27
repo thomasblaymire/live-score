@@ -61,15 +61,6 @@ export function ScoreBoard() {
               session={session}
             />
           </TabPanel>
-          {/* <TabPanel>
-            <ScoreBoardOdds
-              odds={data?.oddsInPlayData}
-              session={session}
-            />
-          </TabPanel>
-          <TabPanel>
-            <p>four!</p>
-          </TabPanel> */}
         </TabPanels>
       </Tabs>
     </Box>
