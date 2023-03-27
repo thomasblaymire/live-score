@@ -56,13 +56,7 @@ export function StandingsTable({
   return (
     <Box width={width}>
       <TableContainer overflowX="scroll">
-        <SkeletonLoading
-          loading={isLoading}
-          ammount={12}
-          height="35px"
-          startColor="gray.100"
-          endColor="gray.700"
-        />
+        <SkeletonLoading loading={isLoading} ammount={12} height="35px" />
 
         {standingData && (
           <Table
@@ -83,13 +77,7 @@ export function StandingsTable({
               </Tr>
             </Thead>
             <Tbody>
-              <SkeletonLoading
-                loading={isLoading}
-                ammount={12}
-                height="35px"
-                startColor="gray.100"
-                endColor="gray.700"
-              />
+              <SkeletonLoading loading={isLoading} ammount={12} height="35px" />
               {standingData.map((standing: Standings, i: number) => (
                 <Tr
                   sx={{
