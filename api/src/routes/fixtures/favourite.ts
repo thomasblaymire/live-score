@@ -13,6 +13,41 @@ interface RequestWithUserId extends Request {
   };
 }
 
+// Get Favourite Matches
+router.get(
+  "/api/favourites",
+  verifyAuth,
+  catchAsync(async (req: RequestWithUserId, res: Response) => {
+    const { userId, page = "1", limit = "10" } = req.query;
+    const offset = (parseInt(page) - 1) * parseInt(limit);
+    try {
+      const [favourites, totalCount] = await Promise.all([
+        prisma.favourites.findMany({
+          where: {
+            userId,
+          },
+          take: parseInt(limit),
+          skip: offset,
+        }),
+        prisma.favourites.count({
+          where: {
+            userId,
+          },
+        }),
+      ]);
+      if (favourites.length === 0) {
+        return res.status(404).json({
+          message: `No favourites found for user ID: ${userId}`,
+        });
+      }
+      return res.json({ favourites, totalCount });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ message: "Sorry, something went wrong." });
+    }
+  })
+);
+
 // Add Favourite Match
 router.post(
   "/api/favourites",
@@ -63,41 +98,6 @@ router.delete(
       return res.json({ matchId, status: "REMOVED" });
     } catch (e) {
       console.error(e);
-      return res.status(500).json({ message: "Sorry, something went wrong." });
-    }
-  })
-);
-
-// Get Favourite Matches
-router.get(
-  "/api/favourites",
-  verifyAuth,
-  catchAsync(async (req: RequestWithUserId, res: Response) => {
-    const { userId, page = "1", limit = "10" } = req.query;
-    const offset = (parseInt(page) - 1) * parseInt(limit);
-    try {
-      const [favourites, totalCount] = await Promise.all([
-        prisma.favourites.findMany({
-          where: {
-            userId,
-          },
-          take: parseInt(limit),
-          skip: offset,
-        }),
-        prisma.favourites.count({
-          where: {
-            userId,
-          },
-        }),
-      ]);
-      if (favourites.length === 0) {
-        return res.status(404).json({
-          message: `No favourites found for user ID: ${userId}`,
-        });
-      }
-      return res.json({ favourites, totalCount });
-    } catch (error) {
-      console.error(error);
       return res.status(500).json({ message: "Sorry, something went wrong." });
     }
   })
