@@ -52,7 +52,7 @@ export function ScoreBoard() {
               />
 
               {error && <ErrorState />}
-              <ScoreBoardLive session={session} liveScores={data?.liveScores} />
+              <ScoreBoardLive liveScores={data?.liveScores} />
             </Box>
           </TabPanel>
           <TabPanel>

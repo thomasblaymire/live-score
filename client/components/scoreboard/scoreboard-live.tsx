@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Box, LinkBox, Badge } from '@chakra-ui/react'
 import { Favourite } from '../favourite'
+import { useSession } from 'next-auth/react'
 import { hypenateMatchString } from '../../lib/string'
 import { ScoreBoardTeams } from './scoreboard-teams'
 import { keyframes } from '@emotion/react'
@@ -8,7 +9,6 @@ import { Session } from 'next-auth'
 
 interface ScoreBoardLiveProps {
   liveScores: Match[]
-  session: Session | null
 }
 
 const pulse = keyframes`
@@ -26,7 +26,8 @@ const pulse = keyframes`
   }
 `
 
-export function ScoreBoardLive({ liveScores, session }: ScoreBoardLiveProps) {
+export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
+  const { data: session } = useSession()
   return (
     <>
       {liveScores?.map(({ teams, fixture, goals }: any) => (
@@ -73,7 +74,7 @@ export function ScoreBoardLive({ liveScores, session }: ScoreBoardLiveProps) {
                 fontSize={{ base: '14px', md: 'auto' }}
               >
                 {session?.user.id ? (
-                  <Favourite fixture={fixture} userId={session?.user.id} />
+                  <Favourite fixture={fixture} session={session} />
                 ) : null}
 
                 <Badge

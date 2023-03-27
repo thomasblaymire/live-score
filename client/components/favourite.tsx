@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { useMutation, useQuery } from 'react-query'
 import { Box, Icon, useToast } from '@chakra-ui/react'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+import { Session } from 'next-auth'
 
 interface FavouriteMatch {
   matchId: number
@@ -14,12 +15,13 @@ interface FavouriteMatches {
 
 interface FavouriteProps {
   fixture: { id: number }
-  userId: number
+  session: Session | null
 }
 
-export function Favourite({ fixture, userId }: FavouriteProps): JSX.Element {
+export function Favourite({ fixture, session }: FavouriteProps): JSX.Element {
   const [favourites, setFavourites] = useState<number[]>([])
   const toast = useToast()
+  const userId = session?.user.id
 
   const { data } = useQuery<FavouriteMatches>({
     queryKey: ['favourites'],
@@ -32,7 +34,6 @@ export function Favourite({ fixture, userId }: FavouriteProps): JSX.Element {
     if (data?.favourites && userId) {
       updateMatchState(data)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, userId])
 
   const updateMatchState = (data: FavouriteMatches) => {
@@ -68,9 +69,7 @@ export function Favourite({ fixture, userId }: FavouriteProps): JSX.Element {
     id: number
   ) => {
     event.preventDefault()
-
     mutation.mutate(id)
-
     const updatedFavourites = favourites.filter(
       (favouriteId) => favouriteId !== id
     )
