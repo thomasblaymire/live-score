@@ -24,8 +24,8 @@ describe('Header', () => {
     })
   })
 
-  it('should navigate to the log in page when the login button clicked', () => {
-    cy.get('[data-test=login-button]').contains('Log In').click()
+  it('should navigate to the sign up page when the signup button clicked', () => {
+    cy.get('[data-test=signup-button]').contains('Sign Up').click()
     cy.url().then(($url) => {
       if ($url.includes('/api/auth/signup')) {
         cy.log('Yes')
