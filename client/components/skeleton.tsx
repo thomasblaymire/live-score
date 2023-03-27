@@ -5,8 +5,8 @@ interface SkeletonLoadingProps {
   loading: boolean
   ammount: number
   height: string
-  startColor: string
-  endColor: string
+  startColor?: string
+  endColor?: string
   borderRadius?: string
 }
 
@@ -14,8 +14,8 @@ export function SkeletonLoading({
   loading,
   ammount,
   height,
-  startColor,
-  endColor,
+  startColor = '#1b1b1b',
+  endColor = 'gray.800',
   borderRadius,
 }: SkeletonLoadingProps) {
   return (

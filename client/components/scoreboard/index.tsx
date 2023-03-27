@@ -45,8 +45,6 @@ export function ScoreBoard() {
               <SkeletonLoading
                 loading={isLoading}
                 ammount={12}
-                startColor="gray.800"
-                endColor="gray.400"
                 height="70px"
                 borderRadius="5px"
               />
