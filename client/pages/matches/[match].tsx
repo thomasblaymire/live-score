@@ -7,6 +7,7 @@ import { Stats } from '../../components/stats'
 import { ScoreCard } from '../../components/scorecard'
 import { Timeline } from '../../components/timeline'
 import { Players } from '../../components/players/players'
+import { Formations } from '../../components/formations'
 import { Loading } from '../../components/loading'
 import { useMatch } from '../../hooks/useMatch'
 import { SimpleGrid } from '@chakra-ui/react'
@@ -39,6 +40,17 @@ export default function Match() {
             )}
           </Box>
           <Box marginBottom="2.5rem">
+            {data?.lineups ? (
+              <Players
+                heading="Substitutes"
+                homeTeam={data.lineups[0].team}
+                awayTeam={data.lineups[1].team}
+                homePlayers={data.lineups[0].substitutes}
+                awayPlayers={data.lineups[1].substitutes}
+              />
+            ) : null}
+          </Box>
+          <Box marginBottom="2.5rem">
             {data ? (
               <Card
                 heading="Events"
@@ -69,17 +81,16 @@ export default function Match() {
         </Box>
 
         <Box flex={1}>
-          <Box marginBottom="2.5rem">
-            {data?.lineups ? (
-              <Players
-                heading="Substitutes"
-                homeTeam={data.lineups[0].team}
-                awayTeam={data.lineups[1].team}
-                homePlayers={data.lineups[0].substitutes}
-                awayPlayers={data.lineups[1].substitutes}
-              />
-            ) : null}
-          </Box>
+          {/* <Box marginBottom="2.5rem">
+            <Card
+              heading="Formations"
+              headingAlign="center"
+              background="#121212"
+              radius="15px"
+            >
+              <Formations formation={[4, 4, 2]} />
+            </Card>
+          </Box> */}
           <Box marginBottom="2.5rem">
             <Card
               heading="Stats"

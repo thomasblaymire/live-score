@@ -24,7 +24,9 @@ export const getTeams = async () => {
 }
 
 export const getFavourites = async () => {
-  const { data } = await axios.get(`${API_URL}/favourites/`)
+  const { data } = await axios.get(`${API_URL}/favourites/`, {
+    withCredentials: true,
+  })
   return data
 }
 

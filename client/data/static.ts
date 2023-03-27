@@ -1,3 +1,11 @@
+import {
+  AiOutlineDashboard,
+  AiOutlineUser,
+  AiOutlineTeam,
+  AiOutlineDollarCircle,
+} from 'react-icons/ai'
+import { IoIosFootball } from 'react-icons/io'
+
 export const navItems: NavItem[] = [
   {
     id: 1,
@@ -29,17 +37,26 @@ export const navItems: NavItem[] = [
 export const authMenuItems: NavItem[] = [
   {
     id: 1,
-    name: 'My Account',
-    href: '/account',
+    name: 'Dashboard',
+    href: '/dashboard',
+    icon: AiOutlineDashboard,
   },
   {
     id: 2,
-    name: 'Team',
-    href: '/team',
+    name: 'My Account',
+    href: '/account',
+    icon: AiOutlineUser,
   },
   {
     id: 3,
+    name: 'Team',
+    href: '/team',
+    icon: IoIosFootball,
+  },
+  {
+    id: 4,
     name: 'Payments',
     href: '/payments',
+    icon: AiOutlineDollarCircle,
   },
 ]

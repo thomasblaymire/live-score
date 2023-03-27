@@ -28,7 +28,7 @@ export default function Home({ competition }: HomeProps) {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['teams'],
+    queryKey: ['news'],
     queryFn: () => getNews(),
   })
 

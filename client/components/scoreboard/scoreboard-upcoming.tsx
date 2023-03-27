@@ -60,7 +60,7 @@ export function ScoreBoardUpcoming({
                 fontSize={{ base: '14px', md: 'auto' }}
               >
                 {session?.user.id ? (
-                  <Favourite fixture={fixture} userId={session?.user.id} />
+                  <Favourite fixture={fixture} session={session} />
                 ) : null}
 
                 {teams ? <ScoreBoardTeams teams={teams} /> : null}

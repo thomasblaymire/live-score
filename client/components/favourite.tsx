@@ -1,44 +1,46 @@
-import { useMutation, useQuery } from 'react-query'
 import { getFavourites, addFavourite } from '../lib/api-helpers'
-import { Box } from '@chakra-ui/layout'
 import { useState, useEffect } from 'react'
-import { Icon, useToast } from '@chakra-ui/react'
-import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
+import { useMutation, useQuery } from 'react-query'
+import { Box, Icon, useToast } from '@chakra-ui/react'
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+import { Session } from 'next-auth'
 
-interface FavouriteProps {
-  userId: number | undefined | unknown
-  fixture: Fixture
+interface FavouriteMatch {
+  matchId: number
 }
 
-export function Favourite({ fixture, userId }: FavouriteProps): JSX.Element {
-  const [favourites, setFavourites] = useState<Number[]>([])
-  const toast = useToast()
+interface FavouriteMatches {
+  favourites: FavouriteMatch[]
+}
 
-  const { data } = useQuery<FavouriteMatches, Error>({
+interface FavouriteProps {
+  fixture: { id: number }
+  session: Session | null
+}
+
+export function Favourite({ fixture, session }: FavouriteProps): JSX.Element {
+  const [favourites, setFavourites] = useState<number[]>([])
+  const toast = useToast()
+  const userId = session?.user.id
+
+  const { data } = useQuery<FavouriteMatches>({
     queryKey: ['favourites'],
     queryFn: getFavourites,
   })
 
-  const mutation = useMutation({
-    mutationFn: (id: number) => addFavourite(id, userId),
-  })
+  const mutation = useMutation((id: number) => addFavourite(id, userId))
 
   useEffect(() => {
     if (data?.favourites && userId) {
       updateMatchState(data)
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data, userId])
 
   const updateMatchState = (data: FavouriteMatches) => {
     const favouriteMatchIds = data.favourites.map(
       (match: FavouriteMatch) => match.matchId
     )
-    if (favouriteMatchIds)
-      setFavourites((prevFavourites) => [
-        ...prevFavourites,
-        ...favouriteMatchIds,
-      ])
+    setFavourites(favouriteMatchIds)
   }
 
   const addToFavorite = (
@@ -57,7 +59,7 @@ export function Favourite({ fixture, userId }: FavouriteProps): JSX.Element {
     }
 
     if (!favourites.includes(id)) {
-      setFavourites(favourites.concat(id))
+      setFavourites((prevFavourites) => [...prevFavourites, id])
       mutation.mutate(id)
     }
   }
@@ -67,32 +69,30 @@ export function Favourite({ fixture, userId }: FavouriteProps): JSX.Element {
     id: number
   ) => {
     event.preventDefault()
-
-    event.preventDefault()
     mutation.mutate(id)
-
-    const arr = favourites
-    arr.splice(favourites.indexOf(id), 1)
-    setFavourites([...arr])
+    const updatedFavourites = favourites.filter(
+      (favouriteId) => favouriteId !== id
+    )
+    setFavourites(updatedFavourites)
   }
 
   return (
     <Box flex="0 0 50px" flexDirection="column" position="relative">
-      {favourites.includes(fixture.id) ? (
-        <button
-          type="button"
-          onClick={(event) => removeFavorite(event, fixture.id)}
-        >
-          <Icon as={AiFillStar} boxSize={5} fill="#029143" />
-        </button>
-      ) : (
-        <button
-          type="button"
-          onClick={(event) => addToFavorite(event, fixture.id)}
-        >
-          <Icon as={AiOutlineStar} boxSize={5} />
-        </button>
-      )}
+      <button
+        type="button"
+        style={{ display: 'flex' }}
+        onClick={(event) =>
+          favourites.includes(fixture.id)
+            ? removeFavorite(event, fixture.id)
+            : addToFavorite(event, fixture.id)
+        }
+      >
+        <Icon
+          as={favourites.includes(fixture.id) ? AiFillStar : AiOutlineStar}
+          boxSize={5}
+          fill={favourites.includes(fixture.id) ? '#029143' : undefined}
+        />
+      </button>
     </Box>
   )
 }

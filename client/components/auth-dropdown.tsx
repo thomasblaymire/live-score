@@ -8,7 +8,9 @@ import {
   MenuList,
   MenuGroup,
   MenuDivider,
+  Icon,
 } from '@chakra-ui/react'
+import { AiOutlineExport } from 'react-icons/ai'
 import { authMenuItems } from '../data/static'
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
@@ -47,18 +49,39 @@ export function AuthDropdown({ user }: AuthDropdownProps) {
           <AvatarBadge boxSize="1em" bg="green.500" />
         </Avatar>
       </MenuButton>
-      <MenuList>
+      <MenuList
+        background="#121212"
+        style={{ border: 'solid 2px #212121' }}
+        padding="0"
+      >
         <MenuGroup>
-          {authMenuItems.map(({ href, name, id }) => (
-            <MenuItem key={id}>
-              <Link href={href}>{name}</Link>
+          {authMenuItems.map(({ href, name, id, icon }) => (
+            <MenuItem
+              key={id}
+              background="#121212"
+              _hover={{ bg: '#313131' }}
+              paddingY="10px"
+            >
+              <Icon as={icon} fontSize="lg" mr={2} />
+              <Link href={href} style={{ color: 'white', fontSize: '0.9rem' }}>
+                {name}
+              </Link>
             </MenuItem>
           ))}
         </MenuGroup>
         <MenuDivider />
         <MenuGroup>
-          <MenuItem>
-            <Link href={`/api/auth/signout`} onClick={(e) => handleSignout(e)}>
+          <MenuItem
+            background="#121212"
+            _hover={{ bg: '#313131' }}
+            paddingY="10px"
+          >
+            <Icon as={AiOutlineExport} fontSize="lg" mr={2} />
+            <Link
+              href={`/api/auth/signout`}
+              onClick={(e) => handleSignout(e)}
+              style={{ color: 'white', fontSize: '0.9rem' }}
+            >
               Sign out
             </Link>
           </MenuItem>

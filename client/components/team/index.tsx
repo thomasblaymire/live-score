@@ -53,6 +53,10 @@ export function Team({ id }: { id: string }) {
         margin="0 auto"
       >
         <Flex justifyContent="center" gap="1.5rem" paddingBottom="2.5rem">
+          <Box width="100%"></Box>
+        </Flex>
+
+        <Flex justifyContent="center" gap="1.5rem" paddingBottom="2.5rem">
           <Box width="60%">
             <Card
               heading="Latest Fixtures"

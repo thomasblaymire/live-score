@@ -1,3 +1,3 @@
-export default function Match() {
-  return <h2>Matches Page</h2>
+export default function Matches() {
+  return <div>Matches</div>
 }

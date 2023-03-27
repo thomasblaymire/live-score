@@ -82,14 +82,6 @@ router.get(
           ),
         ]);
 
-      // if (
-      //   liveScores.status === "rejected" ||
-      //   fixturesByDateData.status === "rejected" ||
-      //   fixturesByStatusData.status === "rejected"
-      // ) {
-      //   throw new Error("Failed to fetch one or more data sets from API");
-      // }
-
       const responseData = {
         liveScores,
         fixturesByDateData,

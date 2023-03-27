@@ -13,22 +13,6 @@ import { AuthDropdown } from '../auth-dropdown'
 import { useSession } from 'next-auth/react'
 import { Search } from '../search'
 
-function AvatarWithDropdown({ user }: { user: any }) {
-  return (
-    <WrapItem>
-      <AuthDropdown user={user} />
-    </WrapItem>
-  )
-}
-
-function UserAvatar() {
-  return (
-    <WrapItem>
-      <Avatar />
-    </WrapItem>
-  )
-}
-
 export function Header(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { data: session } = useSession()
@@ -71,11 +55,9 @@ export function Header(): JSX.Element {
             <Box>
               <Flex alignItems="center">
                 <HeaderIcons handleSearchOpen={handleSearchOpen} />
-                {session?.user?.image ? (
-                  <AvatarWithDropdown user={session.user} />
-                ) : (
-                  <UserAvatar />
-                )}
+                <WrapItem>
+                  <AuthDropdown user={session.user} />
+                </WrapItem>
               </Flex>
             </Box>
           )}
