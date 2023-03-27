@@ -374,7 +374,7 @@ interface SearchVenue {
   image: string
 }
 
-interface NewsResponse {
+interface NewsItem {
   title: string
   author: string | null
   source: NewsSource

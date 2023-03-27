@@ -1,6 +1,6 @@
+import Image from 'next/image'
 import { useQuery } from 'react-query'
 import { getStandings } from '../lib/api-helpers'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import {
   Table,
@@ -15,6 +15,7 @@ import {
   Box,
   Center,
 } from '@chakra-ui/react'
+import { SkeletonLoading } from './skeleton'
 import { Loading } from './loading'
 
 interface StandingsProps {
@@ -30,7 +31,7 @@ export function StandingsTable({
 }: StandingsProps) {
   const router = useRouter()
 
-  const { data, isLoading, error, isFetching } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ['standings'],
     queryFn: () => getStandings(leagueId),
   })
@@ -55,11 +56,7 @@ export function StandingsTable({
   return (
     <Box width={width}>
       <TableContainer overflowX="scroll">
-        {isLoading ? (
-          <Center marginTop="3rem">
-            <Loading loading={isLoading} />
-          </Center>
-        ) : null}
+        <SkeletonLoading loading={isLoading} ammount={12} height="35px" />
 
         {standingData && (
           <Table
@@ -80,6 +77,7 @@ export function StandingsTable({
               </Tr>
             </Thead>
             <Tbody>
+              <SkeletonLoading loading={isLoading} ammount={12} height="35px" />
               {standingData.map((standing: Standings, i: number) => (
                 <Tr
                   sx={{
@@ -93,7 +91,7 @@ export function StandingsTable({
                   cursor="pointer"
                 >
                   <Td>{i + 1}</Td>
-                  <Td>
+                  <Td verticalAlign="middle">
                     <Flex align="center">
                       <Image
                         width={20}

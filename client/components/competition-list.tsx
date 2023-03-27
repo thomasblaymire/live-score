@@ -23,13 +23,7 @@ export function CompetitionList() {
           },
         }}
       >
-        <SkeletonLoading
-          loading={isLoading}
-          ammount={12}
-          height="35px"
-          startColor="gray.100"
-          endColor="gray.700"
-        />
+        <SkeletonLoading loading={isLoading} ammount={12} height="35px" />
 
         {error && <ErrorState />}
 
