@@ -1,13 +1,11 @@
-import { requireAuth } from '../lib/require-auth'
+import { withAuth } from '../components/require-auth'
 
-export default function MyTeam() {
-  return <div>My Team </div>
+const MyTeam = () => {
+  return (
+    <div>
+      <h1>Protected Page</h1>
+    </div>
+  )
 }
 
-export async function getServerSideProps(context: any) {
-  return requireAuth(context, ({ session }: any) => {
-    return {
-      props: { session },
-    }
-  })
-}
+export default withAuth(MyTeam)

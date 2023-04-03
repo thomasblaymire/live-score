@@ -1,3 +1,5 @@
+import { useCallback } from 'react'
+import { QueryClient } from '@tanstack/react-query'
 import {
   Avatar,
   AvatarBadge,
@@ -12,23 +14,28 @@ import {
 } from '@chakra-ui/react'
 import { AiOutlineExport } from 'react-icons/ai'
 import { authMenuItems } from '../data/static'
-import { signOut } from 'next-auth/react'
+import { deleteCookie } from '../lib/cookie'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
-
-interface User {
-  name?: string | null | undefined
-  email?: string | null | undefined
-  image?: string | null | undefined
-}
 
 interface AuthDropdownProps {
   user: User
 }
 
 export function AuthDropdown({ user }: AuthDropdownProps) {
+  const router = useRouter()
+
+  const signOut = useCallback(() => {
+    const queryClient = new QueryClient()
+    deleteCookie('token')
+    queryClient.removeQueries({ queryKey: ['currentUser'], exact: true })
+    queryClient.setQueryData<User | null>(['currentUser'], null)
+  }, [])
+
   const handleSignout = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
     signOut()
+    router.push('/')
   }
 
   return (
@@ -60,6 +67,7 @@ export function AuthDropdown({ user }: AuthDropdownProps) {
               key={id}
               background="#121212"
               _hover={{ bg: '#313131' }}
+              transition-duration="0.2s"
               paddingY="10px"
             >
               <Icon as={icon} fontSize="lg" mr={2} />

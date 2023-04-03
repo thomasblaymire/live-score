@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { API_URL } from '../lib/constants'
 import axios from 'axios'
 
@@ -8,5 +8,5 @@ const getCompetitions = async () => {
 }
 
 export function useCompetitions() {
-  return useQuery<Competitions[], Error>('competitions', getCompetitions)
+  return useQuery<Competitions[], Error>(['competitions'], getCompetitions)
 }

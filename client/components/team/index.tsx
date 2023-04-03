@@ -2,7 +2,7 @@ import { Flex, Box, Text } from '@chakra-ui/layout'
 import { Avatar, Heading } from '@chakra-ui/react'
 import { Card } from '../../components/card'
 import { formatSlug } from '../../lib/string'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { TeamFixtures } from './team-fixtures'
 import { getMatchesByTeamName, getNewsByTeam } from '../../lib/api-helpers'
 

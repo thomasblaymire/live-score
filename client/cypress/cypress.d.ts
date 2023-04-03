@@ -5,6 +5,9 @@ declare namespace Cypress {
      * @example cy.dataCy('greeting')
      */
     signinUser(user: any): Chainable<Element>
+    signIn(email: string): Chainable<Promise<SignInResponse | undefined>>
+    createMockSession(): any
+    login(): any
     mount: typeof mount
   }
 }

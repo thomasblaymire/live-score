@@ -1,13 +1,12 @@
-import { requireAuth } from '../lib/require-auth'
+import { withAuth } from '../components/require-auth'
 
-export default function Account() {
-  return <div>Account</div>
+const Account = ({ currentUser }: { currentUser: User }) => {
+  return (
+    <div>
+      <h1>Protected Page</h1>
+      <p>Welcome, {currentUser.name}!</p>
+    </div>
+  )
 }
 
-export async function getServerSideProps(context: any) {
-  return requireAuth(context, ({ session }: any) => {
-    return {
-      props: { session },
-    }
-  })
-}
+export default withAuth(Account)

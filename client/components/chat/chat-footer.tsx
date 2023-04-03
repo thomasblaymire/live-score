@@ -6,7 +6,6 @@ export const ChatFooter = (): JSX.Element => {
 
   const handleSendMessage = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log({ userName: localStorage.getItem('userName'), message })
     setMessage('')
   }
   return (

@@ -8,13 +8,25 @@ import {
   StackDivider,
   CardBody,
 } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 
 interface SearchResultsProps {
   results: SearchResponse[]
 }
 
 export function SearchResults({ results }: SearchResultsProps) {
+  const router = useRouter()
   const { selectedResultIndex, resultData } = useSearchResults({ results })
+
+  const handleSearchResultClick = (teamName: string, teamId: number) => {
+    return router.push(
+      {
+        pathname: `/team/${teamName}`,
+        query: { code: teamId },
+      },
+      `/team/${teamName.toLowerCase()}`
+    )
+  }
 
   return (
     <>
@@ -23,6 +35,11 @@ export function SearchResults({ results }: SearchResultsProps) {
           color="white"
           data-test="search-result"
           key={result.team.name}
+          cursor="pointer"
+          _hover={{ bg: '#313131' }}
+          onClick={() =>
+            handleSearchResultClick(result.team.name, result.team.id)
+          }
           background={index === selectedResultIndex ? '#313131' : 'initial'}
           borderRadius={
             index === selectedResultIndex && index === 0

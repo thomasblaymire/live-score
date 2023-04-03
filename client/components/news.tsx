@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { getNews } from '../lib/api-helpers'
 import { SkeletonLoading } from './skeleton'
 import { Box } from '@chakra-ui/layout'

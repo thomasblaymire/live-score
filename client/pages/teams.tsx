@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { Heading, Flex, Text, Box } from '@chakra-ui/react'
 import { getTeams } from '../lib/api-helpers'
 

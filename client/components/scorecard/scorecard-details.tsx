@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { Flex, Box, Text } from '@chakra-ui/layout'
+import { Flex, Text } from '@chakra-ui/layout'
 
 interface ScoreCardProps {
   icon: ReactElement

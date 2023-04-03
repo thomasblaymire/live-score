@@ -26,7 +26,7 @@ interface SearchProps {
 export function Search({ isOpen, onClose }: SearchProps) {
   const [value, setValue] = useState<string>('')
   const debouncedValue = useDebounce<string>(value, 500)
-  const { data, isLoading, error } = useSearch(debouncedValue)
+  const { data: searchResults, isLoading, error } = useSearch(debouncedValue)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value.toLowerCase())
@@ -39,6 +39,7 @@ export function Search({ isOpen, onClose }: SearchProps) {
         backdropFilter="auto"
         backdropInvert="10%"
         backdropBlur="2px"
+        data-test="search-modal"
       />
       <ModalContent background="#000000e8" color="white">
         <ModalCloseButton />
@@ -73,8 +74,8 @@ export function Search({ isOpen, onClose }: SearchProps) {
                   <Loading loading={isLoading} />
                 </Center>
                 {error ? <ErrorState /> : null}
-                {data?.response ? (
-                  <SearchResults results={data.response} />
+                {searchResults ? (
+                  <SearchResults results={searchResults} />
                 ) : null}
               </Box>
             </ModalBody>
