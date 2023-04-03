@@ -207,6 +207,12 @@ interface Fixture {
   status: Status
 }
 
+interface User {
+  name?: string | null | undefined
+  email?: string | null | undefined
+  image?: string | null | undefined
+}
+
 interface Periods {
   first: number
   second: number
