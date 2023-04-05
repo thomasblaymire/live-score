@@ -88,3 +88,7 @@ export const getTeams = async (): Promise<{
     }
   }
 }
+
+export function isClient() {
+  return typeof window !== 'undefined'
+}
