@@ -1,2 +1,4 @@
 .vercel
 .cli/
+.DS_Store
+.vscode/
