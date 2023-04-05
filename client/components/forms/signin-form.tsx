@@ -14,6 +14,7 @@ import { AuthProviders } from './auth-providers'
 import { useRouter } from 'next/router'
 import { useAuth } from '../../hooks/useAuth'
 import { setCookie } from '../../lib/cookie'
+import { useAuthContext } from '../../context/auth-context'
 
 interface SigninFormProps {
   providers: Provider[]
@@ -22,12 +23,14 @@ interface SigninFormProps {
 export const SigninForm = ({ providers }: SigninFormProps) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { setUser } = useAuthContext()
 
   const router = useRouter()
 
   const { signInUser, signInLoading, onSignUpError } = useAuth({
     onSignInSuccess: (data) => {
       setCookie('token', data.token, { path: '/' })
+      setUser(data.user)
       router.push('/')
     },
   })

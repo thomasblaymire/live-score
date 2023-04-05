@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { AuthProvider } from '../context/auth-context'
 import { ChakraProvider } from '@chakra-ui/react'
 import { Header } from '../components/header'
 import {
@@ -33,18 +33,20 @@ export default function App({
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <ChakraProvider theme={theme}>
-          <main className={poppins.className}>
-            {Component.authPath ? (
-              <Component {...pageProps} />
-            ) : (
-              <>
-                <Header />
+          <AuthProvider>
+            <main className={poppins.className}>
+              {Component.authPath ? (
                 <Component {...pageProps} />
-              </>
-            )}
-          </main>
+              ) : (
+                <>
+                  <Header />
+                  <Component {...pageProps} />
+                </>
+              )}
+            </main>
 
-          <ReactQueryDevtools initialIsOpen={false} />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </AuthProvider>
         </ChakraProvider>
       </Hydrate>
     </QueryClientProvider>

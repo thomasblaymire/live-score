@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Box, Flex } from '@chakra-ui/layout'
 import { WrapItem, useDisclosure, useMediaQuery } from '@chakra-ui/react'
 import { AuthenticationButtons } from './header-auth'
@@ -7,12 +8,20 @@ import { Navigation } from '../navigation'
 import { AuthDropdown } from '../auth-dropdown'
 import { Search } from '../search'
 import { useCurrentUser } from '../../hooks/useCurrentUser'
+import { useAuthContext } from '../../context/auth-context'
 
 export function Header(): JSX.Element {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { data: user } = useCurrentUser()
   const [isTablet] = useMediaQuery('(min-width: 780px)')
   const [isMobile] = useMediaQuery('(max-width: 768px)')
+  const { user, setUser } = useAuthContext()
+  const { data: fetchedUser } = useCurrentUser()
+
+  useEffect(() => {
+    if (fetchedUser) {
+      setUser(fetchedUser)
+    }
+  }, [fetchedUser, setUser])
 
   const handleSearchOpen = () => {
     onOpen()
