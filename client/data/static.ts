@@ -19,8 +19,8 @@ export const navItems: NavItem[] = [
   },
   {
     id: 3,
-    name: 'Leagues',
-    href: '/leagues',
+    name: 'Predict',
+    href: '/predict',
   },
   {
     id: 4,
