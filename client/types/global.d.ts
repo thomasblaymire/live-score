@@ -180,7 +180,7 @@ enum LEAGUE_CODE {
 interface Match {
   fixture: Fixture
   league: League
-  teams: Teams
+  teams: SingleMatchTeams
   goals: Goals
   score: Score
 }
@@ -203,7 +203,7 @@ interface Fixture {
   date: Date
   timestamp: number
   periods: Periods
-  venue: Venue
+  venue: FixtureVenue
   status: Status
 }
 
@@ -218,10 +218,36 @@ interface Periods {
   second: number
 }
 
-interface Venue {
+interface FixtureVenue {
   id: number
   name: string
   city: string
+}
+
+interface AllTeams {
+  team: SingleTeam
+  venue: SingleVenue
+}
+
+interface SingleVenue {
+  address: string
+  capacity: number
+  city: string
+  id: number
+  image: string
+  name: string
+  surface: string
+}
+
+interface SingleTeam {
+  code: string
+  country: string
+  founded: number
+  id: number
+  logo: string
+  name: string
+  national: boolean
+  venue: Venue
 }
 
 interface Status {
@@ -352,7 +378,7 @@ interface SearchResult {
 
 interface SearchResponse {
   team: SearchTeam
-  venue: Venue
+  venue: SearchVenue
 }
 
 interface SearchPaging {
@@ -398,7 +424,7 @@ interface Periods {
   second: number
 }
 
-interface Venue {
+interface SearchVenue {
   id: number
   name: string
   city: string
@@ -417,7 +443,7 @@ interface Fixture {
   date: Date
   timestamp: number
   periods: Periods
-  venue: Venue
+  venue: FixtureVenue
   status: Status
 }
 
@@ -448,7 +474,7 @@ interface Away {
 interface SingleMatch {
   fixture: Fixture
   league: League
-  teams: Teams
+  teams: SingleMatchTeams
   goals: Goals
   score: Score
   events: Event[]
@@ -457,7 +483,7 @@ interface SingleMatch {
   players: Player4[]
 }
 
-interface Teams {
+interface SingleMatchTeams {
   home: Home
   away: Away
 }

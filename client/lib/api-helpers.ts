@@ -13,11 +13,6 @@ export const getStandings = async (leagueId: string) => {
   return data
 }
 
-export const getTeams = async () => {
-  const { data } = await axios.get(`${API_URL}/teams`)
-  return data
-}
-
 export const getFavourites = async () => {
   const { data } = await axios.get(`${API_URL}/favourites/`, {
     withCredentials: true,
@@ -64,6 +59,25 @@ export const getCompetitions = async (): Promise<{
   try {
     const { data } = await axios.get(`${API_URL}/leagues`)
     return { data, error: null }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error fetching data:', error.message)
+      return { data: null, error: error.message }
+    } else {
+      console.error('Error fetching data:', error)
+      return { data: null, error: 'An unknown error occurred' }
+    }
+  }
+}
+
+export const getTeams = async (): Promise<{
+  data: AllTeams[] | null
+  error: string | null
+}> => {
+  try {
+    const { data } = await axios.get(`${API_URL}/teams`)
+    console.log('debug data', data)
+    return { data: data.response, error: null }
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error('Error fetching data:', error.message)
