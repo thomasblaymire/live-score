@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import { useState } from 'react'
 import { Box, Flex, List, ListItem } from '@chakra-ui/layout'
 import { useDisclosure, IconButton } from '@chakra-ui/react'
@@ -5,7 +6,6 @@ import { ModalElement } from './modal'
 import { navItems } from '../data/static'
 import { RxHamburgerMenu } from 'react-icons/rx'
 import { useMediaQuery } from '@chakra-ui/react'
-import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 
 export function Navigation() {

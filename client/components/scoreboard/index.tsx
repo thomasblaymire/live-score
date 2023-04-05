@@ -1,19 +1,14 @@
-import { useQuery } from '@tanstack/react-query'
 import { Box } from '@chakra-ui/layout'
 import { SkeletonLoading } from '../skeleton'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import { getMatches } from '../../lib/api-helpers'
+import { useFixtures } from '../../hooks/useFixtures'
 import { ErrorState } from '../error'
 import { tabs } from './data'
 import { ScoreBoardLive } from './scoreboard-live'
 import { ScoreBoardUpcoming } from './scoreboard-upcoming'
 
 export function ScoreBoard() {
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['fixtures'],
-    queryFn: () => getMatches(),
-    refetchInterval: 30000,
-  })
+  const { data, isLoading, error } = useFixtures()
 
   return (
     <Box
@@ -50,7 +45,7 @@ export function ScoreBoard() {
             </Box>
           </TabPanel>
           <TabPanel>
-            <ScoreBoardUpcoming upcomingMatches={data?.fixturesByDateData} />
+            <ScoreBoardUpcoming upcomingMatches={data?.fixturesByDate} />
           </TabPanel>
         </TabPanels>
       </Tabs>
