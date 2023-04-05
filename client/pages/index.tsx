@@ -1,5 +1,5 @@
 import Sidebar from '../components/sidebar'
-import { GetServerSideProps } from 'next'
+import { getCompetitions } from '../lib/api-helpers'
 import { Box, Grid, GridItem } from '@chakra-ui/layout'
 import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
@@ -9,9 +9,13 @@ import { BetCard } from '../components/bet-card'
 import { News } from '../components/news'
 import { Card } from '../components/card'
 import { Footer } from '../components/footer'
-import { getSession } from 'next-auth/react'
 
-export default function Home() {
+interface HomeProps {
+  competitions: Competitions[]
+  error: Error | undefined
+}
+
+export default function Home({ competitions, error }: HomeProps) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
 
   return (
@@ -51,7 +55,11 @@ export default function Home() {
                   margin="0 0 2rem 0"
                   height="45vh"
                 >
-                  <CompetitionList />
+                  <CompetitionList
+                    competitions={competitions}
+                    isLoading={false}
+                    error={error}
+                  />
                 </Card>
               </Sidebar>
             </GridItem>
@@ -91,12 +99,13 @@ export default function Home() {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const session = await getSession(context)
+export async function getStaticProps() {
+  const { data, error } = await getCompetitions()
 
   return {
     props: {
-      session,
+      competitions: data,
+      error,
     },
   }
 }
