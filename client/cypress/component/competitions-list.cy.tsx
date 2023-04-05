@@ -1,26 +1,72 @@
+import React from 'react'
+import { mount } from 'cypress/react18'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ChakraProvider } from '@chakra-ui/react'
 import { CompetitionList } from '../../components/competition-list'
-import { competitionData } from '../fixtures/competitions'
 
-import { QueryClient, QueryClientProvider } from 'react-query'
+describe('CompetitionList', () => {
+  const competitions = [{}]
+  const isLoading = false
 
-const queryClient = new QueryClient()
-
-describe('Competitions list component', () => {
-  const competitionList = '[data-test=competition-list]'
-  const errorMsg = new Error('Error')
+  const queryClient = new QueryClient()
 
   beforeEach(() => {
-    cy.mount(
-      <QueryClientProvider client={queryClient}>
-        <CompetitionList />
-      </QueryClientProvider>
-    )
+    cy.intercept('GET', '/api/leagues', { fixture: 'competitions.json' })
   })
 
-  it('should render a list of different competitions with images', () => {
-    cy.get(competitionList).should('exist')
-    cy.get(competitionList).find('li').should('have.length.greaterThan', 5)
-    cy.get(competitionList).find('img').should('be.visible')
+  it('renders the competition list', () => {
+    mount(
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider>
+          {/* <CompetitionList competitions={competitions} isLoading={isLoading} /> */}
+        </ChakraProvider>
+      </QueryClientProvider>
+    )
+
+    cy.get('[data-test="competition-list"]').should('be.visible')
+  })
+
+  it('renders the competition items', () => {
+    mount(
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider>
+          {/* <CompetitionList competitions={competitions} isLoading={isLoading} /> */}
+        </ChakraProvider>
+      </QueryClientProvider>
+    )
+
+    cy.wait(500)
+    cy.get('[data-test="competition-list"] > a').should('have.length', 2)
+  })
+
+  it('renders competition item with correct name', () => {
+    mount(
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider>
+          {/* <CompetitionList competitions={competitions} isLoading={isLoading} /> */}
+        </ChakraProvider>
+      </QueryClientProvider>
+    )
+
+    cy.get('[data-test="competition-list"] > a')
+      .first()
+      .contains('Premier League')
+  })
+
+  it('renders competition item with correct logo', () => {
+    mount(
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider>
+          {/* <CompetitionList competitions={competitions} isLoading={isLoading} /> */}
+        </ChakraProvider>
+      </QueryClientProvider>
+    )
+
+    cy.get('[data-test="competition-list"] > a')
+      .first()
+      .find('img')
+      .should('have.attr', 'src')
+      .and('match', /premier-league-logo\.png/)
   })
 })
 

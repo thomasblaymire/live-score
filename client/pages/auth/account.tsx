@@ -1,10 +1,7 @@
 import { Box } from '@chakra-ui/layout'
-import { getSession, useSession } from 'next-auth/react'
 import NextImage from 'next/image'
 
 function Account({ session }: any) {
-  // const { data, status } = useSession({ required: true })
-
   return (
     <Box>
       <NextImage

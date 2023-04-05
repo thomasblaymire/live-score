@@ -1,4 +1,4 @@
-import { QueryCache } from 'react-query'
+import { QueryCache } from '@tanstack/react-query'
 
 const queryCache = new QueryCache({
   onError: (error) => {

@@ -7,12 +7,10 @@ import { Session } from 'next-auth'
 
 interface ScoreBoardUpcomingProps {
   upcomingMatches: Match[]
-  session: Session | null
 }
 
 export function ScoreBoardUpcoming({
   upcomingMatches,
-  session,
 }: ScoreBoardUpcomingProps) {
   return (
     <>
@@ -59,9 +57,9 @@ export function ScoreBoardUpcoming({
                 flex=" 1 1 0%"
                 fontSize={{ base: '14px', md: 'auto' }}
               >
-                {session?.user.id ? (
+                {/* {session?.user.id ? (
                   <Favourite fixture={fixture} session={session} />
-                ) : null}
+                ) : null} */}
 
                 {teams ? <ScoreBoardTeams teams={teams} /> : null}
 

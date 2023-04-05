@@ -1,8 +1,7 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
-import { requireAuth } from '../../lib/require-auth'
+import { withAuth } from '../../components/require-auth'
 
-const Dashboard: NextPage = () => {
+const Dashboard = () => {
   return (
     <>
       <Head>
@@ -13,12 +12,4 @@ const Dashboard: NextPage = () => {
   )
 }
 
-export async function getServerSideProps(context: any) {
-  return requireAuth(context, ({ session }: any) => {
-    return {
-      props: { session },
-    }
-  })
-}
-
-export default Dashboard
+export default withAuth(Dashboard)

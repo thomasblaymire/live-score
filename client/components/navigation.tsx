@@ -35,7 +35,6 @@ export function Navigation() {
           >
             <NextLink href={href} passHref>
               <Box
-                as="a"
                 color={activeItem === id ? activeColor : 'white'}
                 textDecoration="none"
                 cursor="pointer"

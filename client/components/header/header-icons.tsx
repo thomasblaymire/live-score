@@ -8,9 +8,6 @@ import {
   PopoverCloseButton,
   PopoverHeader,
   PopoverBody,
-  Button,
-  UnorderedList,
-  ListItem,
 } from '@chakra-ui/react'
 import { HiOutlineBell, HiOutlineSearch } from 'react-icons/hi'
 

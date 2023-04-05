@@ -8,18 +8,8 @@ export const getMatchesByTeamName = async (
   return data
 }
 
-export const getMatchData = async (id: any) => {
-  const { data } = await axios.get(`${API_URL}/fixture/${id}`)
-  return data
-}
-
 export const getStandings = async (leagueId: string) => {
   const { data } = await axios.get(`${API_URL}/league/${leagueId}`)
-  return data
-}
-
-export const getTeams = async () => {
-  const { data } = await axios.get(`${API_URL}/teams`)
   return data
 }
 
@@ -60,4 +50,45 @@ export const getNewsByTeam = async (
     limit,
   })
   return data
+}
+
+export const getCompetitions = async (): Promise<{
+  data: Competitions[] | null
+  error: string | null
+}> => {
+  try {
+    const { data } = await axios.get(`${API_URL}/leagues`)
+    return { data, error: null }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error fetching data:', error.message)
+      return { data: null, error: error.message }
+    } else {
+      console.error('Error fetching data:', error)
+      return { data: null, error: 'An unknown error occurred' }
+    }
+  }
+}
+
+export const getTeams = async (): Promise<{
+  data: AllTeams[] | null
+  error: string | null
+}> => {
+  try {
+    const { data } = await axios.get(`${API_URL}/teams`)
+    console.log('debug data', data)
+    return { data: data.response, error: null }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error fetching data:', error.message)
+      return { data: null, error: error.message }
+    } else {
+      console.error('Error fetching data:', error)
+      return { data: null, error: 'An unknown error occurred' }
+    }
+  }
+}
+
+export function isClient() {
+  return typeof window !== 'undefined'
 }

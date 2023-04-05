@@ -2,21 +2,19 @@ import {
   Box,
   Flex,
   Input,
-  Heading,
   Button,
   Stack,
   FormControl,
-  FormHelperText,
-  FormErrorMessage,
   FormLabel,
   Center,
-  Spinner,
 } from '@chakra-ui/react'
 import { useState } from 'react'
-import { useRouter } from 'next/router'
-
-import { signIn } from 'next-auth/react'
+import { ErrorState } from '../error'
 import { AuthProviders } from './auth-providers'
+import { useRouter } from 'next/router'
+import { useAuth } from '../../hooks/useAuth'
+import { setCookie } from '../../lib/cookie'
+import { useAuthContext } from '../../context/auth-context'
 
 interface SigninFormProps {
   providers: Provider[]
@@ -25,27 +23,21 @@ interface SigninFormProps {
 export const SigninForm = ({ providers }: SigninFormProps) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState<unknown>(null)
-  const [loading, setLoading] = useState(false)
+  const { setUser } = useAuthContext()
 
   const router = useRouter()
 
+  const { signInUser, signInLoading, onSignUpError } = useAuth({
+    onSignInSuccess: (data) => {
+      setCookie('token', data.token, { path: '/' })
+      setUser(data.user)
+      router.push('/')
+    },
+  })
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    try {
-      setLoading(true)
-      const success = await signIn('credentials', { email, password })
-      if (success) {
-        router.push('/')
-      }
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error('Sign in error:', error)
-        setError(error)
-      }
-    } finally {
-      setLoading(false)
-    }
+    await signInUser({ email, password })
   }
 
   return (
@@ -57,6 +49,8 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
           padding="2rem"
           background="#121212"
         >
+          {onSignUpError ? <ErrorState /> : null}
+
           <form onSubmit={handleSubmit}>
             <Stack paddingBottom="25px">
               <FormControl isRequired marginBottom="1rem">
@@ -67,9 +61,6 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
                   data-test="signin-input-email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                {error && (
-                  <FormErrorMessage>Email is required.</FormErrorMessage>
-                )}
               </FormControl>
 
               <FormControl isRequired>
@@ -80,13 +71,6 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
                   data-test="signin-input-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                {error ? (
-                  <FormHelperText>
-                    Enter the email you would like to receive the newsletter on.
-                  </FormHelperText>
-                ) : (
-                  <FormErrorMessage>Email is required.</FormErrorMessage>
-                )}
               </FormControl>
             </Stack>
 
@@ -96,7 +80,7 @@ export const SigninForm = ({ providers }: SigninFormProps) => {
               width="100%"
               marginTop="1rem"
               bg="green.500"
-              isLoading={loading}
+              isLoading={signInLoading}
               sx={{
                 '&:hover': {
                   bg: 'green.300',

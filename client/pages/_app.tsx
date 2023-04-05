@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { AuthProvider } from '../context/auth-context'
 import { ChakraProvider } from '@chakra-ui/react'
 import { Header } from '../components/header'
-import { QueryClient, QueryClientProvider, Hydrate } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
-import { SessionProvider } from 'next-auth/react'
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { theme } from '../styles/theme'
 import type { AppProps } from 'next/app'
 import type { NextComponentType } from 'next'
@@ -20,17 +23,17 @@ type CustomAppProps = AppProps & {
   Component: NextComponentType & { authPath?: boolean }
 }
 
+const queryClient = new QueryClient()
+
 export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }: CustomAppProps) {
-  const [queryClient] = useState(() => new QueryClient())
-
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <ChakraProvider theme={theme}>
-          <SessionProvider session={session}>
+          <AuthProvider>
             <main className={poppins.className}>
               {Component.authPath ? (
                 <Component {...pageProps} />
@@ -41,8 +44,9 @@ export default function App({
                 </>
               )}
             </main>
-          </SessionProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
+
+            <ReactQueryDevtools initialIsOpen={false} />
+          </AuthProvider>
         </ChakraProvider>
       </Hydrate>
     </QueryClientProvider>

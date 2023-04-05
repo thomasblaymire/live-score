@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
-import { useSession } from 'next-auth/react'
 import { Box } from '@chakra-ui/layout'
 import { ChatBar } from './chat-bar'
 import { ChatBody } from './chat-body'
@@ -11,7 +10,6 @@ const socket = io('http://localhost:3030')
 export function LiveChat() {
   const [isConnected, setIsConnected] = useState(socket.connected)
   const [lastPong, setLastPong] = useState(null)
-  const { data, status } = useSession({ required: true })
 
   useEffect(() => {
     socket.on('connect', () => {

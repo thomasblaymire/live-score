@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useMutation, UseMutationOptions } from 'react-query'
+import { useMutation, UseMutationOptions } from '@tanstack/react-query'
 import { API_URL } from '../lib/constants'
 
 interface AuthParams {
@@ -39,11 +39,11 @@ export function useAuth({
   onSignInSuccess?: (data: any) => void
   onSignInError?: (error: Error) => void
 } = {}) {
-  const signUpMutation = useMutation('signup', signUp, {
+  const signUpMutation = useMutation(['signup'], signUp, {
     onSuccess: onSignUpSuccess,
     onError: onSignUpError,
   })
-  const signInMutation = useMutation('signin', signIn, {
+  const signInMutation = useMutation(['signin'], signIn, {
     onSuccess: onSignInSuccess,
     onError: onSignInError,
   })
@@ -61,5 +61,7 @@ export function useAuth({
     signInUser,
     signUpLoading: signUpMutation.isLoading,
     signInLoading: signInMutation.isLoading,
+    onSignUpError: signUpMutation.error,
+    onSignInError: signInMutation.error,
   }
 }

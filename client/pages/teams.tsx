@@ -1,10 +1,15 @@
 import { useState } from 'react'
 import Image from 'next/image'
-import { useQuery } from 'react-query'
 import { Heading, Flex, Text, Box } from '@chakra-ui/react'
+import { ErrorState } from '../components/error'
 import { getTeams } from '../lib/api-helpers'
 
-export default function Teams() {
+interface TeamsProps {
+  teams: AllTeams[]
+  error: Error | undefined
+}
+
+export default function Teams({ teams, error }: TeamsProps) {
   const [selectedItemIndex, setSelectedItemIndex] = useState<number>(0)
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -26,12 +31,7 @@ export default function Teams() {
     }
   }
 
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['teams'],
-    queryFn: () => getTeams(),
-  })
-
-  const sortedTeams = data?.response.sort(
+  const sortedTeams = teams?.sort(
     (a: { team: { name: string } }, b: { team: { name: string } }) =>
       a.team.name.localeCompare(b.team.name)
   )
@@ -68,7 +68,8 @@ export default function Teams() {
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >
-        {sortedTeams?.map(({ team }: any, index: number) => {
+        {error && <ErrorState />}
+        {sortedTeams?.map(({ team }: AllTeams, index: number) => {
           return (
             <Box
               borderRadius="5px"
@@ -102,4 +103,15 @@ export default function Teams() {
       </Flex>
     </Box>
   )
+}
+
+export async function getStaticProps() {
+  const { data, error } = await getTeams()
+
+  return {
+    props: {
+      teams: data,
+      error,
+    },
+  }
 }

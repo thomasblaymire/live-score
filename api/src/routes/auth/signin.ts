@@ -11,8 +11,13 @@ const router = express.Router();
 router.post(
   "/api/signin",
   catchAsync(async (req: Request, res: Response) => {
-    console.log(req);
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res
+        .status(400)
+        .send({ message: "Email and password are required." });
+    }
 
     const user = await prisma.user.findUnique({
       where: {
@@ -20,46 +25,27 @@ router.post(
       },
     });
 
-    if (user && bcrypt.compareSync(password, user.password as string)) {
-      const token = jwt.sign(
-        {
-          id: user.id,
-          email: user.email,
-          time: Date.now(),
-        },
-        process.env.JWT_SECRET,
-        {
-          expiresIn: "8h",
-        }
-      );
-
-      console.log(
-        "coookiiieee",
-        cookie.serialize("LIVE_SCORE_ACCESS_TOKEN", token, {
-          httpOnly: true,
-          maxAge: 8 * 60 * 60,
-          path: "/",
-          sameSite: "lax",
-          secure: process.env.NODE_ENV === "production",
-        })
-      );
-
-      res.setHeader(
-        "Set-Cookie",
-        cookie.serialize("LIVE_SCORE_ACCESS_TOKEN", token, {
-          httpOnly: true,
-          maxAge: 8 * 60 * 60,
-          path: "/",
-          sameSite: "lax",
-          secure: process.env.NODE_ENV === "production",
-        })
-      );
-
-      res.json(user);
-    } else {
-      res.status(401);
-      res.json({ error: "Email or password is wrong" });
+    if (!user || !bcrypt.compareSync(password, user.password as string)) {
+      return res.status(401).json({ error: "Email or password is wrong" });
     }
+
+    const token = jwt.sign(
+      {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        time: Date.now(),
+      },
+      process.env.JWT_SECRET,
+      { expiresIn: "8h" }
+    );
+
+    res.cookie("token", token, { httpOnly: true, maxAge: 8 * 60 * 60 });
+
+    return res.status(200).json({
+      user: { id: user.id, email: user.email, name: user.name },
+      token,
+    });
   })
 );
 

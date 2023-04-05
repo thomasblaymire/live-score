@@ -4,6 +4,7 @@ import express, {
   Response,
   ErrorRequestHandler,
 } from "express";
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
@@ -18,6 +19,7 @@ import { leaguesRouter } from "./routes/leagues";
 import { searchRouter } from "./routes/search";
 import { signupRouter } from "./routes/auth/signup";
 import { signinRouter } from "./routes/auth/signin";
+import { currentUserRouter } from "./routes/auth/user";
 import { fixturesRouter } from "./routes/fixtures";
 import { teamsRouter } from "./routes/teams";
 
@@ -39,12 +41,15 @@ app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
+app.use(cookieParser());
+
 // Routers
 app.use(newsRouter);
 app.use(favouritesRouter);
 app.use(searchRouter);
 app.use(signupRouter);
 app.use(signinRouter);
+app.use(currentUserRouter);
 app.use(leaguesRouter);
 app.use(fixturesRouter);
 app.use(teamsRouter);

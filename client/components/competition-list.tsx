@@ -6,9 +6,17 @@ import { hypenate } from '../lib/string'
 import { ErrorState } from './error'
 import { useCompetitions } from '../hooks/useCompetitions'
 
-export function CompetitionList() {
-  const { data: competitions, error, isLoading } = useCompetitions()
+interface CompetitionListProps {
+  competitions: Competitions[]
+  isLoading: boolean
+  error?: Error | undefined
+}
 
+export function CompetitionList({
+  competitions,
+  isLoading,
+  error,
+}: CompetitionListProps) {
   return (
     <Box>
       <List

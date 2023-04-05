@@ -9,19 +9,20 @@ import {
   FormErrorMessage,
   FormLabel,
   Center,
-  Spinner,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useAuth } from '../../hooks/useAuth'
+import { setCookie } from '../../lib/cookie'
 
 export const SignupForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [name, setName] = useState('')
 
-  const { signUpUser } = useAuth({
-    onSignUpSuccess: () => {
+  const { signUpUser, signUpLoading, onSignUpError } = useAuth({
+    onSignUpSuccess: (data) => {
+      setCookie('token', data.token, { path: '/' })
       router.push('/')
     },
     onSignUpError: (error) => {
@@ -30,7 +31,6 @@ export const SignupForm = () => {
   })
 
   const router = useRouter()
-  const isError = false
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -48,7 +48,7 @@ export const SignupForm = () => {
         >
           <form onSubmit={handleSubmit}>
             <Stack paddingBottom="25px">
-              <FormControl isRequired isInvalid={isError} marginBottom="1rem">
+              <FormControl isRequired marginBottom="1rem">
                 <FormLabel>Name</FormLabel>
                 <Input
                   placeholder="Name"
@@ -56,12 +56,12 @@ export const SignupForm = () => {
                   data-test="signin-input-name"
                   onChange={(e) => setName(e.target.value)}
                 />
-                {isError && (
+                {onSignUpError && (
                   <FormErrorMessage>Email is required.</FormErrorMessage>
                 )}
               </FormControl>
 
-              <FormControl isRequired isInvalid={isError} marginBottom="1rem">
+              <FormControl isRequired marginBottom="1rem">
                 <FormLabel>Email</FormLabel>
                 <Input
                   placeholder="Email"
@@ -69,12 +69,12 @@ export const SignupForm = () => {
                   data-test="signin-input-email"
                   onChange={(e) => setEmail(e.target.value)}
                 />
-                {isError && (
+                {onSignUpError && (
                   <FormErrorMessage>Email is required.</FormErrorMessage>
                 )}
               </FormControl>
 
-              <FormControl isRequired isInvalid={isError}>
+              <FormControl isRequired>
                 <FormLabel>Password</FormLabel>
                 <Input
                   placeholder="Password"
@@ -82,7 +82,7 @@ export const SignupForm = () => {
                   data-test="signin-input-password"
                   onChange={(e) => setPassword(e.target.value)}
                 />
-                {isError ? (
+                {onSignUpError ? (
                   <FormHelperText>
                     Enter the email you would like to receive the newsletter on.
                   </FormHelperText>
@@ -98,6 +98,7 @@ export const SignupForm = () => {
               width="100%"
               marginTop="1rem"
               bg="green.500"
+              isLoading={signUpLoading}
               sx={{
                 '&:hover': {
                   bg: 'green.300',
