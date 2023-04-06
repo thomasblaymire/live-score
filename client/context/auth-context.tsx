@@ -29,9 +29,7 @@ export const useAuthContext = () => useContext(AuthContext)
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null)
-
   const token = isClient() ? getCookie('token') : undefined
-
   const api = axios.create({ baseURL: `${API_URL}`, withCredentials: true })
 
   const { data: fetchedUser } = useQuery<User | null>(
@@ -49,7 +47,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       return response.data.user
     },
     {
-      initialData: null, // set initial value to null
+      initialData: null,
       enabled: !!token, // only fetch data if token is present
     }
   )

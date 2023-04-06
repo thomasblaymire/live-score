@@ -1,19 +1,79 @@
-import { useState } from 'react'
-import Image from 'next/image'
-import { Heading, Flex, Text, Box, Container, Button } from '@chakra-ui/react'
-import { ErrorState } from '../components/error'
-import { getTeams } from '../lib/api-helpers'
-import { PredictionTeam } from '../components/prediction/prediction-team'
+import { useState, useEffect } from 'react'
+import { Heading, Flex, Box, Button, css } from '@chakra-ui/react'
+import { fakeUsers } from '../data/users'
+import { Leaderboard } from '../components/leaderboard'
 import { useFixtures } from '../hooks/useFixtures'
 import { PredictionList } from '../components/prediction'
 import { Card } from '../components/card'
+import { API_URL } from '../lib/constants'
+import { getCookie } from '../lib/cookie'
+
+type PredictionsType = {
+  [matchId: number]: {
+    teamA: number
+    teamB: number
+  }
+}
 
 export default function Predict() {
   const { data: fixtures, isLoading, isError } = useFixtures()
+  const [predictions, setPredictions] = useState<PredictionsType>({})
+
+  useEffect(() => {
+    const storedPredictions = localStorage.getItem('predictions')
+    if (storedPredictions) {
+      setPredictions(JSON.parse(storedPredictions))
+    }
+  }, [])
+
+  const updatePrediction = (
+    matchId: number,
+    teamAScore: number,
+    teamBScore: number
+  ) => {
+    setPredictions((prevPredictions) => {
+      const newPredictions = {
+        ...prevPredictions,
+        [matchId]: { teamA: teamAScore, teamB: teamBScore },
+      }
+      localStorage.setItem('predictions', JSON.stringify(newPredictions))
+      return newPredictions
+    })
+  }
 
   const handlePredictionsSubmit = async () => {
     // Collect predictions from local state
-    // POST request to /api/fixtures with the data
+    const storedPredictions = localStorage.getItem('predictions')
+    const predictions: PredictionsType = storedPredictions
+      ? JSON.parse(storedPredictions)
+      : {}
+
+    // Convert predictions to the required format
+    const formattedPredictions = Object.entries(predictions).map(
+      ([matchId, scores]) => {
+        return {
+          matchId: parseInt(matchId),
+          teamAScore: scores.teamA,
+          teamBScore: scores.teamB,
+        }
+      }
+    )
+
+    const token = getCookie('token')
+
+    try {
+      const response = await fetch(`${API_URL}/predictions`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ predictions: formattedPredictions }),
+      })
+      console.log('debug, response: ', response)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
@@ -61,25 +121,37 @@ export default function Predict() {
               radius="15px"
             >
               {fixtures?.fixturesByDate.map((fixture: any) => {
-                console.log('debug fixture', fixture)
                 return (
                   <PredictionList
                     key={fixture.fixture.id}
+                    matchId={fixture.fixture.id}
                     teamA={fixture.teams.home.name}
                     teamALogo={fixture.teams.home.logo}
                     teamB={fixture.teams.away.name}
                     teamBLogo={fixture.teams.away.logo}
+                    teamAScore={predictions[fixture.fixture.id]?.teamA || 0}
+                    teamBScore={predictions[fixture.fixture.id]?.teamB || 0}
+                    onScoreChange={updatePrediction}
                   />
                 )
               })}
 
-              <Button
-                onClick={handlePredictionsSubmit}
-                colorScheme="teal"
-                mt={4}
-              >
-                Submit Predictions
-              </Button>
+              <Box width="45%" margin="0 auto" padding="1rem 0">
+                <Button
+                  width="100%"
+                  data-test="prediction-submit"
+                  onClick={handlePredictionsSubmit}
+                  bg="green.500"
+                  color="#FFF"
+                  sx={{
+                    '&:hover': {
+                      bg: 'green.300',
+                    },
+                  }}
+                >
+                  Submit Predictions
+                </Button>
+              </Box>
             </Card>
           </Box>
 
@@ -90,7 +162,9 @@ export default function Predict() {
               background="#121212"
               height="45vh"
               radius="15px"
-            ></Card>
+            >
+              <Leaderboard users={fakeUsers} />
+            </Card>
           </Box>
         </Flex>
       </Box>

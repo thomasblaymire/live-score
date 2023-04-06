@@ -76,7 +76,6 @@ export const getTeams = async (): Promise<{
 }> => {
   try {
     const { data } = await axios.get(`${API_URL}/teams`)
-    console.log('debug data', data)
     return { data: data.response, error: null }
   } catch (error: unknown) {
     if (error instanceof Error) {
