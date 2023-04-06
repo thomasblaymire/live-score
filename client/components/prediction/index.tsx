@@ -1,91 +1,81 @@
-import { Flex, IconButton, Image, Text, Box } from '@chakra-ui/react'
-import { HiChevronUp, HiChevronDown } from 'react-icons/hi'
-import { useState } from 'react'
+import { Flex, Text, Box } from '@chakra-ui/react'
+import { PredictionControls } from './prediction-controls'
 
 interface FixtureProps {
+  matchId: number
   teamA: string
   teamALogo: string
   teamB: string
   teamBLogo: string
+  teamAScore: number
+  teamBScore: number
+  onScoreChange: (
+    matchId: number,
+    teamAScore: number,
+    teamBScore: number
+  ) => void
 }
 
-export const PredictionList = ({
+export function PredictionList({
+  matchId,
   teamA,
   teamALogo,
   teamB,
   teamBLogo,
-}: FixtureProps) => {
-  const [teamAScore, setTeamAScore] = useState(0)
-  const [teamBScore, setTeamBScore] = useState(0)
-
-  const handleScoreChange = (
+  teamAScore,
+  teamBScore,
+  onScoreChange,
+}: FixtureProps) {
+  function handleScoreChange(
     team: 'A' | 'B',
     action: 'increment' | 'decrement'
-  ) => {
-    if (team === 'A') {
-      if (action === 'increment' && teamAScore < 10) {
-        setTeamAScore(teamAScore + 1)
-      } else if (action === 'decrement' && teamAScore > 0) {
-        setTeamAScore(teamAScore - 1)
-      }
-    } else {
-      if (action === 'increment' && teamBScore < 10) {
-        setTeamBScore(teamBScore + 1)
-      } else if (action === 'decrement' && teamBScore > 0) {
-        setTeamBScore(teamBScore - 1)
-      }
+  ) {
+    const isIncrement = action === 'increment'
+    const newTeamAScore =
+      team === 'A'
+        ? isIncrement && teamAScore < 10
+          ? teamAScore + 1
+          : !isIncrement && teamAScore > 0
+          ? teamAScore - 1
+          : teamAScore
+        : teamAScore
+    const newTeamBScore =
+      team === 'B'
+        ? isIncrement && teamBScore < 10
+          ? teamBScore + 1
+          : !isIncrement && teamBScore > 0
+          ? teamBScore - 1
+          : teamBScore
+        : teamBScore
+
+    if (newTeamAScore !== teamAScore || newTeamBScore !== teamBScore) {
+      onScoreChange(matchId, newTeamAScore, newTeamBScore)
     }
   }
 
   return (
     <Flex alignItems="center" justifyContent="space-around" width="100%" my={4}>
       <Box width="40%">
-        <Flex alignItems="center" justifyContent="space-between">
-          <Flex alignItems="center" direction="column" width="300px">
-            <Image src={teamALogo} alt="homeTeam" boxSize="50px" />
-            <Text>{teamA}</Text>
-          </Flex>
-
-          <Flex direction="column" gap="0.5rem">
-            <IconButton
-              aria-label="Increase team A score"
-              icon={<HiChevronUp />}
-              onClick={() => handleScoreChange('A', 'increment')}
-            />
-
-            <IconButton
-              aria-label="Decrease team A score"
-              icon={<HiChevronDown />}
-              onClick={() => handleScoreChange('A', 'decrement')}
-            />
-          </Flex>
-        </Flex>
+        <PredictionControls
+          teamName={teamA}
+          teamLogo={teamALogo}
+          teamScore={teamAScore}
+          onScoreIncrement={() => handleScoreChange('A', 'increment')}
+          onScoreDecrement={() => handleScoreChange('A', 'decrement')}
+        />
       </Box>
-      <Text fontSize="xl">
+      <Text fontSize="xl" color="#FFF">
         {teamAScore} - {teamBScore}
       </Text>
-
       <Box width="40%">
-        <Flex alignItems="center" justifyContent="space-between">
-          <Flex direction="column" gap="0.5rem">
-            <IconButton
-              aria-label="Increase team B score"
-              icon={<HiChevronUp />}
-              onClick={() => handleScoreChange('B', 'increment')}
-            />
-
-            <IconButton
-              aria-label="Decrease team B score"
-              icon={<HiChevronDown />}
-              onClick={() => handleScoreChange('B', 'decrement')}
-            />
-          </Flex>
-
-          <Flex alignItems="center" direction="column" width="300px">
-            <Image src={teamBLogo} alt="awayTeam" boxSize="50px" />
-            <Text>{teamB}</Text>
-          </Flex>
-        </Flex>
+        <PredictionControls
+          teamName={teamB}
+          teamLogo={teamBLogo}
+          teamScore={teamBScore}
+          onScoreIncrement={() => handleScoreChange('B', 'increment')}
+          onScoreDecrement={() => handleScoreChange('B', 'decrement')}
+          isReversed
+        />
       </Box>
     </Flex>
   )
