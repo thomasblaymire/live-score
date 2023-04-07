@@ -21,6 +21,7 @@ export const navItems: NavItem[] = [
     id: 3,
     name: 'Predict',
     href: '/predict',
+    secure: true,
   },
   {
     id: 4,

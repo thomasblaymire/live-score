@@ -51,7 +51,7 @@ export function Header(): JSX.Element {
             <Logo />
           </Box>
 
-          <Navigation />
+          <Navigation user={user} />
 
           {!user && isTablet && <AuthenticationButtons />}
 

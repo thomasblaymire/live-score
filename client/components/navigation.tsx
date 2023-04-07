@@ -8,10 +8,14 @@ import { RxHamburgerMenu } from 'react-icons/rx'
 import { useMediaQuery } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 
-export function Navigation() {
+interface NavigationProps {
+  user: User | null
+}
+
+export function Navigation({ user }: NavigationProps) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
-  const { isOpen, onOpen, onClose } = useDisclosure()
   const [activeItem, setActiveItem] = useState<null | number>(null)
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const router = useRouter()
 
   const renderNavItems = () => {
@@ -26,32 +30,35 @@ export function Navigation() {
         fontSize="0.9rem"
         flexDirection={!isTablet ? 'column' : 'row'}
       >
-        {navItems.map(({ id, name, href, icon }) => (
-          <ListItem
-            key={id}
-            sx={{
-              '&:not(:last-of-type)': {
-                marginRight: isTablet ? '2rem' : '0',
-                marginBottom: !isTablet ? '2rem' : '0',
-              },
-            }}
-          >
-            <NextLink href={href} passHref>
-              <Box
-                color={activeItem === id ? activeColor : 'white'}
-                textDecoration="none"
-                cursor="pointer"
-                _hover={{
-                  color: '#0e2aa8',
-                }}
-                onClick={() => setActiveItem(id)}
-              >
-                {icon}
-                {name}
-              </Box>
-            </NextLink>
-          </ListItem>
-        ))}
+        {navItems.map(({ id, name, href, icon, secure }) => {
+          if (secure && !user) return null
+          return (
+            <ListItem
+              key={id}
+              sx={{
+                '&:not(:last-of-type)': {
+                  marginRight: isTablet ? '2rem' : '0',
+                  marginBottom: !isTablet ? '2rem' : '0',
+                },
+              }}
+            >
+              <NextLink href={href} passHref>
+                <Box
+                  color={activeItem === id ? activeColor : 'white'}
+                  textDecoration="none"
+                  cursor="pointer"
+                  _hover={{
+                    color: '#0e2aa8',
+                  }}
+                  onClick={() => setActiveItem(id)}
+                >
+                  {icon}
+                  {name}
+                </Box>
+              </NextLink>
+            </ListItem>
+          )
+        })}
       </List>
     )
   }

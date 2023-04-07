@@ -3,6 +3,7 @@ interface NavItem {
   name: string
   href: string
   icon?: IconType
+  secure?: boolean
 }
 
 interface Provider {
