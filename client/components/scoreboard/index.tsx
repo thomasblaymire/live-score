@@ -1,14 +1,14 @@
 import { Box } from '@chakra-ui/layout'
 import { SkeletonLoading } from '../skeleton'
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import { useFixtures } from '../../hooks/useFixtures'
+import { useHomepageFixtures } from '../../hooks/useHomeFixtures'
 import { ErrorState } from '../error'
 import { tabs } from './data'
 import { ScoreBoardLive } from './scoreboard-live'
 import { ScoreBoardUpcoming } from './scoreboard-upcoming'
 
 export function ScoreBoard() {
-  const { data, isLoading, error } = useFixtures()
+  const { data, isLoading, error } = useHomepageFixtures()
 
   return (
     <Box
