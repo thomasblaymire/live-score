@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Image from 'next/image'
-import { Heading, Flex, Text, Box } from '@chakra-ui/react'
+import { Heading, Flex, Text, Box, Grid } from '@chakra-ui/react'
 import { ErrorState } from '../components/error'
 import { getTeams } from '../lib/api-helpers'
 
@@ -57,12 +57,16 @@ export default function Teams({ teams, error }: TeamsProps) {
         </Flex>
       </Box>
 
-      <Flex
-        flexDirection={{ base: 'column', md: 'row' }}
-        flexWrap={{ base: 'wrap', md: 'wrap' }}
-        width="1200px"
+      <Grid
+        templateColumns={{
+          base: 'repeat(2, 1fr)', // For mobile devices
+          md: 'repeat(3, 1fr)', // For tablet devices
+          lg: 'repeat(4, 1fr)', // For larger screens
+        }}
+        width={{ base: '100%', lg: '1200px' }}
         margin="0 auto"
         marginY="2rem"
+        padding={{ base: '1rem' }}
         gap="1rem"
         outline="none"
         onKeyDown={handleKeyDown}
@@ -73,7 +77,6 @@ export default function Teams({ teams, error }: TeamsProps) {
           return (
             <Box
               borderRadius="5px"
-              flex="1 0 21%"
               minHeight="150px"
               key={team.id}
               cursor="pointer"
@@ -100,7 +103,7 @@ export default function Teams({ teams, error }: TeamsProps) {
             </Box>
           )
         })}
-      </Flex>
+      </Grid>
     </Box>
   )
 }
