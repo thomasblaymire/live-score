@@ -1,5 +1,7 @@
 import fetch from "node-fetch";
 import express, { Request, Response } from "express";
+import { sendError } from "../../helpers/error";
+import { isString } from "../../helpers/string";
 import { catchAsync } from "../../helpers/async";
 import { retry } from "../../helpers/retry";
 import {
@@ -7,6 +9,7 @@ import {
   fetchFixturesByDate,
   fetchFixturesByStatus,
 } from "./requests";
+import { prisma } from "../../helpers/prisma";
 
 const router = express.Router();
 
@@ -54,10 +57,73 @@ router.get(
       res.json(response);
     } catch (error) {
       console.error(error);
-      res.status(500).send("Failed to fetch data from API");
+      sendError(res, 500, "Failed to fetch data from API");
     }
   })
 );
+
+router.get("/api/fixtures-all/date", async (req: Request, res: Response) => {
+  const startDate = req.query.start;
+  const endDate = req.query.end;
+
+  if (!isString(startDate) || !isString(endDate)) {
+    sendError(
+      res,
+      400,
+      "Both start and end date query parameters are required."
+    );
+    return;
+  }
+
+  const startDateTime = new Date(startDate);
+  const endDateTime = new Date(endDate);
+  endDateTime.setHours(23, 59, 59, 999);
+
+  try {
+    const fixtures = await prisma.fixture.findMany({
+      where: {
+        AND: [
+          {
+            date: {
+              gte: startDateTime,
+            },
+          },
+          {
+            date: {
+              lte: endDateTime,
+            },
+          },
+        ],
+      },
+      include: {
+        homeTeam: true,
+        awayTeam: true,
+        status: true,
+        goals: true,
+        score: true,
+        league: true,
+        venue: true,
+      },
+      orderBy: {
+        date: "asc",
+      },
+    });
+
+    if (fixtures.length === 0) {
+      sendError(res, 404, "Sorry no fixtures found for the given date range.");
+      return;
+    }
+
+    res.status(200).json(fixtures);
+  } catch (error) {
+    console.error("Error fetching fixtures by date range:", error);
+    sendError(
+      res,
+      500,
+      "An error occurred while fetching fixtures by date range."
+    );
+  }
+});
 
 // Returns specific fixtures for a given teamID and youtube generated URL
 router.get(
