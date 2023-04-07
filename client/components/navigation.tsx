@@ -17,19 +17,22 @@ export function Navigation() {
   const renderNavItems = () => {
     const isHomeRoute = router.pathname === '/'
     const activeColor = isHomeRoute || activeItem === null ? 'white' : '#029143'
+
     return (
       <List
         display="flex"
         alignItems="center"
         fontWeight="700"
         fontSize="0.9rem"
+        flexDirection={!isTablet ? 'column' : 'row'}
       >
         {navItems.map(({ id, name, href, icon }) => (
           <ListItem
             key={id}
             sx={{
               '&:not(:last-of-type)': {
-                marginRight: '2rem',
+                marginRight: isTablet ? '2rem' : '0',
+                marginBottom: !isTablet ? '2rem' : '0',
               },
             }}
           >
@@ -57,24 +60,27 @@ export function Navigation() {
     <Flex alignItems="center">
       {!isTablet ? (
         <>
-          <Box>
-            <IconButton
-              aria-label="Mobile Navigation"
-              icon={<RxHamburgerMenu />}
-              onClick={onOpen}
-              data-test="hamburger-button"
-              background="#313131"
-              _hover={{
-                bg: '#313131',
-              }}
-            />
-          </Box>
+          <IconButton
+            aria-label="Mobile Navigation"
+            icon={<RxHamburgerMenu />}
+            onClick={onOpen}
+            data-test="hamburger-button"
+            background="#313131"
+            _hover={{
+              bg: '#313131',
+            }}
+          />
           {isOpen && (
-            <Box>
-              <ModalElement isOpen={isOpen} onClose={onClose}>
+            <ModalElement isOpen={isOpen} onClose={onClose}>
+              <Box
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                height="100%"
+              >
                 {renderNavItems()}
-              </ModalElement>
-            </Box>
+              </Box>
+            </ModalElement>
           )}
         </>
       ) : (

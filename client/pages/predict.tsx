@@ -122,7 +122,7 @@ function Predict() {
             fontSize="3rem"
             lineHeight="1"
           >
-            Score Guess
+            Prediction
           </Heading>
           <Heading as="h3" size="md" color="#FFF" fontWeight="500">
             Guess the correct score for fixtures each weak to be in with a

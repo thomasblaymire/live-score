@@ -11,14 +11,15 @@ describe('Navigation', () => {
     it('should navigate to the correct page', () => {
       cy.get('a[href*="matches"]').click()
       cy.url().should('include', '/matches')
-      cy.get('h2').contains('Matches Page')
+      cy.get('h2').contains('Matches')
 
       cy.get('a[href*="teams"]').click()
       cy.url().should('include', '/teams')
       cy.get('h2').contains('Teams')
 
-      cy.get('a[href*="leagues"]').click()
-      cy.url().should('include', '/leagues')
+      cy.get('a[href*="predict"]').click()
+      cy.url().should('include', '/predict')
+      cy.get('h2').contains('Prediction')
 
       cy.get('a[href*="news"]').click()
       cy.url().should('include', '/news')
