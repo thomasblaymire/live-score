@@ -3,7 +3,6 @@ import { API_URL } from '../lib/constants'
 import axios from 'axios'
 
 // Update this so that we are using the fixtures by date / weigh perf of the big initial query vs x2 queries
-
 export const getFixtures = async () => {
   try {
     const { data } = await axios.get(`${API_URL}/fixtures`)
