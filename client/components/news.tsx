@@ -4,16 +4,14 @@ import { SkeletonLoading } from './skeleton'
 import { Box } from '@chakra-ui/layout'
 import { ErrorState } from './error'
 
-export function News() {
-  const {
-    data: news,
-    isLoading,
-    error,
-  } = useQuery<NewsItem[] | undefined>({
-    queryKey: ['news'],
-    queryFn: () => getNews(),
-  })
+interface NewsProps {
+  news: NewsItem[]
+  isLoading: boolean
+  error: Error | undefined
+}
 
+export function News({ news, isLoading, error }: NewsProps) {
+  console.log('debug news', news)
   return (
     <Box>
       {news?.map((article: NewsItem, i: number) => (

@@ -1,5 +1,5 @@
 import Sidebar from '../components/sidebar'
-import { getCompetitions } from '../lib/api-helpers'
+import { getCompetitions, getNews } from '../lib/api-helpers'
 import { Box, Grid, GridItem } from '@chakra-ui/layout'
 import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
@@ -12,10 +12,17 @@ import { Footer } from '../components/footer'
 
 interface HomeProps {
   competitions: Competitions[]
-  error: Error | undefined
+  competitionsError: Error | undefined
+  news: NewsItem[]
+  newsError: Error | undefined
 }
 
-export default function Home({ competitions, error }: HomeProps) {
+export default function Home({
+  competitions,
+  competitionsError,
+  news,
+  newsError,
+}: HomeProps) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
 
   return (
@@ -58,7 +65,7 @@ export default function Home({ competitions, error }: HomeProps) {
                   <CompetitionList
                     competitions={competitions}
                     isLoading={false}
-                    error={error}
+                    error={competitionsError}
                   />
                 </Card>
               </Sidebar>
@@ -82,7 +89,7 @@ export default function Home({ competitions, error }: HomeProps) {
             <GridItem area={'aside'}>
               <Sidebar>
                 <Card margin="0 0 2rem 0" height="45vh" heading="Latest News">
-                  <News />
+                  <News news={news} isLoading={false} error={newsError} />
                 </Card>
                 <Card heading="Standings">
                   <Box padding="1rem">
@@ -100,12 +107,17 @@ export default function Home({ competitions, error }: HomeProps) {
 }
 
 export async function getStaticProps() {
-  const { data, error } = await getCompetitions()
+  const { data: competitions, error: competitionsError } =
+    await getCompetitions()
+  const { data: news, error: newsError } = await getNews()
 
   return {
     props: {
-      competitions: data,
-      error,
+      competitions,
+      competitionsError,
+      news,
+      newsError,
     },
+    revalidate: 60,
   }
 }
