@@ -16,7 +16,7 @@ export function Navigation() {
 
   const renderNavItems = () => {
     const isHomeRoute = router.pathname === '/'
-    const activeColor = isHomeRoute || activeItem === null ? 'white' : '#029143'
+    const activeColor = isHomeRoute || activeItem === null ? 'white' : '#0e2aa8'
 
     return (
       <List
@@ -42,7 +42,7 @@ export function Navigation() {
                 textDecoration="none"
                 cursor="pointer"
                 _hover={{
-                  color: '#029143',
+                  color: '#0e2aa8',
                 }}
                 onClick={() => setActiveItem(id)}
               >

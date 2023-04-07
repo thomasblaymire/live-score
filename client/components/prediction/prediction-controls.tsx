@@ -41,14 +41,14 @@ export const PredictionControls = ({
         aria-label={`Increase ${teamName} score`}
         icon={<HiChevronUp />}
         onClick={onScoreIncrement}
-        background="#029143"
+        background="#1238de"
       />
 
       <IconButton
         aria-label={`Decrease ${teamName} score`}
         icon={<HiChevronDown />}
         onClick={onScoreDecrement}
-        background="#029143"
+        background="#1238de"
       />
     </Flex>
   )

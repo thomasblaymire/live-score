@@ -13,7 +13,7 @@ export const Loading = ({ loading = true, size = 'lg' }: LoadingProps) => {
       speed="0.65s"
       emptyColor="gray.200"
       data-test="loading-spinner"
-      color="#029143"
+      color="#1238de"
       size={size}
     />
   )

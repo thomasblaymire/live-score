@@ -90,7 +90,7 @@ export function Favourite({ fixture, session }: FavouriteProps): JSX.Element {
         <Icon
           as={favourites.includes(fixture.id) ? AiFillStar : AiOutlineStar}
           boxSize={5}
-          fill={favourites.includes(fixture.id) ? '#029143' : undefined}
+          fill={favourites.includes(fixture.id) ? '#1238de' : undefined}
         />
       </button>
     </Box>

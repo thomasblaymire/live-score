@@ -5,7 +5,7 @@ import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
 import { CompetitionList } from '../components/competition-list'
 import { StandingsTable } from '../components/standings'
-import { BetCard } from '../components/bet-card'
+import { HeroCard } from '../components/hero-card'
 import { News } from '../components/news'
 import { Card } from '../components/card'
 import { Footer } from '../components/footer'
@@ -32,7 +32,7 @@ export default function Home({ competitions, error }: HomeProps) {
         mb="4rem"
       >
         <Grid
-          marginTop={{ base: '1rem', md: '2rem' }}
+          marginTop={{ md: '2rem' }}
           columnGap="2.4rem"
           rowGap="2.4rem"
           templateAreas={{
@@ -66,7 +66,7 @@ export default function Home({ competitions, error }: HomeProps) {
           )}
 
           <GridItem area={'main'}>
-            <BetCard />
+            <HeroCard />
             <Heading
               fontSize="1.3rem"
               color="white"

@@ -23,7 +23,7 @@ export function ScoreBoard() {
             <Tab
               key={tab.title}
               fontWeight="600"
-              _selected={{ color: 'white', bg: '#029143' }}
+              _selected={{ color: 'white', bg: '#1238de' }}
               fontSize="0.9rem"
             >
               {tab.title}
