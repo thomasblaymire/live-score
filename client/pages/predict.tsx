@@ -7,6 +7,8 @@ import { PredictionList } from '../components/prediction'
 import { Card } from '../components/card'
 import { API_URL } from '../lib/constants'
 import { getCookie } from '../lib/cookie'
+import { withAuth } from '../components/require-auth'
+import axios from 'axios'
 
 type PredictionsType = {
   [matchId: number]: {
@@ -15,9 +17,37 @@ type PredictionsType = {
   }
 }
 
-export default function Predict() {
-  const { data: fixtures, isLoading, isError } = useFixtures()
+function Predict() {
+  // const { data: fixtures, isLoading, isError } = useFixtures()
   const [predictions, setPredictions] = useState<PredictionsType>({})
+  const [fixtures, setFixtures] = useState<any>([])
+
+  const getFixtures = async (startDate: string, endDate: string) => {
+    try {
+      const { data } = await axios.get(
+        `${API_URL}/fixtures-all/date?start=${startDate}&end=${endDate}`
+      )
+      setFixtures(data)
+      return data
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error('Error fetching fixture data:', error.message)
+        return { data: { data: {} }, error: error.message }
+      } else {
+        console.error('Error fetching fixture data:', error)
+        return { data: { data: {} }, error: 'An unknown error occurred' }
+      }
+    }
+  }
+
+  console.log('fixtures', fixtures)
+
+  useEffect(() => {
+    // Example date range
+    const startDate = '2023-04-08'
+    const endDate = '2023-04-08'
+    getFixtures(startDate, endDate)
+  }, [])
 
   useEffect(() => {
     const storedPredictions = localStorage.getItem('predictions')
@@ -120,17 +150,17 @@ export default function Predict() {
               height="45vh"
               radius="15px"
             >
-              {fixtures?.fixturesByDate.map((fixture: any) => {
+              {fixtures?.map((fixture: any) => {
                 return (
                   <PredictionList
-                    key={fixture.fixture.id}
-                    matchId={fixture.fixture.id}
-                    teamA={fixture.teams.home.name}
-                    teamALogo={fixture.teams.home.logo}
-                    teamB={fixture.teams.away.name}
-                    teamBLogo={fixture.teams.away.logo}
-                    teamAScore={predictions[fixture.fixture.id]?.teamA || 0}
-                    teamBScore={predictions[fixture.fixture.id]?.teamB || 0}
+                    key={fixture.id}
+                    matchId={fixture.id}
+                    teamA={fixture.homeTeam.name}
+                    teamALogo={fixture.homeTeam.logo}
+                    teamB={fixture.awayTeam.name}
+                    teamBLogo={fixture.awayTeam.logo}
+                    teamAScore={predictions[fixture.id]?.teamA || 0}
+                    teamBScore={predictions[fixture.id]?.teamB || 0}
                     onScoreChange={updatePrediction}
                   />
                 )
@@ -171,3 +201,5 @@ export default function Predict() {
     </Box>
   )
 }
+
+export default withAuth(Predict)
