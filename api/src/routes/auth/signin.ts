@@ -1,10 +1,8 @@
 import fetch from "node-fetch";
 import express, { Request, response, Response } from "express";
 import jwt from "jsonwebtoken";
-import cookie from "cookie";
 import bcrypt from "bcrypt";
-import { prisma } from "../../helpers/prisma";
-import { catchAsync } from "../../helpers/async";
+import { prisma, catchAsync } from "../../helpers";
 
 const router = express.Router();
 

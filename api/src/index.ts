@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
 import * as Sentry from "@sentry/node";
-import { corsOptions } from "./helpers/cors";
+import { corsOptions } from "./helpers";
 import { createServer } from "http";
 import { clientUrl } from "./constants";
 import { Server } from "socket.io";

@@ -1,6 +1,5 @@
 import express, { Request, RequestHandler, Response } from "express";
-import { catchAsync } from "../../helpers/async";
-import { prisma } from "../../helpers/prisma";
+import { prisma, catchAsync } from "../../helpers";
 import { verifyAuth } from "../../middlewares/auth";
 
 const router = express.Router();

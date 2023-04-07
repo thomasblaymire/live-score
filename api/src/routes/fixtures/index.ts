@@ -1,15 +1,11 @@
 import fetch from "node-fetch";
 import express, { Request, Response } from "express";
-import { sendError } from "../../helpers/error";
-import { isString } from "../../helpers/string";
-import { catchAsync } from "../../helpers/async";
-import { retry } from "../../helpers/retry";
+import { isString, catchAsync, retry, sendError, prisma } from "../../helpers";
 import {
   fetchLiveScores,
   fetchFixturesByDate,
   fetchFixturesByStatus,
 } from "./requests";
-import { prisma } from "../../helpers/prisma";
 
 const router = express.Router();
 

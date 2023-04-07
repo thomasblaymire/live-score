@@ -1,4 +1,4 @@
-import { retry } from "../../helpers/retry";
+import { retry } from "../../helpers";
 
 export async function fetchLiveScores(apiUrl: string) {
   const response = await retry(async () => {
