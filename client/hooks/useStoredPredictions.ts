@@ -1,14 +1,7 @@
 import { useState, useEffect } from 'react'
 
-type PredictionsType = {
-  [matchId: number]: {
-    teamA: number
-    teamB: number
-  }
-}
-
 export const useStoredPredictions = () => {
-  const [predictions, setPredictions] = useState<PredictionsType>({})
+  const [predictions, setPredictions] = useState<Prediction>({})
 
   useEffect(() => {
     const storedPredictions = localStorage.getItem('predictions')

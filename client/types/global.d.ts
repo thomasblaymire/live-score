@@ -122,6 +122,13 @@ interface Coverage {
   odds: boolean
 }
 
+interface Prediction {
+  [matchId: number]: {
+    teamA: number
+    teamB: number
+  }
+}
+
 interface Season {
   year: number
   start: string

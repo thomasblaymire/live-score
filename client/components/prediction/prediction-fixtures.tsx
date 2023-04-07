@@ -2,12 +2,23 @@ import { Box, Button } from '@chakra-ui/react'
 import { Card } from '../../components/card'
 import { PredictionList } from '../../components/prediction'
 
+interface PredictionFixturesProps {
+  fixtures: Fixture[]
+  predictions: Prediction
+  updatePrediction: (
+    matchId: number,
+    teamAScore: number,
+    teamBScore: number
+  ) => void
+  handlePredictionsSubmit: () => void
+}
+
 export function PredictionFixtures({
   fixtures,
   predictions,
   updatePrediction,
   handlePredictionsSubmit,
-}) {
+}: PredictionFixturesProps) {
   return (
     <Card
       heading="Latest Fixtures"

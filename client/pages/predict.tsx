@@ -6,13 +6,15 @@ import { useStoredPredictions } from '../hooks/useStoredPredictions'
 import { usePredictionsSubmit } from '../hooks/usePredictionsSubmit'
 import { PredictionFixtures } from '../components/prediction/prediction-fixtures'
 import { Card } from '../components/card'
+import { Loading } from '../components/loading'
 import { withAuth } from '../components/require-auth'
+import { ErrorState } from '../components/error'
 
 function Predict() {
   const {
     data: fixtures,
     isLoading,
-    isError,
+    error,
   } = useFixtures({ startDate: '2023-04-08', endDate: '2023-04-08' })
   const { predictions, updatePrediction } = useStoredPredictions()
   const handlePredictionsSubmit = usePredictionsSubmit(predictions)
@@ -50,12 +52,17 @@ function Predict() {
       >
         <Flex justifyContent="center" gap="1.5rem" paddingBottom="2.5rem">
           <Box width="60%">
-            <PredictionFixtures
-              fixtures={fixtures}
-              predictions={predictions}
-              updatePrediction={updatePrediction}
-              handlePredictionsSubmit={handlePredictionsSubmit}
-            />
+            {fixtures ? (
+              <PredictionFixtures
+                fixtures={fixtures}
+                predictions={predictions}
+                updatePrediction={updatePrediction}
+                handlePredictionsSubmit={handlePredictionsSubmit}
+              />
+            ) : null}
+
+            <Loading loading={isLoading} />
+            {error ? <ErrorState /> : null}
           </Box>
 
           <Box width="40%">

@@ -2,14 +2,7 @@ import { API_URL } from '../lib/constants'
 import { getCookie } from '../lib/cookie'
 import axios from 'axios'
 
-type PredictionsType = {
-  [matchId: number]: {
-    teamA: number
-    teamB: number
-  }
-}
-
-export const usePredictionsSubmit = (predictions: PredictionsType) => {
+export const usePredictionsSubmit = (predictions: Prediction) => {
   const handlePredictionsSubmit = async () => {
     const formattedPredictions = Object.entries(predictions).map(
       ([matchId, scores]) => {
