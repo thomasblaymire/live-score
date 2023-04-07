@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../../helpers";
 import { verifyAuth, AuthenticatedRequest } from "../../middlewares/auth";
-
-const prisma = new PrismaClient();
 
 const router = require("express").Router();
 
@@ -16,6 +14,7 @@ router.post(
       if (!req.userId || !predictions) {
         return res.status(400).json({ error: "Missing required data" });
       }
+
       const formattedPredictions = predictions.map((prediction: any) => {
         const { matchId, teamAScore, teamBScore } = prediction;
         return {

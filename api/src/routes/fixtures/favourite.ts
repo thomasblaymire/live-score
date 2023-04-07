@@ -1,4 +1,4 @@
-import express, { Request, RequestHandler, Response } from "express";
+import express, { Request, Response } from "express";
 import { prisma, catchAsync } from "../../helpers";
 import { verifyAuth } from "../../middlewares/auth";
 
