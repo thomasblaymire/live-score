@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Image from 'next/image'
+import NextImage from 'next/image'
 import { Heading, Flex, Text, Box, Grid } from '@chakra-ui/react'
 import { ErrorState } from '../components/error'
 import { getTeams } from '../lib/api-helpers'
@@ -43,6 +43,12 @@ export default function Teams({ teams, error }: TeamsProps) {
         alignItems="center"
         height="45vh"
         background="linear-gradient(to right, #1CB5E0, #000046)"
+        sx={{
+          height: {
+            base: '20vh',
+            md: '35vh',
+          },
+        }}
       >
         <Flex direction="column" gap="1rem" width="1200px" margin="0 auto">
           <Heading
@@ -51,6 +57,13 @@ export default function Teams({ teams, error }: TeamsProps) {
             fontWeight={700}
             fontSize="3rem"
             lineHeight="1"
+            padding="0 1rem"
+            sx={{
+              fontSize: {
+                base: '2rem',
+                md: '3rem',
+              },
+            }}
           >
             Teams
           </Heading>
@@ -59,9 +72,9 @@ export default function Teams({ teams, error }: TeamsProps) {
 
       <Grid
         templateColumns={{
-          base: 'repeat(2, 1fr)', // For mobile devices
-          md: 'repeat(3, 1fr)', // For tablet devices
-          lg: 'repeat(4, 1fr)', // For larger screens
+          base: 'repeat(2, 1fr)',
+          md: 'repeat(3, 1fr)',
+          lg: 'repeat(4, 1fr)',
         }}
         width={{ base: '100%', lg: '1200px' }}
         margin="0 auto"
@@ -93,11 +106,19 @@ export default function Teams({ teams, error }: TeamsProps) {
             >
               <Flex
                 direction="column"
+                alignItems="center"
                 justifyContent="center"
                 height="100%"
                 cursor="pointer"
               >
-                <Image width={55} alt={team.name} height={30} src={team.logo} />
+                <NextImage
+                  src={team.logo}
+                  width="55"
+                  height="30"
+                  sizes="100vw"
+                  style={{ width: '30%', height: 'auto' }}
+                  alt={team.name}
+                />
                 <Text paddingTop="0.5rem">{team.name}</Text>
               </Flex>
             </Box>

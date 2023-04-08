@@ -11,7 +11,6 @@ interface NewsProps {
 }
 
 export function News({ news, isLoading, error }: NewsProps) {
-  console.log('debug news', news)
   return (
     <Box>
       {news?.map((article: NewsItem, i: number) => (
