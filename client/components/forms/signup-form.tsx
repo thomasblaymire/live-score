@@ -7,6 +7,7 @@ import {
   FormControl,
   Input,
   FormErrorMessage,
+  FormLabel,
   Button,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
@@ -77,6 +78,7 @@ export function SignupForm() {
         <form onSubmit={handleSubmit}>
           <Stack paddingBottom="25px" gap="1rem">
             <FormControl isRequired isInvalid={!!errors.name}>
+              <FormLabel>Name</FormLabel>
               <Input
                 placeholder="Name"
                 type="name"
@@ -89,6 +91,7 @@ export function SignupForm() {
             </FormControl>
 
             <FormControl isRequired isInvalid={!!errors.email}>
+              <FormLabel>Email</FormLabel>
               <Input
                 placeholder="Email"
                 type="email"
@@ -101,6 +104,7 @@ export function SignupForm() {
             </FormControl>
 
             <FormControl isRequired isInvalid={!!errors.password}>
+              <FormLabel>Password</FormLabel>
               <Input
                 placeholder="Password"
                 type="password"
@@ -111,6 +115,7 @@ export function SignupForm() {
 
             {password && (
               <FormControl isRequired isInvalid={!!errors.confirmPassword}>
+                <FormLabel>Confirm Password</FormLabel>
                 <Input
                   placeholder="Confirm Password"
                   type="password"

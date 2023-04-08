@@ -19,14 +19,7 @@ interface SigninProps {
   providers: Provider[]
 }
 
-import {
-  InputGroup,
-  HStack,
-  InputRightElement,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react'
-import { useState } from 'react'
+import { Text } from '@chakra-ui/react'
 
 interface SigninProps {
   providers: Provider[]

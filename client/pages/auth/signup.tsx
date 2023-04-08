@@ -54,7 +54,7 @@ function Signup() {
                 color="gray.400"
                 paddingBottom={{ base: 0, md: 0, lg: '2rem' }}
               >
-                To Signup please complete the form below.
+                To sign up please complete the form below.
               </Text>
             </Stack>
             <SignupForm />
