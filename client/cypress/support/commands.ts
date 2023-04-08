@@ -19,7 +19,6 @@ Cypress.Commands.add('signinUser', (user) => {
 })
 
 Cypress.Commands.add('login', () => {
-  console.log('debug hahhha login')
   cy.window().then((win) => {
     try {
       signIn('github', { callbackUrl: 'http://localhost:3000' })

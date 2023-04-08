@@ -3,6 +3,7 @@ interface NavItem {
   name: string
   href: string
   icon?: IconType
+  secure?: boolean
 }
 
 interface Provider {
@@ -119,6 +120,13 @@ interface Coverage {
   injuries: boolean
   predictions: boolean
   odds: boolean
+}
+
+interface Prediction {
+  [matchId: number]: {
+    teamA: number
+    teamB: number
+  }
 }
 
 interface Season {

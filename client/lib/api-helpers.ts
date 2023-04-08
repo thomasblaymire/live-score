@@ -35,9 +35,22 @@ export const getMatches = async () => {
   return data
 }
 
-export const getNews = async (): Promise<any> => {
-  const { data } = await axios.get(`${API_URL}/news`)
-  return data.articles.slice(0, 5)
+export const getNews = async (): Promise<{
+  data: NewsItem[] | null
+  error: string | null
+}> => {
+  try {
+    const { data } = await axios.get(`${API_URL}/news`)
+    return { data: data.articles.slice(0, 5), error: null }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error fetching data:', error.message)
+      return { data: null, error: error.message }
+    } else {
+      console.error('Error fetching data:', error)
+      return { data: null, error: 'An unknown error occurred' }
+    }
+  }
 }
 
 export const getNewsByTeam = async (
@@ -76,7 +89,6 @@ export const getTeams = async (): Promise<{
 }> => {
   try {
     const { data } = await axios.get(`${API_URL}/teams`)
-    console.log('debug data', data)
     return { data: data.response, error: null }
   } catch (error: unknown) {
     if (error instanceof Error) {

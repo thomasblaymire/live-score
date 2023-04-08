@@ -1,26 +1,35 @@
+import * as yup from 'yup'
+import { useState, ChangeEvent, FormEvent } from 'react'
 import {
+  Center,
   Box,
-  Flex,
-  Input,
-  Button,
   Stack,
   FormControl,
-  FormHelperText,
+  Input,
   FormErrorMessage,
   FormLabel,
-  Center,
+  Button,
 } from '@chakra-ui/react'
-import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { useAuth } from '../../hooks/useAuth'
 import { setCookie } from '../../lib/cookie'
+import { useAuth } from '../../hooks/useAuth'
+import { signupValidationSchema } from './validations'
 
-export const SignupForm = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
+interface Errors {
+  name?: string
+  email?: string
+  password?: string
+  confirmPassword?: string
+}
 
-  const { signUpUser, signUpLoading, onSignUpError } = useAuth({
+export function SignupForm() {
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [name, setName] = useState<string>('')
+  const [errors, setErrors] = useState<Errors>({})
+  const [confirmPassword, setConfirmPassword] = useState<string>('')
+
+  const { signUpUser, signUpLoading } = useAuth({
     onSignUpSuccess: (data) => {
       setCookie('token', data.token, { path: '/' })
       router.push('/')
@@ -32,122 +41,111 @@ export const SignupForm = () => {
 
   const router = useRouter()
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
-    await signUpUser({ email, password, name })
+
+    try {
+      await signupValidationSchema.validate(
+        { name, email, password, confirmPassword }, // Add confirmPassword here
+        { abortEarly: false }
+      )
+      setErrors({})
+      await signUpUser({ email, password, name })
+    } catch (err) {
+      if (err instanceof yup.ValidationError) {
+        const validationErrors: Errors = {}
+        err.inner.forEach((error) => {
+          if (error.path) {
+            validationErrors[error.path as keyof Errors] = error.message
+          }
+        })
+        setErrors(validationErrors)
+      } else {
+        console.error('Error during sign up:', err)
+      }
+    }
   }
+
+  const handleInputChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>) =>
+    (e: ChangeEvent<HTMLInputElement>) => {
+      setter(e.target.value)
+    }
 
   return (
     <Center color="white">
-      <Flex justify="center" align="center">
-        <Box
-          borderRadius="6px"
-          width="450px"
-          padding="2rem"
-          background="#121212"
-        >
-          <form onSubmit={handleSubmit}>
-            <Stack paddingBottom="25px">
-              <FormControl isRequired marginBottom="1rem">
-                <FormLabel>Name</FormLabel>
-                <Input
-                  placeholder="Name"
-                  type="name"
-                  data-test="signin-input-name"
-                  onChange={(e) => setName(e.target.value)}
-                />
-                {onSignUpError && (
-                  <FormErrorMessage>Email is required.</FormErrorMessage>
-                )}
-              </FormControl>
+      <Box borderRadius="6px" width="450px" padding="2rem" background="#121212">
+        <form onSubmit={handleSubmit}>
+          <Stack paddingBottom="25px" gap="1rem">
+            <FormControl isRequired isInvalid={!!errors.name}>
+              <FormLabel>Name</FormLabel>
+              <Input
+                placeholder="Name"
+                type="name"
+                data-test="signin-input-name"
+                onChange={handleInputChange(setName)}
+              />
+              {errors.name && (
+                <FormErrorMessage>{errors.name}</FormErrorMessage>
+              )}
+            </FormControl>
 
-              <FormControl isRequired marginBottom="1rem">
-                <FormLabel>Email</FormLabel>
-                <Input
-                  placeholder="Email"
-                  type="email"
-                  data-test="signin-input-email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                {onSignUpError && (
-                  <FormErrorMessage>Email is required.</FormErrorMessage>
-                )}
-              </FormControl>
+            <FormControl isRequired isInvalid={!!errors.email}>
+              <FormLabel>Email</FormLabel>
+              <Input
+                placeholder="Email"
+                type="email"
+                data-test="signin-input-email"
+                onChange={handleInputChange(setEmail)}
+              />
+              {errors.email && (
+                <FormErrorMessage>{errors.email}</FormErrorMessage>
+              )}
+            </FormControl>
 
-              <FormControl isRequired>
-                <FormLabel>Password</FormLabel>
+            <FormControl isRequired isInvalid={!!errors.password}>
+              <FormLabel>Password</FormLabel>
+              <Input
+                placeholder="Password"
+                type="password"
+                data-test="signin-input-password"
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </FormControl>
+
+            {password && (
+              <FormControl isRequired isInvalid={!!errors.confirmPassword}>
+                <FormLabel>Confirm Password</FormLabel>
                 <Input
-                  placeholder="Password"
+                  placeholder="Confirm Password"
                   type="password"
-                  data-test="signin-input-password"
-                  onChange={(e) => setPassword(e.target.value)}
+                  data-test="signin-input-confirm-password"
+                  onChange={handleInputChange(setConfirmPassword)}
                 />
-                {onSignUpError ? (
-                  <FormHelperText>
-                    Enter the email you would like to receive the newsletter on.
-                  </FormHelperText>
-                ) : (
-                  <FormErrorMessage>Email is required.</FormErrorMessage>
+                {errors.confirmPassword && (
+                  <FormErrorMessage>{errors.confirmPassword}</FormErrorMessage>
                 )}
               </FormControl>
-            </Stack>
+            )}
+          </Stack>
 
-            <Button
-              type="submit"
-              data-test="sign-in-submit"
-              width="100%"
-              marginTop="1rem"
-              bg="green.500"
-              isLoading={signUpLoading}
-              sx={{
-                '&:hover': {
-                  bg: 'green.300',
-                },
-              }}
-            >
-              Signup
-            </Button>
-
-            <Box
-              width="100%"
-              display="flex"
-              alignItems="center"
-              flexDirection="row"
-              text-transform="uppercase"
-              border="none"
-              fontSize="12px"
-              fontWeight="500"
-              margin="0"
-              padding="2rem 0"
-              sx={{
-                '&::before': {
-                  content: '""',
-                  borderBottom: '1px solid #7c8085',
-                  flex: '1 0 auto',
-                  margin: '0',
-                },
-                '&::after': {
-                  content: '""',
-                  borderBottom: '1px solid #7c8085',
-                  flex: '1 0 auto',
-                  margin: '0',
-                },
-              }}
-            >
-              <span
-                style={{
-                  textAlign: 'center',
-                  flex: '0.2 0 auto',
-                  margin: 0,
-                  fontSize: '0.85rem',
-                }}
-              >
-                OR
-              </span>
-            </Box>
-          </form>
-        </Box>
-      </Flex>
+          <Button
+            type="submit"
+            data-test="sign-in-submit"
+            width="100%"
+            marginTop="1rem"
+            bg="green.500"
+            isLoading={signUpLoading}
+            sx={{
+              '&:hover': {
+                bg: 'green.300',
+              },
+            }}
+          >
+            Signup
+          </Button>
+        </form>
+      </Box>
     </Center>
   )
 }

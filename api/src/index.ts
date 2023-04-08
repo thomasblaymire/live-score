@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
 import * as Sentry from "@sentry/node";
-import { corsOptions } from "./helpers/cors";
+import { corsOptions } from "./helpers";
 import { createServer } from "http";
 import { clientUrl } from "./constants";
 import { Server } from "socket.io";
@@ -21,6 +21,7 @@ import { signupRouter } from "./routes/auth/signup";
 import { signinRouter } from "./routes/auth/signin";
 import { currentUserRouter } from "./routes/auth/user";
 import { fixturesRouter } from "./routes/fixtures";
+import { predictionsRouter } from "./routes/predictions";
 import { teamsRouter } from "./routes/teams";
 
 dotenv.config();
@@ -53,6 +54,7 @@ app.use(currentUserRouter);
 app.use(leaguesRouter);
 app.use(fixturesRouter);
 app.use(teamsRouter);
+app.use(predictionsRouter);
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
@@ -74,12 +76,12 @@ app.get("/", (res: Response) => {
 
 app.use(Sentry.Handlers.errorHandler());
 
-const onError: ErrorRequestHandler = (res) => {
-  res.statusCode = 500;
-  res.send(`${res.sentry}\n`);
-};
+// const onError: ErrorRequestHandler = (res) => {
+//   res.statusCode = 500;
+//   res.send(`${res.sentry}\n`);
+// };
 
-app.use(onError);
+// app.use(onError);
 
 httpServer.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

@@ -26,15 +26,10 @@ export function ModalElement({
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
-      <ModalContent>
+      <ModalContent background="#121212">
         {title ? <ModalHeader>{title}</ModalHeader> : null}
         <ModalCloseButton />
         <ModalBody>{children}</ModalBody>
-        <ModalFooter>
-          <Button colorScheme="blue" mr={3} onClick={onClose}>
-            Close
-          </Button>
-        </ModalFooter>
       </ModalContent>
     </Modal>
   )

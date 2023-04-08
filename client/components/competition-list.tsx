@@ -4,7 +4,6 @@ import { Box, List, ListItem } from '@chakra-ui/layout'
 import { SkeletonLoading } from './skeleton'
 import { hypenate } from '../lib/string'
 import { ErrorState } from './error'
-import { useCompetitions } from '../hooks/useCompetitions'
 
 interface CompetitionListProps {
   competitions: Competitions[]
@@ -65,9 +64,10 @@ export function CompetitionList({
               <Box marginX="10px" width="30px">
                 <NextImage
                   src={competition.league.logo}
-                  width={30}
-                  height={30}
-                  style={{ width: 'auto', height: 'auto' }}
+                  width="0"
+                  height="0"
+                  sizes="100vw"
+                  style={{ width: '100%', height: 'auto' }}
                   alt={competition.league.name}
                 />
               </Box>

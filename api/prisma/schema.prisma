@@ -38,14 +38,108 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  password      String?   @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
+  id                 String              @id @default(cuid())
+  name               String?
+  email              String?             @unique
+  password           String?             @unique
+  emailVerified      DateTime?
+  image              String?
+  accounts           Account[]
+  sessions           Session[]
+  fixturePredictions FixturePrediction[]
+}
+
+model Fixture {
+  id                 Int                 @id @default(autoincrement())
+  apiId              Int                 @unique
+  referee            String?
+  timezone           String?
+  date               DateTime
+  timestamp          Int
+  venue              Venue               @relation(fields: [venueId], references: [id])
+  venueId            Int
+  status             Status              @relation(fields: [statusId], references: [id])
+  league             League              @relation(fields: [leagueId], references: [id])
+  leagueId           Int
+  homeTeam           Team                @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  homeTeamId         Int
+  awayTeam           Team                @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  awayTeamId         Int
+  goals              Goals?              @relation(fields: [goalsId], references: [id])
+  goalsId            Int?                @unique
+  score              Score?              @relation(fields: [scoreId], references: [id])
+  scoreId            Int?                @unique
+  fixturePredictions FixturePrediction[]
+  statusId           Int
+}
+
+model Venue {
+  id       Int       @id @default(autoincrement())
+  name     String?
+  city     String?
+  fixtures Fixture[]
+}
+
+model Status {
+  id       Int       @id @default(autoincrement())
+  long     String
+  short    String
+  elapsed  Int?
+  fixtures Fixture[]
+}
+
+model League {
+  id       Int       @id @default(autoincrement())
+  name     String
+  country  String
+  logo     String
+  flag     String?
+  season   Int
+  round    String
+  fixtures Fixture[]
+}
+
+model Team {
+  id           Int       @id @default(autoincrement())
+  name         String
+  logo         String
+  winner       Boolean?
+  homeFixtures Fixture[] @relation("HomeTeam")
+  awayFixtures Fixture[] @relation("AwayTeam")
+}
+
+model Goals {
+  id      Int      @id @default(autoincrement())
+  home    Int?
+  away    Int?
+  fixture Fixture?
+}
+
+model Score {
+  id            Int      @id @default(autoincrement())
+  halftimeHome  Int?
+  halftimeAway  Int?
+  fulltimeHome  Int?
+  fulltimeAway  Int?
+  extratimeHome Int?
+  extratimeAway Int?
+  penaltyHome   Int?
+  penaltyAway   Int?
+  fixture       Fixture?
+}
+
+model FixturePrediction {
+  id         Int      @id @default(autoincrement())
+  fixtureId  Int
+  userId     String
+  teamAScore Int
+  teamBScore Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  fixture    Fixture  @relation(fields: [fixtureId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+
+  @@unique([fixtureId, userId])
 }
 
 model Favourites {

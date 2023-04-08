@@ -9,8 +9,13 @@ import { AuthDropdown } from '../auth-dropdown'
 import { Search } from '../search'
 import { useCurrentUser } from '../../hooks/useCurrentUser'
 import { useAuthContext } from '../../context/auth-context'
+import { HeaderBasic } from './header-basic'
 
-export function Header(): JSX.Element {
+interface HeaderProps {
+  isBasic?: boolean
+}
+
+export function Header({ isBasic }: HeaderProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isTablet] = useMediaQuery('(min-width: 780px)')
   const [isMobile] = useMediaQuery('(max-width: 768px)')
@@ -25,6 +30,10 @@ export function Header(): JSX.Element {
 
   const handleSearchOpen = () => {
     onOpen()
+  }
+
+  if (isBasic) {
+    return <HeaderBasic />
   }
 
   return (
@@ -51,7 +60,7 @@ export function Header(): JSX.Element {
             <Logo />
           </Box>
 
-          <Navigation />
+          <Navigation user={user} />
 
           {!user && isTablet && <AuthenticationButtons />}
 

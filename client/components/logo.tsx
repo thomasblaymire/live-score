@@ -1,15 +1,17 @@
-import Image from 'next/image'
+import NextImage from 'next/image'
 import Link from 'next/link'
 
 export function Logo() {
   return (
     <Link href="/" passHref>
-      <Image
+      <NextImage
         src="/logo.svg"
-        alt="Live Score Logo"
-        width={170}
+        width={160}
         height={50}
+        sizes="100vw"
         priority
+        style={{ width: '100%', height: 'auto' }}
+        alt="Currentscore Live Logo"
       />
     </Link>
   )
