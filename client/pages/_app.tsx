@@ -36,7 +36,10 @@ export default function App({
           <AuthProvider>
             <main className={poppins.className}>
               {Component.authPath ? (
-                <Component {...pageProps} />
+                <>
+                  <Header isBasic={true} />
+                  <Component {...pageProps} />
+                </>
               ) : (
                 <>
                   <Header />
