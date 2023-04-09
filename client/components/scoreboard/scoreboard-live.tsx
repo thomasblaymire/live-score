@@ -4,7 +4,6 @@ import { Favourite } from '../favourite'
 import { hypenateMatchString } from '../../lib/string'
 import { ScoreBoardTeams } from './scoreboard-teams'
 import { keyframes } from '@emotion/react'
-import { Session } from 'next-auth'
 
 interface ScoreBoardLiveProps {
   liveScores: Match[]
@@ -28,7 +27,7 @@ const pulse = keyframes`
 export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
   return (
     <>
-      {liveScores?.map(({ teams, fixture, goals }: any) => (
+      {liveScores.map((fixture: any, index: number) => (
         <Link
           href={{
             pathname: '/matches/[match]',
@@ -38,13 +37,13 @@ export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
           }}
           passHref
           as={`/matches/${hypenateMatchString(
-            teams.home.name,
-            teams.away.name
+            fixture.homeTeam.name,
+            fixture.awayTeam.name
           )}`}
-          key={teams.home.name}
+          key={fixture.homeTeam.name}
         >
           <Box
-            key={teams.home.name}
+            key={fixture.homeTeam.name}
             margin={{ base: '0px' }}
             marginBottom={{ base: '1rem', md: '0' }}
             fontSize="1.25rem"
@@ -62,7 +61,7 @@ export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
             <LinkBox
               display="flex"
               padding={{ base: '0.5rem 1rem' }}
-              marginBottom="1rem"
+              marginBottom={index === liveScores.length - 1 ? '0rem' : '1rem'}
               fontWeight="500"
             >
               <Box
@@ -74,7 +73,6 @@ export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
                 {/* {session?.user.id ? (
                   <Favourite fixture={fixture} session={session} />
                 ) : null} */}
-
                 <Badge
                   borderRadius="50%"
                   bg="red"
@@ -85,7 +83,10 @@ export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
                   animation={`${pulse} 2s ease-in-out infinite`}
                 />
 
-                {teams ? <ScoreBoardTeams teams={teams} /> : null}
+                <ScoreBoardTeams
+                  homeTeam={fixture.homeTeam}
+                  awayTeam={fixture.awayTeam}
+                />
 
                 <Box
                   display="flex"
@@ -94,9 +95,9 @@ export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
                   marginLeft="auto"
                 >
                   <Box display="flex" marginBottom="5px">
-                    {goals.home}
+                    1{/* {goals.home} */}
                   </Box>
-                  <Box display="flex">{goals.away}</Box>
+                  <Box display="flex">0{/* {goals.away} */}</Box>
                 </Box>
               </Box>
             </LinkBox>

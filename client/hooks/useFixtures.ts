@@ -24,6 +24,8 @@ const getFixtures = async ({ startDate, endDate }: FixtureDateRange) => {
   }
 }
 
-export const useFixtures = ({ startDate, endDate }: FixtureDateRange) => {
-  return useQuery(['fixtures'], () => getFixtures({ startDate, endDate }))
+export const useFixtures = (dateRange: FixtureDateRange) => {
+  return useQuery(['fixtures', dateRange], () => getFixtures(dateRange), {
+    keepPreviousData: true,
+  })
 }
