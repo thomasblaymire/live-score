@@ -78,18 +78,10 @@ router.get("/api/fixtures-all/date", async (req: Request, res: Response) => {
   try {
     const fixtures = await prisma.fixture.findMany({
       where: {
-        AND: [
-          {
-            date: {
-              gte: startDateTime,
-            },
-          },
-          {
-            date: {
-              lte: endDateTime,
-            },
-          },
-        ],
+        date: {
+          gte: startDateTime,
+          lte: endDateTime,
+        },
       },
       include: {
         homeTeam: true,
@@ -104,11 +96,6 @@ router.get("/api/fixtures-all/date", async (req: Request, res: Response) => {
         date: "asc",
       },
     });
-
-    if (fixtures.length === 0) {
-      res.status(200).json([]);
-      return;
-    }
 
     res.status(200).json(fixtures);
   } catch (error) {
