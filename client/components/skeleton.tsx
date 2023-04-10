@@ -21,7 +21,7 @@ export function SkeletonLoading({
   return (
     <>
       {loading ? (
-        <Stack spacing={5} padding="1rem">
+        <Stack spacing={5}>
           {new Array(ammount).fill(1).map((i: number) => (
             <Skeleton
               key={uniqueId()}
