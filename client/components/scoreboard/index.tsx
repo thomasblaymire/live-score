@@ -6,15 +6,14 @@ import {
   TabPanels,
   Tab,
   TabPanel,
-  VStack,
-  HStack,
   Box,
   Text,
 } from '@chakra-ui/react'
 import { useFixtures } from '../../hooks/useFixtures'
 import { ErrorState } from '../error'
+import { formatDate } from '../../lib/time'
 import { tabs } from './data'
-import { ScoreBoardLive } from './scoreboard-live'
+import { ScoreBoardList } from './scoreboard-list'
 import { DatePicker } from '../datepicker'
 
 interface FixtureDateRange {
@@ -25,7 +24,6 @@ interface FixtureDateRange {
 export function ScoreBoard() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const [showDatePicker, setShowDatePicker] = useState(false)
-
   const [dateRange, setDateRange] = useState<FixtureDateRange>({
     startDate: '2023-04-08',
     endDate: '2023-04-08',
@@ -40,10 +38,6 @@ export function ScoreBoard() {
       setDateRange({ startDate: formattedDate, endDate: formattedDate })
       setShowDatePicker(false)
     }
-  }
-
-  const formatDate = (date: Date) => {
-    return date.toISOString().split('T')[0]
   }
 
   return (
@@ -95,14 +89,9 @@ export function ScoreBoard() {
               />
               {error && <ErrorState />}
               {fixtures ? (
-                <ScoreBoardLive liveScores={fixtures} error={error} />
+                <ScoreBoardList liveScores={fixtures} error={error} />
               ) : null}
             </Box>
-          </TabPanel>
-          <TabPanel>
-            <VStack spacing={4}>
-              <HStack spacing={4}></HStack>
-            </VStack>
           </TabPanel>
         </TabPanels>
       </Tabs>

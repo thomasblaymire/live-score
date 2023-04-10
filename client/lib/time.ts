@@ -13,4 +13,6 @@ const formatUTCDate = (date: Date): string => {
   return value
 }
 
-export { parse, formatUTCDate }
+const formatDate = (date: Date) => date.toISOString().split('T')[0]
+
+export { parse, formatUTCDate, formatDate }

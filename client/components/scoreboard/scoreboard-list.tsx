@@ -1,31 +1,20 @@
 import Link from 'next/link'
-import { Box, LinkBox, Badge, Text } from '@chakra-ui/react'
+import { Box, LinkBox, Text } from '@chakra-ui/react'
 import { Favourite } from '../favourite'
 import { hypenateMatchString } from '../../lib/string'
 import { ScoreBoardTeams } from './scoreboard-teams'
-import { keyframes } from '@emotion/react'
+import { ScoreBoardGoals } from './scoreboard-goals'
+import { ScoreBoardStatus } from './scoreboard-status'
+import { fixtureError } from './data'
 
 interface ScoreBoardLiveProps {
   liveScores: Match[]
   error: Error | unknown
 }
 
-const pulse = keyframes`
-  0% {
-    transform: scale(0.5);
-    box-shadow: 0 0 0 0 red;
-  }
-  50% {
-    transform: scale(0.95);
-    box-shadow: 0 0 0 8px rgba(255, 82, 82, 0);
-  }
-  100% {
-    transform: scale(0.5);
-    box-shadow: 0 0 0 0 red;
-  }
-`
+export function ScoreBoardList({ liveScores }: ScoreBoardLiveProps) {
+  console.log('debug liveScores', liveScores)
 
-export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
   return (
     <>
       {liveScores.length === 0 ? (
@@ -39,8 +28,7 @@ export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
           paddingY="1rem"
         >
           <Text fontSize="0.9rem" fontWeight="500" color="#747574">
-            Sorry, there are no fixtures on this date. Please select another
-            date.
+            {fixtureError}
           </Text>
         </Box>
       ) : (
@@ -57,10 +45,10 @@ export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
               fixture.homeTeam.name,
               fixture.awayTeam.name
             )}`}
-            key={fixture.homeTeam.name}
+            key={fixture.id}
           >
             <Box
-              key={fixture.homeTeam.name}
+              key={fixture.id}
               margin={{ base: '0px' }}
               marginBottom={{ base: '1rem', md: '0' }}
               fontSize="1.25rem"
@@ -90,45 +78,17 @@ export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
                   {/* {session?.user.id ? (
                   <Favourite fixture={fixture} session={session} />
                 ) : null} */}
-                  <Badge
-                    borderRadius="50%"
-                    bg="red"
-                    width="12px"
-                    height="12px"
-                    boxShadow="0 0 5px red"
-                    marginRight="2rem"
-                    animation={`${pulse} 2s ease-in-out infinite`}
-                  />
+                  <ScoreBoardStatus />
 
                   <ScoreBoardTeams
                     homeTeam={fixture.homeTeam}
                     awayTeam={fixture.awayTeam}
                   />
 
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    minWidth="0"
-                    marginLeft="auto"
-                  >
-                    {fixture.goals.home !== null &&
-                    fixture.goals.away !== null ? (
-                      <>
-                        <Box
-                          display="flex"
-                          justifyContent="center"
-                          marginBottom="5px"
-                        >
-                          {fixture.goals.home}
-                        </Box>
-                        <Box display="flex" justifyContent="center">
-                          {fixture.goals.away}
-                        </Box>
-                      </>
-                    ) : (
-                      <Box>TBC</Box>
-                    )}
-                  </Box>
+                  <ScoreBoardGoals
+                    homeGoals={fixture.goals.home}
+                    awayGoals={fixture.goals.away}
+                  />
                 </Box>
               </LinkBox>
             </Box>
