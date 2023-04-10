@@ -26,10 +26,10 @@ export const getFixtures = async ({ startDate, endDate }: FixtureDateRange) => {
 
 export const useFixtures = (
   dateRange: FixtureDateRange,
-  initialFixtures: any
+  initialFixtures?: Match[]
 ) => {
   return useQuery(['fixtures', dateRange], () => getFixtures(dateRange), {
-    initialData: initialFixtures,
+    initialData: initialFixtures ? initialFixtures : [],
     keepPreviousData: true,
     refetchInterval: 20000,
     onError: (error: unknown) => {
