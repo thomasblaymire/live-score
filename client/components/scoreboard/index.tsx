@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { useFixtures } from '../../hooks/useFixtures'
 import { ErrorState } from '../error'
-import { formatDate } from '../../lib/time'
+import { formatDate, getCurrentDate } from '../../lib/time'
 import { tabs } from './data'
 import { ScoreBoardList } from './scoreboard-list'
 import { DatePicker } from '../datepicker'
@@ -21,15 +21,25 @@ interface FixtureDateRange {
   endDate: string
 }
 
-export function ScoreBoard() {
+interface ScoreBoardProps {
+  initialFixtures: Match[]
+}
+
+export function ScoreBoard({ initialFixtures }: ScoreBoardProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const [showDatePicker, setShowDatePicker] = useState(false)
+  const today = formatDate(new Date())
+
   const [dateRange, setDateRange] = useState<FixtureDateRange>({
-    startDate: '2023-04-08',
-    endDate: '2023-04-08',
+    startDate: today,
+    endDate: today,
   })
 
-  const { data: fixtures, isLoading, error } = useFixtures(dateRange)
+  const {
+    data: fixtures,
+    isLoading,
+    error,
+  } = useFixtures(dateRange, initialFixtures)
 
   const handleDateChange = async (date: Date | null) => {
     setSelectedDate(date)

@@ -7,7 +7,7 @@ interface FixtureDateRange {
   endDate: string
 }
 
-const getFixtures = async ({ startDate, endDate }: FixtureDateRange) => {
+export const getFixtures = async ({ startDate, endDate }: FixtureDateRange) => {
   try {
     const { data } = await axios.get(
       `${API_URL}/fixtures-all/date?start=${startDate}&end=${endDate}`
@@ -24,9 +24,14 @@ const getFixtures = async ({ startDate, endDate }: FixtureDateRange) => {
   }
 }
 
-export const useFixtures = (dateRange: FixtureDateRange) => {
+export const useFixtures = (
+  dateRange: FixtureDateRange,
+  initialFixtures: any
+) => {
   return useQuery(['fixtures', dateRange], () => getFixtures(dateRange), {
+    initialData: initialFixtures,
     keepPreviousData: true,
+    refetchInterval: 20000,
     onError: (error: unknown) => {
       console.error('Error fetching fixture data:', error)
     },

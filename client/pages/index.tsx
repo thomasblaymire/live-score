@@ -4,6 +4,7 @@ import { Box, Grid, GridItem } from '@chakra-ui/layout'
 import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
 import { CompetitionList } from '../components/competition-list'
+import { getFixtures } from '../hooks/useFixtures'
 import { StandingsTable } from '../components/standings'
 import { HeroCard } from '../components/hero-card'
 import { News } from '../components/news'
@@ -15,6 +16,7 @@ interface HomeProps {
   competitionsError: Error | undefined
   news: NewsItem[]
   newsError: Error | undefined
+  fixtures: Match[]
 }
 
 export default function Home({
@@ -22,6 +24,7 @@ export default function Home({
   competitionsError,
   news,
   newsError,
+  fixtures,
 }: HomeProps) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
 
@@ -86,7 +89,7 @@ export default function Home({
                 </Heading>
               </>
             )}
-            <ScoreBoard />
+            <ScoreBoard initialFixtures={fixtures} />
           </GridItem>
 
           {isTablet && (
@@ -115,12 +118,19 @@ export async function getStaticProps() {
     await getCompetitions()
   const { data: news, error: newsError } = await getNews()
 
+  const dateRange = {
+    startDate: '2023-04-08',
+    endDate: '2023-04-08',
+  }
+  const fixtures = await getFixtures(dateRange)
+
   return {
     props: {
       competitions,
       competitionsError,
       news,
       newsError,
+      fixtures,
     },
     revalidate: 60,
   }
