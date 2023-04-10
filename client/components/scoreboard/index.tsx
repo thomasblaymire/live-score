@@ -1,9 +1,6 @@
 import { useState } from 'react'
-import { Global } from '@emotion/react'
 import { SkeletonLoading } from '../skeleton'
 import {
-  Button,
-  IconButton,
   Tabs,
   TabList,
   TabPanels,
@@ -14,7 +11,6 @@ import {
   Box,
   Text,
 } from '@chakra-ui/react'
-import { useHomepageFixtures } from '../../hooks/useHomeFixtures'
 import { useFixtures } from '../../hooks/useFixtures'
 import { ErrorState } from '../error'
 import { tabs } from './data'
@@ -51,12 +47,7 @@ export function ScoreBoard() {
   }
 
   return (
-    <Box
-      borderRadius="15px"
-      background={{ md: '#121212' }}
-      minHeight="60vh"
-      margin="0 auto"
-    >
+    <Box borderRadius="15px" background={{ md: '#121212' }} margin="0 auto">
       <Tabs isFitted variant="soft-rounded" colorScheme="red">
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <TabList padding="1rem">
@@ -102,24 +93,15 @@ export function ScoreBoard() {
                 height="70px"
                 borderRadius="5px"
               />
-
               {error && <ErrorState />}
-              {fixtures ? <ScoreBoardLive liveScores={fixtures} /> : null}
+              {fixtures ? (
+                <ScoreBoardLive liveScores={fixtures} error={error} />
+              ) : null}
             </Box>
           </TabPanel>
           <TabPanel>
             <VStack spacing={4}>
-              <HStack spacing={4}>
-                {/* {data?.fixturesByDate.map((date: string, i: number) => (
-                  <Button
-                    key={i}
-                    onClick={() => handleDateChange(new Date(date))}
-                  >
-                    {date}
-                  </Button>
-                ))} */}
-              </HStack>
-              {/* Render your fixtures for the selected date here */}
+              <HStack spacing={4}></HStack>
             </VStack>
           </TabPanel>
         </TabPanels>

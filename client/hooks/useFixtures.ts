@@ -27,5 +27,8 @@ const getFixtures = async ({ startDate, endDate }: FixtureDateRange) => {
 export const useFixtures = (dateRange: FixtureDateRange) => {
   return useQuery(['fixtures', dateRange], () => getFixtures(dateRange), {
     keepPreviousData: true,
+    onError: (error: unknown) => {
+      console.error('Error fetching fixture data:', error)
+    },
   })
 }

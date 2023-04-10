@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Box, LinkBox, Badge } from '@chakra-ui/react'
+import { Box, LinkBox, Badge, Text } from '@chakra-ui/react'
 import { Favourite } from '../favourite'
 import { hypenateMatchString } from '../../lib/string'
 import { ScoreBoardTeams } from './scoreboard-teams'
@@ -7,6 +7,7 @@ import { keyframes } from '@emotion/react'
 
 interface ScoreBoardLiveProps {
   liveScores: Match[]
+  error: Error | unknown
 }
 
 const pulse = keyframes`
@@ -27,83 +28,113 @@ const pulse = keyframes`
 export function ScoreBoardLive({ liveScores }: ScoreBoardLiveProps) {
   return (
     <>
-      {liveScores.map((fixture: any, index: number) => (
-        <Link
-          href={{
-            pathname: '/matches/[match]',
-            query: {
-              id: fixture.id,
-            },
-          }}
-          passHref
-          as={`/matches/${hypenateMatchString(
-            fixture.homeTeam.name,
-            fixture.awayTeam.name
-          )}`}
-          key={fixture.homeTeam.name}
+      {liveScores.length === 0 ? (
+        <Box
+          margin={{ base: '0px' }}
+          marginBottom={{ base: '1rem', md: '0' }}
+          fontSize="1.25rem"
+          fontWeight="600"
+          color="white"
+          borderRadius="5px"
+          paddingY="1rem"
         >
-          <Box
-            key={fixture.homeTeam.name}
-            margin={{ base: '0px' }}
-            marginBottom={{ base: '1rem', md: '0' }}
-            fontSize="1.25rem"
-            fontWeight="600"
-            color="white"
-            borderRadius="5px"
-            background="#1b1b1b;"
-            sx={{
-              '&:hover': {
-                background: '#313131',
-                cursor: 'pointer',
+          <Text fontSize="0.9rem" fontWeight="500" color="#747574">
+            Sorry, there are no fixtures on this date. Please select another
+            date.
+          </Text>
+        </Box>
+      ) : (
+        liveScores.map((fixture: any, index: number) => (
+          <Link
+            href={{
+              pathname: '/matches/[match]',
+              query: {
+                id: fixture.id,
               },
             }}
+            passHref
+            as={`/matches/${hypenateMatchString(
+              fixture.homeTeam.name,
+              fixture.awayTeam.name
+            )}`}
+            key={fixture.homeTeam.name}
           >
-            <LinkBox
-              display="flex"
-              padding={{ base: '0.5rem 1rem' }}
-              marginBottom={index === liveScores.length - 1 ? '0rem' : '1rem'}
-              fontWeight="500"
+            <Box
+              key={fixture.homeTeam.name}
+              margin={{ base: '0px' }}
+              marginBottom={{ base: '1rem', md: '0' }}
+              fontSize="1.25rem"
+              fontWeight="600"
+              color="white"
+              borderRadius="5px"
+              background="#1b1b1b;"
+              sx={{
+                '&:hover': {
+                  background: '#313131',
+                  cursor: 'pointer',
+                },
+              }}
             >
-              <Box
+              <LinkBox
                 display="flex"
-                alignItems="center"
-                flex=" 1 1 0%"
-                fontSize={{ base: '14px', md: 'auto' }}
+                padding={{ base: '0.5rem 1rem' }}
+                marginBottom={index === liveScores.length - 1 ? '0rem' : '1rem'}
+                fontWeight="500"
               >
-                {/* {session?.user.id ? (
-                  <Favourite fixture={fixture} session={session} />
-                ) : null} */}
-                <Badge
-                  borderRadius="50%"
-                  bg="red"
-                  width="12px"
-                  height="12px"
-                  boxShadow="0 0 5px red"
-                  marginRight="2rem"
-                  animation={`${pulse} 2s ease-in-out infinite`}
-                />
-
-                <ScoreBoardTeams
-                  homeTeam={fixture.homeTeam}
-                  awayTeam={fixture.awayTeam}
-                />
-
                 <Box
                   display="flex"
-                  flexDirection="column"
-                  minWidth="0"
-                  marginLeft="auto"
+                  alignItems="center"
+                  flex=" 1 1 0%"
+                  fontSize={{ base: '14px', md: 'auto' }}
                 >
-                  <Box display="flex" marginBottom="5px">
-                    1{/* {goals.home} */}
+                  {/* {session?.user.id ? (
+                  <Favourite fixture={fixture} session={session} />
+                ) : null} */}
+                  <Badge
+                    borderRadius="50%"
+                    bg="red"
+                    width="12px"
+                    height="12px"
+                    boxShadow="0 0 5px red"
+                    marginRight="2rem"
+                    animation={`${pulse} 2s ease-in-out infinite`}
+                  />
+
+                  <ScoreBoardTeams
+                    homeTeam={fixture.homeTeam}
+                    awayTeam={fixture.awayTeam}
+                  />
+
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    minWidth="0"
+                    marginLeft="auto"
+                  >
+                    {fixture.goals.home !== null &&
+                    fixture.goals.away !== null ? (
+                      <>
+                        <Box
+                          display="flex"
+                          justifyContent="center"
+                          marginBottom="5px"
+                        >
+                          {fixture.goals.home}
+                        </Box>
+                        <Box display="flex" justifyContent="center">
+                          {fixture.goals.away}
+                        </Box>
+                      </>
+                    ) : (
+                      <Box>TBC</Box>
+                    )}
                   </Box>
-                  <Box display="flex">0{/* {goals.away} */}</Box>
                 </Box>
-              </Box>
-            </LinkBox>
-          </Box>
-        </Link>
-      ))}
+              </LinkBox>
+            </Box>
+          </Link>
+        ))
+      )}
     </>
   )
 }
