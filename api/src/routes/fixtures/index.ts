@@ -106,7 +106,7 @@ router.get("/api/fixtures-all/date", async (req: Request, res: Response) => {
     });
 
     if (fixtures.length === 0) {
-      sendError(res, 404, "Sorry no fixtures found for the given date range.");
+      res.status(200).json([]);
       return;
     }
 
