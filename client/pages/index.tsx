@@ -73,15 +73,19 @@ export default function Home({
           )}
 
           <GridItem area={'main'}>
-            <HeroCard />
-            <Heading
-              fontSize="1.3rem"
-              color="white"
-              marginBottom="1rem"
-              fontFamily="inherit"
-            >
-              Football Matches
-            </Heading>
+            {isTablet && (
+              <>
+                <HeroCard />
+                <Heading
+                  fontSize="1.3rem"
+                  color="white"
+                  marginBottom="1rem"
+                  fontFamily="inherit"
+                >
+                  Football Matches
+                </Heading>
+              </>
+            )}
             <ScoreBoard />
           </GridItem>
 

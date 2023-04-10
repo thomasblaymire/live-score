@@ -89,7 +89,7 @@ export function ScoreBoard() {
               />
               {error && <ErrorState />}
               {fixtures ? (
-                <ScoreBoardList liveScores={fixtures} error={error} />
+                <ScoreBoardList fixtures={fixtures} error={error} />
               ) : null}
             </Box>
           </TabPanel>

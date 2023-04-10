@@ -8,16 +8,14 @@ import { ScoreBoardStatus } from './scoreboard-status'
 import { fixtureError } from './data'
 
 interface ScoreBoardLiveProps {
-  liveScores: Match[]
+  fixtures: Match[]
   error: Error | unknown
 }
 
-export function ScoreBoardList({ liveScores }: ScoreBoardLiveProps) {
-  console.log('debug liveScores', liveScores)
-
+export function ScoreBoardList({ fixtures }: ScoreBoardLiveProps) {
   return (
     <>
-      {liveScores.length === 0 ? (
+      {fixtures.length === 0 ? (
         <Box
           margin={{ base: '0px' }}
           marginBottom={{ base: '1rem', md: '0' }}
@@ -32,7 +30,7 @@ export function ScoreBoardList({ liveScores }: ScoreBoardLiveProps) {
           </Text>
         </Box>
       ) : (
-        liveScores.map((fixture: any, index: number) => (
+        fixtures.map((fixture: any, index: number) => (
           <Link
             href={{
               pathname: '/matches/[match]',
@@ -66,7 +64,7 @@ export function ScoreBoardList({ liveScores }: ScoreBoardLiveProps) {
               <LinkBox
                 display="flex"
                 padding={{ base: '0.5rem 1rem' }}
-                marginBottom={index === liveScores.length - 1 ? '0rem' : '1rem'}
+                marginBottom={index === fixtures.length - 1 ? '0rem' : '1rem'}
                 fontWeight="500"
               >
                 <Box
