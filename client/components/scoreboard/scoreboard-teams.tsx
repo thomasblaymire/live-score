@@ -2,33 +2,34 @@ import { Box } from '@chakra-ui/layout'
 import NextImage from 'next/image'
 
 interface ScoreBoardTeamsProps {
-  teams: any
+  homeTeam: any
+  awayTeam: any
 }
 
-export function ScoreBoardTeams({ teams }: ScoreBoardTeamsProps) {
+export function ScoreBoardTeams({ homeTeam, awayTeam }: ScoreBoardTeamsProps) {
   return (
     <Box display="flex" flexDirection="column" flex=" 1 1" minWidth="0">
       <Box display="flex" marginBottom="10px">
         <NextImage
-          src={teams.home.logo}
+          src={homeTeam.logo}
           color="white"
-          alt={teams.home.name}
+          alt={homeTeam.name}
           width={25}
           height={25}
           style={{ marginRight: '15px' }}
         />
-        {teams.home.name}
+        {homeTeam.name}
       </Box>
       <Box display="flex" alignItems="center">
         <NextImage
-          src={teams.away.logo}
+          src={awayTeam.logo}
           color="white"
-          alt={teams.away.name}
+          alt={awayTeam.name}
           width={25}
           height={25}
           style={{ marginRight: '15px' }}
         />
-        {teams.away.name}
+        {awayTeam.name}
       </Box>
     </Box>
   )

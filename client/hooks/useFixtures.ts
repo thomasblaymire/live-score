@@ -7,7 +7,16 @@ interface FixtureDateRange {
   endDate: string
 }
 
-const getFixtures = async ({ startDate, endDate }: FixtureDateRange) => {
+interface UseFixturesResult {
+  data: CustomFixture[] | undefined
+  isLoading: boolean
+  error: unknown
+}
+
+export const getFixtures = async ({
+  startDate,
+  endDate,
+}: FixtureDateRange): Promise<CustomFixture[]> => {
   try {
     const { data } = await axios.get(
       `${API_URL}/fixtures-all/date?start=${startDate}&end=${endDate}`
@@ -16,14 +25,34 @@ const getFixtures = async ({ startDate, endDate }: FixtureDateRange) => {
   } catch (error: unknown) {
     if (error instanceof Error) {
       console.error('Error fetching fixture data:', error.message)
-      return { data: { data: {} }, error: error.message }
+      throw error
     } else {
       console.error('Error fetching fixture data:', error)
-      return { data: { data: {} }, error: 'An unknown error occurred' }
+      throw new Error('An unknown error occurred')
     }
   }
 }
 
-export const useFixtures = ({ startDate, endDate }: FixtureDateRange) => {
-  return useQuery(['fixtures'], () => getFixtures({ startDate, endDate }))
+export const useFixtures = (
+  dateRange: FixtureDateRange,
+  initialFixtures?: CustomFixture[]
+): UseFixturesResult => {
+  const query = useQuery(
+    ['fixtures', dateRange],
+    () => getFixtures(dateRange),
+    {
+      initialData: initialFixtures ? initialFixtures : undefined,
+      keepPreviousData: true,
+      refetchInterval: 20000,
+      onError: (error: unknown) => {
+        console.error('Error fetching fixture data:', error)
+      },
+    }
+  )
+
+  return {
+    data: query.data,
+    isLoading: query.isLoading,
+    error: query.error,
+  }
 }

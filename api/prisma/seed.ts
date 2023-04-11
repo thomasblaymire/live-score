@@ -1,18 +1,10 @@
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from "@prisma/client";
+import fetch from "node-fetch";
+
 const prisma = new PrismaClient();
 
-const options = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "XXXX",
-    "X-RapidAPI-Host": "api-football-v1.p.rapidapi.com",
-  },
-};
-
 async function main() {
-  const response = await fetch(
-    "https://run.mocky.io/v3/33c07e38-b14e-4a06-b47a-d88225b73207"
-  );
+  const response = await fetch(process.env.MOCKY_SEED_PREM_LEAGUE_FIXTURES!);
   const data = await response.json();
 
   for (const fixtureData of data.response) {
@@ -20,8 +12,6 @@ async function main() {
       fixtureData;
 
     const { home: homeTeamData, away: awayTeamData } = teams;
-
-    console.log("debug fixtureId", fixture.id);
 
     const newFixture = await prisma.fixture.create({
       data: {

@@ -78,18 +78,10 @@ router.get("/api/fixtures-all/date", async (req: Request, res: Response) => {
   try {
     const fixtures = await prisma.fixture.findMany({
       where: {
-        AND: [
-          {
-            date: {
-              gte: startDateTime,
-            },
-          },
-          {
-            date: {
-              lte: endDateTime,
-            },
-          },
-        ],
+        date: {
+          gte: startDateTime,
+          lte: endDateTime,
+        },
       },
       include: {
         homeTeam: true,
@@ -105,19 +97,15 @@ router.get("/api/fixtures-all/date", async (req: Request, res: Response) => {
       },
     });
 
-    if (fixtures.length === 0) {
-      sendError(res, 404, "Sorry no fixtures found for the given date range.");
-      return;
-    }
-
     res.status(200).json(fixtures);
   } catch (error) {
     console.error("Error fetching fixtures by date range:", error);
-    sendError(
-      res,
-      500,
-      "An error occurred while fetching fixtures by date range."
-    );
+    res
+      .status(500)
+      .json({
+        message: "An error occurred while fetching fixtures by date range.",
+        error,
+      });
   }
 });
 

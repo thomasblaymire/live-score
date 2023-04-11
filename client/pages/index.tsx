@@ -4,6 +4,7 @@ import { Box, Grid, GridItem } from '@chakra-ui/layout'
 import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
 import { CompetitionList } from '../components/competition-list'
+import { getFixtures } from '../hooks/useFixtures'
 import { StandingsTable } from '../components/standings'
 import { HeroCard } from '../components/hero-card'
 import { News } from '../components/news'
@@ -15,6 +16,7 @@ interface HomeProps {
   competitionsError: Error | undefined
   news: NewsItem[]
   newsError: Error | undefined
+  fixtures: CustomFixture[]
 }
 
 export default function Home({
@@ -22,6 +24,7 @@ export default function Home({
   competitionsError,
   news,
   newsError,
+  fixtures,
 }: HomeProps) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
 
@@ -73,16 +76,20 @@ export default function Home({
           )}
 
           <GridItem area={'main'}>
-            <HeroCard />
-            <Heading
-              fontSize="1.3rem"
-              color="white"
-              marginBottom="1rem"
-              fontFamily="inherit"
-            >
-              Football Matches
-            </Heading>
-            <ScoreBoard />
+            {isTablet && (
+              <>
+                <HeroCard />
+                <Heading
+                  fontSize="1.3rem"
+                  color="white"
+                  marginBottom="1rem"
+                  fontFamily="inherit"
+                >
+                  Football Matches
+                </Heading>
+              </>
+            )}
+            <ScoreBoard initialFixtures={fixtures} />
           </GridItem>
 
           {isTablet && (
@@ -111,13 +118,34 @@ export async function getStaticProps() {
     await getCompetitions()
   const { data: news, error: newsError } = await getNews()
 
-  return {
-    props: {
-      competitions,
-      competitionsError,
-      news,
-      newsError,
-    },
-    revalidate: 60,
+  const dateRange = {
+    startDate: '2023-04-09',
+    endDate: '2023-04-09',
+  }
+
+  try {
+    const fixtures = await getFixtures(dateRange)
+    return {
+      props: {
+        competitions,
+        competitionsError,
+        news,
+        newsError,
+        fixtures,
+      },
+      revalidate: 60,
+    }
+  } catch (error) {
+    console.error('Error fetching fixture data:', error)
+    return {
+      props: {
+        competitions,
+        competitionsError,
+        news,
+        newsError,
+        fixtures: [],
+      },
+      revalidate: 60,
+    }
   }
 }

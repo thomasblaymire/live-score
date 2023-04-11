@@ -4,12 +4,18 @@ interface Tab {
 
 export const tabs: Tab[] = [
   {
-    title: 'Live Matches',
+    title: 'ALL',
   },
   {
-    title: 'Upcoming',
+    title: 'LIVE',
   },
   {
-    title: 'Finished',
+    title: 'FINISHED',
+  },
+  {
+    title: 'UPCOMING',
   },
 ]
+
+export const fixtureError =
+  'Sorry, there are no fixtures on this date. Please select another date.'

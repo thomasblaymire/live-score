@@ -13,6 +13,7 @@ export function AuthenticationButtons() {
           fontSize="0.9rem"
           fontWeight="600"
           data-test="login-button"
+          sx={{ '&:hover': { color: '#0e2aa8', textDecoration: 'none' } }}
           onClick={() => router.push('/auth/signin')}
         >
           Log In

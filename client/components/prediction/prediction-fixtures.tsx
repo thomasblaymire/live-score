@@ -3,7 +3,7 @@ import { Card } from '../../components/card'
 import { PredictionList } from '../../components/prediction'
 
 interface PredictionFixturesProps {
-  fixtures: Fixture[]
+  fixtures: CustomFixture[]
   predictions: Prediction
   updatePrediction: (
     matchId: number,
