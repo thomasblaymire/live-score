@@ -1,9 +1,4 @@
-import express, {
-  Express,
-  Request,
-  Response,
-  ErrorRequestHandler,
-} from "express";
+import express, { Express, Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -70,18 +65,11 @@ io.on("connection", (socket) => {
   });
 });
 
-app.get("/", (res: Response) => {
-  res.send("Footy API");
+app.get("/", (req: Request, res: Response) => {
+  res.send("CurrentScore Football API");
 });
 
 app.use(Sentry.Handlers.errorHandler());
-
-// const onError: ErrorRequestHandler = (res) => {
-//   res.statusCode = 500;
-//   res.send(`${res.sentry}\n`);
-// };
-
-// app.use(onError);
 
 httpServer.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
