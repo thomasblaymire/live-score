@@ -16,7 +16,7 @@ interface HomeProps {
   competitionsError: Error | undefined
   news: NewsItem[]
   newsError: Error | undefined
-  fixtures: Match[]
+  fixtures: CustomFixture[]
 }
 
 export default function Home({
@@ -119,19 +119,33 @@ export async function getStaticProps() {
   const { data: news, error: newsError } = await getNews()
 
   const dateRange = {
-    startDate: '2023-04-08',
-    endDate: '2023-04-08',
+    startDate: '2023-04-09',
+    endDate: '2023-04-09',
   }
-  const fixtures = await getFixtures(dateRange)
 
-  return {
-    props: {
-      competitions,
-      competitionsError,
-      news,
-      newsError,
-      fixtures,
-    },
-    revalidate: 60,
+  try {
+    const fixtures = await getFixtures(dateRange)
+    return {
+      props: {
+        competitions,
+        competitionsError,
+        news,
+        newsError,
+        fixtures,
+      },
+      revalidate: 60,
+    }
+  } catch (error) {
+    console.error('Error fetching fixture data:', error)
+    return {
+      props: {
+        competitions,
+        competitionsError,
+        news,
+        newsError,
+        fixtures: [],
+      },
+      revalidate: 60,
+    }
   }
 }

@@ -100,11 +100,12 @@ router.get("/api/fixtures-all/date", async (req: Request, res: Response) => {
     res.status(200).json(fixtures);
   } catch (error) {
     console.error("Error fetching fixtures by date range:", error);
-    sendError(
-      res,
-      500,
-      "An error occurred while fetching fixtures by date range."
-    );
+    res
+      .status(500)
+      .json({
+        message: "An error occurred while fetching fixtures by date range.",
+        error,
+      });
   }
 });
 

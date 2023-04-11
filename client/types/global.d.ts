@@ -521,6 +521,85 @@ interface Penalty {
   away?: any
 }
 
+// We will eventually refactor to this primary type once migrated to live
+interface CustomFixture {
+  id: number
+  apiId: number
+  referee: string
+  timezone: string
+  date: string
+  timestamp: number
+  venueId: number
+  leagueId: number
+  homeTeamId: number
+  awayTeamId: number
+  goalsId: number
+  scoreId: number
+  statusId: number
+  homeTeam: CustomHomeTeam
+  awayTeam: CustomAwayTeam
+  status: CustomStatus
+  goals: CustomGoals
+  score: CustomScore
+  league: CustomLeague
+  venue: CustomVenue
+}
+
+interface CustomHomeTeam {
+  id: number
+  name: string
+  logo: string
+  winner: boolean
+}
+
+interface CustomAwayTeam {
+  id: number
+  name: string
+  logo: string
+  winner: boolean
+}
+
+interface CustomStatus {
+  id: number
+  long: string
+  short: string
+  elapsed: number
+}
+
+interface CustomGoals {
+  id: number
+  home: number
+  away: number
+}
+
+interface CustomScore {
+  id: number
+  halftimeHome: number
+  halftimeAway: number
+  fulltimeHome: number
+  fulltimeAway: number
+  extratimeHome: any
+  extratimeAway: any
+  penaltyHome: any
+  penaltyAway: any
+}
+
+interface CustomLeague {
+  id: number
+  name: string
+  country: string
+  logo: string
+  flag: string
+  season: number
+  round: string
+}
+
+interface CustomVenue {
+  id: number
+  name: string
+  city: string
+}
+
 interface Score {
   halftime: Halftime
   fulltime: Fulltime
