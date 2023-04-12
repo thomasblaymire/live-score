@@ -70,6 +70,18 @@ export default function Teams({ teams, error }: TeamsProps) {
         </Flex>
       </Box>
 
+      {error && (
+        <Flex
+          direction="column"
+          gap="1rem"
+          width="1200px"
+          margin="0 auto"
+          marginY="2rem"
+        >
+          <ErrorState />
+        </Flex>
+      )}
+
       <Grid
         templateColumns={{
           base: 'repeat(2, 1fr)',
@@ -85,7 +97,6 @@ export default function Teams({ teams, error }: TeamsProps) {
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >
-        {error && <ErrorState />}
         {sortedTeams?.map(({ team }: AllTeams, index: number) => {
           return (
             <Box
