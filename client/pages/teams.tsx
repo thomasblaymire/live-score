@@ -1,8 +1,10 @@
+import Link from 'next/link'
 import { useState } from 'react'
 import NextImage from 'next/image'
 import { Heading, Flex, Text, Box, Grid } from '@chakra-ui/react'
 import { ErrorState } from '../components/error'
 import { getTeams } from '../lib/api-helpers'
+import { hypenate } from '../lib/string'
 
 interface TeamsProps {
   teams: AllTeams[]
@@ -99,40 +101,53 @@ export default function Teams({ teams, error }: TeamsProps) {
       >
         {sortedTeams?.map(({ team }: AllTeams, index: number) => {
           return (
-            <Box
-              borderRadius="5px"
-              minHeight="150px"
+            <Link
               key={team.id}
-              cursor="pointer"
-              padding="1rem"
-              color="white"
-              background="gray.900"
-              bg={index === selectedItemIndex ? '#1a1a1a' : 'gray.900'}
-              sx={{
-                '&:hover': {
-                  bg: '#1a1a1a',
-                  cursor: 'pointer',
+              passHref
+              href={{
+                pathname: '/team/[name]/[id]',
+                query: {
+                  name: hypenate(team.name),
+                  id: team.id,
                 },
               }}
+              as={`/team/${hypenate(team.name)}/${team.id}`}
             >
-              <Flex
-                direction="column"
-                alignItems="center"
-                justifyContent="center"
-                height="100%"
+              <Box
+                borderRadius="5px"
+                minHeight="150px"
+                key={team.id}
                 cursor="pointer"
+                padding="1rem"
+                color="white"
+                background="gray.900"
+                bg={index === selectedItemIndex ? '#1a1a1a' : 'gray.900'}
+                sx={{
+                  '&:hover': {
+                    bg: '#1a1a1a',
+                    cursor: 'pointer',
+                  },
+                }}
               >
-                <NextImage
-                  src={team.logo}
-                  width="55"
-                  height="30"
-                  sizes="100vw"
-                  style={{ width: '30%', height: 'auto' }}
-                  alt={team.name}
-                />
-                <Text paddingTop="0.5rem">{team.name}</Text>
-              </Flex>
-            </Box>
+                <Flex
+                  direction="column"
+                  alignItems="center"
+                  justifyContent="center"
+                  height="100%"
+                  cursor="pointer"
+                >
+                  <NextImage
+                    src={team.logo}
+                    width="55"
+                    height="30"
+                    sizes="100vw"
+                    style={{ width: '30%', height: 'auto' }}
+                    alt={team.name}
+                  />
+                  <Text paddingTop="0.5rem">{team.name}</Text>
+                </Flex>
+              </Box>
+            </Link>
           )
         })}
       </Grid>

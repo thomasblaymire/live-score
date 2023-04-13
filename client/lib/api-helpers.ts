@@ -1,10 +1,21 @@
 import axios from 'axios'
 import { API_URL } from '../lib/constants'
 
-export const getMatchesByTeamName = async (
-  teamName: string | string[] | undefined
-) => {
-  const { data } = await axios.get(`${API_URL}/fixtures/${teamName}`)
+export async function getFixturesByTeamId({
+  id,
+  name,
+  page,
+  pageSize,
+}: {
+  id: string
+  name: string
+  page: number
+  pageSize: number
+}) {
+  const { data } = await axios.get(
+    `${API_URL}/fixtures/${id}?page=${page}&pageSize=${pageSize}`
+  )
+
   return data
 }
 
@@ -54,15 +65,27 @@ export const getNews = async (): Promise<{
 }
 
 export const getNewsByTeam = async (
-  teamName: string | string[] | undefined,
+  teamName: string,
   page: number,
   limit: number
-) => {
-  const { data } = await axios.post(`${API_URL}/news/${teamName}`, {
-    page,
-    limit,
-  })
-  return data
+): Promise<{
+  data: Competitions[] | null
+  error: string | null
+}> => {
+  try {
+    const { data } = await axios.get(
+      `${API_URL}/news/team?name=${teamName}&page=${page}&limit=${limit}`
+    )
+    return { data, error: null }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error fetching data:', error.message)
+      return { data: null, error: error.message }
+    } else {
+      console.error('Error fetching data:', error)
+      return { data: null, error: 'An unknown error occurred' }
+    }
+  }
 }
 
 export const getCompetitions = async (): Promise<{
