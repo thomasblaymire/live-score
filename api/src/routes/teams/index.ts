@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
 import express, { Request, Response } from "express";
 import { catchAsync } from "../../helpers";
+import { searchImages } from "../../helpers/unsplash";
 
 const router = express.Router();
 
@@ -17,5 +18,7 @@ router.get(
     }
   })
 );
+
+router.get("/api/teams/:id", async (req: Request, res: Response) => {});
 
 export { router as teamsRouter };
