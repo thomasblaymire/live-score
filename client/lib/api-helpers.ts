@@ -1,24 +1,6 @@
 import axios from 'axios'
 import { API_URL } from '../lib/constants'
 
-export async function getFixturesByTeamId({
-  id,
-  name,
-  page,
-  pageSize,
-}: {
-  id: string
-  name: string
-  page: number
-  pageSize: number
-}) {
-  const { data } = await axios.get(
-    `${API_URL}/fixtures/${id}?page=${page}&pageSize=${pageSize}`
-  )
-
-  return data
-}
-
 export const getStandings = async (leagueId: string) => {
   const { data } = await axios.get(`${API_URL}/league/${leagueId}`)
   return data
