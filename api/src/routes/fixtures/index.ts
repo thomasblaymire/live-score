@@ -21,6 +21,12 @@ router.get(
     const currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0);
 
+    console.log("debug", {
+      page,
+      pageSize,
+      teamId,
+    });
+
     try {
       const fixtures = await prisma.fixture.findMany({
         where: {
@@ -43,6 +49,8 @@ router.get(
         skip: skip,
         take: pageSize,
       });
+
+      console.log("debug fixtures", fixtures);
 
       res.status(200).json(fixtures);
     } catch (error) {
