@@ -6,7 +6,7 @@ export const theme = extendTheme({
       'html, body': {
         color: 'gray.600',
         lineHeight: 'tall',
-        background: '#000',
+        background: '#141416',
       },
 
       a: {
@@ -15,9 +15,9 @@ export const theme = extendTheme({
     },
   },
   fonts: {
-    heading: `Poppins, sans-serif`,
-    body: `Poppins, sans-serif`,
-    h2: `Poppins, sans-serif`,
+    heading: `DM_Sans, sans-serif`,
+    body: `DM_Sans, sans-serif`,
+    h2: `DM_Sans, sans-serif`,
   },
   colors: {
     gray: {

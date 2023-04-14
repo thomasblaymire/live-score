@@ -98,7 +98,7 @@ export default function Home({
                 <Card margin="0 0 2rem 0" height="45vh" heading="Latest News">
                   <News news={news} isLoading={false} error={newsError} />
                 </Card>
-                <Card heading="Standings">
+                <Card heading="Standings" border="solid 1px #353945;">
                   <Box padding="1rem">
                     <StandingsTable size="sm" />
                   </Box>

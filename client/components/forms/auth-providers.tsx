@@ -45,7 +45,7 @@ export function AuthProviders({ providers }: AuthProvidersProps) {
                     thickness="4px"
                     speed="0.65s"
                     emptyColor="gray.200"
-                    color="#1238de"
+                    color="#3772ff"
                     size="lg"
                   />
                 }

@@ -6,6 +6,7 @@ interface CardProps {
   background?: string
   radius?: string
   height?: string
+  border?: string
   headingAlign?: ResponsiveValue<any> | undefined
   children?: React.ReactNode
   color?: string
@@ -16,6 +17,7 @@ interface CardProps {
 export function Card({
   heading,
   background = '#121212',
+  border = 'solid 1px #353945;',
   headingAlign = 'left',
   radius = '15px',
   children,
@@ -27,6 +29,7 @@ export function Card({
     <Box
       background={background}
       borderRadius={radius}
+      border={border}
       margin={margin}
       width={width}
     >
@@ -34,9 +37,9 @@ export function Card({
         <>
           <Box
             padding="1rem 1.5rem"
-            background="#1F1F1F"
-            borderTopLeftRadius="15px"
-            borderTopRightRadius="15px"
+            borderBottom="solid 1px #353945"
+            borderTopLeftRadius="16px"
+            borderTopRightRadius="16px"
           >
             <Heading
               color={color}
