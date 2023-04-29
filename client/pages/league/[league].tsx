@@ -17,8 +17,6 @@ export default function League() {
     queryFn: () => getStandings('39'),
   })
 
-  console.log('debug data', data)
-
   return (
     <Box>
       <Box
