@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Box, LinkBox, Text } from '@chakra-ui/react'
 import { Favourite } from '../favourite'
-import { hypenateMatchString } from '../../lib/string'
+import { hyphenateMatchString } from '../../lib/string'
 import { ScoreBoardTeams } from './scoreboard-teams'
 import { ScoreBoardGoals } from './scoreboard-goals'
 import { ScoreBoardStatus } from './scoreboard-status'
@@ -29,7 +29,7 @@ export function ScoreBoardList({ fixtures }: ScoreBoardLiveProps) {
                 },
               }}
               passHref
-              as={`/matches/${hypenateMatchString(
+              as={`/matches/${hyphenateMatchString(
                 homeTeam.name,
                 awayTeam.name
               )}`}

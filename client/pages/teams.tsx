@@ -4,7 +4,7 @@ import NextImage from 'next/image'
 import { Heading, Flex, Text, Box, Grid } from '@chakra-ui/react'
 import { ErrorState } from '../components/error'
 import { getTeams } from '../lib/api-helpers'
-import { hypenate } from '../lib/string'
+import { hyphenate } from '../lib/string'
 
 interface TeamsProps {
   teams: AllTeams[]
@@ -107,11 +107,11 @@ export default function Teams({ teams, error }: TeamsProps) {
               href={{
                 pathname: '/team/[name]/[id]',
                 query: {
-                  name: hypenate(team.name),
+                  name: hyphenate(team.name),
                   id: team.id,
                 },
               }}
-              as={`/team/${hypenate(team.name)}/${team.id}`}
+              as={`/team/${hyphenate(team.name)}/${team.id}`}
             >
               <Box
                 borderRadius="5px"
