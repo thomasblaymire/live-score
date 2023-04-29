@@ -20,10 +20,12 @@ router.get(
   })
 );
 
-router.post(
-  "/api/news/:team",
+router.get(
+  "/api/news/team",
   catchAsync(async (req: Request, res: Response) => {
-    const { team } = req.params;
+    console.log("debug req.query", req.query);
+
+    const team = req.query.name;
     const page = parseInt(req.query.page as string, 10) || 1;
     const limit = parseInt(req.query.limit as string, 10) || 5;
     const startIndex = (page - 1) * limit;

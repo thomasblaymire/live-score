@@ -28,6 +28,7 @@ interface ScoreBoardProps {
 export function ScoreBoard({ initialFixtures }: ScoreBoardProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const [showDatePicker, setShowDatePicker] = useState(false)
+  const [loadingState, setLoadingState] = useState(true)
   //const today = formatDate(new Date())
 
   const [dateRange, setDateRange] = useState<FixtureDateRange>({
@@ -51,7 +52,12 @@ export function ScoreBoard({ initialFixtures }: ScoreBoardProps) {
   }
 
   return (
-    <Box borderRadius="15px" background={{ md: '#121212' }} margin="0 auto">
+    <Box
+      borderRadius="15px"
+      background={{ md: '#121212' }}
+      border="solid 1px #353945;"
+      margin="0 auto"
+    >
       <Tabs isFitted variant="soft-rounded" colorScheme="red">
         <Box display="flex" alignItems="center" justifyContent="space-between">
           <TabList padding="1rem">
@@ -59,7 +65,7 @@ export function ScoreBoard({ initialFixtures }: ScoreBoardProps) {
               <Tab
                 key={tab.title}
                 fontWeight="600"
-                _selected={{ color: 'white', bg: '#1238de' }}
+                _selected={{ color: 'white', bg: '#3772ff' }}
                 fontSize="0.8rem"
                 padding="0.5rem 1rem"
                 borderRadius="10px"

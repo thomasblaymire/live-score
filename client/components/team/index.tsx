@@ -4,17 +4,17 @@ import { Card } from '../../components/card'
 import { formatSlug } from '../../lib/string'
 import { useQuery } from '@tanstack/react-query'
 import { TeamFixtures } from './team-fixtures'
-import { getMatchesByTeamName, getNewsByTeam } from '../../lib/api-helpers'
+import { getNewsByTeam } from '../../lib/api-helpers'
 
 export function Team({ id }: { id: string }) {
-  const {
-    data: matches,
-    isLoading: isLoadingMatches,
-    isError: isErrorMatches,
-  } = useQuery({
-    queryKey: ['teamFixtures'],
-    queryFn: () => getMatchesByTeamName(id),
-  })
+  // const {
+  //   data: matches,
+  //   isLoading: isLoadingMatches,
+  //   isError: isErrorMatches,
+  // } = useQuery({
+  //   queryKey: ['teamFixtures'],
+  //   queryFn: () => getMatchesByTeamName(id),
+  // })
 
   const {
     data: news,
@@ -65,11 +65,11 @@ export function Team({ id }: { id: string }) {
               height="45vh"
               radius="15px"
             >
-              <TeamFixtures
+              {/* <TeamFixtures
                 fixtures={matches.response}
                 isError={isErrorMatches}
                 isLoading={isLoadingMatches}
-              />
+              /> */}
             </Card>
           </Box>
 
@@ -81,11 +81,11 @@ export function Team({ id }: { id: string }) {
               height="45vh"
               radius="15px"
             >
-              {news.data.map((article: any, i: number) => (
+              {/* {news.data.map((article: any, i: number) => (
                 <Box fontSize="0.75rem" color="white" padding="1rem" key={i}>
                   {article.title}
                 </Box>
-              ))}
+              ))} */}
             </Card>
           </Box>
         </Flex>

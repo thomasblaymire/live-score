@@ -19,11 +19,11 @@ export function AuthenticationButtons() {
           Log In
         </Button>
         <Button
-          background="#0e2aa8"
+          background="#3772ff"
           fontWeight="600"
           color="white"
           fontSize="0.9rem"
-          _hover={{ background: '#081d7f' }}
+          _hover={{ background: '#0e2aa8' }}
           data-test="signup-button"
           onClick={() => router.push('/auth/signup')}
         >

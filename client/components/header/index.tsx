@@ -40,10 +40,10 @@ export function Header({ isBasic }: HeaderProps) {
     <header>
       <Search isOpen={isOpen} onClose={onClose} />
       <Box
-        height="4rem"
+        height="5rem"
         position="sticky"
         padding={isMobile ? 4 : undefined}
-        background="#121212"
+        borderBottom="solid 1px #353945"
       >
         <Flex
           justifyContent="space-between"

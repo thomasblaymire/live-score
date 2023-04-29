@@ -18,4 +18,6 @@ router.get(
   })
 );
 
+router.get("/api/teams/:id", async (req: Request, res: Response) => {});
+
 export { router as teamsRouter };

@@ -2,7 +2,7 @@ import NextImage from 'next/image'
 import Link from 'next/link'
 import { Box, List, ListItem } from '@chakra-ui/layout'
 import { SkeletonLoading } from './skeleton'
-import { hypenate } from '../lib/string'
+import { hyphenate } from '../lib/string'
 import { ErrorState } from './error'
 
 interface CompetitionListProps {
@@ -40,7 +40,7 @@ export function CompetitionList({
             passHref
             href={{
               pathname: '/league/[league]',
-              query: { league: `${hypenate(`${competition.league.name}`)}` },
+              query: { league: `${hyphenate(`${competition.league.name}`)}` },
             }}
           >
             <ListItem

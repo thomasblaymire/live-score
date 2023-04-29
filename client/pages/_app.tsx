@@ -10,13 +10,13 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { theme } from '../styles/theme'
 import type { AppProps } from 'next/app'
 import type { NextComponentType } from 'next'
-import { Poppins } from '@next/font/google'
+import { DM_Sans } from 'next/font/google'
 import 'reset-css'
 
-const poppins = Poppins({
+const dm_Sans = DM_Sans({
   subsets: ['latin'],
   display: 'fallback',
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400', '500', '700'],
 })
 
 type CustomAppProps = AppProps & {
@@ -34,7 +34,7 @@ export default function App({
       <Hydrate state={pageProps.dehydratedState}>
         <ChakraProvider theme={theme}>
           <AuthProvider>
-            <main className={poppins.className}>
+            <main className={dm_Sans.className}>
               {Component.authPath ? (
                 <>
                   <Header isBasic={true} />

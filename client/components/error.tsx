@@ -1,5 +1,6 @@
 import {
   Alert,
+  Box,
   AlertIcon,
   AlertTitle,
   AlertDescription,
@@ -11,12 +12,14 @@ interface ErrorStateProps {
 
 export const ErrorState = ({ message }: ErrorStateProps) => {
   return (
-    <Alert status="error">
+    <Alert status="error" borderRadius="10px">
       <AlertIcon />
-      <AlertTitle mr={2}>An error occurred!</AlertTitle>
-      <AlertDescription>
-        {message || 'Please contact us for assistance.'}
-      </AlertDescription>
+      <Box>
+        <AlertTitle mr={2}>An error occurred!</AlertTitle>
+        <AlertDescription>
+          {message || 'Please refrash the page and try again.'}
+        </AlertDescription>
+      </Box>
     </Alert>
   )
 }

@@ -32,7 +32,7 @@ router.get(
     );
 
     const formatted = {
-      league: response[0].response[0].league,
+      league: response[0].response[0].league.standings[0],
       topScorers: response[1].response,
     };
 

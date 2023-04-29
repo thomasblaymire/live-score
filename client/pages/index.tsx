@@ -1,5 +1,5 @@
 import Sidebar from '../components/sidebar'
-import { getCompetitions, getNews } from '../lib/api-helpers'
+import { fetchHomepageData } from '../lib/api-helpers'
 import { Box, Grid, GridItem } from '@chakra-ui/layout'
 import { ScoreBoard } from '../components/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
@@ -17,6 +17,7 @@ interface HomeProps {
   news: NewsItem[]
   newsError: Error | undefined
   fixtures: CustomFixture[]
+  standings: Standings
 }
 
 export default function Home({
@@ -25,6 +26,7 @@ export default function Home({
   news,
   newsError,
   fixtures,
+  standings,
 }: HomeProps) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
 
@@ -98,9 +100,9 @@ export default function Home({
                 <Card margin="0 0 2rem 0" height="45vh" heading="Latest News">
                   <News news={news} isLoading={false} error={newsError} />
                 </Card>
-                <Card heading="Standings">
+                <Card heading="Standings" border="solid 1px #353945;">
                   <Box padding="1rem">
-                    <StandingsTable size="sm" />
+                    <StandingsTable size="sm" standings={standings} />
                   </Box>
                 </Card>
               </Sidebar>
@@ -113,39 +115,29 @@ export default function Home({
   )
 }
 
-export async function getStaticProps() {
-  const { data: competitions, error: competitionsError } =
-    await getCompetitions()
-  const { data: news, error: newsError } = await getNews()
+function buildProps(data: any, fixtures?: CustomFixture[]) {
+  return {
+    props: {
+      ...data,
+      fixtures,
+    },
+    revalidate: 60,
+  }
+}
 
+export async function getStaticProps() {
   const dateRange = {
     startDate: '2023-04-09',
     endDate: '2023-04-09',
   }
 
+  const data = await fetchHomepageData()
+
   try {
     const fixtures = await getFixtures(dateRange)
-    return {
-      props: {
-        competitions,
-        competitionsError,
-        news,
-        newsError,
-        fixtures,
-      },
-      revalidate: 60,
-    }
+    return buildProps(data, fixtures)
   } catch (error) {
     console.error('Error fetching fixture data:', error)
-    return {
-      props: {
-        competitions,
-        competitionsError,
-        news,
-        newsError,
-        fixtures: [],
-      },
-      revalidate: 60,
-    }
+    return buildProps(data)
   }
 }

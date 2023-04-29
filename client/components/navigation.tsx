@@ -48,7 +48,8 @@ export function Navigation({ user }: NavigationProps) {
                   textDecoration="none"
                   cursor="pointer"
                   _hover={{
-                    color: '#0e2aa8',
+                    color: '#3772ff',
+                    transition: 'color .2s',
                   }}
                   onClick={() => setActiveItem(id)}
                 >

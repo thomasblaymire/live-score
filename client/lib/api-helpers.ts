@@ -1,16 +1,9 @@
 import axios from 'axios'
 import { API_URL } from '../lib/constants'
 
-export const getMatchesByTeamName = async (
-  teamName: string | string[] | undefined
-) => {
-  const { data } = await axios.get(`${API_URL}/fixtures/${teamName}`)
-  return data
-}
-
 export const getStandings = async (leagueId: string) => {
   const { data } = await axios.get(`${API_URL}/league/${leagueId}`)
-  return data
+  return { data, error: null }
 }
 
 export const getFavourites = async () => {
@@ -54,15 +47,27 @@ export const getNews = async (): Promise<{
 }
 
 export const getNewsByTeam = async (
-  teamName: string | string[] | undefined,
+  teamName: string,
   page: number,
   limit: number
-) => {
-  const { data } = await axios.post(`${API_URL}/news/${teamName}`, {
-    page,
-    limit,
-  })
-  return data
+): Promise<{
+  data: Competitions[] | null
+  error: string | null
+}> => {
+  try {
+    const { data } = await axios.get(
+      `${API_URL}/news/team?name=${teamName}&page=${page}&limit=${limit}`
+    )
+    return { data, error: null }
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Error fetching data:', error.message)
+      return { data: null, error: error.message }
+    } else {
+      console.error('Error fetching data:', error)
+      return { data: null, error: 'An unknown error occurred' }
+    }
+  }
 }
 
 export const getCompetitions = async (): Promise<{
@@ -103,4 +108,22 @@ export const getTeams = async (): Promise<{
 
 export function isClient() {
   return typeof window !== 'undefined'
+}
+
+export async function fetchHomepageData() {
+  const premierLeagueCode = '39'
+  const [competitionsResponse, newsResponse, standingsResponse] =
+    await Promise.all([
+      getCompetitions(),
+      getNews(),
+      getStandings(premierLeagueCode),
+    ])
+  return {
+    competitions: competitionsResponse.data,
+    competitionsError: competitionsResponse.error,
+    news: newsResponse.data,
+    newsError: newsResponse.error,
+    standings: standingsResponse.data,
+    standingsErrror: standingsResponse.error,
+  }
 }
