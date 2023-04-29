@@ -1,3 +1,9 @@
+/**
+ * Sets a cookie with the specified name, value, and options.
+ * @param name - The name of the cookie
+ * @param value - The value of the cookie
+ * @param options - An object containing additional options for the cookie
+ */
 function setCookie(
   name: string,
   value: string,
@@ -31,6 +37,11 @@ function setCookie(
   document.cookie = updatedCookie
 }
 
+/**
+ * Gets the value of the specified cookie.
+ * @param name - The name of the cookie
+ * @returns The value of the cookie or undefined if not found
+ */
 function getCookie(name: string) {
   const matches = document.cookie.match(
     new RegExp(
@@ -42,6 +53,10 @@ function getCookie(name: string) {
   return matches ? decodeURIComponent(matches[1]) : undefined
 }
 
+/**
+ * Deletes the specified cookie.
+ * @param name - The name of the cookie
+ */
 function deleteCookie(name: string) {
   setCookie(name, '', { expires: -1 })
 }
