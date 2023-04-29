@@ -8,11 +8,6 @@ import { Card } from '../../components/card'
 import { TopScorers } from '../../components/top-scorers'
 import { Loading } from '../../components/loading'
 
-interface LeagueProps {
-  league: League
-  topScorers: TopScorer[]
-}
-
 export default function League() {
   const router = useRouter()
   const { id } = router.query
@@ -21,6 +16,8 @@ export default function League() {
     queryKey: ['standings'],
     queryFn: () => getStandings('39'),
   })
+
+  console.log('debug data', data)
 
   return (
     <Box>
@@ -32,12 +29,6 @@ export default function League() {
       >
         {data && (
           <Flex direction="column" gap="1rem" width="1200px" margin="0 auto">
-            <Image
-              src={data.league.logo}
-              alt={data.league.name}
-              width={80}
-              height={80}
-            />
             <Heading
               color="white"
               fontFamily="inherit"
@@ -45,7 +36,7 @@ export default function League() {
               fontSize="3rem"
               lineHeight="1"
             >
-              {data.league.name}
+              {data.data.league[0].group}
             </Heading>
           </Flex>
         )}
@@ -61,7 +52,11 @@ export default function League() {
               height="45vh"
               radius="15px"
             >
-              {/* <StandingsTable leagueId="39" width="50vw" /> */}
+              <StandingsTable
+                leagueId="39"
+                width="50vw"
+                standings={data?.data}
+              />
             </Card>
           </Box>
           <Card
@@ -71,7 +66,7 @@ export default function League() {
             height="45vh"
             radius="15px"
           >
-            {data ? <TopScorers players={data.topScorers} /> : null}
+            {data ? <TopScorers players={data?.data.topScorers} /> : null}
           </Card>
         </Flex>
       </Box>
