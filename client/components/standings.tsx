@@ -1,6 +1,4 @@
 import Image from 'next/image'
-import { useQuery } from '@tanstack/react-query'
-import { getStandings } from '../lib/api-helpers'
 import { useRouter } from 'next/router'
 import {
   Table,
@@ -13,30 +11,24 @@ import {
   Flex,
   Text,
   Box,
-  Center,
 } from '@chakra-ui/react'
 import { SkeletonLoading } from './skeleton'
-import { Loading } from './loading'
 
 interface StandingsProps {
   size?: string
   width?: string
   leagueId?: string
+  standings: Standings
 }
 
 export function StandingsTable({
   size,
   width,
   leagueId = '39',
+  standings,
 }: StandingsProps) {
   const router = useRouter()
-
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['standings'],
-    queryFn: () => getStandings(leagueId),
-  })
-
-  const standingData = data?.league.standings[0]
+  const isLoading = false
 
   const handleTeamSelection = (
     event: React.MouseEvent<HTMLTableRowElement, MouseEvent>,
@@ -44,21 +36,15 @@ export function StandingsTable({
   ) => {
     event.preventDefault()
     const name = `${team.name}`.replace(/\s+/g, '_').toLowerCase()
-    router.push(
-      {
-        pathname: `/team/${name}`,
-        query: { code: team.id },
-      },
-      `/team/${name}`
-    )
+    const id = team.id
+    router.push(`/team/${name}/${id}`)
   }
 
   return (
     <Box width={width}>
       <TableContainer overflowX="scroll">
         <SkeletonLoading loading={isLoading} ammount={12} height="35px" />
-
-        {standingData && (
+        {standings && (
           <Table
             variant="unstyled"
             color="white"
@@ -78,7 +64,7 @@ export function StandingsTable({
             </Thead>
             <Tbody>
               <SkeletonLoading loading={isLoading} ammount={12} height="35px" />
-              {standingData.map((standing: Standings, i: number) => (
+              {standings.league.map((standing: Standings, i: number) => (
                 <Tr
                   sx={{
                     transition: 'all .3s',

@@ -37,6 +37,8 @@ export const useFixtures = (
   dateRange: FixtureDateRange,
   initialFixtures?: CustomFixture[]
 ): UseFixturesResult => {
+  console.log('debug dateRange', dateRange)
+
   const query = useQuery(
     ['fixtures', dateRange],
     () => getFixtures(dateRange),

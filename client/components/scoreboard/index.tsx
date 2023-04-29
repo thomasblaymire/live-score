@@ -28,6 +28,7 @@ interface ScoreBoardProps {
 export function ScoreBoard({ initialFixtures }: ScoreBoardProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null)
   const [showDatePicker, setShowDatePicker] = useState(false)
+  const [loadingState, setLoadingState] = useState(true)
   //const today = formatDate(new Date())
 
   const [dateRange, setDateRange] = useState<FixtureDateRange>({

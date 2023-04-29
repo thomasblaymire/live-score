@@ -38,8 +38,6 @@ export default function TeamPage({ fixtures }: TeamPageProps) {
 
   const displayedFixtures = currentPage === 1 ? fixtures : fetchedFixtures
 
-  console.log('debug displayedFixtures', displayedFixtures)
-
   const handlePagination = (direction: 'next' | 'prev') => {
     const nextPage = direction === 'next' ? currentPage + 1 : currentPage - 1
 
@@ -70,22 +68,48 @@ export default function TeamPage({ fixtures }: TeamPageProps) {
         </Flex>
       </Box>
 
-      <Box
-        style={{
-          maxWidth: 1400,
-          marginLeft: 'auto',
-          marginRight: 'auto',
-        }}
-      >
-        {isLoading ? (
-          <Text>Loading...</Text>
-        ) : error ? (
-          <Text>Error: {error}</Text>
-        ) : (
-          <TeamFixtures fixtures={displayedFixtures} />
-        )}
+      <Flex gap="2rem" width="1200px" margin="0 auto" marginTop="4rem">
+        <Box flex={1.5} flexWrap="wrap">
+          <Box>
+            <Card
+              heading="Fixtures"
+              headingAlign="left"
+              background="#121212"
+              height="45vh"
+              radius="15px"
+            >
+              <TeamFixtures fixtures={displayedFixtures} />
+            </Card>
+          </Box>
+        </Box>
 
-        {/* <Box width="40%">
+        <Box flex={1}>
+          <Box marginBottom="2rem">
+            <Card
+              heading="Manager"
+              headingAlign="left"
+              background="#121212"
+              height="45vh"
+              radius="15px"
+            >
+              TBC
+            </Card>
+          </Box>
+          <Box marginBottom="2rem">
+            <Card
+              heading="Top Players"
+              headingAlign="left"
+              background="#121212"
+              height="45vh"
+              radius="15px"
+            >
+              TBC
+            </Card>
+          </Box>
+        </Box>
+      </Flex>
+
+      {/* <Box width="40%">
           <Card
             heading="News"
             headingAlign="left"
@@ -93,14 +117,13 @@ export default function TeamPage({ fixtures }: TeamPageProps) {
             height="45vh"
             radius="15px"
           > */}
-        {/* {news.data.map((article: any, i: number) => (
+      {/* {news.data.map((article: any, i: number) => (
                 <Box fontSize="0.75rem" color="white" padding="1rem" key={i}>
                   {article.title}
                 </Box>
               ))} */}
-        {/* </Card>
+      {/* </Card>
         </Box> */}
-      </Box>
     </>
   )
 }

@@ -3,7 +3,7 @@ import { API_URL } from '../lib/constants'
 
 export const getStandings = async (leagueId: string) => {
   const { data } = await axios.get(`${API_URL}/league/${leagueId}`)
-  return data
+  return { data, error: null }
 }
 
 export const getFavourites = async () => {
@@ -108,4 +108,22 @@ export const getTeams = async (): Promise<{
 
 export function isClient() {
   return typeof window !== 'undefined'
+}
+
+export async function fetchHomepageData() {
+  const premierLeagueCode = '39'
+  const [competitionsResponse, newsResponse, standingsResponse] =
+    await Promise.all([
+      getCompetitions(),
+      getNews(),
+      getStandings(premierLeagueCode),
+    ])
+  return {
+    competitions: competitionsResponse.data,
+    competitionsError: competitionsResponse.error,
+    news: newsResponse.data,
+    newsError: newsResponse.error,
+    standings: standingsResponse.data,
+    standingsErrror: standingsResponse.error,
+  }
 }

@@ -14,11 +14,23 @@ import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa'
 
 const ListHeader = ({ children }: { children: ReactNode }) => {
   return (
-    <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
+    <Text fontWeight={'500'} fontSize={'lg'} mb={2} color="#fcfcfd">
       {children}
     </Text>
   )
 }
+
+const CustomLink = ({
+  href,
+  children,
+}: {
+  href: string
+  children: ReactNode
+}) => (
+  <Link href={href} color="#777e90" _hover={{ color: '#3772ff;' }}>
+    {children}
+  </Link>
+)
 
 const SocialButton = ({
   children,
@@ -42,9 +54,7 @@ const SocialButton = ({
       alignItems={'center'}
       justifyContent={'center'}
       transition={'background 0.3s ease'}
-      _hover={{
-        bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
-      }}
+      _hover={{ fill: '#3772ff' }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
       {children}
@@ -54,30 +64,33 @@ const SocialButton = ({
 
 export function Footer() {
   return (
-    <Box bg="#121212" color={useColorModeValue('gray.700', 'gray.200')}>
-      <Container as={Stack} maxW={'6xl'} py={10}>
+    <Box
+      borderTop="solid 1px #353945"
+      color={useColorModeValue('gray.700', 'gray.200')}
+    >
+      <Container as={Stack} maxW="6xl" py={10}>
         <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
-          <Stack align={'flex-start'}>
+          <Stack align="flex-start">
             <ListHeader>Company</ListHeader>
-            <Link href={'#'}>About Us</Link>
-            <Link href={'#'}>Blog</Link>
-            <Link href={'#'}>Careers</Link>
-            <Link href={'#'}>Contact Us</Link>
+            <CustomLink href="#">About Us</CustomLink>
+            <CustomLink href="#">Blog</CustomLink>
+            <CustomLink href="#">Careers</CustomLink>
+            <CustomLink href="#">Contact Us</CustomLink>
           </Stack>
 
-          <Stack align={'flex-start'}>
+          <Stack align="flex-start">
             <ListHeader>Support</ListHeader>
-            <Link href={'#'}>Help Center</Link>
-            <Link href={'#'}>Safety Center</Link>
-            <Link href={'#'}>Community Guidelines</Link>
+            <CustomLink href="#">Help Center</CustomLink>
+            <CustomLink href="#">Safety Center</CustomLink>
+            <CustomLink href="#">Community Guidelines</CustomLink>
           </Stack>
 
-          <Stack align={'flex-start'}>
+          <Stack align="flex-start">
             <ListHeader>Legal</ListHeader>
-            <Link href={'#'}>Cookies Policy</Link>
-            <Link href={'#'}>Privacy Policy</Link>
-            <Link href={'#'}>Terms of Service</Link>
-            <Link href={'#'}>Law Enforcement</Link>
+            <CustomLink href="#">Cookies Policy</CustomLink>
+            <CustomLink href="#">Privacy Policy</CustomLink>
+            <CustomLink href="#">Terms of Service</CustomLink>
+            <CustomLink href="#">Law Enforcement</CustomLink>
           </Stack>
         </SimpleGrid>
       </Container>
@@ -92,16 +105,16 @@ export function Footer() {
           justify={{ md: 'space-between' }}
           align={{ md: 'center' }}
         >
-          <Text>© 2022 Live Score. All rights reserved</Text>
+          <Text color="#777e90">© 2023 Live Score. All rights reserved</Text>
           <Stack direction={'row'} spacing={6}>
             <SocialButton label={'Twitter'} href={'#'}>
-              <FaTwitter />
+              <FaTwitter fill="#777e90" />
             </SocialButton>
             <SocialButton label={'YouTube'} href={'#'}>
-              <FaYoutube />
+              <FaYoutube fill="#777e90" />
             </SocialButton>
             <SocialButton label={'Instagram'} href={'#'}>
-              <FaInstagram />
+              <FaInstagram fill="#777e90" />
             </SocialButton>
           </Stack>
         </Container>
