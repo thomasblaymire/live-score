@@ -13,6 +13,7 @@ import {
   Box,
 } from '@chakra-ui/react'
 import { SkeletonLoading } from './skeleton'
+import { ErrorState } from './error'
 
 interface StandingsProps {
   size?: string
@@ -21,12 +22,7 @@ interface StandingsProps {
   standings: Standings
 }
 
-export function StandingsTable({
-  size,
-  width,
-  leagueId = '39',
-  standings,
-}: StandingsProps) {
+export function StandingsTable({ size, width, standings }: StandingsProps) {
   const router = useRouter()
   const isLoading = false
 
@@ -40,11 +36,15 @@ export function StandingsTable({
     router.push(`/team/${name}/${id}`)
   }
 
+  if (!standings || !Array.isArray(standings.league)) {
+    return <ErrorState message="Standings data is not available." />
+  }
+
   return (
     <Box width={width}>
       <TableContainer overflowX="scroll">
         <SkeletonLoading loading={isLoading} ammount={12} height="35px" />
-        {standings && (
+        {standings.league && (
           <Table
             variant="unstyled"
             color="white"
