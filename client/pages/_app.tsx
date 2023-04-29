@@ -10,7 +10,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { theme } from '../styles/theme'
 import type { AppProps } from 'next/app'
 import type { NextComponentType } from 'next'
-import { DM_Sans } from '@next/font/google'
+import { DM_Sans } from 'next/font/google'
 import 'reset-css'
 
 const dm_Sans = DM_Sans({
