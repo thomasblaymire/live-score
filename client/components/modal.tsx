@@ -8,6 +8,7 @@ import {
   ModalCloseButton,
   ModalFooter,
   Button,
+  Box,
 } from '@chakra-ui/react'
 
 interface ModalElementProps {
@@ -24,13 +25,18 @@ export function ModalElement({
   children,
 }: ModalElementProps) {
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} motionPreset="none">
       <ModalOverlay />
-      <ModalContent background="#121212">
-        {title ? <ModalHeader>{title}</ModalHeader> : null}
-        <ModalCloseButton />
-        <ModalBody>{children}</ModalBody>
-      </ModalContent>
+      <Box mx={4}>
+        <ModalContent background="#121212">
+          <Box paddingBottom="3rem">
+            {title ? <ModalHeader>{title}</ModalHeader> : null}
+            <ModalCloseButton />
+          </Box>
+
+          <ModalBody paddingBottom="2rem">{children}</ModalBody>
+        </ModalContent>
+      </Box>
     </Modal>
   )
 }
