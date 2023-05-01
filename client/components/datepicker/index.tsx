@@ -45,11 +45,14 @@ export function DatePicker({
         customInput={
           <IconButton
             background="transparent"
+            _hover={{ background: 'transparent' }}
             sx={{
-              '&:hover': {
+              '&:hover svg': {
                 background: 'transparent',
+                fill: '#3772ff',
               },
             }}
+            minWidth="initial"
             aria-label="Open calendar"
             icon={<BsFillCalendarEventFill />}
             onClick={() => setShowDatePicker(!showDatePicker)}

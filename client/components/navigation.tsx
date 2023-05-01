@@ -72,11 +72,14 @@ export function Navigation({ user }: NavigationProps) {
             aria-label="Mobile Navigation"
             icon={<RxHamburgerMenu />}
             onClick={onOpen}
+            minWidth="initial"
             data-test="hamburger-button"
-            background="#313131"
+            background="transparent"
             _hover={{
-              bg: '#313131',
+              bg: 'transparent',
             }}
+            fontSize="20px"
+            color="white"
           />
           {isOpen && (
             <ModalElement isOpen={isOpen} onClose={onClose}>
