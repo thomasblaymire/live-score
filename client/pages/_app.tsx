@@ -11,6 +11,7 @@ import { theme } from '../styles/theme'
 import type { AppProps } from 'next/app'
 import type { NextComponentType } from 'next'
 import { DM_Sans } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/react'
 import 'reset-css'
 
 const dm_Sans = DM_Sans({
@@ -46,6 +47,7 @@ export default function App({
                   <Component {...pageProps} />
                 </>
               )}
+              <Analytics />
             </main>
 
             <ReactQueryDevtools initialIsOpen={false} />
