@@ -15,7 +15,8 @@ export function MatchCard({ match }: MatchCardProps) {
       minHeight="150px"
       padding="1rem"
       color="white"
-      background="gray.900"
+      background="#121212"
+      border="solid 1px #353945"
       _hover={{ background: '#313131' }}
     >
       <Text align="center" paddingBottom="2rem" color="#888">

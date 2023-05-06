@@ -120,8 +120,11 @@ export default function Teams({ teams, error }: TeamsProps) {
                 cursor="pointer"
                 padding="1rem"
                 color="white"
-                background="gray.900"
-                bg={index === selectedItemIndex ? '#1a1a1a' : 'gray.900'}
+                background="#121212"
+                border="solid 1px #353945"
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
                 sx={{
                   '&:hover': {
                     bg: '#1a1a1a',
@@ -141,7 +144,7 @@ export default function Teams({ teams, error }: TeamsProps) {
                     width="55"
                     height="30"
                     sizes="100vw"
-                    style={{ width: '30%', height: 'auto' }}
+                    style={{ width: '45%', height: 'auto' }}
                     alt={team.name}
                   />
                   <Text paddingTop="0.5rem">{team.name}</Text>
