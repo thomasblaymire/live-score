@@ -23,7 +23,7 @@ export function MatchList({ matches }: MatchListProps) {
           </Heading>
           <Grid
             templateColumns={{
-              base: 'repeat(2, 1fr)',
+              base: '1fr',
               md: 'repeat(3, 1fr)',
             }}
             gap="1rem"
