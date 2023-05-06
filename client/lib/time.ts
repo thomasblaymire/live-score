@@ -43,4 +43,48 @@ function getCurrentDate(date: Date): string {
   return `${year}-${month}-${day}`
 }
 
-export { parse, formatUTCDate, formatDate, getCurrentDate }
+/**
+ * Returns the week number of a date
+ * @param date - A Date object
+ * @returns A formatted date string
+ */
+function getWeekNumber(date: Date) {
+  const firstDayOfYear = new Date(date.getFullYear(), 0, 1)
+  const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000
+  return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7)
+}
+
+/**
+ * Generates an object containing the current date and the date N months from now.
+ *
+ * @param {number} monthsToAdd The number of months to add to the current date.
+ * @returns {Object} An object containing the start and end dates as "YYYY-MM-DD" strings.
+ */
+function getDateRange(monthsToAdd: number) {
+  // Create a new Date object for the current date
+  const currentDate = new Date()
+  // Format the current date as a string in the format "YYYY-MM-DD"
+  const startDate = currentDate.toISOString().split('T')[0]
+
+  // Create a new Date object for the end date
+  const endDateDate = new Date()
+  // Add the specified number of months to the current date
+  endDateDate.setMonth(currentDate.getMonth() + monthsToAdd)
+  // Format the end date as a string in the format "YYYY-MM-DD"
+  const endDate = endDateDate.toISOString().split('T')[0]
+
+  // Return the date range object
+  return {
+    startDate,
+    endDate,
+  }
+}
+
+export {
+  parse,
+  formatUTCDate,
+  formatDate,
+  getCurrentDate,
+  getDateRange,
+  getWeekNumber,
+}
