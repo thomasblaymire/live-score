@@ -51,7 +51,10 @@ export function Navigation({ user }: NavigationProps) {
                     color: '#3772ff',
                     transition: 'color .2s',
                   }}
-                  onClick={() => setActiveItem(id)}
+                  onClick={() => {
+                    setActiveItem(id)
+                    !isTablet && onClose()
+                  }}
                 >
                   {icon}
                   {name}
