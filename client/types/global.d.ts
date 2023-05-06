@@ -600,6 +600,8 @@ interface CustomVenue {
   city: string
 }
 
+type CustomMatchesByWeek = Record<string, CustomFixture[]>
+
 interface Score {
   halftime: Halftime
   fulltime: Fulltime
