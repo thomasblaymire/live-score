@@ -9,7 +9,7 @@ interface FixtureDateRange {
 
 interface UseFixturesResult {
   data: CustomFixture[] | undefined
-  isLoading: boolean
+  isFetching: boolean
   error: unknown
 }
 
@@ -52,7 +52,7 @@ export const useFixtures = (
 
   return {
     data: query.data,
-    isLoading: query.isLoading,
+    isFetching: query.isFetching,
     error: query.error,
   }
 }

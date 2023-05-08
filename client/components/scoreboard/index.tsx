@@ -38,7 +38,7 @@ export function ScoreBoard({ initialFixtures }: ScoreBoardProps) {
 
   const {
     data: fixtures,
-    isLoading,
+    isFetching,
     error,
   } = useFixtures(dateRange, initialFixtures)
 
@@ -109,15 +109,13 @@ export function ScoreBoard({ initialFixtures }: ScoreBoardProps) {
         <TabPanels>
           <TabPanel padding="0 1rem 1rem 1rem">
             <Box>
-              <SkeletonLoading
-                loading={isLoading}
-                ammount={12}
-                height="70px"
-                borderRadius="5px"
-              />
               {error && <ErrorState />}
               {fixtures ? (
-                <ScoreBoardList fixtures={fixtures} error={error} />
+                <ScoreBoardList
+                  fixtures={fixtures}
+                  isFetching={isFetching}
+                  error={error}
+                />
               ) : null}
             </Box>
           </TabPanel>

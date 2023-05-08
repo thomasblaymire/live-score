@@ -71,7 +71,7 @@ export function Search({ isOpen, onClose }: SearchProps) {
               </Box>
               <Box marginTop="1rem" borderRadius="10px" background="#212121">
                 <Center>
-                  <Loading loading={isLoading} />
+                  <Loading loading={isLoading} size="md" />
                 </Center>
                 {error ? <ErrorState /> : null}
                 {searchResults ? (

@@ -10,7 +10,7 @@ export const Loading = ({ loading = true, size = 'lg' }: LoadingProps) => {
   return (
     <Spinner
       thickness="4px"
-      speed="0.65s"
+      speed="0.5s"
       emptyColor="gray.200"
       data-test="loading-spinner"
       color="#3772ff"
