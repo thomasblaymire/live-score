@@ -40,7 +40,7 @@ export function Header({ isBasic }: HeaderProps) {
     <header>
       <Search isOpen={isOpen} onClose={onClose} />
       <Box
-        height="5rem"
+        height={isMobile ? '4rem' : '5rem'}
         position="sticky"
         padding={isMobile ? 4 : undefined}
         borderBottom="solid 1px #353945"

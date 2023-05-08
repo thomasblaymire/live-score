@@ -21,12 +21,14 @@ export default function Match() {
   return (
     <Box
       marginTop={{ base: '1rem', md: '3rem' }}
-      width="1200px"
+      width={{ base: 'unset', md: '1200px' }}
       height="400vh"
       margin="0 auto"
     >
-      <Box marginBottom="2.5rem">{data ? <ScoreCard data={data} /> : null}</Box>
-      <Flex justifyContent="center" gap="1.5rem">
+      <Box margin="1rem" marginBottom="2.5rem">
+        {data ? <ScoreCard data={data} /> : null}
+      </Box>
+      {/* <Flex justifyContent="center" gap="1.5rem">
         <Box flex={1}>
           <Box marginBottom="2.5rem">
             {data?.lineups && (
@@ -91,7 +93,7 @@ export default function Match() {
               <Formations formation={[4, 4, 2]} />
             </Card>
           </Box> */}
-          <Box marginBottom="2.5rem">
+      {/* <Box marginBottom="2.5rem">
             <Card
               heading="Stats"
               headingAlign="center"
@@ -110,9 +112,9 @@ export default function Match() {
             >
               <Player embedId={`${youtubeID}`} />
             </Card>
-          </Box>
-        </Box>
-      </Flex>
+          </Box> */}
+      {/* </Box>
+      </Flex>  */}
     </Box>
   )
 }

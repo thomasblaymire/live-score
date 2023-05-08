@@ -18,7 +18,7 @@ export function ScoreBoardList({ fixtures }: ScoreBoardLiveProps) {
       {fixtures.length === 0 ? (
         <ScoreBoardEmpty />
       ) : (
-        fixtures.map((fixture: any, index: number) => {
+        fixtures.map((fixture: CustomFixture, index: number) => {
           const { id, homeTeam, awayTeam, goals } = fixture
           return (
             <Link
@@ -36,7 +36,6 @@ export function ScoreBoardList({ fixtures }: ScoreBoardLiveProps) {
               key={id}
             >
               <Box
-                marginBottom={{ base: '1rem', md: '0' }}
                 fontSize={{ base: '1rem', md: '1.25rem' }}
                 fontWeight="600"
                 color="white"
@@ -52,7 +51,10 @@ export function ScoreBoardList({ fixtures }: ScoreBoardLiveProps) {
                 <LinkBox
                   display="flex"
                   padding={{ base: '0.5rem 1rem' }}
-                  marginBottom={index === fixtures.length - 1 ? '0rem' : '1rem'}
+                  marginBottom={{
+                    base: index === fixtures.length - 1 ? '0rem' : '0.5rem',
+                    sm: index === fixtures.length - 1 ? '0rem' : '1rem',
+                  }}
                   fontWeight="500"
                 >
                   <Box

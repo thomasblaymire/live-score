@@ -58,7 +58,11 @@ export function ScoreBoard({ initialFixtures }: ScoreBoardProps) {
       border={{ base: 'none', md: 'solid 1px #353945' }}
       margin="0 auto"
     >
-      <Tabs isFitted variant="soft-rounded" colorScheme="red">
+      <Tabs
+        isFitted
+        variant="soft-rounded"
+        height={{ base: 'auto', xs: '100vh', md: 'initial' }}
+      >
         <Box
           display="flex"
           alignItems="center"

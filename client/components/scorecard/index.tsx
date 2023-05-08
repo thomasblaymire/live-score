@@ -4,8 +4,11 @@ import {
   CardBody,
   CardFooter,
   Avatar,
+  Flex,
+  Box,
+  Text,
+  useMediaQuery,
 } from '@chakra-ui/react'
-import { Flex, Box, Text } from '@chakra-ui/layout'
 import { Status } from '../status'
 import { formatUTCDate } from '../../lib/time'
 import { BiTime } from 'react-icons/bi'
@@ -13,6 +16,7 @@ import { MdOutlineStadium } from 'react-icons/md'
 import { GiWhistle } from 'react-icons/gi'
 import { FiShare2 } from 'react-icons/fi'
 import { ScoreCardDetail } from './scorecard-details'
+import NextImage from 'next/image'
 
 interface ScoreTeam {
   id: number
@@ -41,6 +45,8 @@ interface ScoreCardProps {
 export function ScoreCard({
   data: { league, teams, goals, fixture },
 }: ScoreCardProps) {
+  const [isLargerThanMobile] = useMediaQuery('(min-width: 768px)')
+
   const scoreCardData = [
     {
       icon: <BiTime />,
@@ -57,60 +63,83 @@ export function ScoreCard({
   ]
 
   return (
-    <Card width="80%" margin="0 auto" background="#121212" borderRadius="15px">
-      <CardHeader
-        display="flex"
-        justifyContent="space-between"
-        alignItems="center"
-        paddingY="1.5rem"
-        color="white"
-      >
-        <Status status={fixture.status} />
+    <Card
+      width={{ base: 'unset', md: '80%' }}
+      margin="0 auto"
+      background="#1b1b1b"
+      borderRadius="15px"
+    >
+      {isLargerThanMobile && (
+        <CardHeader
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          paddingY="1.5rem"
+          color="white"
+        >
+          <Status status={fixture.status} />
+          <Box display="flex" alignItems="center">
+            <Avatar
+              name="League"
+              size="sm"
+              marginBottom="0.5rem"
+              src={league.logo}
+              marginRight="0.5rem"
+            />
+            {league.name}
+          </Box>
+          <Box>
+            <FiShare2 />
+          </Box>
+        </CardHeader>
+      )}
 
-        <Box display="flex" alignItems="center">
-          <Avatar
-            name="League"
-            size="sm"
-            marginBottom="0.5rem"
-            src={league.logo}
-            marginRight="0.5rem"
-          />
-          {league.name}
-        </Box>
-        <Box>
-          <FiShare2 />
-        </Box>
-      </CardHeader>
-      <CardBody color="white" paddingY="2.5rem">
+      <CardBody color="white" paddingY={{ base: '1rem', md: '2.5rem' }}>
         <Flex justifyContent="center" width="100%">
-          <Flex alignItems="center" width="100%" justifyContent="space-evenly">
+          <Flex width="100%" justifyContent="space-evenly">
             <Flex alignItems="center" direction="column">
-              <Avatar
-                name={teams.home.name}
-                size="lg"
-                marginBottom="0.5rem"
+              <NextImage
                 src={teams.home.logo}
+                width="0"
+                height="0"
+                style={{ width: '30%', height: 'auto', marginBottom: '0.5rem' }}
+                alt={teams.home.name}
               />
-              <Text display="table" width="100px" textAlign="center">
+              <Text
+                display="table"
+                width={{ base: 'unset', sm: '100px' }}
+                textAlign="center"
+                margin={{ base: 'unset', sm: '0 1rem 0 0.5rem' }}
+                fontSize={{ base: '0.9rem', md: 'initial' }}
+              >
                 {teams.home.name}
               </Text>
             </Flex>
 
-            <Box>
-              <Flex fontSize="2rem" fontWeight="bold">
-                <Box paddingRight="1rem">{goals.home}</Box>-
-                <Box paddingLeft="1rem">{goals.away}</Box>
-              </Flex>
-            </Box>
+            <Text
+              fontSize="1.5rem"
+              fontWeight="bold"
+              as="span"
+              textAlign="center"
+              mb="10px"
+              minWidth="55px"
+            >{`${goals.home} - ${goals.away}`}</Text>
 
             <Flex alignItems="center" direction="column">
-              <Avatar
-                name={teams.away.name}
-                size="lg"
-                marginBottom="0.5rem"
+              <NextImage
                 src={teams.away.logo}
+                width="0"
+                height="0"
+                style={{ width: '30%', height: 'auto', marginBottom: '0.5rem' }}
+                alt={teams.away.name}
               />
-              <Text display="table" width="100px" textAlign="center">
+              <Text
+                display="table"
+                width={{ base: 'unset', sm: '100px' }}
+                textAlign="center"
+                margin={{ base: 'unset', sm: '0 1rem 0 0.5rem' }}
+                fontSize={{ base: '0.9rem', md: 'initial' }}
+              >
                 {teams.away.name}
               </Text>
             </Flex>
@@ -118,20 +147,22 @@ export function ScoreCard({
         </Flex>
       </CardBody>
 
-      <CardFooter
-        justify="space-between"
-        color="white"
-        paddingY="1.5rem"
-        sx={{
-          '& > button': {
-            minW: '136px',
-          },
-        }}
-      >
-        {scoreCardData.map((item, i) => (
-          <ScoreCardDetail key={i} detail={item.detail} icon={item.icon} />
-        ))}
-      </CardFooter>
+      {isLargerThanMobile && (
+        <CardFooter
+          justify="space-between"
+          color="white"
+          paddingY="1.5rem"
+          sx={{
+            '& > button': {
+              minW: '136px',
+            },
+          }}
+        >
+          {scoreCardData.map((item, i) => (
+            <ScoreCardDetail key={i} detail={item.detail} icon={item.icon} />
+          ))}
+        </CardFooter>
+      )}
     </Card>
   )
 }

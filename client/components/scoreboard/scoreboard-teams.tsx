@@ -9,7 +9,7 @@ interface ScoreBoardTeamsProps {
 export function ScoreBoardTeams({ homeTeam, awayTeam }: ScoreBoardTeamsProps) {
   return (
     <Box display="flex" flexDirection="column" flex=" 1 1" minWidth="0">
-      <Box display="flex" marginBottom="10px">
+      <Box display="flex" marginBottom="0.25rem">
         <NextImage
           src={homeTeam.logo}
           color="white"

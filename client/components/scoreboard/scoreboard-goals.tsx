@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/react'
 
 interface ScoreBoardGoalsProps {
-  homeGoals: string
-  awayGoals: string
+  homeGoals: number
+  awayGoals: number
 }
 
 export function ScoreBoardGoals({

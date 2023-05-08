@@ -7,6 +7,7 @@ import { CompetitionList } from '../components/competition-list'
 import { getFixtures } from '../hooks/useFixtures'
 import { StandingsTable } from '../components/standings'
 import { HeroCard } from '../components/hero-card'
+import { SEO } from '../components/seo'
 import { News } from '../components/news'
 import { Card } from '../components/card'
 import { Footer } from '../components/footer'
@@ -32,6 +33,11 @@ export default function Home({
 
   return (
     <>
+      <SEO
+        title="Current Score"
+        description="Keep track of all the latest football scores, results and standings from around the world."
+        keywords="football, soccer, standings, matches"
+      />
       <Box
         width={{
           md: '720px',

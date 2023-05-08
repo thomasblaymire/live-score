@@ -1,5 +1,4 @@
 import { Box, Text } from '@chakra-ui/react'
-import Image from 'next/image'
 import { Circle } from '@chakra-ui/react'
 
 interface Player {
