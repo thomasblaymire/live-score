@@ -21,8 +21,8 @@ export function MatchPlayers({
   return (
     <Card
       heading={heading ? heading : ''}
+      background="transparent"
       headingAlign="center"
-      background="#121212"
       height="45vh"
       radius="15px"
     >

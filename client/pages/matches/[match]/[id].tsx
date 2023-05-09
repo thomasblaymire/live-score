@@ -37,6 +37,8 @@ export default function Match() {
           events={data.events}
           lineups={data.lineups}
           teams={data.teams}
+          fixture={data.fixture}
+          league={data.league}
         />
       )}
 
@@ -64,12 +66,7 @@ export default function Match() {
               />
             </Box>
             <Box marginBottom="2.5rem">
-              <Card
-                heading="Events"
-                headingAlign="center"
-                background="#121212"
-                radius="15px"
-              >
+              <Card heading="Events" headingAlign="center" radius="15px">
                 {data.events ? (
                   <Timeline
                     matchEvents={data.events}
@@ -80,12 +77,7 @@ export default function Match() {
               </Card>
             </Box>
             <Box marginBottom="2.5rem">
-              <Card
-                heading="Stats"
-                headingAlign="center"
-                background="#121212"
-                radius="15px"
-              >
+              <Card heading="Data" headingAlign="center" radius="15px">
                 DATA
               </Card>
             </Box>
@@ -103,22 +95,12 @@ export default function Match() {
             </Card>
           </Box>  */}
             <Box marginBottom="2.5rem">
-              <Card
-                heading="Stats"
-                headingAlign="center"
-                background="#121212"
-                radius="15px"
-              >
+              <Card heading="Stats" headingAlign="center" radius="15px">
                 <Stats />
               </Card>
             </Box>
             <Box marginBottom="2.5rem">
-              <Card
-                heading="Highlights"
-                headingAlign="center"
-                background="#121212"
-                radius="15px"
-              >
+              <Card heading="Highlights" headingAlign="center" radius="15px">
                 {/* <Player embedId={`${youtubeID}`} /> */}
               </Card>
             </Box>
