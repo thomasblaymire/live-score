@@ -4,9 +4,9 @@ import { QueryClient, dehydrate } from '@tanstack/react-query'
 import { GetServerSideProps } from 'next'
 import { Flex, Box, Text } from '@chakra-ui/layout'
 import { Avatar, Heading, IconButton } from '@chakra-ui/react'
-import { Card } from '../../../components/card'
+import { Card } from '../../../components/ui/card'
 import { formatSlug } from '../../../lib/string'
-import { TeamFixtures } from '../../../components/team/team-fixtures'
+import { TeamFixtures } from '../../../components/features/team/team-fixtures'
 import { HiChevronRight, HiChevronLeft } from 'react-icons/hi'
 import {
   useTeamFixtures,

@@ -2,9 +2,9 @@ import React from 'react'
 import { mount } from 'cypress/react18'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ChakraProvider } from '@chakra-ui/react'
-import { CompetitionList } from '../../components/competition-list'
+import { StandingsList } from '../../components/features/standings/standings-list'
 
-describe('CompetitionList', () => {
+describe('StandingsList', () => {
   const competitions = [{}]
   const isLoading = false
 
@@ -18,7 +18,7 @@ describe('CompetitionList', () => {
     mount(
       <QueryClientProvider client={queryClient}>
         <ChakraProvider>
-          {/* <CompetitionList competitions={competitions} isLoading={isLoading} /> */}
+          {/* <StandingsList competitions={competitions} isLoading={isLoading} /> */}
         </ChakraProvider>
       </QueryClientProvider>
     )
@@ -30,7 +30,7 @@ describe('CompetitionList', () => {
     mount(
       <QueryClientProvider client={queryClient}>
         <ChakraProvider>
-          {/* <CompetitionList competitions={competitions} isLoading={isLoading} /> */}
+          {/* <StandingsList competitions={competitions} isLoading={isLoading} /> */}
         </ChakraProvider>
       </QueryClientProvider>
     )
@@ -43,7 +43,7 @@ describe('CompetitionList', () => {
     mount(
       <QueryClientProvider client={queryClient}>
         <ChakraProvider>
-          {/* <CompetitionList competitions={competitions} isLoading={isLoading} /> */}
+          {/* <StandingsList competitions={competitions} isLoading={isLoading} /> */}
         </ChakraProvider>
       </QueryClientProvider>
     )
@@ -57,7 +57,7 @@ describe('CompetitionList', () => {
     mount(
       <QueryClientProvider client={queryClient}>
         <ChakraProvider>
-          {/* <CompetitionList competitions={competitions} isLoading={isLoading} /> */}
+          {/* <StandingsList competitions={competitions} isLoading={isLoading} /> */}
         </ChakraProvider>
       </QueryClientProvider>
     )

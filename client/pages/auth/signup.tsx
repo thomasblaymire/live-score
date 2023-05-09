@@ -1,4 +1,4 @@
-import { SignupForm } from '../../components/forms/signup-form'
+import { SignupForm } from '../../components/features/user/signup-form'
 import { Box } from '@chakra-ui/react'
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 

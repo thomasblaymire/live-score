@@ -1,5 +1,5 @@
 import { GetServerSidePropsContext } from 'next'
-import { SigninForm } from '../../components/forms/signin-form'
+import { SigninForm } from '../../components/features/user/signin-form'
 import { Box, Center } from '@chakra-ui/react'
 import { getProviders, getSession } from 'next-auth/react'
 import {

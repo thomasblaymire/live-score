@@ -1,6 +1,6 @@
 import { AuthProvider } from '../context/auth-context'
 import { ChakraProvider } from '@chakra-ui/react'
-import { Header } from '../components/header'
+import { Header } from '../components/layout/header'
 import {
   Hydrate,
   QueryClient,

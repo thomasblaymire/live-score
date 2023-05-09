@@ -11,15 +11,15 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { Card } from '../../../components/card'
-import { Player } from '../../../components/player'
-import { LiveChat } from '../../../components/chat/live-chat'
-import { Stats } from '../../../components/stats'
-import { ScoreCard } from '../../../components/scorecard'
-import { Timeline } from '../../../components/timeline'
-import { Players } from '../../../components/players/players'
-import { Formations } from '../../../components/formations'
-import { Loading } from '../../../components/loading'
+import { Card } from '../../../components/ui/card'
+import { MatchVideo } from '../../../components/features/match/match-video'
+import { LiveChat } from '../../../components/features/chat/live-chat'
+import { Stats } from '../../../components/features/stats'
+import { ScoreCard } from '../../../components/features/scorecard'
+import { Timeline } from '../../../components/features/timeline'
+import { MatchPlayers } from '../../../components/features/match/match-players/match-players'
+import { Formations } from '../../../components/features/formations'
+import { Loading } from '../../../components/ui/loading'
 import { useMatch } from '../../../hooks/useMatch'
 
 export default function Match() {
@@ -115,7 +115,7 @@ export default function Match() {
               <Box>INFO</Box>
             </TabPanel>
             <TabPanel padding="0">
-              <Players
+              <MatchPlayers
                 homeTeam={data.lineups[0].team}
                 awayTeam={data.lineups[1].team}
                 homePlayers={data.lineups[0].startXI}
@@ -133,7 +133,7 @@ export default function Match() {
               <Stats />
             </TabPanel>
             <TabPanel padding="0">
-              <Player embedId={`${youtubeID}`} />
+              <MatchVideo embedId={`${youtubeID}`} />
             </TabPanel>
           </TabPanels>
         </Tabs>
@@ -144,7 +144,7 @@ export default function Match() {
           <Box flex={1}>
             <Box marginBottom="2.5rem">
               {data?.lineups && (
-                <Players
+                <MatchPlayers
                   heading="Lineups"
                   homeTeam={data.lineups[0].team}
                   awayTeam={data.lineups[1].team}
@@ -155,7 +155,7 @@ export default function Match() {
             </Box>
             <Box marginBottom="2.5rem">
               {data?.lineups ? (
-                <Players
+                <MatchPlayers
                   heading="Substitutes"
                   homeTeam={data.lineups[0].team}
                   awayTeam={data.lineups[1].team}
