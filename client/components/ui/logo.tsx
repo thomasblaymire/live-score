@@ -10,9 +10,7 @@ export function Logo() {
           src="/logo.svg"
           width={160}
           height={50}
-          sizes="100vw"
           priority
-          style={{ width: '100%', height: 'auto' }}
           alt="Currentscore Live Logo"
         />
       </Link>
