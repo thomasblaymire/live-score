@@ -799,3 +799,7 @@ interface Player4 {
   team: Team4
   players: Player5[]
 }
+
+interface Tab {
+  title: string
+}

@@ -33,13 +33,13 @@ export const Timeline = ({
     switch (event.type) {
       case 'Goal':
         return (
-          <MilestoneItem icon={RiFootballLine} last={isLast}>
+          <MilestoneItem icon={RiFootballLine} last={isLast} key={index}>
             Goal {event.player.name} ({event.time.elapsed})
           </MilestoneItem>
         )
       case 'subst':
         return (
-          <MilestoneItem icon={BiTransfer} last={isLast}>
+          <MilestoneItem icon={BiTransfer} last={isLast} key={index}>
             Substitute ({event.time.elapsed})
             <Flex>
               <Box>{event.assist.name} -</Box>
@@ -49,7 +49,7 @@ export const Timeline = ({
         )
       case 'Card':
         return (
-          <MilestoneItem icon={RiFootballLine} last={isLast}>
+          <MilestoneItem icon={RiFootballLine} last={isLast} key={index}>
             Card {event.player.name} ({event.time.elapsed})
           </MilestoneItem>
         )
@@ -93,7 +93,7 @@ const MilestoneItem: React.FC<MilestoneItemProps> = ({
 }) => {
   const color = useColorModeValue('gray.700', 'gray.500')
   return (
-    <Flex minH={20} {...props}>
+    <Flex minH={20} {...props} color="white">
       <Flex flexDir="column" alignItems="center" mr={4} pos="relative">
         <Circle
           size={6}

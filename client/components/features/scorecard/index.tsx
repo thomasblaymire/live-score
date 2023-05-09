@@ -9,8 +9,9 @@ import {
   Text,
   useMediaQuery,
 } from '@chakra-ui/react'
-import { Status } from '../scoreboard/scoreboard-status-legacy'
+import { ScoreboardStatus } from '../scoreboard/scoreboard-status-legacy'
 import { formatUTCDate } from '../../../lib/time'
+import { formatTeamNameString } from '../../../lib/string'
 import { BiTime } from 'react-icons/bi'
 import { MdOutlineStadium } from 'react-icons/md'
 import { GiWhistle } from 'react-icons/gi'
@@ -78,7 +79,7 @@ export function ScoreCard({
           paddingY="1.5rem"
           color="white"
         >
-          <Status status={fixture.status} />
+          <ScoreboardStatus status={fixture.status} />
           <Box display="flex" alignItems="center">
             <Avatar
               name="League"
@@ -113,7 +114,9 @@ export function ScoreCard({
                 margin={{ base: 'unset', sm: '0 1rem 0 0.5rem' }}
                 fontSize={{ base: '0.9rem', md: 'initial' }}
               >
-                {teams.home.name}
+                {!isLargerThanMobile
+                  ? formatTeamNameString(teams.home.name)
+                  : teams.home.name}
               </Text>
             </Flex>
 
@@ -141,7 +144,9 @@ export function ScoreCard({
                 margin={{ base: 'unset', sm: '0 1rem 0 0.5rem' }}
                 fontSize={{ base: '0.9rem', md: 'initial' }}
               >
-                {teams.away.name}
+                {!isLargerThanMobile
+                  ? formatTeamNameString(teams.away.name)
+                  : teams.away.name}
               </Text>
             </Flex>
           </Flex>

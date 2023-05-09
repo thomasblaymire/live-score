@@ -4,7 +4,7 @@
  * @param secondString - The second string
  * @returns A hyphenated match string in the format "firstString-vs-secondString"
  */
-export const hyphenateMatchString = (
+const hyphenateMatchString = (
   firstString: string,
   secondString: string
 ): string => {
@@ -16,7 +16,7 @@ export const hyphenateMatchString = (
  * @param string - The input string
  * @returns The modified string with spaces replaced by hyphens and in lowercase
  */
-export const hyphenate = (string: string): string => {
+const hyphenate = (string: string): string => {
   return string.replace(/\s+/g, '-').toLowerCase()
 }
 
@@ -25,7 +25,7 @@ export const hyphenate = (string: string): string => {
  * @param slug - The input slug
  * @returns The formatted slug
  */
-export const formatSlug = (slug: string): string => {
+const formatSlug = (slug: string): string => {
   const formattedWord = (word: string) =>
     word?.charAt(0).toUpperCase() + word?.slice(1)
 
@@ -35,3 +35,22 @@ export const formatSlug = (slug: string): string => {
 
   return formattedSlug
 }
+
+/**
+ * Formats the team name for display in the UI.
+ *
+ * If the team name consists of two words (e.g., "Manchester United"),
+ * it shortens the name to the "M. United" format, keeping only the
+ * first letter of the first word followed by a period and the second word.
+ * @param {string} name - The full team name to format.
+ * @returns {string} The formatted team name.
+ */
+function formatTeamNameString(name: string): string {
+  const words = name.split(' ')
+  if (words.length > 1) {
+    return `${words[0][0]}. ${words[1]}`
+  }
+  return name
+}
+
+export { hyphenateMatchString, hyphenate, formatSlug, formatTeamNameString }
