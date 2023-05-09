@@ -1,4 +1,4 @@
-import { Flex, Box, useBreakpointValue } from '@chakra-ui/react'
+import { Flex, Box, useBreakpointValue, Center } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { Card } from '../../../components/ui/card'
 import { MatchVideo } from '../../../components/features/match/match-video'
@@ -19,12 +19,16 @@ export default function Match() {
   const isMobile = useBreakpointValue({ base: true, md: false })
 
   if (isLoading || !data) {
-    return <Loading loading={isLoading} />
+    return (
+      <Center marginTop="5rem">
+        <Loading loading={isLoading} />
+      </Center>
+    )
   }
 
   return (
     <Box margin={{ base: '1rem', md: '3rem' }} minHeight="100vh">
-      <Box marginBottom={{ base: '1.5rem', md: '2.5rem' }}>
+      <Box marginBottom={{ base: '1rem', md: '2.5rem' }}>
         <ScoreCard data={data} />
       </Box>
 

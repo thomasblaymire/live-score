@@ -41,12 +41,12 @@ export function MatchTabs({ events, lineups, teams }: MatchTabsProps) {
     >
       <Box display="flex" alignItems="center" justifyContent="space-between">
         <HorizontalScroll>
-          <TabList marginBottom="1.5rem">
-            {matchTabs.map((tab, index: number) => (
+          <TabList marginBottom="1rem">
+            {matchTabs.map((tab) => (
               <Tab
                 key={tab.title}
                 fontWeight="600"
-                _selected={{ color: 'white', bg: '#3772ff' }}
+                _selected={{ color: 'white', bg: '#3772ff', padding: '0.5rem' }}
                 fontSize="0.8rem"
                 borderRadius="10px"
               >
@@ -55,30 +55,24 @@ export function MatchTabs({ events, lineups, teams }: MatchTabsProps) {
             ))}
           </TabList>
         </HorizontalScroll>
-        <Box
-          position="relative"
-          display="flex"
-          alignItems="center"
-          justifyContent="end"
-        ></Box>
       </Box>
       <TabPanels>
-        <TabPanel padding="0 1rem 1rem 1rem">
-          <Box>INFO</Box>
+        <TabPanel padding="0">
+          <Box padding="0">
+            <Timeline
+              matchEvents={events}
+              awayTeamId={teams.away.id}
+              homeTeamId={teams.home.id}
+            />
+          </Box>
         </TabPanel>
+        <TabPanel padding="0">INFO</TabPanel>
         <TabPanel padding="0">
           <MatchPlayers
             homeTeam={lineups[0].team}
             awayTeam={lineups[1].team}
             homePlayers={lineups[0].startXI}
             awayPlayers={lineups[1].startXI}
-          />
-        </TabPanel>
-        <TabPanel padding="0">
-          <Timeline
-            matchEvents={events}
-            awayTeamId={teams.away.id}
-            homeTeamId={teams.home.id}
           />
         </TabPanel>
         <TabPanel padding="0">

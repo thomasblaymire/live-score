@@ -1,12 +1,12 @@
 export const matchTabs: Tab[] = [
   {
+    title: 'EVENTS',
+  },
+  {
     title: 'INFO',
   },
   {
     title: 'LINEUPS',
-  },
-  {
-    title: 'EVENTS',
   },
   {
     title: 'STATS',

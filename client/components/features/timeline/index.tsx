@@ -1,12 +1,14 @@
-import { Container, VStack, Flex, useColorModeValue } from '@chakra-ui/react'
-import { BoxProps, Circle } from '@chakra-ui/react'
-import { RiFootballLine } from 'react-icons/ri'
-import { BiTransfer } from 'react-icons/bi'
-import { FiCheckCircle } from 'react-icons/fi'
-import { Box } from '@chakra-ui/react'
+import { Container, VStack, Flex, Box } from '@chakra-ui/react'
+import { TimeLineItem } from './timeline-item'
+import {
+  groupEventsByTeam,
+  getIcon,
+  getEventDescription,
+  isHomeTeamEvent,
+} from './timeline-helpers'
 
 interface TimeLineProps {
-  matchEvents: any
+  matchEvents: Event[]
   homeTeamId: number
   awayTeamId: number
 }
@@ -16,101 +18,70 @@ export const Timeline = ({
   homeTeamId,
   awayTeamId,
 }: TimeLineProps) => {
-  const eventsByTeam = matchEvents.reduce(
-    (acc: any, event: any) => {
-      if (event.team.id === homeTeamId) {
-        acc.home.push(event)
-      } else if (event.team.id === awayTeamId) {
-        acc.away.push(event)
-      }
-      return acc
-    },
-    { home: [], away: [] }
-  )
+  const eventsByTeam = groupEventsByTeam(matchEvents, homeTeamId, awayTeamId)
+  const maxEvents = Math.max(eventsByTeam.home.length, eventsByTeam.away.length)
 
-  const renderEvent = (event: any, index: number) => {
-    const isLast = index === matchEvents.length - 1
-    switch (event.type) {
-      case 'Goal':
-        return (
-          <MilestoneItem icon={RiFootballLine} last={isLast} key={index}>
-            Goal {event.player.name} ({event.time.elapsed})
-          </MilestoneItem>
-        )
-      case 'subst':
-        return (
-          <MilestoneItem icon={BiTransfer} last={isLast} key={index}>
-            Substitute ({event.time.elapsed})
-            <Flex>
-              <Box>{event.assist.name} -</Box>
-              <Box>{event.player.name}</Box>
-            </Flex>
-          </MilestoneItem>
-        )
-      case 'Card':
-        return (
-          <MilestoneItem icon={RiFootballLine} last={isLast} key={index}>
-            Card {event.player.name} ({event.time.elapsed})
-          </MilestoneItem>
-        )
-      default:
-        break
-    }
+  const renderEvent = (event: Event, index: number, isHomeTeam: boolean) => {
+    const isFirst = index === 0
+    const isLast = index === maxEvents - 1
+    return (
+      <TimeLineItem
+        icon={getIcon(event.type)}
+        first={isFirst}
+        last={isLast}
+        key={index}
+        isHomeTeam={isHomeTeam}
+      >
+        {getEventDescription(event)}
+      </TimeLineItem>
+    )
   }
 
   return (
-    <Container maxW="7xl" p={{ base: 2 }}>
+    <Container maxW="7xl" p={{ base: 2 }} padding="0">
       <VStack textAlign="start" align="start" mb={5}>
-        <Flex zIndex={5}>
-          <Box>
-            {eventsByTeam.home.map((event: any, index: number) =>
-              renderEvent(event, index)
-            )}
-          </Box>
-          <Box>
-            {eventsByTeam.away.map((event: any, index: number) =>
-              renderEvent(event, index)
-            )}
-          </Box>
+        <Flex
+          zIndex={5}
+          direction="column"
+          w="100%"
+          mb={3}
+          border="solid 1px #353945"
+          borderRadius="15px"
+        >
+          {matchEvents
+            .filter((event: Event) => event.type !== 'subst')
+            .map((event: any, index: number) => (
+              <Box
+                key={index}
+                w="100%"
+                sx={{
+                  '&:not(:last-child)': {
+                    borderBottom: '1px solid #353945',
+                  },
+                  '&:last-child': {
+                    borderBottom: 'none',
+                  },
+                }}
+              >
+                <Flex align="center" padding="1rem 1rem">
+                  <Box textAlign="right" marginRight="1rem" fontSize="0.8rem">
+                    {event.time.elapsed}
+                  </Box>
+                  <Box flex="5">
+                    {isHomeTeamEvent(event, homeTeamId)
+                      ? renderEvent(event, index, true)
+                      : null}
+                  </Box>
+                  <Box flex="5">
+                    {!isHomeTeamEvent(event, homeTeamId)
+                      ? renderEvent(event, index, false)
+                      : null}
+                  </Box>
+                </Flex>
+              </Box>
+            ))}
         </Flex>
       </VStack>
     </Container>
-  )
-}
-
-interface MilestoneItemProps extends BoxProps {
-  icon?: any
-  boxProps?: BoxProps
-  last: boolean
-}
-
-const MilestoneItem: React.FC<MilestoneItemProps> = ({
-  icon = FiCheckCircle,
-  boxProps = {},
-  children,
-  last,
-  ...props
-}) => {
-  const color = useColorModeValue('gray.700', 'gray.500')
-  return (
-    <Flex minH={20} {...props} color="white">
-      <Flex flexDir="column" alignItems="center" mr={4} pos="relative">
-        <Circle
-          size={6}
-          bg={useColorModeValue('gray.600', 'gray.500')}
-          opacity={useColorModeValue(0.07, 0.15)}
-        />
-        <Box
-          as={icon}
-          size="1rem"
-          color={color}
-          pos="absolute"
-          left="0.25rem"
-          top="0.25rem"
-        />
-        {!last && <Box w="1px" flex={1} bg={color} my={1} />}
-      </Flex>
-      <Box {...boxProps}>{children}</Box>
-    </Flex>
   )
 }
