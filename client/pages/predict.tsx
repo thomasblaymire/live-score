@@ -13,7 +13,7 @@ import { ErrorState } from '@/components/ui/error'
 function Predict() {
   const {
     data: fixtures,
-    isLoading,
+    isFetching,
     error,
   } = useFixtures({ startDate: '2023-04-08', endDate: '2023-04-08' })
   const { predictions, updatePrediction } = useStoredPredictions()
@@ -61,7 +61,7 @@ function Predict() {
               />
             ) : null}
 
-            <Loading loading={isLoading} />
+            <Loading loading={isFetching} />
             {error ? <ErrorState /> : null}
           </Box>
 

@@ -19,7 +19,7 @@ export default function TeamPage({ fixtures }: TeamPageProps) {
 
   const {
     data: fetchedFixtures,
-    isLoading,
+    isFetching,
     error,
     refetch,
   } = useTeamFixtures({
