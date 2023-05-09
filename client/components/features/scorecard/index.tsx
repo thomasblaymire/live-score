@@ -32,13 +32,6 @@ interface ScoreAtInterval {
   away: number
 }
 
-interface Score {
-  winner: 'HOME_TEAM' | 'AWAY_TEAM'
-  duration: 'REGULAR' | 'EXTRA'
-  fullTime: ScoreAtInterval
-  halfTime: ScoreAtInterval
-}
-
 interface ScoreCardProps {
   data: SingleMatch
 }
@@ -80,7 +73,7 @@ export function ScoreCard({
           color="white"
         >
           <ScoreboardStatus status={fixture.status} />
-          <Box display="flex" alignItems="center">
+          <Box display="flex" alignItems="center" marginRight="3.5rem">
             <Avatar
               name="League"
               size="sm"
@@ -121,7 +114,7 @@ export function ScoreCard({
             </Flex>
 
             <Text
-              fontSize="1.4rem"
+              fontSize={{ base: '1.5rem', md: '1.8rem' }}
               fontWeight="bold"
               as="span"
               textAlign="center"

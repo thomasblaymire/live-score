@@ -1,4 +1,10 @@
-import { Container, VStack, Flex, Box } from '@chakra-ui/react'
+import {
+  Container,
+  VStack,
+  Flex,
+  Box,
+  useBreakpointValue,
+} from '@chakra-ui/react'
 import { TimeLineItem } from './timeline-item'
 import {
   groupEventsByTeam,
@@ -20,6 +26,10 @@ export const Timeline = ({
 }: TimeLineProps) => {
   const eventsByTeam = groupEventsByTeam(matchEvents, homeTeamId, awayTeamId)
   const maxEvents = Math.max(eventsByTeam.home.length, eventsByTeam.away.length)
+  const borderStyle = useBreakpointValue({
+    base: 'solid 1px #353945',
+    md: 'none',
+  })
 
   const renderEvent = (event: Event, index: number, isHomeTeam: boolean) => {
     const isFirst = index === 0
@@ -39,13 +49,12 @@ export const Timeline = ({
 
   return (
     <Container maxW="7xl" p={{ base: 2 }} padding="0">
-      <VStack textAlign="start" align="start" mb={5}>
+      <VStack textAlign="start" align="start" marginBottom="0">
         <Flex
           zIndex={5}
           direction="column"
           w="100%"
-          mb={3}
-          border="solid 1px #353945"
+          border={borderStyle}
           borderRadius="15px"
         >
           {matchEvents
