@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "lib": [
       "dom",
@@ -22,7 +23,15 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/pages/*": ["pages/*"],
+      "@/context/*": ["context/*"],
+      "@/data/*": ["data/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/lib/*": ["lib/*"]
+    },
   },
   "include": [
     "next-env.d.ts",

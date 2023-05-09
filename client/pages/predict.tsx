@@ -1,19 +1,19 @@
 import { Heading, Flex, Box } from '@chakra-ui/react'
 import { fakeUsers } from '../data/users'
-import { Leaderboard } from '../components/leaderboard'
-import { useFixtures } from '../hooks/useFixtures'
-import { useStoredPredictions } from '../hooks/useStoredPredictions'
-import { usePredictionsSubmit } from '../hooks/usePredictionsSubmit'
-import { PredictionFixtures } from '../components/prediction/prediction-fixtures'
-import { Card } from '../components/card'
-import { Loading } from '../components/loading'
-import { withAuth } from '../components/require-auth'
-import { ErrorState } from '../components/error'
+import { PredictionLeaderboard } from '@/components/features/prediction/prediction-leaderboard'
+import { useFixtures } from '@/hooks/useFixtures'
+import { useStoredPredictions } from '@/hooks/useStoredPredictions'
+import { usePredictionsSubmit } from '@/hooks/usePredictionsSubmit'
+import { PredictionFixtures } from '@/components/features/prediction/prediction-fixtures'
+import { Card } from '@/components/ui/card'
+import { Loading } from '@/components/ui/loading'
+import { withAuth } from '@/components/features/user/require-auth'
+import { ErrorState } from '@/components/ui/error'
 
 function Predict() {
   const {
     data: fixtures,
-    isLoading,
+    isFetching,
     error,
   } = useFixtures({ startDate: '2023-04-08', endDate: '2023-04-08' })
   const { predictions, updatePrediction } = useStoredPredictions()
@@ -61,7 +61,7 @@ function Predict() {
               />
             ) : null}
 
-            <Loading loading={isLoading} />
+            <Loading loading={isFetching} />
             {error ? <ErrorState /> : null}
           </Box>
 
@@ -73,7 +73,7 @@ function Predict() {
               height="45vh"
               radius="15px"
             >
-              <Leaderboard users={fakeUsers} />
+              <PredictionLeaderboard users={fakeUsers} />
             </Card>
           </Box>
         </Flex>

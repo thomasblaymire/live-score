@@ -1,12 +1,10 @@
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useQuery } from '@tanstack/react-query'
-import { getStandings } from '../../lib/api-helpers'
-import { StandingsTable } from '../../components/standings'
+import { getStandings } from '@/lib/api-helpers'
+import { StandingsTable } from '@/components/features/standings'
 import { Flex, Box, Heading } from '@chakra-ui/layout'
-import { Card } from '../../components/card'
-import { TopScorers } from '../../components/top-scorers'
-import { Loading } from '../../components/loading'
+import { Card } from '@/components/ui/card'
+import { TopScorers } from '@/components/features/league/league-top-scorers'
 
 export default function League() {
   const router = useRouter()

@@ -1,5 +1,5 @@
-import { API_URL } from '../lib/constants'
-import { getCookie } from '../lib/cookie'
+import { API_URL } from '@/lib/constants'
+import { getCookie } from '@/lib/cookie'
 import axios from 'axios'
 
 export const usePredictionsSubmit = (predictions: Prediction) => {

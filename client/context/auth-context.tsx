@@ -1,9 +1,9 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { API_URL } from '../lib/constants'
-import { getCookie } from '../lib/cookie'
-import { isClient } from '../lib/api-helpers'
+import { API_URL } from '@/lib/constants'
+import { getCookie } from '@/lib/cookie'
+import { isClient } from '@/lib/api-helpers'
 
 interface User {
   id: string

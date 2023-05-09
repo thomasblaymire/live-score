@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { API_URL } from '../lib/constants'
+import { API_URL } from '@/lib/constants'
 import axios from 'axios'
 
 interface FixtureDateRange {
@@ -9,7 +9,7 @@ interface FixtureDateRange {
 
 interface UseFixturesResult {
   data: CustomFixture[] | undefined
-  isLoading: boolean
+  isFetching: boolean
   error: unknown
 }
 
@@ -52,7 +52,7 @@ export const useFixtures = (
 
   return {
     data: query.data,
-    isLoading: query.isLoading,
+    isFetching: query.isFetching,
     error: query.error,
   }
 }

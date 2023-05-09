@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { API_URL } from '../lib/constants'
+import { API_URL } from './constants'
 
 export const getStandings = async (leagueId: string) => {
   const { data } = await axios.get(`${API_URL}/league/${leagueId}`)

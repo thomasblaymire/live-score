@@ -1,4 +1,4 @@
-import { withAuth } from '../components/require-auth'
+import { withAuth } from '@/components/features/user/require-auth'
 
 const MyTeam = () => {
   return (

@@ -147,6 +147,29 @@ router.get(
   "/api/fixture/:id",
   catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
+
+    // console.log("debug req.params:", req.params);
+
+    // const url = `${process.env.FOOTBALL_API_URL}/fixtures?id=${id}`;
+    // const options: any = {
+    //   method: "GET",
+    //   headers: {
+    //     "X-RapidAPI-Key": process.env.FOOTBALL_API_TOKEN,
+    //     "X-RapidAPI-Host": process.env.FOOTBALL_API_HOST,
+    //   },
+    // };
+
+    // try {
+    //   const response = await fetch(url, options);
+    //   const data = await response.json();
+
+    //   console.log("debug data from call", data);
+
+    //   res.json(data.response[0]);
+    // } catch (error) {
+    //   console.error(error);
+    // }
+
     const response = await fetch(`${process.env.MOCKY_FIXTURE_BY_ID_API_URL}`);
     const data = await response.json();
     res.json(data.response[0]);

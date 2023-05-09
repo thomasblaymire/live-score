@@ -1,7 +1,7 @@
 import { Heading, Flex, Box, VStack } from '@chakra-ui/react'
-import { getFixtures } from '../../hooks/useFixtures'
-import { getWeekNumber, getDateRange } from '../../lib/time'
-import { MatchList } from '../../components/match/match-list'
+import { getFixtures } from '@/hooks/useFixtures'
+import { getWeekNumber, getDateRange } from '@/lib/time'
+import { MatchList } from '@/components/features/match/match-list'
 
 interface MatchesProps {
   fixtures: CustomFixture[]

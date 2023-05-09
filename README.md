@@ -1,9 +1,9 @@
 <h1 >
-  Live Scores 
+  Live Score
   <br>
 </h1>
 
-A work in progress FullStack Football Live Score Application.
+A work in progress FullStack Football Live Score Application built with NextJS, TypeScript & NodeJS.
 
 ## Features
 - Live Score Tracking (In-Play and Complete)
