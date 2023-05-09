@@ -67,6 +67,7 @@ export function ScoreCard({
       width={{ base: 'unset', md: '80%' }}
       margin="0 auto"
       background="#1b1b1b"
+      border="solid 1px #353945"
       borderRadius="15px"
     >
       {isLargerThanMobile && (
@@ -117,7 +118,7 @@ export function ScoreCard({
             </Flex>
 
             <Text
-              fontSize="1.5rem"
+              fontSize="1.4rem"
               fontWeight="bold"
               as="span"
               textAlign="center"

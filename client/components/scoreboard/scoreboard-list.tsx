@@ -29,20 +29,19 @@ export function ScoreBoardList({ fixtures, isFetching }: ScoreBoardLiveProps) {
   return (
     <>
       {fixtures.map((fixture: CustomFixture, index: number) => {
-        const { id, homeTeam, awayTeam, goals } = fixture
-        const matchLink = `/matches/${hyphenateMatchString(
-          homeTeam.name,
-          awayTeam.name
-        )}`
-
+        const { apiId, homeTeam, awayTeam, goals } = fixture
+        const id = apiId.toString()
         return (
           <Link
             href={{
-              pathname: '/matches/[match]',
+              pathname: '/matches/[match]/[id]',
               query: { id },
             }}
             passHref
-            as={matchLink}
+            as={`/matches/${hyphenateMatchString(
+              homeTeam.name,
+              awayTeam.name
+            )}/${id}`}
             key={id}
           >
             <Box

@@ -4,7 +4,7 @@ import { PlayerList } from './player-list'
 import { Card } from '../card'
 
 interface PlayersProps {
-  heading: string
+  heading?: string
   homePlayers: StartXI[] | Substitute[]
   awayPlayers: StartXI[] | Substitute[]
   homeTeam: Team2
@@ -20,7 +20,7 @@ export function Players({
 }: PlayersProps) {
   return (
     <Card
-      heading={heading}
+      heading={heading ? heading : ''}
       headingAlign="center"
       background="#121212"
       height="45vh"

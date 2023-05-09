@@ -31,16 +31,16 @@ export function MatchList({ matches }: MatchListProps) {
             {weekMatches.map((match: CustomFixture) => (
               <Link
                 href={{
-                  pathname: '/matches/[match]',
+                  pathname: '/matches/[match]/[id]',
                   query: {
-                    id: match.id,
+                    id: match.apiId,
                   },
                 }}
                 passHref
                 as={`/matches/${hyphenateMatchString(
                   match.homeTeam.name,
                   match.awayTeam.name
-                )}`}
+                )}/${match.apiId}`}
                 key={match.id}
               >
                 <MatchCard match={match} />
