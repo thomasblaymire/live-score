@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useMutation, UseMutationOptions } from '@tanstack/react-query'
-import { API_URL } from '../lib/constants'
+import { API_URL } from '@/lib/constants'
 
 interface AuthParams {
   email: string

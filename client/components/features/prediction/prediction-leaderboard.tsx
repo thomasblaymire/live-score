@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text, css } from '@chakra-ui/react'
+import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { FaCrown } from 'react-icons/fa'
 
 interface PredictionLeaderboardProps {

@@ -12,10 +12,10 @@ import {
   ModalBody,
 } from '@chakra-ui/react'
 import { SearchResults } from './search-results'
-import { ErrorState } from '../../ui/error'
-import { Loading } from '../../ui/loading'
-import { useSearch } from '../../../hooks/useSearch'
-import { useDebounce } from '../../../hooks/useDebounce'
+import { ErrorState } from '@/components/ui/error'
+import { Loading } from '@/components/ui/loading'
+import { useSearch } from '@/hooks/useSearch'
+import { useDebounce } from '@/hooks/useDebounce'
 import { MdSearch } from 'react-icons/md'
 
 interface SearchProps {

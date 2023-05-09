@@ -1,4 +1,4 @@
-import { getFavourites, addFavourite } from '../../../lib/api-helpers'
+import { getFavourites, addFavourite } from '@/lib/api-helpers'
 import { useState, useEffect } from 'react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { Box, Icon, useToast } from '@chakra-ui/react'

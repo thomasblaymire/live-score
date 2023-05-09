@@ -1,4 +1,4 @@
-import { Logo } from '../../ui/logo'
+import { Logo } from '@/components/ui/logo'
 import { Box, Flex } from '@chakra-ui/react'
 
 export function HeaderBasic() {

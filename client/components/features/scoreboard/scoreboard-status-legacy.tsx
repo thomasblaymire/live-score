@@ -1,5 +1,5 @@
 import { Box, Text, Flex } from '@chakra-ui/layout'
-import { parse } from '../../../lib/time'
+import { parse } from '@/lib/time'
 
 enum MATCH_STATUS {
   IN_PLAY = 'IN_PLAY',

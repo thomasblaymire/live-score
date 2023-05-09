@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
-import { getNews } from '../../../lib/api-helpers'
-import { SkeletonLoading } from '../../ui/skeleton'
+import { getNews } from '@/lib/api-helpers'
+import { SkeletonLoading } from '@/components/ui/skeleton'
 import { Box } from '@chakra-ui/layout'
-import { ErrorState } from '../../ui/error'
+import { ErrorState } from '@/components/ui/error'
 
 interface NewsProps {
   news: NewsItem[]

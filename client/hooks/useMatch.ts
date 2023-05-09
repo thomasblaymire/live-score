@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { API_URL } from '../lib/constants'
+import { API_URL } from '@/lib/constants'
 import axios from 'axios'
 
 const getMatchData = async (id: string | string[] | undefined) => {

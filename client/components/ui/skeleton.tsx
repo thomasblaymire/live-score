@@ -1,5 +1,5 @@
 import { Stack, Skeleton } from '@chakra-ui/react'
-import { uniqueId } from '../../lib/generators'
+import { uniqueId } from '@/lib/generators'
 
 interface SkeletonLoadingProps {
   loading: boolean

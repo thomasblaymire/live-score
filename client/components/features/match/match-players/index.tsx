@@ -1,7 +1,7 @@
 import { Flex, Stack, Divider } from '@chakra-ui/layout'
 import { MatchPlayerTeam } from './match-player-team'
 import { MatchPlayerList } from './match-players-list'
-import { Card } from '../../../ui/card'
+import { Card } from '@/components/ui/card'
 
 interface PlayersProps {
   heading?: string

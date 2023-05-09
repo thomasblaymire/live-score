@@ -1,6 +1,6 @@
 import { Heading, Box, Grid } from '@chakra-ui/react'
 import { MatchCard } from './match-card'
-import { hyphenateMatchString } from '../../../lib/string'
+import { hyphenateMatchString } from '@/lib/string'
 import Link from 'next/link'
 
 interface MatchListProps {

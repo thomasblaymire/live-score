@@ -1,4 +1,3 @@
-import { Card } from '../../ui/card'
 import { Progress, Box, Flex, Text, Stack } from '@chakra-ui/react'
 
 export function Stats() {

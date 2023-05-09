@@ -1,5 +1,5 @@
 import { Box, Button } from '@chakra-ui/react'
-import { Card } from '../../ui/card'
+import { Card } from '@/components/ui/card'
 import { PredictionList } from '.'
 
 interface PredictionFixturesProps {

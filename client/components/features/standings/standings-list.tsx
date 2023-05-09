@@ -1,9 +1,9 @@
 import NextImage from 'next/image'
 import Link from 'next/link'
 import { Box, List, ListItem } from '@chakra-ui/layout'
-import { SkeletonLoading } from '../../ui/skeleton'
-import { hyphenate } from '../../../lib/string'
-import { ErrorState } from '../../ui/error'
+import { SkeletonLoading } from '@/components/ui/skeleton'
+import { hyphenate } from '@/lib/string'
+import { ErrorState } from '@/components/ui/error'
 
 interface StandingsListProps {
   competitions: Competitions[]

@@ -10,9 +10,9 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react'
-import { useFixtures } from '../../../hooks/useFixtures'
-import { ErrorState } from '../../ui/error'
-import { formatDate } from '../../../lib/time'
+import { useFixtures } from '@/hooks/useFixtures'
+import { ErrorState } from '@/components/ui/error'
+import { formatDate } from '@/lib/time'
 import { tabs } from './data'
 import { ScoreBoardList } from './scoreboard-list'
 import { ScoreboardDatePicker } from './scoreboard-datepicker'

@@ -1,4 +1,4 @@
-import { withAuth } from '../components/features/user/require-auth'
+import { withAuth } from '@/components/features/user/require-auth'
 
 const Account = ({ currentUser }: { currentUser: User }) => {
   return (

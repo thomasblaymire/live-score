@@ -10,8 +10,8 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react'
 import { ScoreboardStatus } from '../scoreboard/scoreboard-status-legacy'
-import { formatUTCDate } from '../../../lib/time'
-import { formatTeamNameString } from '../../../lib/string'
+import { formatUTCDate } from '@/lib/time'
+import { formatTeamNameString } from '@/lib/string'
 import { BiTime } from 'react-icons/bi'
 import { MdOutlineStadium } from 'react-icons/md'
 import { GiWhistle } from 'react-icons/gi'

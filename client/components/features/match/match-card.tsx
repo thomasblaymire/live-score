@@ -1,5 +1,5 @@
 import { Flex, Text, Box } from '@chakra-ui/react'
-import { formatUTCDate } from '../../../lib/time'
+import { formatUTCDate } from '@/lib/time'
 import NextImage from 'next/image'
 
 interface MatchCardProps {

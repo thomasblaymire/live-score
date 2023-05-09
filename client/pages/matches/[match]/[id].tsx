@@ -1,14 +1,14 @@
 import { Flex, Box, useBreakpointValue, Center } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { Card } from '../../../components/ui/card'
-import { MatchVideo } from '../../../components/features/match/match-video'
-import { Stats } from '../../../components/features/stats'
-import { ScoreCard } from '../../../components/features/scorecard'
-import { MatchTabs } from '../../../components/features/match/match-tabs'
-import { Timeline } from '../../../components/features/timeline'
-import { MatchPlayers } from '../../../components/features/match/match-players'
-import { Loading } from '../../../components/ui/loading'
-import { useMatch } from '../../../hooks/useMatch'
+import { Card } from '@/components/ui/card'
+import { MatchVideo } from '@/components/features/match/match-video'
+import { Stats } from '@/components/features/stats'
+import { ScoreCard } from '@/components/features/scorecard'
+import { MatchTabs } from '@/components/features/match/match-tabs'
+import { Timeline } from '@/components/features/timeline'
+import { MatchPlayers } from '@/components/features/match/match-players'
+import { Loading } from '@/components/ui/loading'
+import { useMatch } from '@/hooks/useMatch'
 
 export default function Match() {
   const router = useRouter()

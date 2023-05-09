@@ -1,4 +1,4 @@
-import { useSearchResults } from '../../../hooks/useSearchResults'
+import { useSearchResults } from '@/hooks/useSearchResults'
 import {
   Flex,
   Stack,

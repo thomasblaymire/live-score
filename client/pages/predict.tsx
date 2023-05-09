@@ -1,14 +1,14 @@
 import { Heading, Flex, Box } from '@chakra-ui/react'
 import { fakeUsers } from '../data/users'
-import { PredictionLeaderboard } from '../components/features/prediction/prediction-leaderboard'
-import { useFixtures } from '../hooks/useFixtures'
-import { useStoredPredictions } from '../hooks/useStoredPredictions'
-import { usePredictionsSubmit } from '../hooks/usePredictionsSubmit'
-import { PredictionFixtures } from '../components/features/prediction/prediction-fixtures'
-import { Card } from '../components/ui/card'
-import { Loading } from '../components/ui/loading'
-import { withAuth } from '../components/features/user/require-auth'
-import { ErrorState } from '../components/ui/error'
+import { PredictionLeaderboard } from '@/components/features/prediction/prediction-leaderboard'
+import { useFixtures } from '@/hooks/useFixtures'
+import { useStoredPredictions } from '@/hooks/useStoredPredictions'
+import { usePredictionsSubmit } from '@/hooks/usePredictionsSubmit'
+import { PredictionFixtures } from '@/components/features/prediction/prediction-fixtures'
+import { Card } from '@/components/ui/card'
+import { Loading } from '@/components/ui/loading'
+import { withAuth } from '@/components/features/user/require-auth'
+import { ErrorState } from '@/components/ui/error'
 
 function Predict() {
   const {

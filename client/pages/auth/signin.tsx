@@ -1,19 +1,7 @@
 import { GetServerSidePropsContext } from 'next'
-import { SigninForm } from '../../components/features/user/signin-form'
-import { Box, Center } from '@chakra-ui/react'
+import { SigninForm } from '@/components/features/user/signin-form'
+import { Box, Flex, Heading, Stack } from '@chakra-ui/react'
 import { getProviders, getSession } from 'next-auth/react'
-import {
-  Button,
-  Checkbox,
-  Flex,
-  FormControl,
-  FormLabel,
-  Heading,
-  Input,
-  Link,
-  Stack,
-  Image,
-} from '@chakra-ui/react'
 
 interface SigninProps {
   providers: Provider[]

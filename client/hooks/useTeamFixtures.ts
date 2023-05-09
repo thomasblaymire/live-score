@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import { API_URL } from '../lib/constants'
+import { API_URL } from '@/lib/constants'
 
 interface FetchTeamFixturesParams {
   teamId: string

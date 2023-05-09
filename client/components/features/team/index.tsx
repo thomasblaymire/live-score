@@ -1,10 +1,10 @@
 import { Flex, Box, Text } from '@chakra-ui/layout'
 import { Avatar, Heading } from '@chakra-ui/react'
-import { Card } from '../../ui/card'
-import { formatSlug } from '../../../lib/string'
+import { Card } from '@/components/ui/card'
+import { formatSlug } from '@/lib/string'
 import { useQuery } from '@tanstack/react-query'
 import { TeamFixtures } from './team-fixtures'
-import { getNewsByTeam } from '../../../lib/api-helpers'
+import { getNewsByTeam } from '@/lib/api-helpers'
 
 export function Team({ id }: { id: string }) {
   // const {

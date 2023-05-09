@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { AiOutlineExport } from 'react-icons/ai'
 import { authMenuItems } from '../../../data/static'
-import { deleteCookie } from '../../../lib/cookie'
+import { deleteCookie } from '@/lib/cookie'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 

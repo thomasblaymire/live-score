@@ -1,5 +1,5 @@
 import NextImage from 'next/image'
-import { Flex, Box, Avatar, Heading, Grid, Text } from '@chakra-ui/react'
+import { Flex, Box, Text } from '@chakra-ui/react'
 import { formatUTCDate } from '../../../lib/time'
 
 interface TeamFixturesProps {

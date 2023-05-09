@@ -9,12 +9,12 @@ import {
   Center,
 } from '@chakra-ui/react'
 import { useState } from 'react'
-import { ErrorState } from '../../ui/error'
+import { ErrorState } from '@/components/ui/error'
 import { AuthProviders } from './auth-providers'
 import { useRouter } from 'next/router'
-import { useAuth } from '../../../hooks/useAuth'
-import { setCookie } from '../../../lib/cookie'
-import { useAuthContext } from '../../../context/auth-context'
+import { useAuth } from '@/hooks/useAuth'
+import { setCookie } from '@/lib/cookie'
+import { useAuthContext } from '@/context/auth-context'
 
 interface SigninFormProps {
   providers: Provider[]

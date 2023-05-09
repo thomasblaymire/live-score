@@ -1,18 +1,11 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { QueryClient, dehydrate } from '@tanstack/react-query'
-import { GetServerSideProps } from 'next'
-import { Flex, Box, Text } from '@chakra-ui/layout'
-import { Avatar, Heading, IconButton } from '@chakra-ui/react'
-import { Card } from '../../../components/ui/card'
-import { formatSlug } from '../../../lib/string'
-import { TeamFixtures } from '../../../components/features/team/team-fixtures'
-import { HiChevronRight, HiChevronLeft } from 'react-icons/hi'
-import {
-  useTeamFixtures,
-  getFixturesByTeamId,
-} from '../../../hooks/useTeamFixtures'
-import { getNewsByTeam } from '../../../lib/api-helpers'
+import { Flex, Box } from '@chakra-ui/layout'
+import { Heading } from '@chakra-ui/react'
+import { Card } from '@/components/ui/card'
+import { formatSlug } from '@/lib/string'
+import { TeamFixtures } from '@/components/features/team/team-fixtures'
+import { useTeamFixtures, getFixturesByTeamId } from '@/hooks/useTeamFixtures'
 
 interface TeamPageProps {
   fixtures: any

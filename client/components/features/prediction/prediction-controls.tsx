@@ -1,14 +1,4 @@
-import {
-  Heading,
-  Flex,
-  Text,
-  Box,
-  Container,
-  Button,
-  Image,
-  IconButton,
-} from '@chakra-ui/react'
-
+import { Flex, Text, Image, IconButton } from '@chakra-ui/react'
 import { HiChevronUp, HiChevronDown } from 'react-icons/hi'
 
 interface TeamScoreControlProps {

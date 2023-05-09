@@ -12,8 +12,8 @@ import {
   Text,
   Box,
 } from '@chakra-ui/react'
-import { SkeletonLoading } from '../../ui/skeleton'
-import { ErrorState } from '../../ui/error'
+import { SkeletonLoading } from '@/components/ui/skeleton'
+import { ErrorState } from '@/components/ui/error'
 
 interface StandingsProps {
   size?: string

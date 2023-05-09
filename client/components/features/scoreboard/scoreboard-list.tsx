@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { Box, LinkBox, Center } from '@chakra-ui/react'
-import { Loading } from '../../ui/loading'
+import { Loading } from '@/components/ui/loading'
 import { ScoreBoardTeams } from './scoreboard-teams'
 import { ScoreBoardGoals } from './scoreboard-goals'
 import { ScoreBoardStatus } from './scoreboard-status'
 import { ScoreBoardEmpty } from './scoreboard-empty'
-import { hyphenateMatchString } from '../../../lib/string'
+import { hyphenateMatchString } from '@/lib/string'
 
 interface ScoreBoardLiveProps {
   fixtures: CustomFixture[]

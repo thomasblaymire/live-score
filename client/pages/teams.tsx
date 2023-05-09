@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { useState } from 'react'
 import NextImage from 'next/image'
 import { Heading, Flex, Text, Box, Grid } from '@chakra-ui/react'
-import { ErrorState } from '../components/ui/error'
-import { getTeams } from '../lib/api-helpers'
-import { hyphenate } from '../lib/string'
+import { ErrorState } from '@/components/ui/error'
+import { getTeams } from '@/lib/api-helpers'
+import { hyphenate } from '@/lib/string'
 
 interface TeamsProps {
   teams: AllTeams[]

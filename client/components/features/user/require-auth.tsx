@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useCurrentUser } from '../../../hooks/useCurrentUser'
+import { useCurrentUser } from '@/hooks/useCurrentUser'
 import { useEffect } from 'react'
 
 export const withAuth = (WrappedComponent: React.ComponentType<any>) => {

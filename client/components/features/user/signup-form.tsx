@@ -11,8 +11,8 @@ import {
   Button,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { setCookie } from '../../../lib/cookie'
-import { useAuth } from '../../../hooks/useAuth'
+import { setCookie } from '@/lib/cookie'
+import { useAuth } from '@/hooks/useAuth'
 import { signupValidationSchema } from './validations'
 
 interface Errors {
