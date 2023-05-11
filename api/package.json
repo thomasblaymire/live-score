@@ -7,13 +7,16 @@
     "build": "npx tsc",
     "start": "node dist/src/index.js",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/index.js\"",
-    "seed": "node ./prisma/seed.js"
+    "seed": "node ./prisma/seed.ts"
+  },
+  "prisma": {
+    "seed": "node ./prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^4.9.0",
+    "@prisma/client": "^4.14.0",
     "@sentry/node": "^7.44.2",
     "@sentry/tracing": "^7.44.2",
     "@types/cors": "^2.8.13",
@@ -23,7 +26,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
+    "express-validator": "^7.0.1",
     "googleapis": "^110.0.0",
+    "helmet": "^7.0.0",
     "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.1",
@@ -39,7 +45,7 @@
     "@types/node-fetch": "^2.6.2",
     "concurrently": "^7.6.0",
     "nodemon": "^2.0.20",
-    "prisma": "^4.9.0",
+    "prisma": "^4.14.0",
     "typescript": "^4.9.4"
   }
 }

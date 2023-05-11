@@ -50,6 +50,9 @@ artifacts
 # Jetbrains
 .idea/
 
+# mocks
+./mocks/player-data.json
+
 # macOS
 .DS_Store
 

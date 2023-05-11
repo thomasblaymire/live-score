@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
@@ -99,13 +100,42 @@ model League {
   fixtures Fixture[]
 }
 
+model Player {
+  id       Int    @id
+  name     String
+  age      Int
+  number   Int?
+  position String
+  photo    String
+  Team     Team?  @relation(fields: [teamId], references: [id])
+  teamId   Int?
+}
+
+model Manager {
+  id           Int      @id
+  name         String
+  firstname    String
+  lastname     String
+  age          Int
+  birthDate    DateTime
+  birthPlace   String
+  birthCountry String
+  nationality  String
+  height       String
+  weight       String
+  photo        String
+  team         Team     @relation(fields: [teamId], references: [id])
+  teamId       Int
+}
+
 model Team {
   id           Int       @id @default(autoincrement())
   name         String
   logo         String
-  winner       Boolean?
   homeFixtures Fixture[] @relation("HomeTeam")
   awayFixtures Fixture[] @relation("AwayTeam")
+  managers     Manager[]
+  players      Player[]
 }
 
 model Goals {

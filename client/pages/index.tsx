@@ -1,14 +1,15 @@
 import Sidebar from '@/components/layout/sidebar'
 import { fetchHomepageData } from '@/lib/api-helpers'
 import { Box, Grid, GridItem } from '@chakra-ui/layout'
-import { ScoreBoard } from '@/components/features/scoreboard'
 import { useMediaQuery, Heading } from '@chakra-ui/react'
-import { StandingsList } from '@/components/features/standings/standings-list'
 import { getFixtures } from '@/hooks/useFixtures'
 import { StandingsTable } from '@/components/features/standings'
+import { ScoreBoard } from '@/components/features/scoreboard'
+import { StandingsList } from '@/components/features/standings/standings-list'
+import { Search } from '@/components/features/search'
+import { News } from '@/components/features/news'
 import { HeroCard } from '@/components/ui/hero-card'
 import { SEO } from '@/components/ui/seo'
-import { News } from '@/components/features/news'
 import { Card } from '@/components/ui/card'
 import { Footer } from '@/components/layout/footer'
 
@@ -103,6 +104,11 @@ export default function Home({
           {isTablet && (
             <GridItem area={'aside'}>
               <Sidebar>
+                <Card margin="0 0 2rem 0" height="45vh">
+                  <Box padding="0.5rem">
+                    <Search />
+                  </Box>
+                </Card>
                 <Card margin="0 0 2rem 0" height="45vh" heading="Latest News">
                   <News news={news} isLoading={false} error={newsError} />
                 </Card>

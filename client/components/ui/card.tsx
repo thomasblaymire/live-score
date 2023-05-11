@@ -2,7 +2,7 @@ import { Box, Heading } from '@chakra-ui/layout'
 import { ResponsiveValue } from '@chakra-ui/react'
 
 interface CardProps {
-  heading: string | undefined
+  heading?: string | undefined
   background?: string
   radius?: string
   height?: string

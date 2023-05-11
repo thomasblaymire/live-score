@@ -50,8 +50,6 @@ router.get(
         take: pageSize,
       });
 
-      console.log("debug fixtures", fixtures);
-
       res.status(200).json(fixtures);
     } catch (error) {
       console.error("Error fetching fixtures:", error);
