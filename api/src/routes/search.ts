@@ -50,7 +50,7 @@ async function search(query: string, limit: number = 3) {
       playersPromise,
     ]);
 
-    const playersWithRelevance = playersResults.map((player) => {
+    const playersWithRelevance = playersResults.map((player: any) => {
       const playerTerms = player.name.toLowerCase().split(" ");
       let relevance = 0;
 
@@ -64,7 +64,7 @@ async function search(query: string, limit: number = 3) {
     });
 
     const players = playersWithRelevance
-      .sort((a, b) => b.relevance - a.relevance)
+      .sort((a: any, b: any) => b.relevance - a.relevance)
       .slice(0, limit);
 
     return { teams, venues, players };
