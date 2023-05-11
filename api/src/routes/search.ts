@@ -1,9 +1,8 @@
 import rateLimit from "express-rate-limit";
 import { Request, Response, Router } from "express";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../helpers";
 import { check, validationResult } from "express-validator";
 
-const prisma = new PrismaClient();
 const router = Router();
 
 const searchRateLimit = rateLimit({
