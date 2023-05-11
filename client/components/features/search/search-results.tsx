@@ -1,71 +1,90 @@
-import { useSearchResults } from '@/hooks/useSearchResults'
-import {
-  Flex,
-  Stack,
-  Image,
-  Heading,
-  Card,
-  StackDivider,
-  CardBody,
-} from '@chakra-ui/react'
-import { useRouter } from 'next/router'
+// SearchResults.tsx
+import React from 'react'
+import { Box, VStack, Heading, HStack, Text } from '@chakra-ui/react'
+import { RiFootballFill } from 'react-icons/ri'
+import { BiFootball } from 'react-icons/bi'
+import { IoPersonOutline } from 'react-icons/io5'
+import { MdOutlineStadium } from 'react-icons/md'
 
-interface SearchResultsProps {
-  results: SearchResponse[]
+interface SearchResult {
+  id: number
+  category: string
+  name: string
+  icon: React.ReactElement
 }
 
-export function SearchResults({ results }: SearchResultsProps) {
-  const router = useRouter()
-  const { selectedResultIndex, resultData } = useSearchResults({ results })
+interface SearchResultsProps {
+  results?: SearchResult[]
+}
 
-  const handleSearchResultClick = (teamName: string, teamId: number) => {
-    return router.push(
-      {
-        pathname: `/team/${teamName}`,
-        query: { code: teamId },
-      },
-      `/team/${teamName.toLowerCase()}`
-    )
-  }
+export const SearchResults: React.FC<SearchResultsProps> = () => {
+  const results = [
+    {
+      id: 1,
+      category: 'Teams',
+      name: 'Manchester United',
+      icon: <RiFootballFill />,
+    },
+    {
+      id: 2,
+      category: 'Managers',
+      name: 'Pep Guardiola',
+      icon: <IoPersonOutline />,
+    },
+    {
+      id: 3,
+      category: 'Players',
+      name: 'Cristiano Ronaldo',
+      icon: <BiFootball />,
+    },
+    {
+      id: 4,
+      category: 'Stadiums',
+      name: 'Old Trafford',
+      icon: <MdOutlineStadium />,
+    },
+  ]
 
   return (
-    <>
-      {resultData.map((result: SearchResponse, index: number) => (
-        <Card
-          color="white"
-          data-test="search-result"
-          key={result.team.name}
-          cursor="pointer"
-          _hover={{ bg: '#313131' }}
-          onClick={() =>
-            handleSearchResultClick(result.team.name, result.team.id)
-          }
-          background={index === selectedResultIndex ? '#313131' : 'initial'}
-          borderRadius={
-            index === selectedResultIndex && index === 0
-              ? '10px 10px 0 0'
-              : index === selectedResultIndex && index === results.length - 1
-              ? '0 0 10px 10px'
-              : 'none'
-          }
+    <VStack spacing={2} align="stretch" marginY="0.5rem">
+      {results.map((result) => (
+        <Box
+          key={result.id}
+          p={2}
+          borderWidth={1}
+          borderRadius="lg"
+          fontSize="0.9rem"
         >
-          <CardBody padding="1rem">
-            <Stack divider={<StackDivider />} spacing="2">
-              <Flex alignItems="center">
-                <Image
-                  src={result.team.logo}
-                  alt={result.team.name}
-                  width={30}
-                  height={30}
-                />
-                <Heading size="xs" textTransform="uppercase" marginLeft="1rem">
-                  {result.team.name}
-                </Heading>
-              </Flex>
-            </Stack>
-          </CardBody>
-        </Card>
+          <Heading fontSize="0.9rem" fontFamily="inherit" color="gray.500">
+            {result.category}
+          </Heading>
+
+          <HStack
+            mt={2}
+            padding="0.25rem"
+            _hover={{
+              background: '#1a1a1a',
+              borderRadius: '5px',
+              cursor: 'pointer',
+            }}
+          >
+            <Box
+              boxSize="1.5rem"
+              bg="gray.900"
+              borderRadius="md"
+              p={1}
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              {result.icon}
+            </Box>
+            <Text color="white" fontWeight="500" fontSize="0.8rem">
+              {result.name}
+            </Text>
+          </HStack>
+        </Box>
       ))}
-    </>
+    </VStack>
   )
 }
