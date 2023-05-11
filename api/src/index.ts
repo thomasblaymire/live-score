@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import cors from "cors";
 import morgan from "morgan";
+import helmet from "helmet";
 import * as Sentry from "@sentry/node";
 import { corsOptions } from "./helpers";
 import { createServer } from "http";
@@ -33,6 +34,7 @@ const port = process.env.PORT;
 app.use(Sentry.Handlers.requestHandler());
 
 app.use(morgan("dev"));
+app.use(helmet());
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
