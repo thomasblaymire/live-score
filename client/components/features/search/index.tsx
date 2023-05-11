@@ -1,17 +1,25 @@
+import { useState } from 'react'
 import { SearchInput } from './search-input'
-import { Box, Divider } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 import { SearchResults } from './search-results'
+import { useSearch } from '@/hooks/useSearch'
+import { useDebounce } from '@/hooks/useDebounce'
 
 export function Search() {
-  function onSearch(e: any) {
-    console.log(e)
+  const [value, setValue] = useState<string>('')
+  const debouncedValue = useDebounce<string>(value, 500)
+  const { data: results, isLoading, error } = useSearch(debouncedValue)
+
+  function onSearch(event: React.ChangeEvent<HTMLInputElement>) {
+    setValue(event.target.value)
   }
 
+  console.log('debug results', results)
+
   return (
-    <Box height="400px">
-      <SearchInput onSearch={onSearch} />
-      <Divider py="0.25rem" color="#353945" />
-      <SearchResults />
+    <Box>
+      <SearchInput onSearch={onSearch} value={value} />
+      {results ? <SearchResults results={results} /> : null}
     </Box>
   )
 }

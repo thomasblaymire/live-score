@@ -3,17 +3,14 @@ import { Input, InputGroup, InputLeftElement, Box } from '@chakra-ui/react'
 import { FiSearch } from 'react-icons/fi'
 
 interface SearchInputProps {
-  onSearch: (searchValue: string) => void
+  onSearch: (event: ChangeEvent<HTMLInputElement>) => void
+  value: string
 }
 
-export const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
-  const [value, setValue] = useState<string>('')
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
-    onSearch(event.target.value)
-  }
-
+export const SearchInput: React.FC<SearchInputProps> = ({
+  onSearch,
+  value,
+}) => {
   return (
     <Box>
       <InputGroup>
@@ -24,7 +21,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({ onSearch }) => {
           type="text"
           placeholder="Search..."
           value={value}
-          onChange={handleChange}
+          onChange={onSearch}
           pl="2.5rem"
           border="none"
           outline="none"
