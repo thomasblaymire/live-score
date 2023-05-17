@@ -4,6 +4,11 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
+  compiler: {
+    removeConsole: {
+      exclue: ['error'],
+    },
+  },
   images: {
     unoptimized: true,
     remotePatterns: [
