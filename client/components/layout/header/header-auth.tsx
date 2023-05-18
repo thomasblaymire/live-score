@@ -1,9 +1,18 @@
+import { useEffect, useState } from 'react'
 import { Box, Stack, Button } from '@chakra-ui/react'
+import { getProviders } from 'next-auth/react'
 import { useRouter } from 'next/router'
+import { useDisclosure } from '@chakra-ui/react'
 
-export function AuthenticationButtons() {
-  const router = useRouter()
+interface AuthenticationButtonsProps {
+  onLoginOpen: () => void
+  onSignupOpen: () => void
+}
 
+export function AuthenticationButtons({
+  onLoginOpen,
+  onSignupOpen,
+}: AuthenticationButtonsProps) {
   return (
     <Box>
       <Stack direction="row" spacing={6} align="center">
@@ -14,7 +23,7 @@ export function AuthenticationButtons() {
           fontWeight="600"
           data-test="login-button"
           sx={{ '&:hover': { color: '#3772ff', textDecoration: 'none' } }}
-          onClick={() => router.push('/auth/signin')}
+          onClick={onLoginOpen}
         >
           Log In
         </Button>
@@ -25,7 +34,7 @@ export function AuthenticationButtons() {
           fontSize="0.9rem"
           _hover={{ background: '#0e2aa8' }}
           data-test="signup-button"
-          onClick={() => router.push('/auth/signup')}
+          onClick={onSignupOpen}
         >
           Sign Up
         </Button>

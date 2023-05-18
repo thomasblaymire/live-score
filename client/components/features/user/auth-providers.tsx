@@ -31,7 +31,7 @@ export function AuthProviders({ providers }: AuthProvidersProps) {
   }
 
   return (
-    <>
+    <Box paddingBottom="1rem">
       {Object.values(providers).map(
         (provider: Provider, index: number, array: Provider[]) => (
           <Box key={provider.name}>
@@ -39,7 +39,7 @@ export function AuthProviders({ providers }: AuthProvidersProps) {
               <Button
                 width="100%"
                 isLoading={loadingProvider.has(provider.id)}
-                fontWeight="500"
+                fontWeight="600"
                 spinner={
                   <Spinner
                     thickness="4px"
@@ -52,14 +52,11 @@ export function AuthProviders({ providers }: AuthProvidersProps) {
                 onClick={() => handleProviderSignin(provider.id)}
                 leftIcon={renderProviderIcon(provider.name)}
                 data-test="provider-sign-in-submit"
-                border="solid 1.5px #7c8085"
+                border="solid 1.5px #353945"
                 background="none"
-                sx={{
-                  '&:hover': {
-                    bg: 'green.300',
-                    border: 'solid 1.5px',
-                    borderColor: 'green.300',
-                  },
+                _hover={{
+                  background: '#0e2aa8',
+                  border: 'solid 1.5px #0e2aa8',
                 }}
                 marginBottom={index === array.length - 1 ? 0 : '1rem'}
               >
@@ -70,6 +67,6 @@ export function AuthProviders({ providers }: AuthProvidersProps) {
           </Box>
         )
       )}
-    </>
+    </Box>
   )
 }
