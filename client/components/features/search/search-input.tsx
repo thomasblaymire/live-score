@@ -1,6 +1,14 @@
 import React, { ChangeEvent } from 'react'
-import { Input, InputGroup, InputLeftElement, Box } from '@chakra-ui/react'
+import {
+  Input,
+  InputGroup,
+  InputLeftElement,
+  Box,
+  InputRightElement,
+  IconButton,
+} from '@chakra-ui/react'
 import { FiSearch } from 'react-icons/fi'
+import { VscClose } from 'react-icons/vsc'
 
 interface SearchInputProps {
   onSearch: (event: ChangeEvent<HTMLInputElement>) => void
@@ -8,6 +16,10 @@ interface SearchInputProps {
 }
 
 export function SearchInput({ onSearch, value }: SearchInputProps) {
+  const clearInput = () => {
+    onSearch({ target: { value: '' } } as ChangeEvent<HTMLInputElement>)
+  }
+
   return (
     <Box>
       <InputGroup>
@@ -16,6 +28,12 @@ export function SearchInput({ onSearch, value }: SearchInputProps) {
         </InputLeftElement>
         <Input
           _focusVisible={{ border: 'none' }}
+          css={{
+            '::-webkit-search-decoration': { display: 'none' },
+            '::-webkit-search-cancel-button': { display: 'none' },
+            '::-webkit-search-results-button': { display: 'none' },
+            '::-webkit-search-results-decoration': { display: 'none' },
+          }}
           type="search"
           placeholder="Search..."
           area-label="Search"
@@ -26,6 +44,17 @@ export function SearchInput({ onSearch, value }: SearchInputProps) {
           outline="none"
           focusBorderColor="none"
         />
+        {value && (
+          <InputRightElement>
+            <IconButton
+              aria-label="Clear search"
+              icon={<VscClose color="#353945" fontSize="1.25rem" />}
+              size="sm"
+              variant="unstyled"
+              onClick={clearInput}
+            />
+          </InputRightElement>
+        )}
       </InputGroup>
     </Box>
   )
