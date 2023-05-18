@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent } from 'react'
 import { Input, InputGroup, InputLeftElement, Box } from '@chakra-ui/react'
 import { FiSearch } from 'react-icons/fi'
 
@@ -7,10 +7,7 @@ interface SearchInputProps {
   value: string
 }
 
-export const SearchInput: React.FC<SearchInputProps> = ({
-  onSearch,
-  value,
-}) => {
+export function SearchInput({ onSearch, value }: SearchInputProps) {
   return (
     <Box>
       <InputGroup>
@@ -18,8 +15,10 @@ export const SearchInput: React.FC<SearchInputProps> = ({
           <FiSearch color="#353945" />
         </InputLeftElement>
         <Input
-          type="text"
+          _focusVisible={{ border: 'none' }}
+          type="search"
           placeholder="Search..."
+          area-label="Search"
           value={value}
           onChange={onSearch}
           pl="2.5rem"

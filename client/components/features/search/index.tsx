@@ -14,8 +14,6 @@ export function Search() {
     setValue(event.target.value)
   }
 
-  console.log('debug results', results)
-
   return (
     <Box>
       <SearchInput onSearch={onSearch} value={value} />
