@@ -3,6 +3,8 @@ import { Box, Flex } from '@chakra-ui/layout'
 import { WrapItem, useDisclosure, useMediaQuery } from '@chakra-ui/react'
 import { AuthenticationButtons } from './header-auth'
 import { useNextAuthProvider } from './helpers'
+import { useModalContext } from '@/context/modal-context'
+import { ModalName } from '@/lib/constants'
 import { Logo } from '@/components/ui/logo'
 import { HeaderIcons } from './header-icons'
 import { Navigation } from '../navigation'
@@ -22,6 +24,7 @@ interface HeaderProps {
 export function Header({ isBasic }: HeaderProps) {
   const { user, setUser } = useAuthContext()
   const { data: fetchedUser } = useCurrentUser()
+  const { modals, toggleModal } = useModalContext()
   const providers = useNextAuthProvider()
 
   useEffect(() => {
@@ -34,16 +37,6 @@ export function Header({ isBasic }: HeaderProps) {
     isOpen: isSearchOpen,
     onOpen: onSearchOpen,
     onClose: onSearchClose,
-  } = useDisclosure()
-  const {
-    isOpen: isLoginOpen,
-    onOpen: onLoginOpen,
-    onClose: onLoginClose,
-  } = useDisclosure()
-  const {
-    isOpen: isSignupOpen,
-    onOpen: onSignupOpen,
-    onClose: onSignupClose,
   } = useDisclosure()
   const [isTablet] = useMediaQuery('(min-width: 780px)')
   const [isMobile] = useMediaQuery('(max-width: 768px)')
@@ -80,8 +73,8 @@ export function Header({ isBasic }: HeaderProps) {
 
           {!user && isTablet && (
             <AuthenticationButtons
-              onLoginOpen={onLoginOpen}
-              onSignupOpen={onSignupOpen}
+              onLoginOpen={() => toggleModal(ModalName.SignIn)}
+              onSignupOpen={() => toggleModal(ModalName.SignUp)}
             />
           )}
 
@@ -97,13 +90,20 @@ export function Header({ isBasic }: HeaderProps) {
           )}
         </Flex>
 
-        <AuthModal isOpen={isLoginOpen} onClose={onLoginClose} title="Sign In">
-          <SigninForm providers={providers} onLoginSuccess={onLoginClose} />
+        <AuthModal
+          isOpen={modals.signIn}
+          onClose={() => toggleModal(ModalName.SignIn)}
+          title="Sign In"
+        >
+          <SigninForm
+            providers={providers}
+            onLoginSuccess={() => toggleModal(ModalName.SignIn)}
+          />
         </AuthModal>
 
         <AuthModal
-          isOpen={isSignupOpen}
-          onClose={onSignupClose}
+          isOpen={modals.signUp}
+          onClose={() => toggleModal(ModalName.SignUp)}
           title="Sign Up"
         >
           <SignupForm />

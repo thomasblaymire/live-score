@@ -1,8 +1,4 @@
-import { useEffect, useState } from 'react'
 import { Box, Stack, Button } from '@chakra-ui/react'
-import { getProviders } from 'next-auth/react'
-import { useRouter } from 'next/router'
-import { useDisclosure } from '@chakra-ui/react'
 
 interface AuthenticationButtonsProps {
   onLoginOpen: () => void
