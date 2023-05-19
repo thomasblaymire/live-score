@@ -10,7 +10,7 @@ import { createServer } from "http";
 import { clientUrl } from "./constants";
 import { Server } from "socket.io";
 import { newsRouter } from "./routes/news";
-import { favouritesRouter } from "./routes/fixtures/favourite";
+import { favouritesRouter } from "./routes/favourites";
 import { leaguesRouter } from "./routes/leagues";
 import { searchRouter } from "./routes/search";
 import { signupRouter } from "./routes/auth/signup";
