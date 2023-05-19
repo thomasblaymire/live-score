@@ -4,9 +4,10 @@ import { MdOutlineStadium } from 'react-icons/md'
 
 interface VenueResultProps {
   venue: VenueResult
+  userId: string
 }
 
-export function VenueResult({ venue }: VenueResultProps) {
+export function VenueResult({ venue, userId }: VenueResultProps) {
   return (
     <HStack
       key={venue.id}

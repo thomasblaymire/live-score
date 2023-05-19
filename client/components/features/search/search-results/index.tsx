@@ -1,9 +1,12 @@
 import React from 'react'
+import { ModalName } from '@/lib/constants'
 import { VStack } from '@chakra-ui/react'
 import { Category } from './search-result.category.tsx'
 import { TeamResult } from './search-result-team'
 import { VenueResult } from './search-result-venue'
 import { PlayerResult } from './search-result-player'
+import { useAuthContext } from '@/context/auth-context'
+import { useModalContext } from '@/context/modal-context'
 
 interface SearchResultsProps {
   results: {
@@ -14,25 +17,40 @@ interface SearchResultsProps {
 }
 
 export function SearchResults({ results }: SearchResultsProps) {
+  const { user } = useAuthContext()
+  const { toggleModal } = useModalContext()
   const { teams, venues, players } = results
+
+  const handleUserInteraction = (action: () => void) => {
+    if (!user) {
+      toggleModal(ModalName.SignIn)
+      return
+    }
+    action()
+  }
 
   return (
     <VStack spacing={2} align="stretch" marginY="0.5rem" paddingX="0.5rem">
       <Category title="Teams">
         {teams.map((team) => (
-          <TeamResult key={team.id} team={team} />
+          <TeamResult
+            key={team.id}
+            team={team}
+            userId={user?.id}
+            handleUserInteraction={handleUserInteraction}
+          />
         ))}
       </Category>
 
       <Category title="Venues">
         {venues.map((venue) => (
-          <VenueResult key={venue.id} venue={venue} />
+          <VenueResult key={venue.id} venue={venue} userId={user.id} />
         ))}
       </Category>
 
       <Category title="Players">
         {players.map((player) => (
-          <PlayerResult key={player.id} player={player} />
+          <PlayerResult key={player.id} player={player} userId={user.id} />
         ))}
       </Category>
     </VStack>

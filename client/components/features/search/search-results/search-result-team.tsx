@@ -1,13 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import NextImage from 'next/image'
-import { Box, HStack, Text } from '@chakra-ui/react'
+import { Box, HStack, Text, IconButton } from '@chakra-ui/react'
 import { RiFootballFill } from 'react-icons/ri'
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { useFavourite } from '@/hooks/useFavourite'
 
 interface TeamResultProps {
   team: TeamResult
+  userId: string | undefined
+  handleUserInteraction: (action: () => void) => void
 }
 
-export function TeamResult({ team }: TeamResultProps) {
+export function TeamResult({
+  team,
+  userId,
+  handleUserInteraction,
+}: TeamResultProps) {
+  const favTypeId = team.id
+  const initialIsFavorited = false
+  const favType = 'Team'
+
+  const { isFavorited, toggleFavorite } = useFavourite({
+    userId,
+    favType,
+    favTypeId,
+    initialIsFavorited,
+  })
+
+  const customToggleFavorite = () => {
+    handleUserInteraction(toggleFavorite)
+  }
+
   return (
     <HStack
       key={team.id}
@@ -36,6 +59,12 @@ export function TeamResult({ team }: TeamResultProps) {
       <Text color="white" fontWeight="500" fontSize="0.8rem">
         {team.name}
       </Text>
+      <IconButton
+        variant="unstyled"
+        aria-label="Add to favorites"
+        icon={isFavorited ? <AiFillHeart fill="red" /> : <AiOutlineHeart />}
+        onClick={customToggleFavorite}
+      />
     </HStack>
   )
 }

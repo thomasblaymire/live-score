@@ -5,9 +5,10 @@ import { RiFootballFill } from 'react-icons/ri'
 
 interface PlayerResultProps {
   player: PlayerResult
+  userId: string
 }
 
-export function PlayerResult({ player }: PlayerResultProps) {
+export function PlayerResult({ player, userId }: PlayerResultProps) {
   return (
     <HStack
       key={player.id}
