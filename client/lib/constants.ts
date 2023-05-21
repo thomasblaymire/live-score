@@ -8,3 +8,9 @@ interface Modals {
   [ModalName.SignIn]: boolean
   [ModalName.SignUp]: boolean
 }
+
+export enum FavouriteType {
+  Team = 'Team',
+  Venue = 'Venue',
+  Player = 'Player',
+}

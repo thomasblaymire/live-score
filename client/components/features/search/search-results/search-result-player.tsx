@@ -6,7 +6,7 @@ import { RiFootballFill } from 'react-icons/ri'
 interface PlayerResultProps {
   player: PlayerResult
   userId: string | undefined
-  handleUserInteraction: (action: () => void) => void
+  handleFavourite: (action: () => void) => void
 }
 
 export function PlayerResult({ player, userId }: PlayerResultProps) {

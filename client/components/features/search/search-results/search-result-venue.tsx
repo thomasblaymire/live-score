@@ -5,7 +5,7 @@ import { MdOutlineStadium } from 'react-icons/md'
 interface VenueResultProps {
   venue: VenueResult
   userId: string | undefined
-  handleUserInteraction: (action: () => void) => void
+  handleFavourite: (action: () => void) => void
 }
 
 export function VenueResult({ venue, userId }: VenueResultProps) {

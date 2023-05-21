@@ -21,7 +21,7 @@ export function SearchResults({ results }: SearchResultsProps) {
   const { toggleModal } = useModalContext()
   const { teams, venues, players } = results
 
-  const handleUserInteraction = (action: () => void) => {
+  const handleFavourite = (action: () => void) => {
     if (!user) {
       toggleModal(ModalName.SignIn)
       return
@@ -37,7 +37,7 @@ export function SearchResults({ results }: SearchResultsProps) {
             key={team.id}
             team={team}
             userId={user?.id}
-            handleUserInteraction={handleUserInteraction}
+            handleFavourite={handleFavourite}
           />
         ))}
       </Category>
@@ -48,7 +48,7 @@ export function SearchResults({ results }: SearchResultsProps) {
             key={venue.id}
             venue={venue}
             userId={user?.id}
-            handleUserInteraction={handleUserInteraction}
+            handleFavourite={handleFavourite}
           />
         ))}
       </Category>
@@ -59,7 +59,7 @@ export function SearchResults({ results }: SearchResultsProps) {
             key={player.id}
             player={player}
             userId={user?.id}
-            handleUserInteraction={handleUserInteraction}
+            handleFavourite={handleFavourite}
           />
         ))}
       </Category>

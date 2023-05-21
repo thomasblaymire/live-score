@@ -1,40 +1,36 @@
-import React from 'react'
-import NextImage from 'next/image'
-import { Box, HStack, Text, IconButton, Spacer } from '@chakra-ui/react'
-import { RiFootballFill } from 'react-icons/ri'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import { useFavourite } from '@/hooks/useFavourite'
 import Link from 'next/link'
+import NextImage from 'next/image'
+import { Box, HStack, Text, Spacer } from '@chakra-ui/react'
+import { RiFootballFill } from 'react-icons/ri'
+import { FavoriteButton } from '@/components/ui/favourite'
+import { useFavourite } from '@/hooks/useFavourite'
+import { FavouriteType } from '@/lib/constants'
 
 interface TeamResultProps {
   team: TeamResult
   userId: string | undefined
-  handleUserInteraction: (action: () => void) => void
+  handleFavourite: (action: () => void) => void
 }
 
-export function TeamResult({
-  team,
-  userId,
-  handleUserInteraction,
-}: TeamResultProps) {
-  const favTypeId = team.id
-  const initialIsFavoritedMap = { [`Team_${favTypeId}`]: false }
+export function TeamResult({ team, userId, handleFavourite }: TeamResultProps) {
+  const initialIsFavoritedMap = {
+    [`${FavouriteType.Team}_${team.id}`]: false,
+  }
 
   const { isFavoritedMap, toggleFavorite } = useFavourite({
     userId,
-    favItems: [{ favType: 'Team', favTypeId }],
+    favItems: [{ favType: FavouriteType.Team, favTypeId: team.id }],
     initialIsFavoritedMap,
   })
 
-  const customToggleFavorite = () => {
-    handleUserInteraction(() => {
-      return toggleFavorite(
-        'Team',
-        favTypeId,
-        !isFavoritedMap[`Team_${team.id}`]
+  const customToggleFavorite = () =>
+    handleFavourite(() =>
+      toggleFavorite(
+        FavouriteType.Team,
+        team.id,
+        !isFavoritedMap[`${FavouriteType.Team}_${team.id}`]
       )
-    })
-  }
+    )
 
   return (
     <HStack
@@ -76,20 +72,8 @@ export function TeamResult({
         </Text>
       </Link>
       <Spacer />
-      <IconButton
-        variant="unstyled"
-        isRound={false}
-        m={0}
-        p={0}
-        minW={0}
-        aria-label="Add to favorites"
-        icon={
-          isFavoritedMap && isFavoritedMap[`Team_${team.id}`] ? (
-            <AiFillHeart fill="red" />
-          ) : (
-            <AiOutlineHeart />
-          )
-        }
+      <FavoriteButton
+        isFavorited={isFavoritedMap[`${FavouriteType.Team}_${team.id}`]}
         onClick={customToggleFavorite}
       />
     </HStack>
