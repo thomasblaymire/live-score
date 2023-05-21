@@ -5,7 +5,8 @@ import { RiFootballFill } from 'react-icons/ri'
 
 interface PlayerResultProps {
   player: PlayerResult
-  userId: string
+  userId: string | undefined
+  handleUserInteraction: (action: () => void) => void
 }
 
 export function PlayerResult({ player, userId }: PlayerResultProps) {

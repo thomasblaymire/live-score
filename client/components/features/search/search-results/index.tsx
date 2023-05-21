@@ -30,7 +30,7 @@ export function SearchResults({ results }: SearchResultsProps) {
   }
 
   return (
-    <VStack spacing={2} align="stretch" marginY="0.5rem" paddingX="0.5rem">
+    <VStack spacing={2} align="stretch" marginY="0" paddingX="0.5rem">
       <Category title="Teams">
         {teams.map((team) => (
           <TeamResult
@@ -44,13 +44,23 @@ export function SearchResults({ results }: SearchResultsProps) {
 
       <Category title="Venues">
         {venues.map((venue) => (
-          <VenueResult key={venue.id} venue={venue} userId={user.id} />
+          <VenueResult
+            key={venue.id}
+            venue={venue}
+            userId={user?.id}
+            handleUserInteraction={handleUserInteraction}
+          />
         ))}
       </Category>
 
       <Category title="Players">
         {players.map((player) => (
-          <PlayerResult key={player.id} player={player} userId={user.id} />
+          <PlayerResult
+            key={player.id}
+            player={player}
+            userId={user?.id}
+            handleUserInteraction={handleUserInteraction}
+          />
         ))}
       </Category>
     </VStack>
