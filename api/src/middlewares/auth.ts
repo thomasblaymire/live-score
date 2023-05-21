@@ -10,13 +10,12 @@ export const verifyAuth: RequestHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  const authHeader = req.headers.authorization;
+  const token = req.cookies.token;
+  console.log("debug req.headers", req.headers);
 
-  if (!authHeader) {
-    return res.status(401).json({ message: "Authorization header missing." });
+  if (!token) {
+    return res.status(401).json({ message: "No authentication token." });
   }
-
-  const token = authHeader.split(" ")[1];
 
   try {
     const decodedToken = jwt.verify(
