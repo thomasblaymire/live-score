@@ -11,7 +11,6 @@ export const verifyAuth: RequestHandler = (
   next: NextFunction
 ) => {
   const token = req.cookies.token;
-  console.log("debug req.headers", req.headers);
 
   if (!token) {
     return res.status(401).json({ message: "No authentication token." });

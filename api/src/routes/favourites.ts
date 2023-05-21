@@ -1,12 +1,20 @@
 import express, { Request, Response } from "express";
+import rateLimit from "express-rate-limit";
 import { prisma } from "../helpers/prisma";
 import { verifyAuth } from "../middlewares/auth";
 
 const router = express.Router();
 
+const favouriteRateLimit = rateLimit({
+  windowMs: 60 * 1000,
+  max: 15,
+  message: "Too many requests, please try again later.",
+});
+
 router.post(
   "/api/favourites",
   verifyAuth,
+  favouriteRateLimit,
   async (req: Request, res: Response) => {
     const { userId, favType, favTypeId } = req.body;
 
@@ -21,7 +29,6 @@ router.post(
 
       res.status(201).json(favorite);
     } catch (error) {
-      console.log("debug error", error);
       res
         .status(500)
         .json({ error: "Something went wrong while adding the favorite" });
@@ -32,6 +39,7 @@ router.post(
 router.delete(
   "/api/favourites",
   verifyAuth,
+  favouriteRateLimit,
   async (req: Request, res: Response) => {
     const { userId, favType, favTypeId } = req.body;
 
@@ -48,7 +56,6 @@ router.delete(
 
       res.status(200).json(favorite);
     } catch (error) {
-      console.log("debug", error);
       res
         .status(500)
         .json({ error: "Something went wrong while removing the favorite" });
