@@ -13,8 +13,6 @@ interface SigninProps {
   providers: Provider[]
 }
 function Signin({ providers }: SigninProps) {
-  console.log('debug providers', providers)
-
   return (
     <Box
       height={{ base: 'auto', md: '100vh' }}

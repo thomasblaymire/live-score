@@ -18,7 +18,7 @@ import { InputField } from '@/components/ui/input'
 
 interface SigninFormProps {
   providers?: Provider[]
-  onLoginSuccess: () => void
+  onLoginSuccess?: () => void
 }
 
 export const SigninForm = ({ providers, onLoginSuccess }: SigninFormProps) => {
@@ -32,7 +32,8 @@ export const SigninForm = ({ providers, onLoginSuccess }: SigninFormProps) => {
       setCookie('token', data.token, { path: '/' })
       setUser(data.user)
       router.push('/')
-      onLoginSuccess()
+
+      if (onLoginSuccess) onLoginSuccess()
     },
   })
 
