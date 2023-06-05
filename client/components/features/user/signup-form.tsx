@@ -74,7 +74,7 @@ export function SignupForm() {
 
   return (
     <Center color="white">
-      <Box borderRadius="6px" width="450px" padding="2rem" background="#121212">
+      <Box borderRadius="6px" width={{ base: '100%', md: '450px' }}>
         <form onSubmit={handleSubmit}>
           <Stack paddingBottom="25px" gap="1rem">
             <FormControl isRequired isInvalid={!!errors.name}>
@@ -134,6 +134,7 @@ export function SignupForm() {
             data-test="sign-in-submit"
             width="100%"
             marginTop="1rem"
+            marginBottom="1rem"
             bg="green.500"
             isLoading={signUpLoading}
             sx={{

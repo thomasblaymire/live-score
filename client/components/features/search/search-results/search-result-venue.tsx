@@ -13,7 +13,7 @@ export function VenueResult({ venue, userId }: VenueResultProps) {
     <HStack
       key={venue.id}
       mt={2}
-      padding="0.25rem"
+      padding="0 0.5rem"
       _hover={{
         background: '#1a1a1a',
         borderRadius: '5px',

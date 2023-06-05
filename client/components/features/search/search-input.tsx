@@ -43,6 +43,7 @@ export function SearchInput({ onSearch, value }: SearchInputProps) {
           border="none"
           outline="none"
           focusBorderColor="none"
+          data-testid="search-input"
         />
         {value && (
           <InputRightElement>
@@ -52,6 +53,7 @@ export function SearchInput({ onSearch, value }: SearchInputProps) {
               size="sm"
               variant="unstyled"
               onClick={clearInput}
+              data-testid="clear-search-button"
             />
           </InputRightElement>
         )}

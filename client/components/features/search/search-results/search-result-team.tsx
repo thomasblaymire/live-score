@@ -36,7 +36,7 @@ export function TeamResult({ team, userId, handleFavourite }: TeamResultProps) {
     <HStack
       key={team.id}
       mt={2}
-      padding="0 0.5rem"
+      padding="0 0.25rem"
       _hover={{
         background: '#1a1a1a',
         borderRadius: '5px',
