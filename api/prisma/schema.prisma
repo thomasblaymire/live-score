@@ -48,6 +48,7 @@ model User {
   accounts           Account[]
   sessions           Session[]
   fixturePredictions FixturePrediction[]
+  Favorite           Favorite[]
 }
 
 model Fixture {
@@ -172,10 +173,15 @@ model FixturePrediction {
   @@unique([fixtureId, userId])
 }
 
-model Favourites {
-  id      String @id @default(cuid())
-  matchId Int
-  userId  String
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  favType   String
+  favTypeId Int
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, favType, favTypeId])
 }
 
 model VerificationToken {

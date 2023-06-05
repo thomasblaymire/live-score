@@ -5,9 +5,7 @@ const nextConfig = {
     appDir: true,
   },
   compiler: {
-    removeConsole: {
-      exclue: ['error'],
-    },
+    removeConsole: process.env.NODE_ENV === 'production',
   },
   images: {
     unoptimized: true,

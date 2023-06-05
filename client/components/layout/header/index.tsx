@@ -2,6 +2,9 @@ import { useEffect } from 'react'
 import { Box, Flex } from '@chakra-ui/layout'
 import { WrapItem, useDisclosure, useMediaQuery } from '@chakra-ui/react'
 import { AuthenticationButtons } from './header-auth'
+import { useNextAuthProvider } from './helpers'
+import { useModalContext } from '@/context/modal-context'
+import { ModalName } from '@/lib/constants'
 import { Logo } from '@/components/ui/logo'
 import { HeaderIcons } from './header-icons'
 import { Navigation } from '../navigation'
@@ -10,17 +13,19 @@ import { Search } from '@/components/features/full-search'
 import { useCurrentUser } from '@/hooks/useCurrentUser'
 import { useAuthContext } from '@/context/auth-context'
 import { HeaderBasic } from './header-basic'
+import { AuthModal } from '@/components/features/user/auth-modal'
+import { SigninForm } from '@/components/features/user/signin-form'
+import { SignupForm } from '@/components/features/user/signup-form'
 
 interface HeaderProps {
   isBasic?: boolean
 }
 
 export function Header({ isBasic }: HeaderProps) {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isTablet] = useMediaQuery('(min-width: 780px)')
-  const [isMobile] = useMediaQuery('(max-width: 768px)')
   const { user, setUser } = useAuthContext()
   const { data: fetchedUser } = useCurrentUser()
+  const { modals, toggleModal } = useModalContext()
+  const providers = useNextAuthProvider()
 
   useEffect(() => {
     if (fetchedUser) {
@@ -28,9 +33,13 @@ export function Header({ isBasic }: HeaderProps) {
     }
   }, [fetchedUser, setUser])
 
-  const handleSearchOpen = () => {
-    onOpen()
-  }
+  const {
+    isOpen: isSearchOpen,
+    onOpen: onSearchOpen,
+    onClose: onSearchClose,
+  } = useDisclosure()
+  const [isTablet] = useMediaQuery('(min-width: 780px)')
+  const [isMobile] = useMediaQuery('(max-width: 768px)')
 
   if (isBasic) {
     return <HeaderBasic />
@@ -38,7 +47,7 @@ export function Header({ isBasic }: HeaderProps) {
 
   return (
     <header>
-      <Search isOpen={isOpen} onClose={onClose} />
+      <Search isOpen={isSearchOpen} onClose={onSearchClose} />
       <Box
         height={isMobile ? '4rem' : '5rem'}
         position="sticky"
@@ -62,12 +71,17 @@ export function Header({ isBasic }: HeaderProps) {
 
           <Navigation user={user} />
 
-          {!user && isTablet && <AuthenticationButtons />}
+          {!user && isTablet && (
+            <AuthenticationButtons
+              onLoginOpen={() => toggleModal(ModalName.SignIn)}
+              onSignupOpen={() => toggleModal(ModalName.SignUp)}
+            />
+          )}
 
           {user && isTablet && (
             <Box>
               <Flex alignItems="center">
-                <HeaderIcons handleSearchOpen={handleSearchOpen} />
+                <HeaderIcons handleSearchOpen={onSearchOpen} />
                 <WrapItem>
                   <AuthDropdown user={user} />
                 </WrapItem>
@@ -75,6 +89,25 @@ export function Header({ isBasic }: HeaderProps) {
             </Box>
           )}
         </Flex>
+
+        <AuthModal
+          isOpen={modals.signIn}
+          onClose={() => toggleModal(ModalName.SignIn)}
+          title="Sign In"
+        >
+          <SigninForm
+            providers={providers}
+            onLoginSuccess={() => toggleModal(ModalName.SignIn)}
+          />
+        </AuthModal>
+
+        <AuthModal
+          isOpen={modals.signUp}
+          onClose={() => toggleModal(ModalName.SignUp)}
+          title="Sign Up"
+        >
+          <SignupForm />
+        </AuthModal>
       </Box>
     </header>
   )

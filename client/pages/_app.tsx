@@ -1,4 +1,5 @@
 import { AuthProvider } from '../context/auth-context'
+import { ModalProvider } from '../context/modal-context'
 import { ChakraProvider } from '@chakra-ui/react'
 import { Header } from '@/components/layout/header'
 import {
@@ -35,22 +36,24 @@ export default function App({
       <Hydrate state={pageProps.dehydratedState}>
         <ChakraProvider theme={theme}>
           <AuthProvider>
-            <main className={dm_Sans.className}>
-              {Component.authPath ? (
-                <>
-                  <Header isBasic={true} />
-                  <Component {...pageProps} />
-                </>
-              ) : (
-                <>
-                  <Header />
-                  <Component {...pageProps} />
-                </>
-              )}
-              <Analytics />
-            </main>
+            <ModalProvider>
+              <main className={dm_Sans.className}>
+                {Component.authPath ? (
+                  <>
+                    <Header isBasic={true} />
+                    <Component {...pageProps} />
+                  </>
+                ) : (
+                  <>
+                    <Header />
+                    <Component {...pageProps} />
+                  </>
+                )}
+                <Analytics />
+              </main>
 
-            <ReactQueryDevtools initialIsOpen={false} />
+              <ReactQueryDevtools initialIsOpen={false} />
+            </ModalProvider>
           </AuthProvider>
         </ChakraProvider>
       </Hydrate>

@@ -620,8 +620,24 @@ interface Team {
   logo: string
 }
 
-interface Player {
+interface PlayerResult {
   id: number
+  name: string
+  age: number
+  number: number
+  position: string
+  photo: string
+}
+
+interface VenueResult {
+  id: number
+  name: string
+  city: string
+}
+
+interface TeamResult {
+  id: number
+  logo: string
   name: string
 }
 

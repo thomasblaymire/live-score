@@ -79,6 +79,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context
   const session = await getSession({ req })
 
+  try {
+    const providers = await getProviders()
+    console.log('debug providers in get server side', providers)
+  } catch (err) {
+    console.log('debug error', err)
+  }
+
+  console.log('debug session', session)
+
   if (session) {
     return {
       redirect: { destination: '/' },

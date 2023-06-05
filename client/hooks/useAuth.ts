@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { useMutation, UseMutationOptions } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
 import { API_URL } from '@/lib/constants'
 
 interface AuthParams {
@@ -12,11 +12,19 @@ interface SignupParmas extends AuthParams {
 }
 
 const signIn = async ({ email, password }: AuthParams) => {
-  const { data } = await axios.post(`${API_URL}/signin`, {
-    email: email,
-    password: password,
-  })
-  return data
+  try {
+    const { data } = await axios.post(`${API_URL}/signin`, {
+      email: email,
+      password: password,
+    })
+    return data
+  } catch (error: any) {
+    if (error.response && error.response.status === 401) {
+      throw new Error('Invalid email or password')
+    } else {
+      throw error
+    }
+  }
 }
 
 const signUp = async ({ email, password, name }: SignupParmas) => {
@@ -35,25 +43,31 @@ export function useAuth({
   onSignInError,
 }: {
   onSignUpSuccess?: (data: any) => void
-  onSignUpError?: (error: Error) => void
+  onSignUpError?: (error: any) => void
   onSignInSuccess?: (data: any) => void
-  onSignInError?: (error: Error) => void
+  onSignInError?: (error: any) => void
 } = {}) {
   const signUpMutation = useMutation(['signup'], signUp, {
     onSuccess: onSignUpSuccess,
     onError: onSignUpError,
   })
+
   const signInMutation = useMutation(['signin'], signIn, {
     onSuccess: onSignInSuccess,
-    onError: onSignInError,
+    onError: (error: any) => {
+      console.error(error.message)
+      if (onSignInError) {
+        onSignInError(error)
+      }
+    },
   })
 
   const signUpUser = async ({ email, password, name }: SignupParmas) => {
-    await signUpMutation.mutateAsync({ email, password, name })
+    await signUpMutation.mutate({ email, password, name })
   }
 
   const signInUser = async ({ email, password }: AuthParams) => {
-    await signInMutation.mutateAsync({ email, password })
+    signInMutation.mutate({ email, password })
   }
 
   return {
@@ -61,7 +75,7 @@ export function useAuth({
     signInUser,
     signUpLoading: signUpMutation.isLoading,
     signInLoading: signInMutation.isLoading,
-    onSignUpError: signUpMutation.error,
-    onSignInError: signInMutation.error,
+    signUpError: signUpMutation.error,
+    signInError: signInMutation.error,
   }
 }

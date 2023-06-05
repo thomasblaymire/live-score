@@ -10,16 +10,20 @@ export function Search() {
   const debouncedValue = useDebounce<string>(value, 500)
   const { data: results, isLoading, error } = useSearch(debouncedValue)
 
+  const hasResults =
+    results &&
+    (results.players.length > 0 ||
+      results.teams.length > 0 ||
+      results.venues.length > 0)
+
   function onSearch(event: React.ChangeEvent<HTMLInputElement>) {
     setValue(event.target.value)
   }
 
-  console.log('debug results', results)
-
   return (
     <Box>
       <SearchInput onSearch={onSearch} value={value} />
-      {results ? <SearchResults results={results} /> : null}
+      {hasResults ? <SearchResults results={results} /> : null}
     </Box>
   )
 }
