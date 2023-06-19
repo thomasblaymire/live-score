@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query'
 import { API_URL } from '@/lib/constants'
 
 interface Favourite {
@@ -14,11 +14,6 @@ interface FavouriteItem {
   favTypeId: number
 }
 
-interface FavouriteStatusResponse {
-  userId: string
-  favItems: FavouriteItem[]
-}
-
 interface useFavouriteResponse {
   isFavoritedMap: Record<string, boolean>
   toggleFavorite: (
@@ -26,6 +21,7 @@ interface useFavouriteResponse {
     favTypeId: number,
     isFavorited: boolean
   ) => void
+  userFavorites: any
 }
 
 interface MutationVariables extends FavouriteItem {
@@ -83,6 +79,17 @@ export const useFavourite = ({
 
     fetchInitialFavStatus()
   }, [userId])
+
+  const { data: userFavorites, isLoading } = useQuery<any, unknown>(
+    ['favorites', userId],
+    () =>
+      axios.get(`${API_URL}/favourites/user/${userId}`, {
+        withCredentials: true,
+      }),
+    {
+      enabled: !!userId,
+    }
+  )
 
   const toggleFavoriteMutation = useMutation<
     any,
@@ -143,6 +150,9 @@ export const useFavourite = ({
     })
   }
 
-  // Return the map of favourite status and the function to toggle favourite
-  return { isFavoritedMap, toggleFavorite }
+  if (isLoading) {
+    return { isFavoritedMap, toggleFavorite, userFavorites: [] }
+  }
+
+  return { isFavoritedMap, toggleFavorite, userFavorites }
 }
