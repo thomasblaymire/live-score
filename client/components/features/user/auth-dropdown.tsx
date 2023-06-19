@@ -1,3 +1,4 @@
+import NextImage from 'next/image'
 import { useCallback } from 'react'
 import { QueryClient } from '@tanstack/react-query'
 import {
@@ -16,13 +17,25 @@ import { AiOutlineExport } from 'react-icons/ai'
 import { authMenuItems } from '../../../data/static'
 import { deleteCookie } from '@/lib/cookie'
 import { useRouter } from 'next/router'
+import { hyphenate } from '@/lib/string'
 import Link from 'next/link'
+
+interface AuthFavourite {
+  createdAt: string
+  favType: string
+  favTypeId: number
+  id: number
+  logo: string
+  name: string
+  userId: string
+}
 
 interface AuthDropdownProps {
   user: User
+  favourites: AuthFavourite[]
 }
 
-export function AuthDropdown({ user }: AuthDropdownProps) {
+export function AuthDropdown({ user, favourites }: AuthDropdownProps) {
   const router = useRouter()
 
   const signOut = useCallback(() => {
@@ -61,6 +74,34 @@ export function AuthDropdown({ user }: AuthDropdownProps) {
         style={{ border: 'solid 2px #212121' }}
         padding="0"
       >
+        <MenuGroup>
+          {favourites?.map((favourite: any) => (
+            <Link
+              key={favourite.id}
+              passHref
+              href={`/team/${hyphenate(favourite.name)}/${favourite.id}`}
+              style={{ color: 'white', fontSize: '0.9rem' }}
+            >
+              <MenuItem
+                background="#121212"
+                _hover={{ bg: '#313131' }}
+                transition-duration="0.2s"
+                paddingY="10px"
+              >
+                <NextImage
+                  src={favourite.logo}
+                  alt={favourite.name}
+                  width={20}
+                  height={20}
+                  style={{ marginRight: '0.5rem' }}
+                />
+
+                {favourite.name}
+              </MenuItem>
+            </Link>
+          ))}
+        </MenuGroup>
+        <MenuDivider />
         <MenuGroup>
           {authMenuItems.map(({ href, name, id, icon }) => (
             <MenuItem
