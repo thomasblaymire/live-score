@@ -4,6 +4,7 @@ import { WrapItem, useDisclosure, useMediaQuery } from '@chakra-ui/react'
 import { AuthenticationButtons } from './header-auth'
 import { useNextAuthProvider } from './helpers'
 import { useModalContext } from '@/context/modal-context'
+import { useFavourite } from '@/hooks/useFavourite'
 import { ModalName } from '@/lib/constants'
 import { Logo } from '@/components/ui/logo'
 import { HeaderIcons } from './header-icons'
@@ -24,6 +25,16 @@ interface HeaderProps {
 export function Header({ isBasic }: HeaderProps) {
   const { user, setUser } = useAuthContext()
   const { data: fetchedUser } = useCurrentUser()
+
+  const favItems: [] = []
+  const initialIsFavoritedMap = {}
+
+  const { userFavorites } = useFavourite({
+    userId: user?.id,
+    favItems,
+    initialIsFavoritedMap,
+  })
+
   const { modals, toggleModal } = useModalContext()
   const providers = useNextAuthProvider()
 
@@ -83,7 +94,7 @@ export function Header({ isBasic }: HeaderProps) {
               <Flex alignItems="center">
                 <HeaderIcons handleSearchOpen={onSearchOpen} />
                 <WrapItem>
-                  <AuthDropdown user={user} />
+                  <AuthDropdown user={user} favourites={userFavorites.data} />
                 </WrapItem>
               </Flex>
             </Box>

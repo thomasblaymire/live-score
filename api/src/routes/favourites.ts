@@ -98,4 +98,35 @@ router.post(
   }
 );
 
+router.get(
+  "/api/favourites/user/:userId",
+  verifyAuth,
+  async (req: Request, res: Response) => {
+    const { userId } = req.params;
+
+    try {
+      const favorites = await prisma.favorite.findMany({
+        where: { userId },
+      });
+
+      const detailedFavorites = await Promise.all(
+        favorites.map(async (favorite) => {
+          if (favorite.favType === "Team") {
+            const team = await prisma.team.findUnique({
+              where: { id: favorite.favTypeId },
+            });
+            return { ...favorite, ...team };
+          }
+          return favorite;
+        })
+      );
+
+      res.status(200).json(detailedFavorites);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ error: "Something went wrong while fetching favorites" });
+    }
+  }
+);
 export { router as favouritesRouter };
