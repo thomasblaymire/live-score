@@ -1,10 +1,12 @@
 'use client'
 
+import { AuthProvider } from '@/context/auth-context'
+import { ModalProvider } from '@/context/modal-context'
 import { theme } from '@/theme'
 import { ChakraProvider } from '@chakra-ui/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(
@@ -20,11 +22,22 @@ export function Providers({ children }: { children: React.ReactNode }) {
       })
   )
 
+  // Mock server initialization
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
+      import('@/mocks').then(({ initMockServer }) => {
+        initMockServer()
+      })
+    }
+  }, [])
+
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        {children}
-        <ReactQueryDevtools initialIsOpen={false} />
+      <ModalProvider>
+            {children}
+            <ReactQueryDevtools initialIsOpen={false} />
+          </ModalProvider>
       </QueryClientProvider>
     </ChakraProvider>
   )

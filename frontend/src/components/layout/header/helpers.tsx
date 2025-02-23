@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import { getProviders } from 'next-auth/react'
+import { useEffect, useState } from 'react'
 
 export const useNextAuthProvider = () => {
   const [providers, setProviders] = useState<any>()

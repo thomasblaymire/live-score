@@ -17,6 +17,7 @@
     "@emotion/styled": "^11.11.0",
     "@tanstack/react-query": "^5.20.1",
     "@tanstack/react-query-devtools": "^5.20.1",
+    "@vercel/analytics": "^1.5.0",
     "axios": "^1.7.9",
     "framer-motion": "^11.0.3",
     "next": "15.1.7",
@@ -24,7 +25,8 @@
     "react-datepicker": "^8.1.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.0.1",
-    "reset-css": "^5.0.2"
+    "reset-css": "^5.0.2",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@types/node": "^20",

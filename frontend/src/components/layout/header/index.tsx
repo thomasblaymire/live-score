@@ -1,12 +1,14 @@
-import { Search } from '@/components/features/full-search'
-import { AuthDropdown } from '@/components/features/user/auth-dropdown'
-import { AuthModal } from '@/components/features/user/auth-modal'
-import { SigninForm } from '@/components/features/user/signin-form'
-import { SignupForm } from '@/components/features/user/signup-form'
+'use client'
+
+import { Search } from '@/components/full-search'
 import { Logo } from '@/components/ui/logo'
+import { AuthDropdown } from '@/components/user/auth-dropdown'
+import { AuthModal } from '@/components/user/auth-modal'
+import { SigninForm } from '@/components/user/signin-form'
+import { SignupForm } from '@/components/user/signup-form'
 import { useAuthContext } from '@/context/auth-context'
 import { useModalContext } from '@/context/modal-context'
-import { useCurrentUser } from '@/hooks/useCurrentUser'
+// import { useCurrentUser } from '@/hooks/useCurrentUser'
 import { ModalName } from '@/lib/constants'
 import { Box, Flex, WrapItem, useDisclosure, useMediaQuery } from '@chakra-ui/react'
 import { useEffect } from 'react'
@@ -22,15 +24,17 @@ interface HeaderProps {
 
 export function Header({ isBasic }: HeaderProps) {
   const { user, setUser } = useAuthContext()
-  const { data: fetchedUser } = useCurrentUser()
+  // const { data: fetchedUser } = useCurrentUser()
   const { modals, toggleModal } = useModalContext()
-  const providers = useNextAuthProvider()
+  // const providers = useNextAuthProvider()
 
-  useEffect(() => {
-    if (fetchedUser) {
-      setUser(fetchedUser)
-    }
-  }, [fetchedUser, setUser])
+  // useEffect(() => {
+  //   if (fetchedUser) {
+  //     setUser(fetchedUser)
+  //   }
+  // }, [fetchedUser, setUser])
+
+  const providers = []
 
   const {
     isOpen: isSearchOpen,
@@ -46,7 +50,7 @@ export function Header({ isBasic }: HeaderProps) {
 
   return (
     <header>
-      <Search isOpen={isSearchOpen} onClose={onSearchClose} />
+      {/* <Search isOpen={isSearchOpen} onClose={onSearchClose} /> */}
       <Box
         height={isMobile ? '4rem' : '5rem'}
         position="sticky"
@@ -95,7 +99,7 @@ export function Header({ isBasic }: HeaderProps) {
           title="Sign In"
         >
           <SigninForm
-            providers={providers}
+            // providers={providers}
             onLoginSuccess={() => toggleModal(ModalName.SignIn)}
           />
         </AuthModal>

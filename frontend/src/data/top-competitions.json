@@ -1,0 +1,689 @@
+[
+  {
+    "league": {
+      "id": 937,
+      "name": "Emirates Cup",
+      "type": "Cup",
+      "logo": "https://media-3.api-sports.io/football/leagues/937.png"
+    },
+    "country": { "name": "World", "code": null, "flag": null },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-07-30",
+        "end": "2022-07-30",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": false,
+            "statistics_players": false
+          },
+          "standings": false,
+          "players": false,
+          "top_scorers": false,
+          "top_assists": false,
+          "top_cards": false,
+          "injuries": false,
+          "predictions": true,
+          "odds": false
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 3,
+      "name": "UEFA Europa League",
+      "type": "Cup",
+      "logo": "https://media-3.api-sports.io/football/leagues/3.png"
+    },
+    "country": { "name": "World", "code": null, "flag": null },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-08-04",
+        "end": "2023-02-23",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": true,
+          "predictions": true,
+          "odds": false
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 2,
+      "name": "UEFA Champions League",
+      "type": "Cup",
+      "logo": "https://media-3.api-sports.io/football/leagues/2.png"
+    },
+    "country": { "name": "World", "code": null, "flag": null },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-06-21",
+        "end": "2023-03-15",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": true,
+          "predictions": true,
+          "odds": false
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 39,
+      "name": "Premier League",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/39.png"
+    },
+    "country": {
+      "name": "England",
+      "code": "GB",
+      "flag": "https://media-3.api-sports.io/flags/gb.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-08-05",
+        "end": "2023-05-28",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": true,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 180,
+      "name": "Championship",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/180.png"
+    },
+    "country": {
+      "name": "Scotland",
+      "code": "GB",
+      "flag": "https://media-3.api-sports.io/flags/gb.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-07-30",
+        "end": "2023-05-05",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": false,
+            "statistics_players": false
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": false,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 41,
+      "name": "League One",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/41.png"
+    },
+    "country": {
+      "name": "England",
+      "code": "GB",
+      "flag": "https://media-3.api-sports.io/flags/gb.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-07-30",
+        "end": "2023-05-06",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": false,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 42,
+      "name": "League Two",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/42.png"
+    },
+    "country": {
+      "name": "England",
+      "code": "GB",
+      "flag": "https://media-3.api-sports.io/flags/gb.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-07-30",
+        "end": "2023-05-06",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": false,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 78,
+      "name": "Bundesliga",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/78.png"
+    },
+    "country": {
+      "name": "Germany",
+      "code": "DE",
+      "flag": "https://media-3.api-sports.io/flags/de.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-08-05",
+        "end": "2023-05-27",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": true,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 79,
+      "name": "2. Bundesliga",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/79.png"
+    },
+    "country": {
+      "name": "Germany",
+      "code": "DE",
+      "flag": "https://media-3.api-sports.io/flags/de.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-07-15",
+        "end": "2023-05-28",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": false,
+          "predictions": true,
+          "odds": false
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 48,
+      "name": "League Cup",
+      "type": "Cup",
+      "logo": "https://media-3.api-sports.io/football/leagues/48.png"
+    },
+    "country": {
+      "name": "England",
+      "code": "GB",
+      "flag": "https://media-3.api-sports.io/flags/gb.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-08-02",
+        "end": "2023-01-31",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": false,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": false,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 140,
+      "name": "La Liga",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/140.png"
+    },
+    "country": {
+      "name": "Spain",
+      "code": "ES",
+      "flag": "https://media-3.api-sports.io/flags/es.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-08-12",
+        "end": "2023-06-04",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": true,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 141,
+      "name": "Segunda División",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/141.png"
+    },
+    "country": {
+      "name": "Spain",
+      "code": "ES",
+      "flag": "https://media-3.api-sports.io/flags/es.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-08-14",
+        "end": "2023-05-28",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": false,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 61,
+      "name": "Ligue 1",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/61.png"
+    },
+    "country": {
+      "name": "France",
+      "code": "FR",
+      "flag": "https://media-3.api-sports.io/flags/fr.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-08-05",
+        "end": "2023-06-03",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": true,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 62,
+      "name": "Ligue 2",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/62.png"
+    },
+    "country": {
+      "name": "France",
+      "code": "FR",
+      "flag": "https://media-3.api-sports.io/flags/fr.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-07-30",
+        "end": "2023-06-02",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": false,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 10,
+      "name": "Friendlies",
+      "type": "Cup",
+      "logo": "https://media-3.api-sports.io/football/leagues/10.png"
+    },
+    "country": { "name": "World", "code": null, "flag": null },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-01-01",
+        "end": "2022-12-30",
+        "current": false,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": false,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": false,
+          "predictions": true,
+          "odds": false
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 358,
+      "name": "First Division",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/358.png"
+    },
+    "country": {
+      "name": "Ireland",
+      "code": "IE",
+      "flag": "https://media-3.api-sports.io/flags/ie.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-02-18",
+        "end": "2022-11-04",
+        "current": false,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": false,
+            "statistics_players": false
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": false,
+          "predictions": true,
+          "odds": false
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 130,
+      "name": "Copa Argentina",
+      "type": "Cup",
+      "logo": "https://media-3.api-sports.io/football/leagues/130.png"
+    },
+    "country": {
+      "name": "Argentina",
+      "code": "AR",
+      "flag": "https://media-3.api-sports.io/flags/ar.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-02-23",
+        "end": "2022-10-30",
+        "current": false,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": false,
+            "statistics_players": false
+          },
+          "standings": false,
+          "players": false,
+          "top_scorers": false,
+          "top_assists": false,
+          "top_cards": false,
+          "injuries": false,
+          "predictions": true,
+          "odds": false
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 135,
+      "name": "Serie A",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/135.png"
+    },
+    "country": {
+      "name": "Italy",
+      "code": "IT",
+      "flag": "https://media-3.api-sports.io/flags/it.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-08-13",
+        "end": "2023-06-04",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": true,
+            "statistics_players": true
+          },
+          "standings": true,
+          "players": true,
+          "top_scorers": true,
+          "top_assists": true,
+          "top_cards": true,
+          "injuries": true,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  },
+  {
+    "league": {
+      "id": 296,
+      "name": "Thai League 1",
+      "type": "League",
+      "logo": "https://media-3.api-sports.io/football/leagues/296.png"
+    },
+    "country": {
+      "name": "Thailand",
+      "code": "TH",
+      "flag": "https://media-3.api-sports.io/flags/th.svg"
+    },
+    "seasons": [
+      {
+        "year": 2022,
+        "start": "2022-08-12",
+        "end": "2023-05-14",
+        "current": true,
+        "coverage": {
+          "fixtures": {
+            "events": true,
+            "lineups": true,
+            "statistics_fixtures": false,
+            "statistics_players": false
+          },
+          "standings": true,
+          "players": false,
+          "top_scorers": false,
+          "top_assists": false,
+          "top_cards": false,
+          "injuries": false,
+          "predictions": true,
+          "odds": true
+        }
+      }
+    ]
+  }
+]

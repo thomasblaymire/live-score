@@ -1,8 +1,10 @@
+'use client'
+
 import { ModalElement } from '@/components/ui/modal'
 import { navItems } from '@/data/static'
 import { Box, Flex, IconButton, List, ListItem, useDisclosure, useMediaQuery } from '@chakra-ui/react'
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { RxHamburgerMenu } from 'react-icons/rx'
 
@@ -14,10 +16,10 @@ export function Navigation({ user }: NavigationProps) {
   const [isTablet] = useMediaQuery('(min-width: 780px)')
   const [activeItem, setActiveItem] = useState<null | number>(null)
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const router = useRouter()
+  const pathname = usePathname()
 
   const renderNavItems = () => {
-    const isHomeRoute = router.pathname === '/'
+    const isHomeRoute = pathname === '/'
     const activeColor = isHomeRoute || activeItem === null ? 'white' : '#0e2aa8'
 
     return (
@@ -40,7 +42,7 @@ export function Navigation({ user }: NavigationProps) {
                 },
               }}
             >
-              <NextLink href={href} passHref>
+              <NextLink href={href}>
                 <Box
                   color={activeItem === id ? activeColor : 'white'}
                   textDecoration="none"

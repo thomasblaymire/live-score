@@ -1,25 +1,30 @@
-'use client'
-
-import { useEffect } from 'react'
+import { Header } from '@/components/layout/header'
+import { Analytics } from '@vercel/analytics/react'
+import { DM_Sans } from 'next/font/google'
+import 'reset-css'
 import { Providers } from './providers'
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  display: 'fallback',
+  weight: ['400', '500', '700'],
+})
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  useEffect(() => {
-    if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
-      import('@/mocks').then(({ initMockServer }) => {
-        initMockServer()
-      })
-    }
-  }, [])
-
   return (
-    <html lang="en">
+    <html lang="en" className={dmSans.className}>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <main>
+            <Header />
+            {children}
+            <Analytics />
+          </main>
+        </Providers>
       </body>
     </html>
   )
