@@ -1,20 +1,19 @@
-import { ReactNode } from 'react'
 import {
   Box,
   Container,
-  Stack,
-  SimpleGrid,
-  Text,
   Link,
+  SimpleGrid,
+  Stack,
+  Text,
   VisuallyHidden,
   chakra,
-  useColorModeValue,
 } from '@chakra-ui/react'
-import { FaTwitter, FaYoutube, FaInstagram } from 'react-icons/fa'
+import { ReactNode } from 'react'
+import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
 
 const ListHeader = ({ children }: { children: ReactNode }) => {
   return (
-    <Text fontWeight={'500'} fontSize={'lg'} mb={2} color="#fcfcfd">
+    <Text fontWeight="500" fontSize="lg" mb={2} color="fcfcfd">
       {children}
     </Text>
   )
@@ -27,7 +26,11 @@ const CustomLink = ({
   href: string
   children: ReactNode
 }) => (
-  <Link href={href} color="#777e90" _hover={{ color: '#3772ff;' }}>
+  <Link 
+    href={href} 
+    color="gray.500" 
+    _hover={{ color: 'blue.500' }}
+  >
     {children}
   </Link>
 )
@@ -43,18 +46,18 @@ const SocialButton = ({
 }) => {
   return (
     <chakra.button
-      bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
-      rounded={'full'}
+      bg="whiteAlpha.100"
+      rounded="full"
       w={8}
       h={8}
-      cursor={'pointer'}
-      as={'a'}
+      cursor="pointer"
+      as="a"
       href={href}
-      display={'inline-flex'}
-      alignItems={'center'}
-      justifyContent={'center'}
-      transition={'background 0.3s ease'}
-      _hover={{ fill: '#3772ff' }}
+      display="inline-flex"
+      alignItems="center"
+      justifyContent="center"
+      transition="background 0.3s ease"
+      _hover={{ color: 'blue.500' }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
       {children}
@@ -65,11 +68,16 @@ const SocialButton = ({
 export function Footer() {
   return (
     <Box
-      borderTop="solid 1px #353945"
-      color={useColorModeValue('gray.700', 'gray.200')}
+      as="footer"
+      borderTop="1px solid"
+      borderColor="gray.800"
+      color="gray.200"
     >
       <Container as={Stack} maxW="6xl" py={10}>
-        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
+        <SimpleGrid 
+          columns={{ base: 1, sm: 2, md: 4 }} 
+          spacing={8}
+        >
           <Stack align="flex-start">
             <ListHeader>Company</ListHeader>
             <CustomLink href="#">About Us</CustomLink>
@@ -95,26 +103,31 @@ export function Footer() {
         </SimpleGrid>
       </Container>
 
-      <Box borderTopWidth={1} borderStyle={'solid'} borderColor="gray.800">
+      <Box 
+        borderTop="1px solid" 
+        borderColor="gray.800"
+      >
         <Container
           as={Stack}
-          maxW={'6xl'}
+          maxW="6xl"
           py={4}
           direction={{ base: 'column', md: 'row' }}
           spacing={4}
           justify={{ md: 'space-between' }}
           align={{ md: 'center' }}
         >
-          <Text color="#777e90">© 2023 Live Score. All rights reserved</Text>
-          <Stack direction={'row'} spacing={6}>
-            <SocialButton label={'Twitter'} href={'#'}>
-              <FaTwitter fill="#777e90" />
+          <Text color="gray.500">
+            © 2023 Live Score. All rights reserved
+          </Text>
+          <Stack direction="row" spacing={6}>
+            <SocialButton label="Twitter" href="#">
+              <FaTwitter />
             </SocialButton>
-            <SocialButton label={'YouTube'} href={'#'}>
-              <FaYoutube fill="#777e90" />
+            <SocialButton label="YouTube" href="#">
+              <FaYoutube />
             </SocialButton>
-            <SocialButton label={'Instagram'} href={'#'}>
-              <FaInstagram fill="#777e90" />
+            <SocialButton label="Instagram" href="#">
+              <FaInstagram />
             </SocialButton>
           </Stack>
         </Container>

@@ -1,14 +1,14 @@
-import Link from 'next/link'
-import { Box, LinkBox, Center } from '@chakra-ui/react'
 import { Loading } from '@/components/ui/loading'
-import { ScoreBoardTeams } from './scoreboard-teams'
+import { hyphenateMatchString } from '@/lib/string'
+import { Box, Center, LinkBox } from '@chakra-ui/react'
+import Link from 'next/link'
+import { ScoreBoardEmpty } from './scoreboard-empty'
 import { ScoreBoardGoals } from './scoreboard-goals'
 import { ScoreBoardStatus } from './scoreboard-status'
-import { ScoreBoardEmpty } from './scoreboard-empty'
-import { hyphenateMatchString } from '@/lib/string'
+import { ScoreBoardTeams } from './scoreboard-teams'
 
 interface ScoreBoardLiveProps {
-  fixtures: CustomFixture[]
+  fixtures: any;
   isFetching: boolean
   error: Error | unknown
 }
@@ -26,64 +26,59 @@ export function ScoreBoardList({ fixtures, isFetching }: ScoreBoardLiveProps) {
     return <ScoreBoardEmpty />
   }
 
+  console.log('debug fixtures XXX', fixtures)
+
   return (
-    <>
-      {fixtures.map((fixture: CustomFixture, index: number) => {
-        const { apiId, homeTeam, awayTeam, goals } = fixture
-        const id = apiId.toString()
+    <Box>
+      {fixtures.response.map((fixture: any) => {
+        console.log('debug fixture', fixture)
+        const matchId = fixture.fixture.id.toString()
+        
         return (
-          <Link
-            href={{
-              pathname: '/matches/[match]/[id]',
-              query: { id },
+          <Box
+            key={matchId}
+            fontSize={{ base: '1rem', md: '1.25rem' }}
+            fontWeight="600"
+            color="white"
+            borderRadius="5px"
+            background="#1b1b1b"
+            id={matchId}
+            sx={{
+              '&:hover': {
+                background: '#313131',
+                cursor: 'pointer',
+              },
             }}
-            passHref
-            as={`/matches/${hyphenateMatchString(
-              homeTeam.name,
-              awayTeam.name
-            )}/${id}`}
-            key={id}
           >
-            <Box
-              fontSize={{ base: '1rem', md: '1.25rem' }}
-              fontWeight="600"
-              color="white"
-              borderRadius="5px"
-              background="#1b1b1b;"
-              sx={{
-                '&:hover': {
-                  background: '#313131',
-                  cursor: 'pointer',
-                },
+            <LinkBox
+              display="flex"
+              padding={{ base: '0.5rem 1rem' }}
+              marginBottom={{
+                base: '0.5rem',
+                sm: '1rem',
               }}
+              fontWeight="500"
             >
-              <LinkBox
+              <Box
                 display="flex"
-                padding={{ base: '0.5rem 1rem' }}
-                marginBottom={{
-                  base: index === fixtures.length - 1 ? '0rem' : '0.5rem',
-                  sm: index === fixtures.length - 1 ? '0rem' : '1rem',
-                }}
-                fontWeight="500"
+                alignItems="center"
+                flex="1 1 0%"
+                fontSize={{ base: '14px', md: 'auto' }}
               >
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  flex="1 1 0%"
-                  fontSize={{ base: '14px', md: 'auto' }}
-                >
-                  <ScoreBoardStatus />
-                  <ScoreBoardTeams homeTeam={homeTeam} awayTeam={awayTeam} />
-                  <ScoreBoardGoals
-                    homeGoals={goals.home}
-                    awayGoals={goals.away}
-                  />
-                </Box>
-              </LinkBox>
-            </Box>
-          </Link>
+                <ScoreBoardStatus />
+                <ScoreBoardTeams 
+                  homeTeam={fixture.teams.home} 
+                  awayTeam={fixture.teams.away} 
+                />
+                <ScoreBoardGoals
+                  homeGoals={fixture.goals.home}
+                  awayGoals={fixture.goals.away}
+                />
+              </Box>
+            </LinkBox>
+          </Box>
         )
       })}
-    </>
+    </Box>
   )
 }

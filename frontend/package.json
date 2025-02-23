@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
+    "dev:mock": "msw init public/ --no-save && NEXT_PUBLIC_API_MOCKING=enabled next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "msw:init": "msw init public/ --no-save"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",
@@ -32,7 +34,11 @@
     "@typescript-eslint/parser": "^7.0.1",
     "eslint": "^8.56.0",
     "eslint-config-next": "15.1.7",
+    "msw": "^2.7.1",
     "prettier": "^3.2.5",
     "typescript": "^5"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

@@ -18,9 +18,10 @@ export const getFixtures = async ({
   endDate,
 }: FixtureDateRange): Promise<any[]> => {
   try {
-    const { data } = await axios.get(
-      `${API_URL}/fixtures-all/date?start=${startDate}&end=${endDate}`
-    )
+    const url = 'https://run.mocky.io/v3/98e4f04c-ba4a-49c8-9c8f-6c4772e9525f';
+    // const apiUrl = `${API_URL}/fixtures-all/date?start=${startDate}&end=${endDate}`
+
+    const { data } = await axios.get(url);
     console.log('debug url', `${API_URL}/fixtures-all/date?start=${startDate}&end=${endDate}`)
     console.log('debug data', data)
     return data

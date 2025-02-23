@@ -8,32 +8,23 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   images: {
-    unoptimized: true,
+    domains: ['media.api-sports.io'],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'crests.football-data.org',
-        port: '',
       },
       {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
-        port: '',
       },
       {
         protocol: 'https',
         hostname: 'upload.wikimedia.org',
-        port: '',
       },
       {
         protocol: 'https',
         hostname: 'media-3.api-sports.io',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'media.api-sports.io',
-        port: '',
       },
     ],
   },
