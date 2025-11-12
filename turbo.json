@@ -6,6 +6,10 @@
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"]
     },
+    "build:bundle": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/bundle.js", "dist/bundle.js.map"]
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },

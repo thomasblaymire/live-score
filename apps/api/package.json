@@ -3,11 +3,13 @@
   "version": "2.0.0",
   "private": true,
   "description": "Live Score API Server",
-  "main": "dist/src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/src/index.js",
-    "dev": "concurrently \"tsc --watch\" \"nodemon -q dist/src/index.js\"",
+    "build:bundle": "node esbuild.config.js",
+    "start": "node dist/index.js",
+    "start:bundle": "NODE_ENV=production node dist/bundle.js",
+    "dev": "concurrently \"tsc --watch\" \"nodemon -q dist/index.js\"",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
     "clean": "rm -rf dist"
@@ -38,6 +40,7 @@
     "@types/node": "^22.10.1",
     "@types/node-fetch": "^2.6.12",
     "concurrently": "^9.1.0",
+    "esbuild": "^0.27.0",
     "nodemon": "^3.1.9",
     "typescript": "^5.6.3"
   }
