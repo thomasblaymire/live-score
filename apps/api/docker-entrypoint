@@ -1,8 +1,8 @@
 #!/bin/bash -e
 
-# If running the web server then migrate existing database
-if [ "${*}" == "{{ .packager }} run start" ]; then
-  npx prisma migrate deploy
-fi
+# Run Prisma migrations before starting the server
+echo "Running database migrations..."
+cd /app/packages/database
+npx prisma migrate deploy
 
 exec "${@}"
