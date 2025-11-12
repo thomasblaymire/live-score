@@ -1,24 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@repo/database'],
+  transpilePackages: ["@repo/database"],
+  outputFileTracingRoot: require("path").join(__dirname, "../../"),
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'media.api-sports.io',
-        pathname: '/football/**',
+        protocol: "https",
+        hostname: "media.api-sports.io",
+        pathname: "/football/**",
       },
     ],
-  },
-  experimental: {
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
   },
 };
 
