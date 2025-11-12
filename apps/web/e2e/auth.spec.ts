@@ -29,7 +29,7 @@ test.describe("Authentication", () => {
     await page.getByRole("button", { name: "Sign In" }).click();
     await expect(page.getByRole("heading", { name: "Sign In" })).toBeVisible();
 
-    // Click the X button (close button in modal)
+    // Click the close button within modal
     await page.locator('button[class*="text-gray-400"]').first().click();
 
     await expect(
@@ -68,7 +68,11 @@ test.describe("Authentication", () => {
     await page.getByLabel(/^Password$/).fill("password123");
     await page.getByLabel("Confirm Password").fill("password456");
 
-    await page.getByRole("button", { name: /sign up/i }).click();
+    // Click the submit button within the form, not the header button
+    await page
+      .locator("form")
+      .getByRole("button", { name: /sign up/i })
+      .click();
 
     await expect(page.getByText("Passwords do not match")).toBeVisible();
   });
@@ -80,7 +84,11 @@ test.describe("Authentication", () => {
     await page.getByLabel(/^Password$/).fill("12345");
     await page.getByLabel("Confirm Password").fill("12345");
 
-    await page.getByRole("button", { name: /sign up/i }).click();
+    // Click the submit button within the form, not the header button
+    await page
+      .locator("form")
+      .getByRole("button", { name: /sign up/i })
+      .click();
 
     await expect(
       page.getByText("Password must be at least 6 characters")
@@ -93,7 +101,11 @@ test.describe("Authentication", () => {
     await page.getByLabel("Email").fill("test@example.com");
     await page.getByLabel("Password").fill("password123");
 
-    await page.getByRole("button", { name: /sign in/i }).click();
+    // Click the submit button within the form, not the header button
+    await page
+      .locator("form")
+      .getByRole("button", { name: /sign in/i })
+      .click();
 
     // Should show loading state briefly
     await expect(page.getByText("Signing in...")).toBeVisible();
@@ -106,17 +118,27 @@ test.describe("Authentication", () => {
     await page.getByLabel(/^Password$/).fill("password123");
     await page.getByLabel("Confirm Password").fill("password123");
 
-    await page.getByRole("button", { name: /sign up/i }).click();
+    // Click the submit button within the form, not the header button
+    await page
+      .locator("form")
+      .getByRole("button", { name: /sign up/i })
+      .click();
 
     // Should show loading state briefly
     await expect(page.getByText("Signing up...")).toBeVisible();
   });
 
   test("should display navigation items in header", async ({ page }) => {
-    await expect(page.getByRole("link", { name: "Home" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Matches" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Predict" })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Teams" })).toBeVisible();
+    // Navigation items are hidden on mobile (md:flex), so check viewport
+    const viewportSize = page.viewportSize();
+    const isMobile = viewportSize ? viewportSize.width < 768 : false;
+
+    if (!isMobile) {
+      await expect(page.getByRole("link", { name: "Home" })).toBeVisible();
+      await expect(page.getByRole("link", { name: "Matches" })).toBeVisible();
+      await expect(page.getByRole("link", { name: "Predict" })).toBeVisible();
+      await expect(page.getByRole("link", { name: "Teams" })).toBeVisible();
+    }
   });
 
   test("should navigate to predict page (protected route test)", async ({

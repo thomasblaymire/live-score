@@ -3,7 +3,6 @@ import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { AuthModal } from "../auth-modal";
 
-// Mock useAuth hook
 const mockSignIn = vi.fn();
 const mockSignUp = vi.fn();
 const mockSignInWithOAuth = vi.fn();
@@ -73,7 +72,7 @@ describe("AuthModal", () => {
   it("closes modal when close button is clicked", () => {
     render(<AuthModal isOpen={true} onClose={mockOnClose} />);
 
-    const closeButton = screen.getByRole("button", { name: "" }); // X button
+    const closeButton = screen.getByRole("button", { name: "" });
     fireEvent.click(closeButton);
 
     expect(mockOnClose).toHaveBeenCalled();
@@ -147,7 +146,7 @@ describe("AuthModal", () => {
       const user = userEvent.setup();
       mockSignIn.mockRejectedValue(new Error("Invalid credentials"));
 
-      // Suppress console.error for this test since the error logging is expected
+      // Suppress console.error
       const consoleErrorSpy = vi
         .spyOn(console, "error")
         .mockImplementation(() => {});

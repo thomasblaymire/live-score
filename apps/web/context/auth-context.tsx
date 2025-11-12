@@ -51,7 +51,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       password,
     });
     if (error) throw error;
-    
+
     // If session exists, user is auto-confirmed (email confirmation disabled)
     if (data.session) {
       setUser(data.user);

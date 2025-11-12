@@ -2,8 +2,8 @@
 
 import { useAuth } from "@/context/auth-context";
 import { useState } from "react";
-import { Logo } from "../ui/logo";
 import { AuthModal } from "../features/auth/auth-modal";
+import { Logo } from "../ui/logo";
 
 export function Header() {
   const { user, signOut } = useAuth();
