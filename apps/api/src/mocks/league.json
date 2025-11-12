@@ -1,0 +1,2816 @@
+{
+  "league": {
+    "id": 39,
+    "name": "Premier League",
+    "country": "England",
+    "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+    "flag": "https://media-3.api-sports.io/flags/gb.svg",
+    "season": 2022,
+    "standings": [
+      [
+        {
+          "rank": 1,
+          "team": {
+            "id": 42,
+            "name": "Arsenal",
+            "logo": "https://media-3.api-sports.io/football/teams/42.png"
+          },
+          "points": 50,
+          "goalsDiff": 29,
+          "group": "Premier League",
+          "form": "WWDWW",
+          "status": "same",
+          "description": "Promotion - Champions League (Group Stage)",
+          "all": {
+            "played": 19,
+            "win": 16,
+            "draw": 2,
+            "lose": 1,
+            "goals": {
+              "for": 45,
+              "against": 16
+            }
+          },
+          "home": {
+            "played": 9,
+            "win": 8,
+            "draw": 1,
+            "lose": 0,
+            "goals": {
+              "for": 25,
+              "against": 10
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 8,
+            "draw": 1,
+            "lose": 1,
+            "goals": {
+              "for": 20,
+              "against": 6
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 2,
+          "team": {
+            "id": 50,
+            "name": "Manchester City",
+            "logo": "https://media-3.api-sports.io/football/teams/50.png"
+          },
+          "points": 45,
+          "goalsDiff": 33,
+          "group": "Premier League",
+          "form": "WWLWD",
+          "status": "same",
+          "description": "Promotion - Champions League (Group Stage)",
+          "all": {
+            "played": 20,
+            "win": 14,
+            "draw": 3,
+            "lose": 3,
+            "goals": {
+              "for": 53,
+              "against": 20
+            }
+          },
+          "home": {
+            "played": 11,
+            "win": 9,
+            "draw": 1,
+            "lose": 1,
+            "goals": {
+              "for": 38,
+              "against": 12
+            }
+          },
+          "away": {
+            "played": 9,
+            "win": 5,
+            "draw": 2,
+            "lose": 2,
+            "goals": {
+              "for": 15,
+              "against": 8
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 3,
+          "team": {
+            "id": 34,
+            "name": "Newcastle",
+            "logo": "https://media-3.api-sports.io/football/teams/34.png"
+          },
+          "points": 39,
+          "goalsDiff": 22,
+          "group": "Premier League",
+          "form": "DWDDW",
+          "status": "same",
+          "description": "Promotion - Champions League (Group Stage)",
+          "all": {
+            "played": 20,
+            "win": 10,
+            "draw": 9,
+            "lose": 1,
+            "goals": {
+              "for": 33,
+              "against": 11
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 6,
+            "draw": 4,
+            "lose": 0,
+            "goals": {
+              "for": 18,
+              "against": 5
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 4,
+            "draw": 5,
+            "lose": 1,
+            "goals": {
+              "for": 15,
+              "against": 6
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 4,
+          "team": {
+            "id": 33,
+            "name": "Manchester United",
+            "logo": "https://media-3.api-sports.io/football/teams/33.png"
+          },
+          "points": 39,
+          "goalsDiff": 7,
+          "group": "Premier League",
+          "form": "LDWWW",
+          "status": "same",
+          "description": "Promotion - Champions League (Group Stage)",
+          "all": {
+            "played": 20,
+            "win": 12,
+            "draw": 3,
+            "lose": 5,
+            "goals": {
+              "for": 32,
+              "against": 25
+            }
+          },
+          "home": {
+            "played": 9,
+            "win": 7,
+            "draw": 1,
+            "lose": 1,
+            "goals": {
+              "for": 17,
+              "against": 5
+            }
+          },
+          "away": {
+            "played": 11,
+            "win": 5,
+            "draw": 2,
+            "lose": 4,
+            "goals": {
+              "for": 15,
+              "against": 20
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 5,
+          "team": {
+            "id": 47,
+            "name": "Tottenham",
+            "logo": "https://media-3.api-sports.io/football/teams/47.png"
+          },
+          "points": 36,
+          "goalsDiff": 9,
+          "group": "Premier League",
+          "form": "WLLWL",
+          "status": "same",
+          "description": "Promotion - Europa League (Group Stage)",
+          "all": {
+            "played": 21,
+            "win": 11,
+            "draw": 3,
+            "lose": 7,
+            "goals": {
+              "for": 40,
+              "against": 31
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 6,
+            "draw": 0,
+            "lose": 4,
+            "goals": {
+              "for": 21,
+              "against": 15
+            }
+          },
+          "away": {
+            "played": 11,
+            "win": 5,
+            "draw": 3,
+            "lose": 3,
+            "goals": {
+              "for": 19,
+              "against": 16
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 6,
+          "team": {
+            "id": 51,
+            "name": "Brighton",
+            "logo": "https://media.api-sports.io/football/teams/51.png"
+          },
+          "points": 31,
+          "goalsDiff": 10,
+          "group": "Premier League",
+          "form": "DWWLW",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 19,
+            "win": 9,
+            "draw": 4,
+            "lose": 6,
+            "goals": {
+              "for": 37,
+              "against": 27
+            }
+          },
+          "home": {
+            "played": 9,
+            "win": 4,
+            "draw": 2,
+            "lose": 3,
+            "goals": {
+              "for": 16,
+              "against": 10
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 5,
+            "draw": 2,
+            "lose": 3,
+            "goals": {
+              "for": 21,
+              "against": 17
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 7,
+          "team": {
+            "id": 36,
+            "name": "Fulham",
+            "logo": "https://media-3.api-sports.io/football/teams/36.png"
+          },
+          "points": 31,
+          "goalsDiff": 2,
+          "group": "Premier League",
+          "form": "LLWWW",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 21,
+            "win": 9,
+            "draw": 4,
+            "lose": 8,
+            "goals": {
+              "for": 32,
+              "against": 30
+            }
+          },
+          "home": {
+            "played": 11,
+            "win": 5,
+            "draw": 3,
+            "lose": 3,
+            "goals": {
+              "for": 18,
+              "against": 16
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 4,
+            "draw": 1,
+            "lose": 5,
+            "goals": {
+              "for": 14,
+              "against": 14
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 8,
+          "team": {
+            "id": 55,
+            "name": "Brentford",
+            "logo": "https://media.api-sports.io/football/teams/55.png"
+          },
+          "points": 30,
+          "goalsDiff": 4,
+          "group": "Premier League",
+          "form": "DWWWD",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 20,
+            "win": 7,
+            "draw": 9,
+            "lose": 4,
+            "goals": {
+              "for": 32,
+              "against": 28
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 5,
+            "draw": 4,
+            "lose": 1,
+            "goals": {
+              "for": 20,
+              "against": 10
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 2,
+            "draw": 5,
+            "lose": 3,
+            "goals": {
+              "for": 12,
+              "against": 18
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 9,
+          "team": {
+            "id": 40,
+            "name": "Liverpool",
+            "logo": "https://media.api-sports.io/football/teams/40.png"
+          },
+          "points": 29,
+          "goalsDiff": 9,
+          "group": "Premier League",
+          "form": "DLLWW",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 19,
+            "win": 8,
+            "draw": 5,
+            "lose": 6,
+            "goals": {
+              "for": 34,
+              "against": 25
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 6,
+            "draw": 3,
+            "lose": 1,
+            "goals": {
+              "for": 23,
+              "against": 9
+            }
+          },
+          "away": {
+            "played": 9,
+            "win": 2,
+            "draw": 2,
+            "lose": 5,
+            "goals": {
+              "for": 11,
+              "against": 16
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 10,
+          "team": {
+            "id": 49,
+            "name": "Chelsea",
+            "logo": "https://media-3.api-sports.io/football/teams/49.png"
+          },
+          "points": 29,
+          "goalsDiff": 1,
+          "group": "Premier League",
+          "form": "DWLLD",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 20,
+            "win": 8,
+            "draw": 5,
+            "lose": 7,
+            "goals": {
+              "for": 22,
+              "against": 21
+            }
+          },
+          "home": {
+            "played": 9,
+            "win": 5,
+            "draw": 2,
+            "lose": 2,
+            "goals": {
+              "for": 13,
+              "against": 7
+            }
+          },
+          "away": {
+            "played": 11,
+            "win": 3,
+            "draw": 3,
+            "lose": 5,
+            "goals": {
+              "for": 9,
+              "against": 14
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 11,
+          "team": {
+            "id": 66,
+            "name": "Aston Villa",
+            "logo": "https://media.api-sports.io/football/teams/66.png"
+          },
+          "points": 28,
+          "goalsDiff": -4,
+          "group": "Premier League",
+          "form": "WWDWL",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 20,
+            "win": 8,
+            "draw": 4,
+            "lose": 8,
+            "goals": {
+              "for": 23,
+              "against": 27
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 5,
+            "draw": 2,
+            "lose": 3,
+            "goals": {
+              "for": 15,
+              "against": 11
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 3,
+            "draw": 2,
+            "lose": 5,
+            "goals": {
+              "for": 8,
+              "against": 16
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 12,
+          "team": {
+            "id": 52,
+            "name": "Crystal Palace",
+            "logo": "https://media-3.api-sports.io/football/teams/52.png"
+          },
+          "points": 24,
+          "goalsDiff": -9,
+          "group": "Premier League",
+          "form": "DDLLW",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 20,
+            "win": 6,
+            "draw": 6,
+            "lose": 8,
+            "goals": {
+              "for": 18,
+              "against": 27
+            }
+          },
+          "home": {
+            "played": 11,
+            "win": 4,
+            "draw": 3,
+            "lose": 4,
+            "goals": {
+              "for": 11,
+              "against": 16
+            }
+          },
+          "away": {
+            "played": 9,
+            "win": 2,
+            "draw": 3,
+            "lose": 4,
+            "goals": {
+              "for": 7,
+              "against": 11
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 13,
+          "team": {
+            "id": 65,
+            "name": "Nottingham Forest",
+            "logo": "https://media.api-sports.io/football/teams/65.png"
+          },
+          "points": 21,
+          "goalsDiff": -19,
+          "group": "Premier League",
+          "form": "DWWDL",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 20,
+            "win": 5,
+            "draw": 6,
+            "lose": 9,
+            "goals": {
+              "for": 16,
+              "against": 35
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 4,
+            "draw": 3,
+            "lose": 3,
+            "goals": {
+              "for": 13,
+              "against": 12
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 1,
+            "draw": 3,
+            "lose": 6,
+            "goals": {
+              "for": 3,
+              "against": 23
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 14,
+          "team": {
+            "id": 46,
+            "name": "Leicester",
+            "logo": "https://media-3.api-sports.io/football/teams/46.png"
+          },
+          "points": 18,
+          "goalsDiff": -7,
+          "group": "Premier League",
+          "form": "DLLLL",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 20,
+            "win": 5,
+            "draw": 3,
+            "lose": 12,
+            "goals": {
+              "for": 28,
+              "against": 35
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 2,
+            "draw": 3,
+            "lose": 5,
+            "goals": {
+              "for": 11,
+              "against": 12
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 3,
+            "draw": 0,
+            "lose": 7,
+            "goals": {
+              "for": 17,
+              "against": 23
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 15,
+          "team": {
+            "id": 63,
+            "name": "Leeds",
+            "logo": "https://media-3.api-sports.io/football/teams/63.png"
+          },
+          "points": 18,
+          "goalsDiff": -7,
+          "group": "Premier League",
+          "form": "DLDDL",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 19,
+            "win": 4,
+            "draw": 6,
+            "lose": 9,
+            "goals": {
+              "for": 26,
+              "against": 33
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 3,
+            "draw": 4,
+            "lose": 3,
+            "goals": {
+              "for": 15,
+              "against": 14
+            }
+          },
+          "away": {
+            "played": 9,
+            "win": 1,
+            "draw": 2,
+            "lose": 6,
+            "goals": {
+              "for": 11,
+              "against": 19
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 16,
+          "team": {
+            "id": 48,
+            "name": "West Ham",
+            "logo": "https://media-3.api-sports.io/football/teams/48.png"
+          },
+          "points": 18,
+          "goalsDiff": -8,
+          "group": "Premier League",
+          "form": "WLDLL",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 20,
+            "win": 5,
+            "draw": 3,
+            "lose": 12,
+            "goals": {
+              "for": 17,
+              "against": 25
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 4,
+            "draw": 1,
+            "lose": 5,
+            "goals": {
+              "for": 11,
+              "against": 12
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 1,
+            "draw": 2,
+            "lose": 7,
+            "goals": {
+              "for": 6,
+              "against": 13
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 17,
+          "team": {
+            "id": 39,
+            "name": "Wolves",
+            "logo": "https://media-3.api-sports.io/football/teams/39.png"
+          },
+          "points": 17,
+          "goalsDiff": -18,
+          "group": "Premier League",
+          "form": "LWDLW",
+          "status": "same",
+          "description": null,
+          "all": {
+            "played": 20,
+            "win": 4,
+            "draw": 5,
+            "lose": 11,
+            "goals": {
+              "for": 12,
+              "against": 30
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 3,
+            "draw": 2,
+            "lose": 5,
+            "goals": {
+              "for": 6,
+              "against": 14
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 1,
+            "draw": 3,
+            "lose": 6,
+            "goals": {
+              "for": 6,
+              "against": 16
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 18,
+          "team": {
+            "id": 35,
+            "name": "Bournemouth",
+            "logo": "https://media.api-sports.io/football/teams/35.png"
+          },
+          "points": 17,
+          "goalsDiff": -23,
+          "group": "Premier League",
+          "form": "DLLLL",
+          "status": "same",
+          "description": "Relegation - Championship",
+          "all": {
+            "played": 20,
+            "win": 4,
+            "draw": 5,
+            "lose": 11,
+            "goals": {
+              "for": 19,
+              "against": 42
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 3,
+            "draw": 3,
+            "lose": 4,
+            "goals": {
+              "for": 10,
+              "against": 11
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 1,
+            "draw": 2,
+            "lose": 7,
+            "goals": {
+              "for": 9,
+              "against": 31
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 19,
+          "team": {
+            "id": 45,
+            "name": "Everton",
+            "logo": "https://media.api-sports.io/football/teams/45.png"
+          },
+          "points": 15,
+          "goalsDiff": -13,
+          "group": "Premier League",
+          "form": "LLLDL",
+          "status": "same",
+          "description": "Relegation - Championship",
+          "all": {
+            "played": 20,
+            "win": 3,
+            "draw": 6,
+            "lose": 11,
+            "goals": {
+              "for": 15,
+              "against": 28
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 2,
+            "draw": 2,
+            "lose": 6,
+            "goals": {
+              "for": 9,
+              "against": 14
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 1,
+            "draw": 4,
+            "lose": 5,
+            "goals": {
+              "for": 6,
+              "against": 14
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        },
+        {
+          "rank": 20,
+          "team": {
+            "id": 41,
+            "name": "Southampton",
+            "logo": "https://media-3.api-sports.io/football/teams/41.png"
+          },
+          "points": 15,
+          "goalsDiff": -18,
+          "group": "Premier League",
+          "form": "LWLLL",
+          "status": "same",
+          "description": "Relegation - Championship",
+          "all": {
+            "played": 20,
+            "win": 4,
+            "draw": 3,
+            "lose": 13,
+            "goals": {
+              "for": 17,
+              "against": 35
+            }
+          },
+          "home": {
+            "played": 10,
+            "win": 1,
+            "draw": 3,
+            "lose": 6,
+            "goals": {
+              "for": 9,
+              "against": 17
+            }
+          },
+          "away": {
+            "played": 10,
+            "win": 3,
+            "draw": 0,
+            "lose": 7,
+            "goals": {
+              "for": 8,
+              "against": 18
+            }
+          },
+          "update": "2023-01-23T00:00:00+00:00"
+        }
+      ]
+    ]
+  },
+  "topScorers": [
+    {
+      "player": {
+        "id": 1100,
+        "name": "E. Haaland",
+        "firstname": "Erling",
+        "lastname": "Braut Haaland",
+        "age": 23,
+        "birth": {
+          "date": "2000-07-21",
+          "place": "Leeds",
+          "country": "England"
+        },
+        "nationality": "Norway",
+        "height": "194 cm",
+        "weight": "88 kg",
+        "injured": false,
+        "photo": "https://media-3.api-sports.io/football/players/1100.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 50,
+            "name": "Manchester City",
+            "logo": "https://media-3.api-sports.io/football/teams/50.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 17,
+            "lineups": 16,
+            "minutes": 1401,
+            "number": null,
+            "position": "Attacker",
+            "rating": "7.629411",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 1,
+            "out": 5,
+            "bench": 1
+          },
+          "shots": {
+            "total": 56,
+            "on": 34
+          },
+          "goals": {
+            "total": 21,
+            "conceded": 0,
+            "assists": 3,
+            "saves": null
+          },
+          "passes": {
+            "total": 241,
+            "key": 16,
+            "accuracy": 10
+          },
+          "tackles": {
+            "total": 2,
+            "blocks": 1,
+            "interceptions": 2
+          },
+          "duels": {
+            "total": 91,
+            "won": 36
+          },
+          "dribbles": {
+            "attempts": 12,
+            "success": 5,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 11,
+            "committed": 13
+          },
+          "cards": {
+            "yellow": 3,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 3,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 184,
+        "name": "H. Kane",
+        "firstname": "Harry Edward",
+        "lastname": "Kane",
+        "age": 30,
+        "birth": {
+          "date": "1993-07-28",
+          "place": "London",
+          "country": "England"
+        },
+        "nationality": "England",
+        "height": "188 cm",
+        "weight": "86 kg",
+        "injured": false,
+        "photo": "https://media.api-sports.io/football/players/184.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 47,
+            "name": "Tottenham",
+            "logo": "https://media.api-sports.io/football/teams/47.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 19,
+            "lineups": 19,
+            "minutes": 1698,
+            "number": null,
+            "position": "Attacker",
+            "rating": "7.473684",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 3,
+            "bench": 0
+          },
+          "shots": {
+            "total": 51,
+            "on": 36
+          },
+          "goals": {
+            "total": 15,
+            "conceded": 0,
+            "assists": 1,
+            "saves": null
+          },
+          "passes": {
+            "total": 424,
+            "key": 35,
+            "accuracy": 16
+          },
+          "tackles": {
+            "total": 5,
+            "blocks": 4,
+            "interceptions": 1
+          },
+          "duels": {
+            "total": 204,
+            "won": 83
+          },
+          "dribbles": {
+            "attempts": 44,
+            "success": 17,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 28,
+            "committed": 15
+          },
+          "cards": {
+            "yellow": 4,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 2,
+            "missed": 1,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 19974,
+        "name": "I. Toney",
+        "firstname": "Ivan",
+        "lastname": "Toney",
+        "age": 27,
+        "birth": {
+          "date": "1996-03-16",
+          "place": "Northampton",
+          "country": "England"
+        },
+        "nationality": "England",
+        "height": "179 cm",
+        "weight": "70 kg",
+        "injured": false,
+        "photo": "https://media-3.api-sports.io/football/players/19974.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 55,
+            "name": "Brentford",
+            "logo": "https://media.api-sports.io/football/teams/55.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 17,
+            "lineups": 17,
+            "minutes": 1522,
+            "number": null,
+            "position": "Attacker",
+            "rating": "7.411764",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 2,
+            "bench": 0
+          },
+          "shots": {
+            "total": 43,
+            "on": 23
+          },
+          "goals": {
+            "total": 13,
+            "conceded": 0,
+            "assists": 3,
+            "saves": null
+          },
+          "passes": {
+            "total": 385,
+            "key": 17,
+            "accuracy": 14
+          },
+          "tackles": {
+            "total": 13,
+            "blocks": 5,
+            "interceptions": 6
+          },
+          "duels": {
+            "total": 239,
+            "won": 105
+          },
+          "dribbles": {
+            "attempts": 23,
+            "success": 6,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 35,
+            "committed": 28
+          },
+          "cards": {
+            "yellow": 6,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 4,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 2825,
+        "name": "A. Mitrović",
+        "firstname": "Aleksandar",
+        "lastname": "Mitrović",
+        "age": 29,
+        "birth": {
+          "date": "1994-09-16",
+          "place": "Smederevo",
+          "country": "Serbia"
+        },
+        "nationality": "Serbia",
+        "height": "189 cm",
+        "weight": "89 kg",
+        "injured": false,
+        "photo": "https://media-3.api-sports.io/football/players/2825.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 36,
+            "name": "Fulham",
+            "logo": "https://media-3.api-sports.io/football/teams/36.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 16,
+            "lineups": 16,
+            "minutes": 1376,
+            "number": null,
+            "position": "Attacker",
+            "rating": "7.268750",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 6,
+            "bench": 0
+          },
+          "shots": {
+            "total": 57,
+            "on": 28
+          },
+          "goals": {
+            "total": 11,
+            "conceded": 0,
+            "assists": 1,
+            "saves": null
+          },
+          "passes": {
+            "total": 325,
+            "key": 13,
+            "accuracy": 12
+          },
+          "tackles": {
+            "total": 11,
+            "blocks": 4,
+            "interceptions": 1
+          },
+          "duels": {
+            "total": 269,
+            "won": 125
+          },
+          "dribbles": {
+            "attempts": 33,
+            "success": 16,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 24,
+            "committed": 23
+          },
+          "cards": {
+            "yellow": 5,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 3,
+            "missed": 3,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 935,
+        "name": "Rodrigo",
+        "firstname": "Rodrigo",
+        "lastname": "Moreno Machado",
+        "age": 32,
+        "birth": {
+          "date": "1991-03-06",
+          "place": "Rio de Janeiro",
+          "country": "Brazil"
+        },
+        "nationality": "Spain",
+        "height": "182 cm",
+        "weight": "77 kg",
+        "injured": false,
+        "photo": "https://media.api-sports.io/football/players/935.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 63,
+            "name": "Leeds",
+            "logo": "https://media-3.api-sports.io/football/teams/63.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 17,
+            "lineups": 16,
+            "minutes": 1228,
+            "number": null,
+            "position": "Attacker",
+            "rating": "6.994117",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 1,
+            "out": 11,
+            "bench": 1
+          },
+          "shots": {
+            "total": 35,
+            "on": 19
+          },
+          "goals": {
+            "total": 10,
+            "conceded": 0,
+            "assists": 1,
+            "saves": null
+          },
+          "passes": {
+            "total": 333,
+            "key": 12,
+            "accuracy": 14
+          },
+          "tackles": {
+            "total": 10,
+            "blocks": 2,
+            "interceptions": 2
+          },
+          "duels": {
+            "total": 118,
+            "won": 36
+          },
+          "dribbles": {
+            "attempts": 15,
+            "success": 5,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 4,
+            "committed": 16
+          },
+          "cards": {
+            "yellow": 2,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 1,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 2507,
+        "name": "M. Almirón",
+        "firstname": "Miguel Ángel",
+        "lastname": "Almirón Rejala",
+        "age": 29,
+        "birth": {
+          "date": "1994-02-10",
+          "place": "Asunción",
+          "country": "Paraguay"
+        },
+        "nationality": "Paraguay",
+        "height": "174 cm",
+        "weight": "63 kg",
+        "injured": false,
+        "photo": "https://media-3.api-sports.io/football/players/2507.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 34,
+            "name": "Newcastle",
+            "logo": "https://media.api-sports.io/football/teams/34.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 19,
+            "lineups": 19,
+            "minutes": 1584,
+            "number": null,
+            "position": "Midfielder",
+            "rating": "7.152631",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 14,
+            "bench": 0
+          },
+          "shots": {
+            "total": 26,
+            "on": 15
+          },
+          "goals": {
+            "total": 9,
+            "conceded": 0,
+            "assists": 1,
+            "saves": null
+          },
+          "passes": {
+            "total": 561,
+            "key": 16,
+            "accuracy": 24
+          },
+          "tackles": {
+            "total": 33,
+            "blocks": 2,
+            "interceptions": 6
+          },
+          "duels": {
+            "total": 141,
+            "won": 76
+          },
+          "dribbles": {
+            "attempts": 47,
+            "success": 19,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 20,
+            "committed": 11
+          },
+          "cards": {
+            "yellow": 1,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 37127,
+        "name": "M. Ødegaard",
+        "firstname": "Martin",
+        "lastname": "Ødegaard",
+        "age": 25,
+        "birth": {
+          "date": "1998-12-17",
+          "place": "Drammen",
+          "country": "Norway"
+        },
+        "nationality": "Norway",
+        "height": "178 cm",
+        "weight": "68 kg",
+        "injured": false,
+        "photo": "https://media.api-sports.io/football/players/37127.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 42,
+            "name": "Arsenal",
+            "logo": "https://media.api-sports.io/football/teams/42.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 17,
+            "lineups": 17,
+            "minutes": 1440,
+            "number": null,
+            "position": "Midfielder",
+            "rating": "7.558823",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 12,
+            "bench": 0
+          },
+          "shots": {
+            "total": 28,
+            "on": 17
+          },
+          "goals": {
+            "total": 8,
+            "conceded": 0,
+            "assists": 5,
+            "saves": null
+          },
+          "passes": {
+            "total": 718,
+            "key": 38,
+            "accuracy": 34
+          },
+          "tackles": {
+            "total": 16,
+            "blocks": 1,
+            "interceptions": 2
+          },
+          "duels": {
+            "total": 129,
+            "won": 58
+          },
+          "dribbles": {
+            "attempts": 31,
+            "success": 21,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 14,
+            "committed": 17
+          },
+          "cards": {
+            "yellow": 3,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 909,
+        "name": "M. Rashford",
+        "firstname": "Marcus",
+        "lastname": "Rashford",
+        "age": 26,
+        "birth": {
+          "date": "1997-10-31",
+          "place": "Manchester",
+          "country": "England"
+        },
+        "nationality": "England",
+        "height": "180 cm",
+        "weight": "70 kg",
+        "injured": false,
+        "photo": "https://media-3.api-sports.io/football/players/909.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 33,
+            "name": "Manchester United",
+            "logo": "https://media-3.api-sports.io/football/teams/33.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 19,
+            "lineups": 17,
+            "minutes": 1530,
+            "number": null,
+            "position": "Attacker",
+            "rating": "6.863157",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 2,
+            "out": 7,
+            "bench": 2
+          },
+          "shots": {
+            "total": 34,
+            "on": 22
+          },
+          "goals": {
+            "total": 8,
+            "conceded": 0,
+            "assists": 3,
+            "saves": null
+          },
+          "passes": {
+            "total": 426,
+            "key": 14,
+            "accuracy": 17
+          },
+          "tackles": {
+            "total": 11,
+            "blocks": 3,
+            "interceptions": 5
+          },
+          "duels": {
+            "total": 154,
+            "won": 60
+          },
+          "dribbles": {
+            "attempts": 53,
+            "success": 22,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 11,
+            "committed": 8
+          },
+          "cards": {
+            "yellow": 2,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 306,
+        "name": "Mohamed Salah",
+        "firstname": "Mohamed",
+        "lastname": "Salah Hamed Mahrous Ghaly",
+        "age": 31,
+        "birth": {
+          "date": "1992-06-15",
+          "place": "Muḥāfaẓat al Gharbiyya",
+          "country": "Egypt"
+        },
+        "nationality": "Egypt",
+        "height": "175 cm",
+        "weight": "71 kg",
+        "injured": false,
+        "photo": "https://media-3.api-sports.io/football/players/306.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 40,
+            "name": "Liverpool",
+            "logo": "https://media.api-sports.io/football/teams/40.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media.api-sports.io/football/leagues/39.png",
+            "flag": "https://media.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 18,
+            "lineups": 18,
+            "minutes": 1599,
+            "number": null,
+            "position": "Attacker",
+            "rating": "6.877777",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 3,
+            "bench": 0
+          },
+          "shots": {
+            "total": 48,
+            "on": 24
+          },
+          "goals": {
+            "total": 7,
+            "conceded": 0,
+            "assists": 4,
+            "saves": null
+          },
+          "passes": {
+            "total": 454,
+            "key": 37,
+            "accuracy": 19
+          },
+          "tackles": {
+            "total": 8,
+            "blocks": null,
+            "interceptions": 4
+          },
+          "duels": {
+            "total": 149,
+            "won": 41
+          },
+          "dribbles": {
+            "attempts": 53,
+            "success": 18,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 12,
+            "committed": 13
+          },
+          "cards": {
+            "yellow": 0,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 18784,
+        "name": "J. Maddison",
+        "firstname": "James Daniel",
+        "lastname": "Maddison",
+        "age": 27,
+        "birth": {
+          "date": "1996-11-23",
+          "place": "Coventry",
+          "country": "England"
+        },
+        "nationality": "England",
+        "height": "175 cm",
+        "weight": "73 kg",
+        "injured": false,
+        "photo": "https://media.api-sports.io/football/players/18784.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 46,
+            "name": "Leicester",
+            "logo": "https://media-3.api-sports.io/football/teams/46.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 13,
+            "lineups": 13,
+            "minutes": 1100,
+            "number": null,
+            "position": "Midfielder",
+            "rating": "7.561538",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 2,
+            "bench": 0
+          },
+          "shots": {
+            "total": 25,
+            "on": 13
+          },
+          "goals": {
+            "total": 7,
+            "conceded": 0,
+            "assists": 4,
+            "saves": null
+          },
+          "passes": {
+            "total": 519,
+            "key": 31,
+            "accuracy": 33
+          },
+          "tackles": {
+            "total": 25,
+            "blocks": null,
+            "interceptions": 9
+          },
+          "duels": {
+            "total": 121,
+            "won": 63
+          },
+          "dribbles": {
+            "attempts": 19,
+            "success": 7,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 29,
+            "committed": 15
+          },
+          "cards": {
+            "yellow": 5,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 631,
+        "name": "P. Foden",
+        "firstname": "Philip Walter",
+        "lastname": "Foden",
+        "age": 23,
+        "birth": {
+          "date": "2000-05-28",
+          "place": "Stockport",
+          "country": "England"
+        },
+        "nationality": "England",
+        "height": "171 cm",
+        "weight": "70 kg",
+        "injured": false,
+        "photo": "https://media-3.api-sports.io/football/players/631.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 50,
+            "name": "Manchester City",
+            "logo": "https://media-3.api-sports.io/football/teams/50.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 18,
+            "lineups": 13,
+            "minutes": 1048,
+            "number": null,
+            "position": "Midfielder",
+            "rating": "7.211111",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 5,
+            "out": 8,
+            "bench": 5
+          },
+          "shots": {
+            "total": 21,
+            "on": 14
+          },
+          "goals": {
+            "total": 7,
+            "conceded": 0,
+            "assists": 3,
+            "saves": null
+          },
+          "passes": {
+            "total": 567,
+            "key": 23,
+            "accuracy": 26
+          },
+          "tackles": {
+            "total": 12,
+            "blocks": 1,
+            "interceptions": 3
+          },
+          "duels": {
+            "total": 113,
+            "won": 53
+          },
+          "dribbles": {
+            "attempts": 26,
+            "success": 11,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 16,
+            "committed": 4
+          },
+          "cards": {
+            "yellow": 1,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 302,
+        "name": "Roberto Firmino",
+        "firstname": "Roberto Firmino",
+        "lastname": "Barbosa de Oliveira",
+        "age": 32,
+        "birth": {
+          "date": "1991-10-02",
+          "place": "Maceió",
+          "country": "Brazil"
+        },
+        "nationality": "Brazil",
+        "height": "181 cm",
+        "weight": "76 kg",
+        "injured": false,
+        "photo": "https://media.api-sports.io/football/players/302.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 40,
+            "name": "Liverpool",
+            "logo": "https://media.api-sports.io/football/teams/40.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 13,
+            "lineups": 11,
+            "minutes": 935,
+            "number": null,
+            "position": "Attacker",
+            "rating": "7.315384",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 2,
+            "out": 8,
+            "bench": 2
+          },
+          "shots": {
+            "total": 26,
+            "on": 20
+          },
+          "goals": {
+            "total": 7,
+            "conceded": 0,
+            "assists": 3,
+            "saves": null
+          },
+          "passes": {
+            "total": 421,
+            "key": 17,
+            "accuracy": 25
+          },
+          "tackles": {
+            "total": 13,
+            "blocks": 1,
+            "interceptions": 6
+          },
+          "duels": {
+            "total": 102,
+            "won": 38
+          },
+          "dribbles": {
+            "attempts": 14,
+            "success": 7,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 5,
+            "committed": 6
+          },
+          "cards": {
+            "yellow": 0,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 127769,
+        "name": "Gabriel Martinelli",
+        "firstname": "Gabriel Teodoro",
+        "lastname": "Martinelli Silva",
+        "age": 22,
+        "birth": {
+          "date": "2001-06-18",
+          "place": "Guarulhos",
+          "country": "Brazil"
+        },
+        "nationality": "Brazil",
+        "height": "178 cm",
+        "weight": "75 kg",
+        "injured": false,
+        "photo": "https://media.api-sports.io/football/players/127769.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 42,
+            "name": "Arsenal",
+            "logo": "https://media-3.api-sports.io/football/teams/42.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 18,
+            "lineups": 18,
+            "minutes": 1534,
+            "number": null,
+            "position": "Attacker",
+            "rating": "7.133333",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 7,
+            "bench": 0
+          },
+          "shots": {
+            "total": 29,
+            "on": 18
+          },
+          "goals": {
+            "total": 7,
+            "conceded": 0,
+            "assists": 2,
+            "saves": null
+          },
+          "passes": {
+            "total": 493,
+            "key": 31,
+            "accuracy": 22
+          },
+          "tackles": {
+            "total": 17,
+            "blocks": 1,
+            "interceptions": 7
+          },
+          "duels": {
+            "total": 208,
+            "won": 80
+          },
+          "dribbles": {
+            "attempts": 64,
+            "success": 31,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 24,
+            "committed": 25
+          },
+          "cards": {
+            "yellow": 2,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 1946,
+        "name": "L. Trossard",
+        "firstname": "Leandro",
+        "lastname": "Trossard",
+        "age": 29,
+        "birth": {
+          "date": "1994-12-04",
+          "place": "Waterschei",
+          "country": "Belgium"
+        },
+        "nationality": "Belgium",
+        "height": "172 cm",
+        "weight": "61 kg",
+        "injured": false,
+        "photo": "https://media-3.api-sports.io/football/players/1946.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 51,
+            "name": "Brighton",
+            "logo": "https://media.api-sports.io/football/teams/51.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 16,
+            "lineups": 16,
+            "minutes": 1326,
+            "number": null,
+            "position": "Attacker",
+            "rating": "7.075000",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 11,
+            "bench": 1
+          },
+          "shots": {
+            "total": 25,
+            "on": 18
+          },
+          "goals": {
+            "total": 7,
+            "conceded": 0,
+            "assists": 2,
+            "saves": null
+          },
+          "passes": {
+            "total": 472,
+            "key": 24,
+            "accuracy": 21
+          },
+          "tackles": {
+            "total": 11,
+            "blocks": null,
+            "interceptions": 6
+          },
+          "duels": {
+            "total": 113,
+            "won": 41
+          },
+          "dribbles": {
+            "attempts": 30,
+            "success": 11,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 13,
+            "committed": 10
+          },
+          "cards": {
+            "yellow": 1,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 18970,
+        "name": "P. Groß",
+        "firstname": "Pascal",
+        "lastname": "Groß",
+        "age": 32,
+        "birth": {
+          "date": "1991-06-15",
+          "place": "Mannheim",
+          "country": "Germany"
+        },
+        "nationality": "Germany",
+        "height": "181 cm",
+        "weight": "78 kg",
+        "injured": false,
+        "photo": "https://media.api-sports.io/football/players/18970.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 51,
+            "name": "Brighton",
+            "logo": "https://media.api-sports.io/football/teams/51.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media.api-sports.io/football/leagues/39.png",
+            "flag": "https://media.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 18,
+            "lineups": 18,
+            "minutes": 1557,
+            "number": null,
+            "position": "Midfielder",
+            "rating": "7.277777",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 6,
+            "bench": 0
+          },
+          "shots": {
+            "total": 14,
+            "on": 10
+          },
+          "goals": {
+            "total": 6,
+            "conceded": 0,
+            "assists": 3,
+            "saves": null
+          },
+          "passes": {
+            "total": 811,
+            "key": 37,
+            "accuracy": 37
+          },
+          "tackles": {
+            "total": 30,
+            "blocks": 4,
+            "interceptions": 9
+          },
+          "duels": {
+            "total": 107,
+            "won": 45
+          },
+          "dribbles": {
+            "attempts": 10,
+            "success": 3,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 9,
+            "committed": 13
+          },
+          "cards": {
+            "yellow": 2,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 3247,
+        "name": "W. Zaha",
+        "firstname": "Dazet Wilfried",
+        "lastname": "Armel Zaha",
+        "age": 31,
+        "birth": {
+          "date": "1992-11-10",
+          "place": "Abidjan",
+          "country": "Côte d'Ivoire"
+        },
+        "nationality": "Côte d'Ivoire",
+        "height": "180 cm",
+        "weight": "66 kg",
+        "injured": false,
+        "photo": "https://media-3.api-sports.io/football/players/3247.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 52,
+            "name": "Crystal Palace",
+            "logo": "https://media.api-sports.io/football/teams/52.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 18,
+            "lineups": 18,
+            "minutes": 1599,
+            "number": null,
+            "position": "Attacker",
+            "rating": "6.811111",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 2,
+            "bench": 0
+          },
+          "shots": {
+            "total": 27,
+            "on": 17
+          },
+          "goals": {
+            "total": 6,
+            "conceded": 0,
+            "assists": 2,
+            "saves": null
+          },
+          "passes": {
+            "total": 426,
+            "key": 20,
+            "accuracy": 19
+          },
+          "tackles": {
+            "total": 28,
+            "blocks": 1,
+            "interceptions": 10
+          },
+          "duels": {
+            "total": 273,
+            "won": 121
+          },
+          "dribbles": {
+            "attempts": 79,
+            "success": 32,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 56,
+            "committed": 20
+          },
+          "cards": {
+            "yellow": 3,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 2,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 18778,
+        "name": "H. Barnes",
+        "firstname": "Harvey Lewis",
+        "lastname": "Barnes",
+        "age": 26,
+        "birth": {
+          "date": "1997-12-09",
+          "place": "Burnley",
+          "country": "England"
+        },
+        "nationality": "England",
+        "height": "174 cm",
+        "weight": "66 kg",
+        "injured": false,
+        "photo": "https://media.api-sports.io/football/players/18778.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 46,
+            "name": "Leicester",
+            "logo": "https://media-3.api-sports.io/football/teams/46.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 17,
+            "lineups": 17,
+            "minutes": 1432,
+            "number": null,
+            "position": "Midfielder",
+            "rating": "6.517647",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 6,
+            "bench": 0
+          },
+          "shots": {
+            "total": 31,
+            "on": 19
+          },
+          "goals": {
+            "total": 6,
+            "conceded": 0,
+            "assists": null,
+            "saves": null
+          },
+          "passes": {
+            "total": 382,
+            "key": 8,
+            "accuracy": 16
+          },
+          "tackles": {
+            "total": 14,
+            "blocks": null,
+            "interceptions": 3
+          },
+          "duels": {
+            "total": 178,
+            "won": 60
+          },
+          "dribbles": {
+            "attempts": 40,
+            "success": 11,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 21,
+            "committed": 20
+          },
+          "cards": {
+            "yellow": 0,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 0,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 1460,
+        "name": "B. Saka",
+        "firstname": "Bukayo Ayoyinka",
+        "lastname": "Saka",
+        "age": 22,
+        "birth": {
+          "date": "2001-09-05",
+          "place": "London",
+          "country": "England"
+        },
+        "nationality": "England",
+        "height": "178 cm",
+        "weight": "72 kg",
+        "injured": false,
+        "photo": "https://media-3.api-sports.io/football/players/1460.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 42,
+            "name": "Arsenal",
+            "logo": "https://media-3.api-sports.io/football/teams/42.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 18,
+            "lineups": 18,
+            "minutes": 1539,
+            "number": null,
+            "position": "Midfielder",
+            "rating": "7.238888",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 0,
+            "out": 8,
+            "bench": 0
+          },
+          "shots": {
+            "total": 25,
+            "on": 12
+          },
+          "goals": {
+            "total": 6,
+            "conceded": 0,
+            "assists": 7,
+            "saves": null
+          },
+          "passes": {
+            "total": 558,
+            "key": 40,
+            "accuracy": 25
+          },
+          "tackles": {
+            "total": 21,
+            "blocks": null,
+            "interceptions": 10
+          },
+          "duels": {
+            "total": 176,
+            "won": 72
+          },
+          "dribbles": {
+            "attempts": 55,
+            "success": 21,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 25,
+            "committed": 22
+          },
+          "cards": {
+            "yellow": 4,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 1,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 2939,
+        "name": "C. Wilson",
+        "firstname": "Callum Eddie Graham",
+        "lastname": "Wilson",
+        "age": 31,
+        "birth": {
+          "date": "1992-02-27",
+          "place": "Coventry",
+          "country": "England"
+        },
+        "nationality": "England",
+        "height": "180 cm",
+        "weight": "66 kg",
+        "injured": false,
+        "photo": "https://media.api-sports.io/football/players/2939.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 34,
+            "name": "Newcastle",
+            "logo": "https://media-3.api-sports.io/football/teams/34.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 14,
+            "lineups": 12,
+            "minutes": 979,
+            "number": null,
+            "position": "Attacker",
+            "rating": "6.914285",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 2,
+            "out": 12,
+            "bench": 2
+          },
+          "shots": {
+            "total": 31,
+            "on": 15
+          },
+          "goals": {
+            "total": 6,
+            "conceded": 0,
+            "assists": 3,
+            "saves": null
+          },
+          "passes": {
+            "total": 123,
+            "key": 11,
+            "accuracy": 6
+          },
+          "tackles": {
+            "total": 5,
+            "blocks": null,
+            "interceptions": 1
+          },
+          "duels": {
+            "total": 91,
+            "won": 37
+          },
+          "dribbles": {
+            "attempts": 6,
+            "success": 3,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 16,
+            "committed": 14
+          },
+          "cards": {
+            "yellow": 3,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 1,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    },
+    {
+      "player": {
+        "id": 18955,
+        "name": "D. Ings",
+        "firstname": "Daniel William John",
+        "lastname": "Ings",
+        "age": 31,
+        "birth": {
+          "date": "1992-07-23",
+          "place": "Winchester",
+          "country": "England"
+        },
+        "nationality": "England",
+        "height": "178 cm",
+        "weight": "73 kg",
+        "injured": false,
+        "photo": "https://media.api-sports.io/football/players/18955.png"
+      },
+      "statistics": [
+        {
+          "team": {
+            "id": 66,
+            "name": "Aston Villa",
+            "logo": "https://media.api-sports.io/football/teams/66.png"
+          },
+          "league": {
+            "id": 39,
+            "name": "Premier League",
+            "country": "England",
+            "logo": "https://media-3.api-sports.io/football/leagues/39.png",
+            "flag": "https://media-3.api-sports.io/flags/gb.svg",
+            "season": 2022
+          },
+          "games": {
+            "appearences": 18,
+            "lineups": 8,
+            "minutes": 819,
+            "number": null,
+            "position": "Attacker",
+            "rating": "6.872222",
+            "captain": false
+          },
+          "substitutes": {
+            "in": 10,
+            "out": 5,
+            "bench": 11
+          },
+          "shots": {
+            "total": 21,
+            "on": 14
+          },
+          "goals": {
+            "total": 6,
+            "conceded": 0,
+            "assists": null,
+            "saves": null
+          },
+          "passes": {
+            "total": 158,
+            "key": 9,
+            "accuracy": 6
+          },
+          "tackles": {
+            "total": 10,
+            "blocks": 1,
+            "interceptions": 1
+          },
+          "duels": {
+            "total": 86,
+            "won": 40
+          },
+          "dribbles": {
+            "attempts": 15,
+            "success": 9,
+            "past": null
+          },
+          "fouls": {
+            "drawn": 5,
+            "committed": 8
+          },
+          "cards": {
+            "yellow": 3,
+            "yellowred": 0,
+            "red": 0
+          },
+          "penalty": {
+            "won": null,
+            "commited": null,
+            "scored": 2,
+            "missed": 0,
+            "saved": null
+          }
+        }
+      ]
+    }
+  ]
+}

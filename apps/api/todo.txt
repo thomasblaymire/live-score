@@ -1,0 +1,4 @@
+1. Create a NodeJS schedule service to call Third Party API weekly for leagues
+2. Implement rate-limiting 
+3. XXS Protection
+4. Deployment

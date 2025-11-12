@@ -1,0 +1,73 @@
+{
+  "area": {
+    "id": 2088,
+    "name": "Germany",
+    "code": "DEU",
+    "flag": "https://crests.football-data.org/759.svg"
+  },
+  "competition": {
+    "id": 2002,
+    "name": "Bundesliga",
+    "code": "BL1",
+    "type": "LEAGUE",
+    "emblem": "https://crests.football-data.org/BL1.png"
+  },
+  "season": {
+    "id": 234,
+    "startDate": "1996-08-16",
+    "endDate": "1997-05-31",
+    "currentMatchday": null,
+    "winner": {
+      "id": 5,
+      "name": "FC Bayern München",
+      "shortName": "Bayern",
+      "tla": "FCB",
+      "crest": "https://crests.football-data.org/5.svg",
+      "address": "Säbenerstr. 51 München 81547",
+      "website": "http://www.fcbayern.de",
+      "founded": 1900,
+      "clubColors": "Red / White / Blue",
+      "venue": "Allianz Arena",
+      "lastUpdated": "2021-12-16T18:52:55Z"
+    }
+  },
+  "id": 30,
+  "utcDate": "1996-08-27T19:30:00Z",
+  "status": "FINISHED",
+  "venue": null,
+  "matchday": 4,
+  "stage": "REGULAR_SEASON",
+  "group": null,
+  "lastUpdated": "2018-07-12T16:30:14Z",
+  "homeTeam": {
+    "id": 12,
+    "name": "SV Werder Bremen",
+    "shortName": "Bremen",
+    "tla": "SVW",
+    "crest": "https://crests.football-data.org/12.svg"
+  },
+  "awayTeam": {
+    "id": 18,
+    "name": "Borussia Mönchengladbach",
+    "shortName": "M'gladbach",
+    "tla": "BMG",
+    "crest": "https://crests.football-data.org/18.svg"
+  },
+  "score": {
+    "winner": "HOME_TEAM",
+    "duration": "REGULAR",
+    "fullTime": {
+      "home": 1,
+      "away": 0
+    },
+    "halfTime": {
+      "home": 1,
+      "away": 0
+    }
+  },
+  "odds": {
+    "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+  },
+  "referees": [],
+  "youtubeID": "hf_ornK4Zls"
+}

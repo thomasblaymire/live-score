@@ -1,0 +1,1022 @@
+[
+  {
+    "fixture": {
+      "id": 593176,
+      "referee": "J. Linington",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": 565,
+        "name": "Carrow Road",
+        "city": "Norwich, Norfolk"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 40,
+      "name": "Championship",
+      "country": "England",
+      "logo": "https://media-3.api-sports.io/football/leagues/40.png",
+      "flag": "https://media-3.api-sports.io/flags/gb.svg",
+      "season": 2020,
+      "round": "Regular Season - 25"
+    },
+    "teams": {
+      "home": {
+        "id": 71,
+        "name": "Norwich",
+        "logo": "https://media-3.api-sports.io/football/teams/71.png",
+        "winner": true
+      },
+      "away": {
+        "id": 56,
+        "name": "Bristol City",
+        "logo": "https://media-3.api-sports.io/football/teams/56.png",
+        "winner": false
+      }
+    },
+    "goals": {
+      "home": 2,
+      "away": 0
+    },
+    "score": {
+      "halftime": {
+        "home": 1,
+        "away": 0
+      },
+      "fulltime": {
+        "home": 2,
+        "away": 0
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 593590,
+      "referee": "N. Winter",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": 719,
+        "name": "ERDGAS Sportpark",
+        "city": "Saale"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 80,
+      "name": "3. Liga",
+      "country": "Germany",
+      "logo": "https://media-3.api-sports.io/football/leagues/80.png",
+      "flag": "https://media-3.api-sports.io/flags/de.svg",
+      "season": 2020,
+      "round": "Regular Season - 17"
+    },
+    "teams": {
+      "home": {
+        "id": 1316,
+        "name": "Hallescher FC",
+        "logo": "https://media-3.api-sports.io/football/teams/1316.png",
+        "winner": null
+      },
+      "away": {
+        "id": 4268,
+        "name": "Waldhof Mannheim",
+        "logo": "https://media-3.api-sports.io/football/teams/4268.png",
+        "winner": null
+      }
+    },
+    "goals": {
+      "home": 0,
+      "away": 0
+    },
+    "score": {
+      "halftime": {
+        "home": 0,
+        "away": 0
+      },
+      "fulltime": {
+        "home": 0,
+        "away": 0
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 593595,
+      "referee": "R. Kampka",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": 730,
+        "name": "Schauinsland-Reisen-Arena",
+        "city": "Duisburg"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 80,
+      "name": "3. Liga",
+      "country": "Germany",
+      "logo": "https://media-3.api-sports.io/football/leagues/80.png",
+      "flag": "https://media-3.api-sports.io/flags/de.svg",
+      "season": 2020,
+      "round": "Regular Season - 17"
+    },
+    "teams": {
+      "home": {
+        "id": 187,
+        "name": "MSV Duisburg",
+        "logo": "https://media-3.api-sports.io/football/teams/187.png",
+        "winner": false
+      },
+      "away": {
+        "id": 179,
+        "name": "FC Magdeburg",
+        "logo": "https://media-3.api-sports.io/football/teams/179.png",
+        "winner": true
+      }
+    },
+    "goals": {
+      "home": 1,
+      "away": 2
+    },
+    "score": {
+      "halftime": {
+        "home": 1,
+        "away": 0
+      },
+      "fulltime": {
+        "home": 1,
+        "away": 2
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 600526,
+      "referee": "P. Hofheinz",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": 747,
+        "name": "Donaustadion",
+        "city": "Ulm"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 86,
+      "name": "Regionalliga - SudWest",
+      "country": "Germany",
+      "logo": "https://media-3.api-sports.io/football/leagues/86.png",
+      "flag": "https://media-3.api-sports.io/flags/de.svg",
+      "season": 2020,
+      "round": "Südwest - 16"
+    },
+    "teams": {
+      "home": {
+        "id": 1652,
+        "name": "SSV ULM 1846",
+        "logo": "https://media-3.api-sports.io/football/teams/1652.png",
+        "winner": false
+      },
+      "away": {
+        "id": 9362,
+        "name": "FC Gießen",
+        "logo": "https://media-3.api-sports.io/football/teams/9362.png",
+        "winner": true
+      }
+    },
+    "goals": {
+      "home": 2,
+      "away": 3
+    },
+    "score": {
+      "halftime": {
+        "home": 1,
+        "away": 0
+      },
+      "fulltime": {
+        "home": 2,
+        "away": 3
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 600532,
+      "referee": "G. Falcicchio",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": 2710,
+        "name": "Sparda-Bank-Hessen-Stadion",
+        "city": "Offenbach"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 86,
+      "name": "Regionalliga - SudWest",
+      "country": "Germany",
+      "logo": "https://media-3.api-sports.io/football/leagues/86.png",
+      "flag": "https://media-3.api-sports.io/flags/de.svg",
+      "season": 2020,
+      "round": "Südwest - 16"
+    },
+    "teams": {
+      "home": {
+        "id": 1628,
+        "name": "Kickers Offenbach",
+        "logo": "https://media-3.api-sports.io/football/teams/1628.png",
+        "winner": null
+      },
+      "away": {
+        "id": 1660,
+        "name": "SV Elversberg",
+        "logo": "https://media-3.api-sports.io/football/teams/1660.png",
+        "winner": null
+      }
+    },
+    "goals": {
+      "home": 0,
+      "away": 0
+    },
+    "score": {
+      "halftime": {
+        "home": 0,
+        "away": 0
+      },
+      "fulltime": {
+        "home": 0,
+        "away": 0
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 605249,
+      "referee": "David Medié",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": 1476,
+        "name": "Coliseum Alfonso Pérez",
+        "city": "Getafe"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 140,
+      "name": "La Liga",
+      "country": "Spain",
+      "logo": "https://media-3.api-sports.io/football/leagues/140.png",
+      "flag": "https://media-3.api-sports.io/flags/es.svg",
+      "season": 2020,
+      "round": "Regular Season - 19"
+    },
+    "teams": {
+      "home": {
+        "id": 546,
+        "name": "Getafe",
+        "logo": "https://media-3.api-sports.io/football/teams/546.png",
+        "winner": true
+      },
+      "away": {
+        "id": 726,
+        "name": "Huesca",
+        "logo": "https://media-3.api-sports.io/football/teams/726.png",
+        "winner": false
+      }
+    },
+    "goals": {
+      "home": 1,
+      "away": 0
+    },
+    "score": {
+      "halftime": {
+        "home": 0,
+        "away": 0
+      },
+      "fulltime": {
+        "home": 1,
+        "away": 0
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 631636,
+      "referee": "Iván Muñoz",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": null,
+        "name": "Estadio Municipal Mariano González",
+        "city": "Navalcarnero"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 692,
+      "name": "Primera División RFEF - Group 5",
+      "country": "Spain",
+      "logo": "https://media-3.api-sports.io/football/leagues/692.png",
+      "flag": "https://media-3.api-sports.io/flags/es.svg",
+      "season": 2020,
+      "round": "Group 5 - 10"
+    },
+    "teams": {
+      "home": {
+        "id": 5271,
+        "name": "Navalcarnero",
+        "logo": "https://media-3.api-sports.io/football/teams/5271.png",
+        "winner": null
+      },
+      "away": {
+        "id": 9412,
+        "name": "SS Reyes",
+        "logo": "https://media-3.api-sports.io/football/teams/9412.png",
+        "winner": null
+      }
+    },
+    "goals": {
+      "home": 1,
+      "away": 1
+    },
+    "score": {
+      "halftime": {
+        "home": 0,
+        "away": 1
+      },
+      "fulltime": {
+        "home": 1,
+        "away": 1
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 639593,
+      "referee": "Héctor Juan",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": 6681,
+        "name": "Estadio El Helmántico",
+        "city": "Salamanca"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 446,
+      "name": "Tercera División RFEF - Group 8",
+      "country": "Spain",
+      "logo": "https://media-3.api-sports.io/football/leagues/446.png",
+      "flag": "https://media-3.api-sports.io/flags/es.svg",
+      "season": 2020,
+      "round": "Group 8 - 13"
+    },
+    "teams": {
+      "home": {
+        "id": 9737,
+        "name": "Salamanca II",
+        "logo": "https://media-3.api-sports.io/football/teams/9737.png",
+        "winner": true
+      },
+      "away": {
+        "id": 9724,
+        "name": "Atlético Tordesillas",
+        "logo": "https://media-3.api-sports.io/football/teams/9724.png",
+        "winner": false
+      }
+    },
+    "goals": {
+      "home": 3,
+      "away": 2
+    },
+    "score": {
+      "halftime": {
+        "home": 1,
+        "away": 2
+      },
+      "fulltime": {
+        "home": 3,
+        "away": 2
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 649011,
+      "referee": "Diego da Silva Lourenço",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": 7829,
+        "name": "Estádio Eduardo Guinle",
+        "city": "Nova Friburgo, Rio de Janeiro"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 624,
+      "name": "Carioca - 1",
+      "country": "Brazil",
+      "logo": "https://media-3.api-sports.io/football/leagues/624.png",
+      "flag": "https://media-3.api-sports.io/flags/br.svg",
+      "season": 2021,
+      "round": "Preliminary Round - 2"
+    },
+    "teams": {
+      "home": {
+        "id": 12295,
+        "name": "Friburguense",
+        "logo": "https://media-3.api-sports.io/football/teams/12295.png",
+        "winner": null
+      },
+      "away": {
+        "id": 2203,
+        "name": "Americano Campos",
+        "logo": "https://media-3.api-sports.io/football/teams/2203.png",
+        "winner": null
+      }
+    },
+    "goals": {
+      "home": 1,
+      "away": 1
+    },
+    "score": {
+      "halftime": {
+        "home": 1,
+        "away": 1
+      },
+      "fulltime": {
+        "home": 1,
+        "away": 1
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 649012,
+      "referee": "Joao Batista de Arruda",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": 7309,
+        "name": "Estádio Alair Côrrea",
+        "city": "Cabo Frio, Rio de Janeiro"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 624,
+      "name": "Carioca - 1",
+      "country": "Brazil",
+      "logo": "https://media-3.api-sports.io/football/leagues/624.png",
+      "flag": "https://media-3.api-sports.io/flags/br.svg",
+      "season": 2021,
+      "round": "Preliminary Round - 2"
+    },
+    "teams": {
+      "home": {
+        "id": 10672,
+        "name": "Cabofriense",
+        "logo": "https://media-3.api-sports.io/football/teams/10672.png",
+        "winner": null
+      },
+      "away": {
+        "id": 13104,
+        "name": "América RJ",
+        "logo": "https://media-3.api-sports.io/football/teams/13104.png",
+        "winner": null
+      }
+    },
+    "goals": {
+      "home": 0,
+      "away": 0
+    },
+    "score": {
+      "halftime": {
+        "home": 0,
+        "away": 0
+      },
+      "fulltime": {
+        "home": 0,
+        "away": 0
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 656698,
+      "referee": "Guillermo Cuadra",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": 1469,
+        "name": "Estadio Nuevo Arcángel",
+        "city": "Córdoba"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 143,
+      "name": "Copa del Rey",
+      "country": "Spain",
+      "logo": "https://media-3.api-sports.io/football/leagues/143.png",
+      "flag": "https://media-3.api-sports.io/flags/es.svg",
+      "season": 2020,
+      "round": "Round of 32"
+    },
+    "teams": {
+      "home": {
+        "id": 713,
+        "name": "Cordoba",
+        "logo": "https://media-3.api-sports.io/football/teams/713.png",
+        "winner": false
+      },
+      "away": {
+        "id": 548,
+        "name": "Real Sociedad",
+        "logo": "https://media-3.api-sports.io/football/teams/548.png",
+        "winner": true
+      }
+    },
+    "goals": {
+      "home": 0,
+      "away": 2
+    },
+    "score": {
+      "halftime": {
+        "home": 0,
+        "away": 0
+      },
+      "fulltime": {
+        "home": 0,
+        "away": 2
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 656889,
+      "referee": "Alex Gomes",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:00:00+00:00",
+      "timestamp": 1611165600,
+      "periods": {
+        "first": 1611165600,
+        "second": 1611169200
+      },
+      "venue": {
+        "id": 8290,
+        "name": "Estádio Lourival Gomes de Almeida",
+        "city": "Saquarema, Rio de Janeiro"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 624,
+      "name": "Carioca - 1",
+      "country": "Brazil",
+      "logo": "https://media-3.api-sports.io/football/leagues/624.png",
+      "flag": "https://media-3.api-sports.io/flags/br.svg",
+      "season": 2021,
+      "round": "Preliminary Round - 2"
+    },
+    "teams": {
+      "home": {
+        "id": 13115,
+        "name": "Sampaio Corrêa RJ",
+        "logo": "https://media-3.api-sports.io/football/teams/13115.png",
+        "winner": false
+      },
+      "away": {
+        "id": 7782,
+        "name": "Nova Iguaçu",
+        "logo": "https://media-3.api-sports.io/football/teams/7782.png",
+        "winner": true
+      }
+    },
+    "goals": {
+      "home": 1,
+      "away": 2
+    },
+    "score": {
+      "halftime": {
+        "home": 0,
+        "away": 1
+      },
+      "fulltime": {
+        "home": 1,
+        "away": 2
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 638663,
+      "referee": "Panfilo Elechiguerra",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:15:00+00:00",
+      "timestamp": 1611166500,
+      "periods": {
+        "first": 1611166500,
+        "second": 1611170100
+      },
+      "venue": {
+        "id": 3977,
+        "name": "Estadio Urbieta",
+        "city": "Gernika-Lumo"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 442,
+      "name": "Tercera División RFEF - Group 4",
+      "country": "Spain",
+      "logo": "https://media-3.api-sports.io/football/leagues/442.png",
+      "flag": "https://media-3.api-sports.io/flags/es.svg",
+      "season": 2020,
+      "round": "Group 4 - 9"
+    },
+    "teams": {
+      "home": {
+        "id": 5263,
+        "name": "Gernika",
+        "logo": "https://media-3.api-sports.io/football/teams/5263.png",
+        "winner": false
+      },
+      "away": {
+        "id": 9658,
+        "name": "Deusto",
+        "logo": "https://media-3.api-sports.io/football/teams/9658.png",
+        "winner": true
+      }
+    },
+    "goals": {
+      "home": 0,
+      "away": 3
+    },
+    "score": {
+      "halftime": {
+        "home": 0,
+        "away": 2
+      },
+      "fulltime": {
+        "home": 0,
+        "away": 3
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 639123,
+      "referee": "José López",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:15:00+00:00",
+      "timestamp": 1611166500,
+      "periods": {
+        "first": 1611166500,
+        "second": 1611170100
+      },
+      "venue": {
+        "id": 6778,
+        "name": "Estadio Luis Suñer Picó",
+        "city": "Alzira"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 444,
+      "name": "Tercera División RFEF - Group 6",
+      "country": "Spain",
+      "logo": "https://media-3.api-sports.io/football/leagues/444.png",
+      "flag": "https://media-3.api-sports.io/flags/es.svg",
+      "season": 2020,
+      "round": "Group 6 - 11"
+    },
+    "teams": {
+      "home": {
+        "id": 9687,
+        "name": "Alzira",
+        "logo": "https://media-3.api-sports.io/football/teams/9687.png",
+        "winner": true
+      },
+      "away": {
+        "id": 15347,
+        "name": "Benicarló",
+        "logo": "https://media-3.api-sports.io/football/teams/15347.png",
+        "winner": false
+      }
+    },
+    "goals": {
+      "home": 2,
+      "away": 0
+    },
+    "score": {
+      "halftime": {
+        "home": 1,
+        "away": 0
+      },
+      "fulltime": {
+        "home": 2,
+        "away": 0
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  },
+  {
+    "fixture": {
+      "id": 638065,
+      "referee": "Julián Pérez",
+      "timezone": "UTC",
+      "date": "2021-01-20T18:30:00+00:00",
+      "timestamp": 1611167400,
+      "periods": {
+        "first": 1611167400,
+        "second": 1611171000
+      },
+      "venue": {
+        "id": 5783,
+        "name": "Estadio Municipal de Las Pedroñeras",
+        "city": "Las Pedroñeras"
+      },
+      "status": {
+        "long": "Match Finished",
+        "short": "FT",
+        "elapsed": 90
+      }
+    },
+    "league": {
+      "id": 456,
+      "name": "Tercera División RFEF - Group 18",
+      "country": "Spain",
+      "logo": "https://media-3.api-sports.io/football/leagues/456.png",
+      "flag": "https://media-3.api-sports.io/flags/es.svg",
+      "season": 2020,
+      "round": "Group 18 - 13"
+    },
+    "teams": {
+      "home": {
+        "id": 8162,
+        "name": "Pedroñeras",
+        "logo": "https://media-3.api-sports.io/football/teams/8162.png",
+        "winner": false
+      },
+      "away": {
+        "id": 9898,
+        "name": "Azuqueca",
+        "logo": "https://media-3.api-sports.io/football/teams/9898.png",
+        "winner": true
+      }
+    },
+    "goals": {
+      "home": 0,
+      "away": 1
+    },
+    "score": {
+      "halftime": {
+        "home": 0,
+        "away": 0
+      },
+      "fulltime": {
+        "home": 0,
+        "away": 1
+      },
+      "extratime": {
+        "home": null,
+        "away": null
+      },
+      "penalty": {
+        "home": null,
+        "away": null
+      }
+    }
+  }
+]
