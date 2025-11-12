@@ -88,6 +88,7 @@ function SignInForm({ onSuccess }: { onSuccess: () => void }) {
       await signIn(email, password);
       onSuccess();
     } catch (err: any) {
+      console.error("Sign in error:", err);
       setError(err.message || "Failed to sign in");
     } finally {
       setLoading(false);
@@ -171,6 +172,7 @@ function SignUpForm({ onSuccess }: { onSuccess: () => void }) {
       await signUp(email, password);
       onSuccess();
     } catch (err: any) {
+      console.error("Sign up error:", err);
       setError(err.message || "Failed to sign up");
     } finally {
       setLoading(false);

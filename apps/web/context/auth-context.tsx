@@ -45,11 +45,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const signUp = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
     if (error) throw error;
+    
+    // If session exists, user is auto-confirmed (email confirmation disabled)
+    if (data.session) {
+      setUser(data.user);
+    }
   };
 
   const signOut = async () => {
