@@ -1,0 +1,117 @@
+'use client'
+
+import { Search } from '@/components/full-search'
+import { Logo } from '@/components/ui/logo'
+import { AuthDropdown } from '@/components/user/auth-dropdown'
+import { AuthModal } from '@/components/user/auth-modal'
+import { SigninForm } from '@/components/user/signin-form'
+import { SignupForm } from '@/components/user/signup-form'
+import { useAuthContext } from '@/context/auth-context'
+import { useModalContext } from '@/context/modal-context'
+// import { useCurrentUser } from '@/hooks/useCurrentUser'
+import { ModalName } from '@/lib/constants'
+import { Box, Flex, WrapItem, useDisclosure, useMediaQuery } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { Navigation } from '../navigation'
+import { AuthenticationButtons } from './header-auth'
+import { HeaderBasic } from './header-basic'
+import { HeaderIcons } from './header-icons'
+import { useNextAuthProvider } from './helpers'
+
+interface HeaderProps {
+  isBasic?: boolean
+}
+
+export function Header({ isBasic }: HeaderProps) {
+  const { user, setUser } = useAuthContext()
+  // const { data: fetchedUser } = useCurrentUser()
+  const { modals, toggleModal } = useModalContext()
+  // const providers = useNextAuthProvider()
+
+  // useEffect(() => {
+  //   if (fetchedUser) {
+  //     setUser(fetchedUser)
+  //   }
+  // }, [fetchedUser, setUser])
+
+  const providers = []
+
+  const {
+    isOpen: isSearchOpen,
+    onOpen: onSearchOpen,
+    onClose: onSearchClose,
+  } = useDisclosure()
+  const [isTablet] = useMediaQuery('(min-width: 780px)')
+  const [isMobile] = useMediaQuery('(max-width: 768px)')
+
+  if (isBasic) {
+    return <HeaderBasic />
+  }
+
+  return (
+    <header>
+      {/* <Search isOpen={isSearchOpen} onClose={onSearchClose} /> */}
+      <Box
+        height={isMobile ? '4rem' : '5rem'}
+        position="sticky"
+        padding={isMobile ? 4 : undefined}
+        borderBottom="solid 1px #353945"
+      >
+        <Flex
+          justifyContent="space-between"
+          width={{
+            md: '720px',
+            lg: '960px',
+            xl: '1200px',
+          }}
+          margin="0 auto"
+          height="100%"
+          alignItems="center"
+        >
+          <Box>
+            <Logo />
+          </Box>
+
+          <Navigation user={user} />
+
+          {!user && isTablet && (
+            <AuthenticationButtons
+              onLoginOpen={() => toggleModal(ModalName.SignIn)}
+              onSignupOpen={() => toggleModal(ModalName.SignUp)}
+            />
+          )}
+
+          {user && isTablet && (
+            <Box>
+              <Flex alignItems="center">
+                <HeaderIcons handleSearchOpen={onSearchOpen} />
+                <WrapItem>
+                  <AuthDropdown user={user} />
+                </WrapItem>
+              </Flex>
+            </Box>
+          )}
+        </Flex>
+
+        <AuthModal
+          isOpen={modals.signIn}
+          onClose={() => toggleModal(ModalName.SignIn)}
+          title="Sign In"
+        >
+          <SigninForm
+            // providers={providers}
+            onLoginSuccess={() => toggleModal(ModalName.SignIn)}
+          />
+        </AuthModal>
+
+        <AuthModal
+          isOpen={modals.signUp}
+          onClose={() => toggleModal(ModalName.SignUp)}
+          title="Sign Up"
+        >
+          <SignupForm />
+        </AuthModal>
+      </Box>
+    </header>
+  )
+}

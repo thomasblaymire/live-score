@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+# Run Prisma migrations before starting the server
+echo "Running database migrations..."
+cd /app/packages/database
+npx prisma migrate deploy
+
+exec "${@}"

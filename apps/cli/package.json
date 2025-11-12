@@ -1,0 +1,19 @@
+{
+  "name": "@live-score/cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.14.4",
+    "cross-spawn": "^7.0.3",
+    "del": "^7.0.0",
+    "fs-extra": "^11.1.0",
+    "process": "^0.11.10"
+  }
+}
