@@ -1,7 +1,12 @@
-import { Card } from "@/components/ui/card";
 import { CompetitionsList } from "@/components/features/competitions-list";
 import { ScoreBoard } from "@/components/features/scoreboard";
-import { mockCompetitions, mockFixtures, mockNews, mockStandings } from "@/data/mock-data";
+import { Card } from "@/components/ui/card";
+import {
+  mockCompetitions,
+  mockFixtures,
+  mockNews,
+  mockStandings,
+} from "@/data/mock-data";
 
 export default function HomePage() {
   return (
@@ -20,14 +25,16 @@ export default function HomePage() {
           <div className="mb-6 hidden md:block">
             <div className="bg-gradient-to-r from-primary to-blue-600 rounded-lg p-6 text-white">
               <h2 className="text-2xl font-bold mb-2">Welcome to Live Score</h2>
-              <p className="text-blue-100">Follow live football scores and predictions</p>
+              <p className="text-blue-100">
+                Follow live football scores and predictions
+              </p>
             </div>
           </div>
-          
+
           <h2 className="text-white text-xl font-semibold mb-4 hidden md:block">
             Football Matches
           </h2>
-          
+
           <ScoreBoard fixtures={mockFixtures} />
         </main>
 
@@ -59,7 +66,9 @@ export default function HomePage() {
                   <p className="text-gray-500 text-xs mb-2 line-clamp-2">
                     {article.excerpt}
                   </p>
-                  <span className="text-gray-600 text-xs">{article.publishedAt}</span>
+                  <span className="text-gray-600 text-xs">
+                    {article.publishedAt}
+                  </span>
                 </a>
               ))}
             </div>
@@ -79,11 +88,18 @@ export default function HomePage() {
                 </thead>
                 <tbody>
                   {mockStandings.map((team) => (
-                    <tr key={team.position} className="border-t border-gray-800">
+                    <tr
+                      key={team.position}
+                      className="border-t border-gray-800"
+                    >
                       <td className="py-2 text-gray-400">{team.position}</td>
                       <td className="py-2 text-white">{team.team}</td>
-                      <td className="py-2 text-center text-gray-400">{team.played}</td>
-                      <td className="py-2 text-center text-white font-semibold">{team.points}</td>
+                      <td className="py-2 text-center text-gray-400">
+                        {team.played}
+                      </td>
+                      <td className="py-2 text-center text-white font-semibold">
+                        {team.points}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

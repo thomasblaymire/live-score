@@ -1,7 +1,7 @@
 "use client";
 
-import { Card } from "../ui/card";
 import Image from "next/image";
+import { Card } from "../ui/card";
 
 interface Competition {
   id: number;
@@ -35,7 +35,9 @@ export function CompetitionsList({ competitions }: CompetitionsListProps) {
             <p className="text-white text-sm font-medium truncate group-hover:text-primary transition-colors">
               {competition.name}
             </p>
-            <p className="text-gray-500 text-xs truncate">{competition.country}</p>
+            <p className="text-gray-500 text-xs truncate">
+              {competition.country}
+            </p>
           </div>
         </a>
       ))}

@@ -1,8 +1,9 @@
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
+import { AuthProvider } from "@/context/auth-context";
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import "./globals.css";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={dmSans.variable}>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

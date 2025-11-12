@@ -72,6 +72,7 @@ importers:
       '@repo/database': workspace:*
       '@repo/eslint-config': workspace:*
       '@repo/typescript-config': workspace:*
+      '@supabase/ssr': ^0.7.0
       '@supabase/supabase-js': ^2.47.10
       '@types/node': ^22.10.1
       '@types/react': ^19.0.1
@@ -87,6 +88,7 @@ importers:
       typescript: ^5.6.3
     dependencies:
       '@repo/database': link:../../packages/database
+      '@supabase/ssr': 0.7.0_w23nm4y4mqirimougr4nogqdaq
       '@supabase/supabase-js': 2.81.1
       next: 15.5.6_lh6yjnbmlemn4t264xkzt2k63q
       react: 19.2.0
@@ -985,6 +987,15 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+    dev: false
+
+  /@supabase/ssr/0.7.0_w23nm4y4mqirimougr4nogqdaq:
+    resolution: {integrity: sha512-G65t5EhLSJ5c8hTCcXifSL9Q/ZRXvqgXeNo+d3P56f4U1IxwTqjB64UfmfixvmMcjuxnq2yGqEWVJqUcO+AzAg==}
+    peerDependencies:
+      '@supabase/supabase-js': ^2.43.4
+    dependencies:
+      '@supabase/supabase-js': 2.81.1
+      cookie: 1.0.2
     dev: false
 
   /@supabase/storage-js/2.81.1:
@@ -2004,6 +2015,11 @@ packages:
   /cookie/0.7.2:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /cookie/1.0.2:
+    resolution: {integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==}
+    engines: {node: '>=18'}
     dev: false
 
   /cors/2.8.5:
