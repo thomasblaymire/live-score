@@ -2,3 +2,6 @@
 .cli/
 .DS_Store
 .vscode/
+
+# Local planning documents
+REFACTOR_PLAN.md
