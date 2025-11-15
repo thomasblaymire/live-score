@@ -13,20 +13,52 @@ router.get(
 
       // Filter to top leagues worldwide
       const topLeagueIds = [
+        // Top 5 European Leagues
         39,  // Premier League (England)
         140, // La Liga (Spain)
         78,  // Bundesliga (Germany)
         135, // Serie A (Italy)
         61,  // Ligue 1 (France)
+
+        // International Competitions
         2,   // Champions League
         3,   // Europa League
+        848, // Europa Conference League
+        1,   // World Cup
+        4,   // Euro Championship
+        9,   // Copa America
+
+        // Other European Leagues
         94,  // Primeira Liga (Portugal)
         88,  // Eredivisie (Netherlands)
+        144, // Belgian Pro League
+        179, // Scottish Premiership
+        218, // Austrian Bundesliga
+        203, // Super Lig (Turkey)
+        235, // Russian Premier League
+        197, // Greek Super League
+        119, // Danish Superliga
+        103, // Norwegian Eliteserien
+        113, // Swedish Allsvenskan
+
+        // Americas
         71,  // Serie A (Brazil)
         253, // MLS (USA)
+        262, // Liga MX (Mexico)
+        128, // Argentine Primera Division
         13,  // Copa Libertadores
-        203, // Super Lig (Turkey)
+        11,  // CONMEBOL Copa Sudamericana
+
+        // Middle East & Africa
         307, // Saudi Pro League
+        188, // Egyptian Premier League
+
+        // Asia & Oceania
+        283, // UAE Pro League
+        98,  // J1 League (Japan)
+        292, // K League 1 (South Korea)
+        169, // Chinese Super League
+        271, // A-League (Australia)
       ];
       const leagues = (response.response as any[]) || [];
       const filtered = leagues.filter((league: any) =>

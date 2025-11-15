@@ -3,6 +3,7 @@ import { FixturesWithDate } from "@/components/features/fixtures-with-date";
 import { Card } from "@/components/ui/card";
 import { apiClient } from "@/lib/api-client";
 import { transformFixtures } from "@/lib/transform-fixtures";
+import Image from "next/image";
 
 async function getCompetitions() {
   try {
@@ -55,8 +56,8 @@ async function getStandings() {
     // Get standings for Premier League (ID: 39) as default
     const leagueData = await apiClient.leagues.getById("39");
 
-    // Return top 10 teams from the standings
-    return (leagueData.league || []).slice(0, 10);
+    // Return all teams from the standings
+    return leagueData.league || [];
   } catch (error) {
     console.error("Failed to fetch standings:", error);
     return [];
@@ -136,11 +137,11 @@ export default async function HomePage() {
           </Card>
 
           {/* Standings */}
-          <Card heading="Premier League Standings" className="overflow-auto">
+          <Card heading="Premier League Standings" className="max-h-[60vh] overflow-auto">
             {standings.length > 0 ? (
               <div className="p-4">
                 <table className="w-full text-xs">
-                  <thead>
+                  <thead className="sticky top-0 bg-surface z-10">
                     <tr className="text-gray-500">
                       <th className="text-left pb-2">#</th>
                       <th className="text-left pb-2">Team</th>
@@ -155,7 +156,19 @@ export default async function HomePage() {
                         className="border-t border-gray-800"
                       >
                         <td className="py-2 text-gray-400">{standing.position}</td>
-                        <td className="py-2 text-white">{standing.team.name}</td>
+                        <td className="py-2 text-white">
+                          <div className="flex items-center gap-2">
+                            <div className="w-5 h-5 relative flex-shrink-0">
+                              <Image
+                                src={standing.team.logo}
+                                alt={standing.team.name}
+                                fill
+                                className="object-contain"
+                              />
+                            </div>
+                            <span className="truncate">{standing.team.name}</span>
+                          </div>
+                        </td>
                         <td className="py-2 text-center text-gray-400">
                           {standing.played}
                         </td>
