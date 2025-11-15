@@ -5,11 +5,11 @@ import { apiClient } from "@/lib/api-client";
 import { extractFixtureId } from "@/lib/slug-helpers";
 
 interface FixturePageProps {
-  params: {
+  params: Promise<{
     category: string;
     league: string;
     match: string;
-  };
+  }>;
 }
 
 async function getFixture(fixtureId: string) {
@@ -23,7 +23,8 @@ async function getFixture(fixtureId: string) {
 }
 
 export default async function FixturePage({ params }: FixturePageProps) {
-  const fixtureId = extractFixtureId(params.match);
+  const resolvedParams = await params;
+  const fixtureId = extractFixtureId(resolvedParams.match);
   const fixture = await getFixture(fixtureId);
 
   if (!fixture) {

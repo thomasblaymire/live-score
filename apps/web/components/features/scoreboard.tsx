@@ -22,6 +22,7 @@ interface Fixture {
 
 interface ScoreBoardProps {
   fixtures: Fixture[];
+  showHeader?: boolean;
 }
 
 const tabs = [
@@ -31,7 +32,7 @@ const tabs = [
   { title: "Upcoming", value: "upcoming" },
 ];
 
-export function ScoreBoard({ fixtures }: ScoreBoardProps) {
+export function ScoreBoard({ fixtures, showHeader = true }: ScoreBoardProps) {
   const [activeTab, setActiveTab] = useState("live");
   const [collapsedLeagues, setCollapsedLeagues] = useState<Set<string>>(new Set());
 
@@ -97,46 +98,50 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
   };
 
   return (
-    <div className="bg-surface border border-gray-800 rounded-[15px]">
-      {/* Tabs Header */}
-      <div className="flex items-center justify-between p-3 md:p-4 border-b border-gray-800">
-        <div className="flex gap-2">
-          {tabs.map((tab) => (
-            <button
-              key={tab.value}
-              onClick={() => setActiveTab(tab.value)}
-              className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
-                activeTab === tab.value
-                  ? "bg-primary text-white"
-                  : "text-gray-400 hover:text-white hover:bg-gray-800"
-              }`}
-            >
-              {tab.title}
+    <div className={showHeader ? "bg-surface border border-gray-800 rounded-[15px]" : ""}>
+      {showHeader && (
+        <>
+          {/* Tabs Header */}
+          <div className="flex items-center justify-between p-3 md:p-4 border-b border-gray-800">
+            <div className="flex gap-2">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.value}
+                  onClick={() => setActiveTab(tab.value)}
+                  className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
+                    activeTab === tab.value
+                      ? "bg-primary text-white"
+                      : "text-gray-400 hover:text-white hover:bg-gray-800"
+                  }`}
+                >
+                  {tab.title}
+                </button>
+              ))}
+            </div>
+            <button className="text-gray-400 hover:text-white text-sm">
+              📅 Today
             </button>
-          ))}
-        </div>
-        <button className="text-gray-400 hover:text-white text-sm">
-          📅 Today
-        </button>
-      </div>
+          </div>
 
-      {/* Status Legend */}
-      <div className="px-3 md:px-4 py-2 bg-gray-900/50 border-b border-gray-800">
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
-          <span className="text-gray-500">
-            <span className="text-green-500 font-semibold">1H/2H</span> = Live
-          </span>
-          <span className="text-gray-500">
-            <span className="text-yellow-500 font-semibold">HT</span> = Half Time
-          </span>
-          <span className="text-gray-500">
-            <span className="text-gray-400 font-semibold">FT</span> = Full Time
-          </span>
-          <span className="text-gray-500">
-            <span className="text-gray-400 font-semibold">NS</span> = Not Started
-          </span>
-        </div>
-      </div>
+          {/* Status Legend */}
+          <div className="px-3 md:px-4 py-2 bg-gray-900/50 border-b border-gray-800">
+            <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+              <span className="text-gray-500">
+                <span className="text-green-500 font-semibold">1H/2H</span> = Live
+              </span>
+              <span className="text-gray-500">
+                <span className="text-yellow-500 font-semibold">HT</span> = Half Time
+              </span>
+              <span className="text-gray-500">
+                <span className="text-gray-400 font-semibold">FT</span> = Full Time
+              </span>
+              <span className="text-gray-500">
+                <span className="text-gray-400 font-semibold">NS</span> = Not Started
+              </span>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Fixtures List Grouped by League */}
       <div className="max-h-[600px] overflow-y-auto">
@@ -251,9 +256,9 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
                         <div className="text-xs text-gray-500 mt-1">
                           {fixture.time}
                         </div>
-                        </div>
                       </div>
-                    </Link>
+                    </div>
+                  </Link>
                     );
                   })}
                 </div>

@@ -1,5 +1,5 @@
 import { CompetitionsList } from "@/components/features/competitions-list";
-import { ScoreBoard } from "@/components/features/scoreboard";
+import { FixturesWithDate } from "@/components/features/fixtures-with-date";
 import { Card } from "@/components/ui/card";
 import { apiClient } from "@/lib/api-client";
 import { transformFixtures } from "@/lib/transform-fixtures";
@@ -90,19 +90,13 @@ export default async function HomePage() {
             Football Matches
           </h2>
 
-          {fixtures.length > 0 ? (
-            <ScoreBoard fixtures={fixtures} />
-          ) : (
-            <div className="bg-surface border border-gray-800 rounded-[15px] p-8 text-center text-gray-500">
-              No matches scheduled for today
-            </div>
-          )}
+          <FixturesWithDate initialFixtures={fixtures} />
         </main>
 
         {/* Right Sidebar - Search, News, Standings */}
         <aside className="hidden xl:block space-y-6">
           {/* Search */}
-          <Card className="h-[45vh] overflow-auto">
+          <Card className="overflow-auto">
             <div className="p-4">
               <input
                 type="text"
@@ -113,7 +107,7 @@ export default async function HomePage() {
           </Card>
 
           {/* Latest News */}
-          <Card heading="Latest News" className="h-[45vh] overflow-auto">
+          <Card heading="Latest News" className="max-h-[40vh] overflow-auto">
             {news.length > 0 ? (
               <div className="divide-y divide-gray-800">
                 {news.map((article, index) => (
