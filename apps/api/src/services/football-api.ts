@@ -184,14 +184,11 @@ export const leaguesAPI = {
    * Get top leagues (hardcoded popular ones)
    */
   async getTopLeagues() {
-    const currentYear = new Date().getFullYear();
-    const season = currentYear; // Adjust based on league season
-
-    // Top 5 European leagues
-    const topLeagueIds = [39, 140, 78, 135, 61]; // PL, La Liga, Bundesliga, Serie A, Ligue 1
-
-    return fetchFromAPI(`/leagues?season=${season}`, {
-      key: `leagues:top:${season}`,
+    // Fetch all leagues without season filter to get maximum coverage
+    // This returns all leagues regardless of season, which is what we want
+    // for the competitions list
+    return fetchFromAPI(`/leagues`, {
+      key: `leagues:all`,
       ttl: CACHE_TTL.LEAGUES,
     });
   },

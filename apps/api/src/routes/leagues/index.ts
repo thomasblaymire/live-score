@@ -65,6 +65,8 @@ router.get(
         topLeagueIds.includes(league.league.id)
       );
 
+      console.log(`Found ${filtered.length} out of ${topLeagueIds.length} requested leagues`);
+
       res.json(filtered);
     } catch (error: any) {
       console.error("Error fetching leagues:", error);

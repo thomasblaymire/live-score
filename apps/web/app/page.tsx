@@ -143,7 +143,6 @@ export default async function HomePage() {
                 <table className="w-full text-xs">
                   <thead className="sticky top-0 bg-surface z-10">
                     <tr className="text-gray-500">
-                      <th className="text-left pb-2">#</th>
                       <th className="text-left pb-2">Team</th>
                       <th className="text-center pb-2">P</th>
                       <th className="text-center pb-2">Pts</th>
@@ -155,7 +154,6 @@ export default async function HomePage() {
                         key={standing.position}
                         className="border-t border-gray-800"
                       >
-                        <td className="py-2 text-gray-400">{standing.position}</td>
                         <td className="py-2 text-white">
                           <div className="flex items-center gap-2">
                             <div className="w-5 h-5 relative flex-shrink-0">
