@@ -74,6 +74,24 @@ export function FixturesWithDate({ initialFixtures }: FixturesWithDateProps) {
           onDateChange={handleDateChange}
         />
 
+        {/* Status Legend */}
+        <div className="px-3 md:px-4 py-2 bg-gray-900/50 border-b border-gray-800">
+          <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+            <span className="text-gray-500">
+              <span className="text-green-500 font-semibold">1H/2H</span> = Live
+            </span>
+            <span className="text-gray-500">
+              <span className="text-yellow-500 font-semibold">HT</span> = Half Time
+            </span>
+            <span className="text-gray-500">
+              <span className="text-gray-400 font-semibold">FT</span> = Full Time
+            </span>
+            <span className="text-gray-500">
+              <span className="text-gray-400 font-semibold">NS</span> = Not Started
+            </span>
+          </div>
+        </div>
+
         {/* Fixtures */}
         {fixtures.length > 0 ? (
           <ScoreBoard fixtures={fixtures} showHeader={false} />

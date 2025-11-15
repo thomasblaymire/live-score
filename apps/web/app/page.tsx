@@ -3,7 +3,6 @@ import { FixturesWithDate } from "@/components/features/fixtures-with-date";
 import { Card } from "@/components/ui/card";
 import { apiClient } from "@/lib/api-client";
 import { transformFixtures } from "@/lib/transform-fixtures";
-import { mockStandings } from "@/data/mock-data";
 
 async function getCompetitions() {
   try {
@@ -51,11 +50,25 @@ async function getFixtures() {
   }
 }
 
+async function getStandings() {
+  try {
+    // Get standings for Premier League (ID: 39) as default
+    const leagueData = await apiClient.leagues.getById("39");
+
+    // Return top 10 teams from the standings
+    return (leagueData.league || []).slice(0, 10);
+  } catch (error) {
+    console.error("Failed to fetch standings:", error);
+    return [];
+  }
+}
+
 export default async function HomePage() {
-  const [competitions, news, fixtures] = await Promise.all([
+  const [competitions, news, fixtures, standings] = await Promise.all([
     getCompetitions(),
     getNews(),
     getFixtures(),
+    getStandings(),
   ]);
 
   return (
@@ -77,19 +90,6 @@ export default async function HomePage() {
 
         {/* Main Content - Matches */}
         <main className="min-w-0">
-          <div className="mb-6 hidden md:block">
-            <div className="bg-gradient-to-r from-primary to-blue-600 rounded-lg p-6 text-white">
-              <h2 className="text-2xl font-bold mb-2">Welcome to Live Score</h2>
-              <p className="text-blue-100">
-                Follow live football scores and predictions
-              </p>
-            </div>
-          </div>
-
-          <h2 className="text-white text-xl font-semibold mb-4 hidden md:block">
-            Football Matches
-          </h2>
-
           <FixturesWithDate initialFixtures={fixtures} />
         </main>
 
@@ -136,36 +136,42 @@ export default async function HomePage() {
           </Card>
 
           {/* Standings */}
-          <Card heading="Standings" className="overflow-auto">
-            <div className="p-4">
-              <table className="w-full text-xs">
-                <thead>
-                  <tr className="text-gray-500">
-                    <th className="text-left pb-2">#</th>
-                    <th className="text-left pb-2">Team</th>
-                    <th className="text-center pb-2">P</th>
-                    <th className="text-center pb-2">Pts</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {mockStandings.map((team) => (
-                    <tr
-                      key={team.position}
-                      className="border-t border-gray-800"
-                    >
-                      <td className="py-2 text-gray-400">{team.position}</td>
-                      <td className="py-2 text-white">{team.team}</td>
-                      <td className="py-2 text-center text-gray-400">
-                        {team.played}
-                      </td>
-                      <td className="py-2 text-center text-white font-semibold">
-                        {team.points}
-                      </td>
+          <Card heading="Premier League Standings" className="overflow-auto">
+            {standings.length > 0 ? (
+              <div className="p-4">
+                <table className="w-full text-xs">
+                  <thead>
+                    <tr className="text-gray-500">
+                      <th className="text-left pb-2">#</th>
+                      <th className="text-left pb-2">Team</th>
+                      <th className="text-center pb-2">P</th>
+                      <th className="text-center pb-2">Pts</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                  </thead>
+                  <tbody>
+                    {standings.map((standing) => (
+                      <tr
+                        key={standing.position}
+                        className="border-t border-gray-800"
+                      >
+                        <td className="py-2 text-gray-400">{standing.position}</td>
+                        <td className="py-2 text-white">{standing.team.name}</td>
+                        <td className="py-2 text-center text-gray-400">
+                          {standing.played}
+                        </td>
+                        <td className="py-2 text-center text-white font-semibold">
+                          {standing.points}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : (
+              <div className="p-4 text-gray-500 text-sm">
+                No standings available
+              </div>
+            )}
           </Card>
         </aside>
       </div>

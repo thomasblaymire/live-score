@@ -11,8 +11,23 @@ router.get(
     try {
       const response = await leaguesAPI.getTopLeagues();
 
-      // Filter to top 5 European leagues
-      const topLeagueIds = [39, 140, 78, 135, 61];
+      // Filter to top leagues worldwide
+      const topLeagueIds = [
+        39,  // Premier League (England)
+        140, // La Liga (Spain)
+        78,  // Bundesliga (Germany)
+        135, // Serie A (Italy)
+        61,  // Ligue 1 (France)
+        2,   // Champions League
+        3,   // Europa League
+        94,  // Primeira Liga (Portugal)
+        88,  // Eredivisie (Netherlands)
+        71,  // Serie A (Brazil)
+        253, // MLS (USA)
+        13,  // Copa Libertadores
+        203, // Super Lig (Turkey)
+        307, // Saudi Pro League
+      ];
       const leagues = (response.response as any[]) || [];
       const filtered = leagues.filter((league: any) =>
         topLeagueIds.includes(league.league.id)
