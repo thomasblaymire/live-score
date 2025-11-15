@@ -8,7 +8,14 @@ import { mockStandings } from "@/data/mock-data";
 async function getCompetitions() {
   try {
     const leagues = await apiClient.leagues.getAll();
-    return leagues;
+
+    // Transform API-Football response to match our component interface
+    return leagues.map((item: any) => ({
+      id: item.league.id,
+      name: item.league.name,
+      country: item.country.name,
+      logo: item.league.logo,
+    }));
   } catch (error) {
     console.error("Failed to fetch competitions:", error);
     return [];

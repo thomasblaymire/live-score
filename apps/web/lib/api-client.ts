@@ -135,18 +135,35 @@ export interface FixturesResponse {
   fixturesByStatus: any;
 }
 
+// API-Football response format
 export interface Fixture {
-  id: number;
-  homeTeam: Team;
-  awayTeam: Team;
-  league: League;
-  date: string;
-  status: FixtureStatus;
+  fixture: {
+    id: number;
+    date: string;
+    status: {
+      long: string;
+      short: string;
+      elapsed?: number | null;
+    };
+  };
+  teams: {
+    home: Team;
+    away: Team;
+  };
+  goals: {
+    home: number | null;
+    away: number | null;
+  };
+  league: {
+    id: number;
+    name: string;
+    country: string;
+    logo: string;
+  };
 }
 
 export interface FixtureDetail extends Fixture {
   venue?: Venue;
-  goals?: Goals;
   score?: Score;
 }
 
@@ -161,10 +178,18 @@ export interface TeamDetail extends Team {
 }
 
 export interface League {
-  id: number;
-  name: string;
-  country: string;
-  logo: string;
+  league: {
+    id: number;
+    name: string;
+    country: string;
+    logo: string;
+  };
+  country: {
+    name: string;
+    code: string;
+    flag: string;
+  };
+  seasons: any[];
 }
 
 export interface LeagueDetail {

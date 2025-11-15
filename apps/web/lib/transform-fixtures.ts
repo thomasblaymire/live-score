@@ -1,34 +1,8 @@
 /**
- * Transform fixtures from API response to ScoreBoard format
+ * Transform fixtures from API-Football response to ScoreBoard format
  */
 
-interface ApiFixture {
-  id: number;
-  homeTeam: {
-    id: number;
-    name: string;
-    logo?: string;
-  };
-  awayTeam: {
-    id: number;
-    name: string;
-    logo?: string;
-  };
-  status: {
-    long: string;
-    short: string;
-    elapsed?: number | null;
-  };
-  goals?: {
-    home: number | null;
-    away: number | null;
-  } | null;
-  league: {
-    id: number;
-    name: string;
-  };
-  date: string;
-}
+import { Fixture as ApiFixture } from "./api-client";
 
 interface ScoreBoardFixture {
   id: number;
@@ -44,38 +18,45 @@ interface ScoreBoardFixture {
 export function transformFixtures(
   apiFixtures: ApiFixture[]
 ): ScoreBoardFixture[] {
-  return apiFixtures.map((fixture) => {
+  if (!Array.isArray(apiFixtures)) {
+    return [];
+  }
+
+  return apiFixtures.map((item) => {
+    const fixture = item.fixture;
+    const status = fixture.status;
+
     // Format time based on status
     let time = "";
-    if (fixture.status.short === "NS") {
+    if (status.short === "NS") {
       // Not started - show match time
       const matchDate = new Date(fixture.date);
       time = matchDate.toLocaleTimeString("en-GB", {
         hour: "2-digit",
         minute: "2-digit",
       });
-    } else if (fixture.status.short === "FT") {
+    } else if (status.short === "FT") {
       // Finished
       time = "FT";
-    } else if (fixture.status.short === "HT") {
+    } else if (status.short === "HT") {
       // Half time
       time = "HT";
-    } else if (fixture.status.elapsed !== null && fixture.status.elapsed !== undefined) {
+    } else if (status.elapsed !== null && status.elapsed !== undefined) {
       // Live match - show elapsed time
-      time = `${fixture.status.elapsed}'`;
+      time = `${status.elapsed}'`;
     } else {
-      time = fixture.status.short;
+      time = status.short;
     }
 
     return {
       id: fixture.id,
-      homeTeam: fixture.homeTeam.name,
-      awayTeam: fixture.awayTeam.name,
-      homeScore: fixture.goals?.home ?? null,
-      awayScore: fixture.goals?.away ?? null,
-      status: fixture.status.short,
+      homeTeam: item.teams.home.name,
+      awayTeam: item.teams.away.name,
+      homeScore: item.goals.home,
+      awayScore: item.goals.away,
+      status: status.short,
       time,
-      league: fixture.league.name,
+      league: item.league.name,
     };
   });
 }

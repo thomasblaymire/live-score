@@ -13,11 +13,12 @@ router.get(
 
       // Filter to top 5 European leagues
       const topLeagueIds = [39, 140, 78, 135, 61];
-      const filtered = response.response?.filter((league: any) =>
+      const leagues = (response.response as any[]) || [];
+      const filtered = leagues.filter((league: any) =>
         topLeagueIds.includes(league.league.id)
       );
 
-      res.json(filtered || []);
+      res.json(filtered);
     } catch (error: any) {
       console.error("Error fetching leagues:", error);
       sendError(res, 500, "Failed to fetch leagues from API-Football");

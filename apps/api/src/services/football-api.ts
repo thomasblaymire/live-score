@@ -26,12 +26,27 @@ interface CacheOptions {
 }
 
 /**
+ * API-Football response wrapper
+ */
+interface APIFootballResponse<T> {
+  get: string;
+  parameters: Record<string, any>;
+  errors: any[];
+  results: number;
+  paging: {
+    current: number;
+    total: number;
+  };
+  response: T;
+}
+
+/**
  * Generic fetch with caching
  */
 async function fetchFromAPI<T>(
   endpoint: string,
   cacheOptions?: CacheOptions
-): Promise<T> {
+): Promise<APIFootballResponse<T>> {
   const cacheKey = cacheOptions?.key || endpoint;
 
   // Check cache first
@@ -39,7 +54,7 @@ async function fetchFromAPI<T>(
     const cached = cache.get(cacheKey);
     if (cached && Date.now() - cached.timestamp < cacheOptions.ttl) {
       console.log(`[Cache HIT] ${cacheKey}`);
-      return cached.data as T;
+      return cached.data as APIFootballResponse<T>;
     }
   }
 
@@ -70,7 +85,7 @@ async function fetchFromAPI<T>(
     console.log(`[Cache SET] ${cacheKey}`);
   }
 
-  return data as T;
+  return data as APIFootballResponse<T>;
 }
 
 /**
