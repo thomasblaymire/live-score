@@ -1,7 +1,7 @@
 import rateLimit from "express-rate-limit";
 import { Request, Response, Router } from "express";
-import { prisma } from "../helpers";
 import { check, validationResult } from "express-validator";
+import { teamsAPI } from "../services/football-api";
 
 const router = Router();
 
@@ -12,7 +12,7 @@ const searchRateLimit = rateLimit({
 });
 
 const searchValidation = [
-  check("term")
+  check("q")
     .trim()
     .isLength({ min: 1 })
     .withMessage("Search term must not be empty.")
@@ -20,53 +20,14 @@ const searchValidation = [
     .withMessage("Search term must not exceed 100 characters."),
 ];
 
-async function search(query: string, limit: number = 3) {
+async function search(query: string) {
   try {
-    const searchTerm = query;
-    const searchTerms = searchTerm.split(" ");
+    // Search teams using API-Football
+    const teamsResponse = await teamsAPI.search(query);
 
-    const teamsPromise = prisma.team.findMany({
-      where: { name: { contains: searchTerm, mode: "insensitive" } },
-      take: limit,
-    });
-
-    const venuesPromise = prisma.venue.findMany({
-      where: { name: { contains: searchTerm, mode: "insensitive" } },
-      take: limit,
-    });
-
-    const playersPromise = prisma.player.findMany({
-      where: {
-        OR: searchTerms.map((term) => ({
-          name: { contains: term, mode: "insensitive" },
-        })),
-      },
-    });
-
-    const [teams, venues, playersResults] = await Promise.all([
-      teamsPromise,
-      venuesPromise,
-      playersPromise,
-    ]);
-
-    const playersWithRelevance = playersResults.map((player: any) => {
-      const playerTerms = player.name.toLowerCase().split(" ");
-      let relevance = 0;
-
-      for (const term of searchTerms) {
-        if (playerTerms.includes(term.toLowerCase())) {
-          relevance += 1;
-        }
-      }
-
-      return { ...player, relevance };
-    });
-
-    const players = playersWithRelevance
-      .sort((a: any, b: any) => b.relevance - a.relevance)
-      .slice(0, limit);
-
-    return { teams, venues, players };
+    return {
+      teams: teamsResponse.response || [],
+    };
   } catch (error) {
     console.error("Error while searching:", error);
     throw error;
@@ -84,7 +45,7 @@ router.get(
     }
 
     try {
-      const searchTerm = req.query.term as string;
+      const searchTerm = req.query.q as string;
       const results = await search(searchTerm);
       res.json(results);
     } catch (error) {
@@ -92,4 +53,5 @@ router.get(
     }
   }
 );
+
 export { router as searchRouter };

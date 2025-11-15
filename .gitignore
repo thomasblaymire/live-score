@@ -45,3 +45,4 @@ lerna-debug.log*
 *.db
 *.db-shm
 *.db-wal
+tsconfig.tsbuildinfo
