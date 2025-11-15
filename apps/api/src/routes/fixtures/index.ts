@@ -1,11 +1,6 @@
-import fetch from "node-fetch";
 import express, { Request, Response } from "express";
-import { isString, catchAsync, retry, sendError, prisma } from "../../helpers";
-import {
-  fetchLiveScores,
-  fetchFixturesByDate,
-  fetchFixturesByStatus,
-} from "./requests";
+import { isString, catchAsync, sendError, prisma } from "../../helpers";
+import { fixturesAPI } from "../../services/football-api";
 
 const router = express.Router();
 
@@ -58,35 +53,27 @@ router.get(
   })
 );
 
-// Returns all fixtures for a date range inc (live matches, odds, finished matches)
+// Returns all fixtures (live, by date, etc.)
 router.get(
   "/api/fixtures",
   catchAsync(async (req: Request, res: Response) => {
-    const { getDate } = Date.prototype;
-    const today = new Date();
-    const tomorrow = new Date(getDate.call(today) + 1);
-
     try {
-      const [liveScores, fixturesByDate, fixturesByStatus] = await Promise.all([
-        retry(() => fetchLiveScores(`${process.env.MOCKY_LIVE_SCORES}`)),
-        retry(() =>
-          fetchFixturesByDate(`${process.env.MOCKY_FIXTURES_BY_DATE}`)
-        ),
-        retry(() =>
-          fetchFixturesByStatus(`${process.env.MOCKY_FIXTURES_BY_STATUS}`)
-        ),
+      const today = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+
+      const [liveScores, fixturesByDate] = await Promise.all([
+        fixturesAPI.getLive(),
+        fixturesAPI.getByDate(today),
       ]);
 
       const response = {
         liveScores,
         fixturesByDate,
-        fixturesByStatus,
       };
 
       res.json(response);
     } catch (error) {
       console.error(error);
-      sendError(res, 500, "Failed to fetch data from API");
+      sendError(res, 500, "Failed to fetch fixtures from API-Football");
     }
   })
 );
@@ -104,33 +91,15 @@ router.get("/api/fixtures-all/date", async (req: Request, res: Response) => {
     return;
   }
 
-  const startDateTime = new Date(startDate);
-  const endDateTime = new Date(endDate);
-  endDateTime.setHours(23, 59, 59, 999);
-
   try {
-    const fixtures = await prisma.fixture.findMany({
-      where: {
-        date: {
-          gte: startDateTime,
-          lte: endDateTime,
-        },
-      },
-      include: {
-        homeTeam: true,
-        awayTeam: true,
-        status: true,
-        goals: true,
-        score: true,
-        league: true,
-        venue: true,
-      },
-      orderBy: {
-        date: "asc",
-      },
-    });
+    // Extract just the date part (YYYY-MM-DD) from ISO strings
+    const fromDate = startDate.split("T")[0];
+    const toDate = endDate.split("T")[0];
 
-    res.status(200).json(fixtures);
+    const response = await fixturesAPI.getByDateRange(fromDate, toDate);
+
+    // Return the response array directly
+    res.status(200).json(response.response || []);
   } catch (error) {
     console.error("Error fetching fixtures by date range:", error);
     res.status(500).json({
@@ -140,37 +109,24 @@ router.get("/api/fixtures-all/date", async (req: Request, res: Response) => {
   }
 });
 
-// Returns specific fixtures for a given teamID and youtube generated URL
+// Returns specific fixture by ID
 router.get(
   "/api/fixture/:id",
   catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
+    const fixtureId = parseInt(id);
 
-    // console.log("debug req.params:", req.params);
+    if (isNaN(fixtureId)) {
+      return sendError(res, 400, "Invalid fixture ID");
+    }
 
-    // const url = `${process.env.FOOTBALL_API_URL}/fixtures?id=${id}`;
-    // const options: any = {
-    //   method: "GET",
-    //   headers: {
-    //     "X-RapidAPI-Key": process.env.FOOTBALL_API_TOKEN,
-    //     "X-RapidAPI-Host": process.env.FOOTBALL_API_HOST,
-    //   },
-    // };
-
-    // try {
-    //   const response = await fetch(url, options);
-    //   const data = await response.json();
-
-    //   console.log("debug data from call", data);
-
-    //   res.json(data.response[0]);
-    // } catch (error) {
-    //   console.error(error);
-    // }
-
-    const response = await fetch(`${process.env.MOCKY_FIXTURE_BY_ID_API_URL}`);
-    const data = await response.json();
-    res.json(data.response[0]);
+    try {
+      const response = await fixturesAPI.getById(fixtureId);
+      res.json(response.response?.[0] || null);
+    } catch (error) {
+      console.error("Error fetching fixture by ID:", error);
+      sendError(res, 500, "Failed to fetch fixture");
+    }
   })
 );
 

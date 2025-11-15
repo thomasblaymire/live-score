@@ -1,42 +1,60 @@
-import fetch from "node-fetch";
 import express, { Request, Response } from "express";
-import { catchAsync } from "../../helpers";
+import { catchAsync, sendError } from "../../helpers";
+import { leaguesAPI, standingsAPI, topScorersAPI } from "../../services/football-api";
 
 const router = express.Router();
 
+// Get top leagues
 router.get(
   "/api/leagues",
   catchAsync(async (req: Request, res: Response) => {
     try {
-      const response = await fetch(process.env.MOCKY_TOP_COMPETITIONS_API_URL);
-      const data = await response.json();
-      res.json(data.response);
+      const response = await leaguesAPI.getTopLeagues();
+
+      // Filter to top 5 European leagues
+      const topLeagueIds = [39, 140, 78, 135, 61];
+      const filtered = response.response?.filter((league: any) =>
+        topLeagueIds.includes(league.league.id)
+      );
+
+      res.json(filtered || []);
     } catch (error: any) {
-      console.error("error:" + error);
+      console.error("Error fetching leagues:", error);
+      sendError(res, 500, "Failed to fetch leagues from API-Football");
     }
   })
 );
 
+// Get league standings and top scorers
 router.get(
   "/api/league/:league",
   catchAsync(async (req: Request, res: Response) => {
     const { league } = req.params;
+    const leagueId = parseInt(league);
 
-    const urls = [
-      process.env.MOCKY_STANDINGS_API_URL,
-      process.env.MOCKY_TOP_SCORERS_API_URL,
-    ];
+    if (isNaN(leagueId)) {
+      return sendError(res, 400, "Invalid league ID");
+    }
 
-    const response = await Promise.all(
-      urls.map((url) => fetch(url).then((res) => res.json()))
-    );
+    try {
+      const currentYear = new Date().getFullYear();
+      const season = currentYear; // Adjust based on actual season
 
-    const formatted = {
-      league: response[0].response[0].league.standings[0],
-      topScorers: response[1].response,
-    };
+      const [standingsData, topScorersData] = await Promise.all([
+        standingsAPI.getByLeague(leagueId, season),
+        topScorersAPI.getByLeague(leagueId, season),
+      ]);
 
-    res.json(formatted);
+      const formatted = {
+        league: standingsData.response?.[0]?.league?.standings?.[0] || [],
+        topScorers: topScorersData.response || [],
+      };
+
+      res.json(formatted);
+    } catch (error) {
+      console.error("Error fetching league details:", error);
+      sendError(res, 500, "Failed to fetch league details");
+    }
   })
 );
 
