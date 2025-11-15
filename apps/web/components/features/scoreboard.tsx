@@ -64,10 +64,23 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
     return "text-gray-400";
   };
 
+  const getStatusLabel = (status: string) => {
+    const statusMap: Record<string, string> = {
+      "1H": "First Half",
+      "2H": "Second Half",
+      "HT": "Half Time",
+      "FT": "Full Time",
+      "NS": "Not Started",
+      "TBD": "To Be Determined",
+      "LIVE": "Live",
+    };
+    return statusMap[status] || status;
+  };
+
   return (
     <div className="bg-surface border border-gray-800 rounded-[15px]">
       {/* Tabs Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-800">
+      <div className="flex items-center justify-between p-3 md:p-4 border-b border-gray-800">
         <div className="flex gap-2">
           {tabs.map((tab) => (
             <button
@@ -88,6 +101,24 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
         </button>
       </div>
 
+      {/* Status Legend */}
+      <div className="px-3 md:px-4 py-2 bg-gray-900/50 border-b border-gray-800">
+        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs">
+          <span className="text-gray-500">
+            <span className="text-green-500 font-semibold">1H/2H</span> = Live
+          </span>
+          <span className="text-gray-500">
+            <span className="text-yellow-500 font-semibold">HT</span> = Half Time
+          </span>
+          <span className="text-gray-500">
+            <span className="text-gray-400 font-semibold">FT</span> = Full Time
+          </span>
+          <span className="text-gray-500">
+            <span className="text-gray-400 font-semibold">NS</span> = Not Started
+          </span>
+        </div>
+      </div>
+
       {/* Fixtures List Grouped by League */}
       <div className="max-h-[600px] overflow-y-auto">
         {leagueGroups.length === 0 ? (
@@ -98,7 +129,7 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
           leagueGroups.map((group) => (
             <div key={group.league} className="mb-2">
               {/* League Header */}
-              <div className="sticky top-0 bg-gray-800 px-4 py-2 flex items-center gap-2 border-b border-gray-700">
+              <div className="sticky top-0 bg-gray-800 px-3 md:px-4 py-2 flex items-center gap-2 border-b border-gray-700">
                 <div className="relative w-4 h-4 flex-shrink-0">
                   <Image
                     src={group.logo}
@@ -118,7 +149,7 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
                 {group.fixtures.map((fixture) => (
                   <div
                     key={fixture.id}
-                    className="p-3 hover:bg-gray-800/30 transition-colors cursor-pointer"
+                    className="p-2 md:p-3 hover:bg-gray-800/30 transition-colors cursor-pointer"
                   >
                     {/* Match Details */}
                     <div className="flex items-center justify-between">
@@ -137,7 +168,7 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
                           <span className="text-white text-sm flex-1">
                             {fixture.homeTeam}
                           </span>
-                          <span className="text-white text-sm font-bold min-w-[20px] text-right">
+                          <span className="text-white text-sm font-bold w-6 text-center">
                             {fixture.homeScore ?? "-"}
                           </span>
                         </div>
@@ -154,7 +185,7 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
                           <span className="text-white text-sm flex-1">
                             {fixture.awayTeam}
                           </span>
-                          <span className="text-white text-sm font-bold min-w-[20px] text-right">
+                          <span className="text-white text-sm font-bold w-6 text-center">
                             {fixture.awayScore ?? "-"}
                           </span>
                         </div>
@@ -166,6 +197,7 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
                           className={`text-xs font-semibold ${getStatusColor(
                             fixture.status
                           )}`}
+                          title={getStatusLabel(fixture.status)}
                         >
                           {fixture.status}
                         </div>

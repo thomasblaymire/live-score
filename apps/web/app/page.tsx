@@ -59,9 +59,9 @@ export default async function HomePage() {
   ]);
 
   return (
-    <div className="max-w-[1200px] mx-auto mb-16">
+    <div className="max-w-[1200px] mx-auto mb-16 px-4 md:px-6">
       {/* 3-Column Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-[7fr_17fr] xl:grid-cols-[6fr_12fr_7fr] gap-6 mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-[7fr_17fr] xl:grid-cols-[6fr_12fr_7fr] gap-4 md:gap-6 mt-4 md:mt-8">
         {/* Left Sidebar - Top Competitions */}
         <aside className="hidden md:block">
           <Card heading="Top Competitions" className="h-[45vh] overflow-auto">
