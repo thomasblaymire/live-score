@@ -135,7 +135,7 @@ export function HorizontalDatePicker({
                   flex-shrink-0 w-16 px-2 py-2 rounded-lg transition-all
                   ${
                     isSelectedDate
-                      ? "bg-primary text-white shadow-lg scale-105"
+                      ? "bg-gray-700 text-white shadow-lg scale-105"
                       : isTodayDate
                       ? "bg-green-600/20 border border-green-600 text-green-400"
                       : "bg-gray-800/50 text-gray-400 hover:bg-gray-700 hover:text-white"

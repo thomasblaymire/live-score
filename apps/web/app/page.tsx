@@ -116,7 +116,7 @@ export default async function HomePage() {
               <input
                 type="text"
                 placeholder="Search teams, players..."
-                className="w-full bg-gray-900/50 border border-gray-700 rounded-lg pl-10 pr-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-primary focus:bg-gray-900 transition-colors"
+                className="w-full bg-gray-900/50 border border-gray-700 rounded-lg pl-10 pr-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-gray-500 focus:bg-gray-900 transition-colors"
               />
             </div>
           </div>

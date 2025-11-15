@@ -32,7 +32,7 @@ export function CompetitionsList({ competitions }: CompetitionsListProps) {
             />
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-white text-sm font-medium truncate group-hover:text-primary transition-colors">
+            <p className="text-white text-sm font-medium truncate group-hover:text-gray-300 transition-colors">
               {competition.name}
             </p>
             <p className="text-gray-500 text-xs truncate">
@@ -41,7 +41,7 @@ export function CompetitionsList({ competitions }: CompetitionsListProps) {
           </div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-4 w-4 text-gray-600 group-hover:text-primary transition-colors"
+            className="h-4 w-4 text-gray-600 group-hover:text-gray-400 transition-colors"
             viewBox="0 0 20 20"
             fill="currentColor"
           >
