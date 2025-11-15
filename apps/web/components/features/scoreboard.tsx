@@ -110,7 +110,7 @@ export function ScoreBoard({ fixtures, showHeader = true }: ScoreBoardProps) {
                   onClick={() => setActiveTab(tab.value)}
                   className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-colors ${
                     activeTab === tab.value
-                      ? "bg-primary text-white"
+                      ? "bg-gray-700 text-white"
                       : "text-gray-400 hover:text-white hover:bg-gray-800"
                   }`}
                 >
@@ -155,7 +155,7 @@ export function ScoreBoard({ fixtures, showHeader = true }: ScoreBoardProps) {
               {/* League Header */}
               <button
                 onClick={() => toggleLeague(group.league)}
-                className="sticky top-0 bg-gray-800 px-3 md:px-4 py-2 flex items-center gap-2 border-b border-gray-700 w-full hover:bg-gray-700 transition-colors"
+                className="sticky top-0 bg-gray-900/90 px-3 md:px-4 py-2 flex items-center gap-2 border-b border-gray-800 w-full hover:bg-gray-800/90 transition-colors backdrop-blur-sm"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -197,68 +197,74 @@ export function ScoreBoard({ fixtures, showHeader = true }: ScoreBoardProps) {
                       awayTeam: fixture.awayTeam,
                     });
 
+                    const isLive = fixture.status === "1H" || fixture.status === "2H";
+
                     return (
                       <Link
                         key={fixture.id}
                         href={fixtureUrl}
-                        className="block p-2 md:p-3 hover:bg-gray-800/30 transition-colors"
+                        className="block p-2 md:p-3 hover:bg-gray-900/50 transition-colors"
                       >
                       {/* Match Details */}
-                      <div className="flex items-center justify-between">
-                      {/* Teams */}
-                      <div className="flex-1 space-y-2">
-                        {/* Home Team */}
-                        <div className="flex items-center gap-2">
-                          <div className="relative w-5 h-5 flex-shrink-0">
-                            <Image
-                              src={fixture.homeTeamLogo}
-                              alt={fixture.homeTeam}
-                              fill
-                              className="object-contain"
-                            />
+                      <div className="flex items-center gap-3">
+                        {/* Status/Time - Left Side */}
+                        <div className="min-w-[50px] flex flex-col items-center">
+                          <div
+                            className={`text-xs font-semibold ${getStatusColor(
+                              fixture.status
+                            )} ${isLive ? 'animate-pulse' : ''}`}
+                            title={getStatusLabel(fixture.status)}
+                          >
+                            {fixture.status}
                           </div>
-                          <span className="text-white text-sm flex-1">
-                            {fixture.homeTeam}
-                          </span>
-                          <span className="text-white text-sm font-bold w-6 text-center">
-                            {fixture.homeScore ?? "-"}
-                          </span>
-                        </div>
-                        {/* Away Team */}
-                        <div className="flex items-center gap-2">
-                          <div className="relative w-5 h-5 flex-shrink-0">
-                            <Image
-                              src={fixture.awayTeamLogo}
-                              alt={fixture.awayTeam}
-                              fill
-                              className="object-contain"
-                            />
+                          <div className="text-xs text-gray-500 mt-0.5">
+                            {fixture.time}
                           </div>
-                          <span className="text-white text-sm flex-1">
-                            {fixture.awayTeam}
-                          </span>
-                          <span className="text-white text-sm font-bold w-6 text-center">
-                            {fixture.awayScore ?? "-"}
-                          </span>
                         </div>
-                      </div>
 
-                      {/* Status/Time */}
-                      <div className="ml-4 text-right min-w-[50px]">
-                        <div
-                          className={`text-xs font-semibold ${getStatusColor(
-                            fixture.status
-                          )}`}
-                          title={getStatusLabel(fixture.status)}
-                        >
-                          {fixture.status}
+                        {/* Teams - Middle */}
+                        <div className="flex-1 space-y-2">
+                          {/* Home Team */}
+                          <div className="flex items-center gap-2">
+                            <div className="relative w-5 h-5 flex-shrink-0">
+                              <Image
+                                src={fixture.homeTeamLogo}
+                                alt={fixture.homeTeam}
+                                fill
+                                className="object-contain"
+                              />
+                            </div>
+                            <span className="text-white text-sm flex-1">
+                              {fixture.homeTeam}
+                            </span>
+                          </div>
+                          {/* Away Team */}
+                          <div className="flex items-center gap-2">
+                            <div className="relative w-5 h-5 flex-shrink-0">
+                              <Image
+                                src={fixture.awayTeamLogo}
+                                alt={fixture.awayTeam}
+                                fill
+                                className="object-contain"
+                              />
+                            </div>
+                            <span className="text-white text-sm flex-1">
+                              {fixture.awayTeam}
+                            </span>
+                          </div>
                         </div>
-                        <div className="text-xs text-gray-500 mt-1">
-                          {fixture.time}
+
+                        {/* Scores - Right Side */}
+                        <div className="flex flex-col gap-2 min-w-[30px]">
+                          <div className="text-white text-base font-bold text-center">
+                            {fixture.homeScore ?? "-"}
+                          </div>
+                          <div className="text-white text-base font-bold text-center">
+                            {fixture.awayScore ?? "-"}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
                     );
                   })}
                 </div>
