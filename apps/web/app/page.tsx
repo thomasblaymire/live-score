@@ -1,9 +1,9 @@
 import { CompetitionsList } from "@/components/features/competitions-list";
 import { FixturesWithDate } from "@/components/features/fixtures-with-date";
+import { LeagueStandings } from "@/components/features/league-standings";
 import { Card } from "@/components/ui/card";
 import { apiClient } from "@/lib/api-client";
 import { transformFixtures } from "@/lib/transform-fixtures";
-import Image from "next/image";
 
 async function getCompetitions() {
   try {
@@ -122,53 +122,11 @@ export default async function HomePage() {
           </div>
 
           {/* Standings */}
-          <Card heading="Premier League Standings" className="max-h-[50vh] overflow-auto">
-            {standings.length > 0 ? (
-              <div className="p-4">
-                <table className="w-full text-xs">
-                  <thead className="sticky top-0 bg-surface z-10">
-                    <tr className="text-gray-500">
-                      <th className="text-left pb-2">Team</th>
-                      <th className="text-center pb-2">P</th>
-                      <th className="text-center pb-2">Pts</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {standings.map((standing) => (
-                      <tr
-                        key={standing.position}
-                        className="border-t border-gray-800"
-                      >
-                        <td className="py-2 text-white">
-                          <div className="flex items-center gap-2">
-                            <div className="w-5 h-5 relative flex-shrink-0">
-                              <Image
-                                src={standing.team.logo}
-                                alt={standing.team.name}
-                                fill
-                                className="object-contain"
-                              />
-                            </div>
-                            <span className="truncate">{standing.team.name}</span>
-                          </div>
-                        </td>
-                        <td className="py-2 text-center text-gray-400">
-                          {standing.played}
-                        </td>
-                        <td className="py-2 text-center text-white font-semibold">
-                          {standing.points}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <div className="p-4 text-gray-500 text-sm">
-                No standings available
-              </div>
-            )}
-          </Card>
+          <LeagueStandings
+            initialStandings={standings}
+            initialLeagueId={39}
+            initialLeagueName="Premier League"
+          />
 
           {/* Latest News */}
           <Card heading="Latest News" className="max-h-[40vh] overflow-auto">
