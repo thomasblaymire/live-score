@@ -94,50 +94,35 @@ export default async function HomePage() {
           <FixturesWithDate initialFixtures={fixtures} />
         </main>
 
-        {/* Right Sidebar - Search, News, Standings */}
+        {/* Right Sidebar - Search, Standings, News */}
         <aside className="hidden xl:block space-y-6">
           {/* Search */}
-          <Card className="overflow-auto">
-            <div className="p-4">
+          <div className="bg-surface border border-gray-800 rounded-[15px] p-4">
+            <div className="relative">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-500"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
               <input
                 type="text"
                 placeholder="Search teams, players..."
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-primary"
+                className="w-full bg-gray-900/50 border border-gray-700 rounded-lg pl-10 pr-4 py-2.5 text-white text-sm placeholder-gray-500 focus:outline-none focus:border-primary focus:bg-gray-900 transition-colors"
               />
             </div>
-          </Card>
-
-          {/* Latest News */}
-          <Card heading="Latest News" className="max-h-[40vh] overflow-auto">
-            {news.length > 0 ? (
-              <div className="divide-y divide-gray-800">
-                {news.map((article, index) => (
-                  <a
-                    key={index}
-                    href={article.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block p-4 hover:bg-gray-800/50 transition-colors"
-                  >
-                    <h4 className="text-white text-sm font-medium mb-1 line-clamp-2">
-                      {article.title}
-                    </h4>
-                    <p className="text-gray-500 text-xs mb-2 line-clamp-2">
-                      {article.description}
-                    </p>
-                    <span className="text-gray-600 text-xs">
-                      {new Date(article.publishedAt).toLocaleDateString()}
-                    </span>
-                  </a>
-                ))}
-              </div>
-            ) : (
-              <div className="p-4 text-gray-500 text-sm">No news available</div>
-            )}
-          </Card>
+          </div>
 
           {/* Standings */}
-          <Card heading="Premier League Standings" className="max-h-[60vh] overflow-auto">
+          <Card heading="Premier League Standings" className="max-h-[50vh] overflow-auto">
             {standings.length > 0 ? (
               <div className="p-4">
                 <table className="w-full text-xs">
@@ -182,6 +167,35 @@ export default async function HomePage() {
               <div className="p-4 text-gray-500 text-sm">
                 No standings available
               </div>
+            )}
+          </Card>
+
+          {/* Latest News */}
+          <Card heading="Latest News" className="max-h-[40vh] overflow-auto">
+            {news.length > 0 ? (
+              <div className="divide-y divide-gray-800">
+                {news.map((article, index) => (
+                  <a
+                    key={index}
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block p-4 hover:bg-gray-800/50 transition-colors"
+                  >
+                    <h4 className="text-white text-sm font-medium mb-1 line-clamp-2">
+                      {article.title}
+                    </h4>
+                    <p className="text-gray-500 text-xs mb-2 line-clamp-2">
+                      {article.description}
+                    </p>
+                    <span className="text-gray-600 text-xs">
+                      {new Date(article.publishedAt).toLocaleDateString()}
+                    </span>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <div className="p-4 text-gray-500 text-sm">No news available</div>
             )}
           </Card>
         </aside>
