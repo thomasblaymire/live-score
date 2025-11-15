@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { generateFixtureUrl } from "@/lib/slug-helpers";
 
 interface Fixture {
   id: number;
@@ -31,6 +33,7 @@ const tabs = [
 
 export function ScoreBoard({ fixtures }: ScoreBoardProps) {
   const [activeTab, setActiveTab] = useState("live");
+  const [collapsedLeagues, setCollapsedLeagues] = useState<Set<string>>(new Set());
 
   const filteredFixtures = fixtures.filter((fixture) => {
     if (activeTab === "all") return true;
@@ -75,6 +78,22 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
       "LIVE": "Live",
     };
     return statusMap[status] || status;
+  };
+
+  const toggleLeague = (leagueName: string) => {
+    setCollapsedLeagues((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(leagueName)) {
+        newSet.delete(leagueName);
+      } else {
+        newSet.add(leagueName);
+      }
+      return newSet;
+    });
+  };
+
+  const isLeagueCollapsed = (leagueName: string) => {
+    return collapsedLeagues.has(leagueName);
   };
 
   return (
@@ -129,7 +148,24 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
           leagueGroups.map((group) => (
             <div key={group.league} className="mb-2">
               {/* League Header */}
-              <div className="sticky top-0 bg-gray-800 px-3 md:px-4 py-2 flex items-center gap-2 border-b border-gray-700">
+              <button
+                onClick={() => toggleLeague(group.league)}
+                className="sticky top-0 bg-gray-800 px-3 md:px-4 py-2 flex items-center gap-2 border-b border-gray-700 w-full hover:bg-gray-700 transition-colors"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`h-4 w-4 text-gray-400 transition-transform ${
+                    isLeagueCollapsed(group.league) ? "-rotate-90" : ""
+                  }`}
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
                 <div className="relative w-4 h-4 flex-shrink-0">
                   <Image
                     src={group.logo}
@@ -142,17 +178,28 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
                   {group.league}
                 </span>
                 <span className="text-xs text-gray-500">({group.fixtures.length})</span>
-              </div>
+              </button>
 
               {/* Fixtures for this league */}
-              <div className="divide-y divide-gray-800">
-                {group.fixtures.map((fixture) => (
-                  <div
-                    key={fixture.id}
-                    className="p-2 md:p-3 hover:bg-gray-800/30 transition-colors cursor-pointer"
-                  >
-                    {/* Match Details */}
-                    <div className="flex items-center justify-between">
+              {!isLeagueCollapsed(group.league) && (
+                <div className="divide-y divide-gray-800">
+                  {group.fixtures.map((fixture) => {
+                    const fixtureUrl = generateFixtureUrl({
+                      id: fixture.id,
+                      league: fixture.league,
+                      leagueCountry: fixture.leagueCountry,
+                      homeTeam: fixture.homeTeam,
+                      awayTeam: fixture.awayTeam,
+                    });
+
+                    return (
+                      <Link
+                        key={fixture.id}
+                        href={fixtureUrl}
+                        className="block p-2 md:p-3 hover:bg-gray-800/30 transition-colors"
+                      >
+                      {/* Match Details */}
+                      <div className="flex items-center justify-between">
                       {/* Teams */}
                       <div className="flex-1 space-y-2">
                         {/* Home Team */}
@@ -204,11 +251,13 @@ export function ScoreBoard({ fixtures }: ScoreBoardProps) {
                         <div className="text-xs text-gray-500 mt-1">
                           {fixture.time}
                         </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+                    </Link>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           ))
         )}
