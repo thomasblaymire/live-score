@@ -34,17 +34,16 @@ async function getNews() {
 
 async function getFixtures() {
   try {
-    // Get fixtures for today
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    const tomorrow = new Date(today);
-    tomorrow.setDate(tomorrow.getDate() + 1);
+    // Get all fixtures (live + today's scheduled)
+    const fixturesData = await apiClient.fixtures.getAll();
 
-    const startDate = today.toISOString();
-    const endDate = tomorrow.toISOString();
+    // Combine live scores and today's fixtures
+    const liveFixtures = fixturesData.liveScores?.response || [];
+    const todayFixtures = fixturesData.fixturesByDate?.response || [];
 
-    const fixtures = await apiClient.fixtures.getByDateRange(startDate, endDate);
-    return transformFixtures(fixtures);
+    // Combine and transform
+    const allFixtures = [...liveFixtures, ...todayFixtures];
+    return transformFixtures(allFixtures);
   } catch (error) {
     console.error("Failed to fetch fixtures:", error);
     return [];
