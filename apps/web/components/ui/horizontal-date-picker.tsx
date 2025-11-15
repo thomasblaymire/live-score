@@ -78,7 +78,7 @@ export function HorizontalDatePicker({
   }, []);
 
   return (
-    <div className="bg-gray-800/50 border-b border-gray-700">
+    <div className="bg-gray-800/50 border-b border-gray-700 max-w-full">
       {/* Month/Year Header */}
       <div className="px-4 py-2 flex items-center justify-between">
         <span className="text-white text-sm font-semibold">
@@ -94,7 +94,7 @@ export function HorizontalDatePicker({
       </div>
 
       {/* Horizontal Date Scroll */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden w-full">
         {/* Left Arrow */}
         <button
           onClick={scrollLeft}
@@ -118,7 +118,7 @@ export function HorizontalDatePicker({
         {/* Scrollable Dates */}
         <div
           ref={scrollContainerRef}
-          className="flex overflow-x-auto gap-2 px-10 py-3 scrollbar-hide max-w-full"
+          className="flex overflow-x-scroll gap-2 px-10 py-3 scrollbar-hide w-full"
           style={{ scrollBehavior: "smooth" }}
         >
           {dates.map((date, index) => {

@@ -76,7 +76,7 @@ export default async function HomePage() {
         </aside>
 
         {/* Main Content - Matches */}
-        <main>
+        <main className="min-w-0">
           <div className="mb-6 hidden md:block">
             <div className="bg-gradient-to-r from-primary to-blue-600 rounded-lg p-6 text-white">
               <h2 className="text-2xl font-bold mb-2">Welcome to Live Score</h2>
