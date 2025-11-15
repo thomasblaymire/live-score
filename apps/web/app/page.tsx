@@ -41,8 +41,9 @@ async function getFixtures() {
     const liveFixtures = fixturesData.liveScores?.response || [];
     const todayFixtures = fixturesData.fixturesByDate?.response || [];
 
-    // Combine and transform
-    const allFixtures = [...liveFixtures, ...todayFixtures];
+    // Combine and limit to 30 fixtures to save on rendering
+    const allFixtures = [...liveFixtures, ...todayFixtures].slice(0, 30);
+
     return transformFixtures(allFixtures);
   } catch (error) {
     console.error("Failed to fetch fixtures:", error);

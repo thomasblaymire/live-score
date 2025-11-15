@@ -8,11 +8,15 @@ interface ScoreBoardFixture {
   id: number;
   homeTeam: string;
   awayTeam: string;
+  homeTeamLogo: string;
+  awayTeamLogo: string;
   homeScore: number | null;
   awayScore: number | null;
   status: string;
   time: string;
   league: string;
+  leagueLogo: string;
+  leagueCountry: string;
 }
 
 export function transformFixtures(
@@ -52,11 +56,15 @@ export function transformFixtures(
       id: fixture.id,
       homeTeam: item.teams.home.name,
       awayTeam: item.teams.away.name,
+      homeTeamLogo: item.teams.home.logo,
+      awayTeamLogo: item.teams.away.logo,
       homeScore: item.goals.home,
       awayScore: item.goals.away,
       status: status.short,
       time,
       league: item.league.name,
+      leagueLogo: item.league.logo,
+      leagueCountry: item.league.country,
     };
   });
 }
