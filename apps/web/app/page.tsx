@@ -78,7 +78,7 @@ export default async function HomePage() {
       <div className="grid grid-cols-1 md:grid-cols-[7fr_17fr] xl:grid-cols-[6fr_12fr_7fr] gap-4 md:gap-6 mt-4 md:mt-8">
         {/* Left Sidebar - Top Competitions */}
         <aside className="hidden md:block">
-          <Card heading="Top Competitions" className="h-[45vh] overflow-auto">
+          <Card heading="Top Competitions" className="h-[80vh] overflow-auto">
             {competitions.length > 0 ? (
               <CompetitionsList competitions={competitions} />
             ) : (
