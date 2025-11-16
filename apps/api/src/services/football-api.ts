@@ -6,9 +6,11 @@
 
 import fetch from "node-fetch";
 
-const API_URL = process.env.FOOTBALL_API_URL || "https://api-football-v1.p.rapidapi.com/v3";
+const API_URL =
+  process.env.FOOTBALL_API_URL || "https://api-football-v1.p.rapidapi.com/v3";
 const API_KEY = process.env.FOOTBALL_API_TOKEN;
-const API_HOST = process.env.FOOTBALL_API_HOST || "api-football-v1.p.rapidapi.com";
+const API_HOST =
+  process.env.FOOTBALL_API_HOST || "api-football-v1.p.rapidapi.com";
 
 // In-memory cache
 const cache = new Map<string, { data: any; timestamp: number }>();
@@ -71,7 +73,9 @@ async function fetchFromAPI<T>(
   });
 
   if (!response.ok) {
-    throw new Error(`API-Football error: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `API-Football error: ${response.status} ${response.statusText}`
+    );
   }
 
   const data = await response.json();

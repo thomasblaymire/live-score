@@ -235,7 +235,7 @@ describe("ScoreBoard", () => {
 
       const finishedStatuses = screen.getAllByText("FT");
       // Check that none of the FT status elements have the animate-pulse class
-      finishedStatuses.forEach(status => {
+      finishedStatuses.forEach((status) => {
         expect(status.className).not.toContain("animate-pulse");
       });
     });
@@ -265,13 +265,17 @@ describe("ScoreBoard", () => {
       render(<ScoreBoard fixtures={finishedOnlyFixtures} />);
 
       // Live tab is active by default, should show empty state
-      expect(screen.getByText("No matches found for this filter")).toBeInTheDocument();
+      expect(
+        screen.getByText("No matches found for this filter")
+      ).toBeInTheDocument();
     });
 
     it("handles empty fixtures array gracefully", () => {
       render(<ScoreBoard fixtures={[]} />);
 
-      expect(screen.getByText("No matches found for this filter")).toBeInTheDocument();
+      expect(
+        screen.getByText("No matches found for this filter")
+      ).toBeInTheDocument();
     });
   });
 
@@ -290,8 +294,12 @@ describe("ScoreBoard", () => {
     it("does not render tabs when showHeader is false", () => {
       render(<ScoreBoard fixtures={mockFixtures} showHeader={false} />);
 
-      expect(screen.queryByRole("button", { name: "Live" })).not.toBeInTheDocument();
-      expect(screen.queryByRole("button", { name: "All" })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: "Live" })
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: "All" })
+      ).not.toBeInTheDocument();
     });
 
     it("still renders fixtures when showHeader is false", () => {

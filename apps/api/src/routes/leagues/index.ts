@@ -11,18 +11,18 @@ router.get(
     try {
       const response = await leaguesAPI.getTopLeagues();
 
-      // Top 10 most popular leagues worldwide (ordered by priority)
+      // Top 10 most popular leagues worldwide (ordered by priority - UK leagues first)
       const topLeagueIds = [
         39,  // Premier League (England)
+        40,  // Championship (England)
+        41,  // League One (England)
+        42,  // League Two (England)
+        2,   // Champions League
         140, // La Liga (Spain)
         78,  // Bundesliga (Germany)
         135, // Serie A (Italy)
         61,  // Ligue 1 (France)
-        2,   // Champions League
         3,   // Europa League
-        94,  // Primeira Liga (Portugal)
-        88,  // Eredivisie (Netherlands)
-        253, // MLS (USA)
       ];
 
       const leagues = (response.response as any[]) || [];
