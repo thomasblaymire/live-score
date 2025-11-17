@@ -40,7 +40,7 @@ export function AuthModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-start md:items-center justify-center bg-black/70 backdrop-blur-sm pt-20 md:pt-0">
       <div className="relative w-full max-w-md mx-4">
         <div className="bg-surface border border-gray-800 rounded-lg p-6">
           <div className="flex items-center justify-between mb-6">

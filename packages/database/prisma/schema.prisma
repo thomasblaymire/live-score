@@ -156,3 +156,29 @@ model Favorite {
 
   @@unique([userId, favType, favTypeId])
 }
+
+// Broadcast information for leagues
+model LeagueBroadcast {
+  id           Int                    @id @default(autoincrement())
+  leagueId     Int                    @unique // API-Football league ID
+  country      String                 @default("UK")
+  broadcasters LeagueBroadcaster[]
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
+
+  @@index([leagueId])
+}
+
+model LeagueBroadcaster {
+  id                    Int              @id @default(autoincrement())
+  leagueBroadcast       LeagueBroadcast  @relation(fields: [leagueBroadcastId], references: [id], onDelete: Cascade)
+  leagueBroadcastId     Int
+  name                  String           // e.g., "Sky Sports"
+  channels              String[]         // e.g., ["Sky Sports Premier League", "Sky Sports Football"]
+  type                  String           // "tv" | "streaming" | "both"
+  requiresSubscription  Boolean          @default(true)
+  logo                  String?
+  url                   String?
+
+  @@index([leagueBroadcastId])
+}

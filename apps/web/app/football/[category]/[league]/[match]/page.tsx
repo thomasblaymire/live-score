@@ -1,8 +1,8 @@
+import { apiClient } from "@/lib/api-client";
+import { extractFixtureId } from "@/lib/slug-helpers";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { apiClient } from "@/lib/api-client";
-import { extractFixtureId } from "@/lib/slug-helpers";
 
 interface FixturePageProps {
   params: Promise<{
@@ -16,8 +16,13 @@ async function getFixture(fixtureId: string) {
   try {
     const fixture = await apiClient.fixtures.getById(fixtureId);
     return fixture;
-  } catch (error) {
-    console.error("Failed to fetch fixture:", error);
+  } catch (error: any) {
+    // Log but don't crash - gracefully handle rate limits and errors
+    if (error.message?.includes('429')) {
+      console.warn(`Fixture ${fixtureId} API rate limited`);
+    } else {
+      console.error("Failed to fetch fixture:", error);
+    }
     return null;
   }
 }

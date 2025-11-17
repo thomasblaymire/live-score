@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { catchAsync, sendError } from "../../helpers";
-import { leaguesAPI, standingsAPI, topScorersAPI } from "../../services/football-api";
+import { leaguesAPI, standingsAPI, topScorersAPI, fixturesAPI } from "../../services/football-api";
 
 const router = express.Router();
 
@@ -76,6 +76,31 @@ router.get(
     } catch (error) {
       console.error("Error fetching league details:", error);
       sendError(res, 500, "Failed to fetch league details");
+    }
+  })
+);
+
+// Get league fixtures
+router.get(
+  "/api/league/:league/fixtures",
+  catchAsync(async (req: Request, res: Response) => {
+    const { league } = req.params;
+    const leagueId = parseInt(league);
+
+    if (isNaN(leagueId)) {
+      return sendError(res, 400, "Invalid league ID");
+    }
+
+    try {
+      const currentYear = new Date().getFullYear();
+      const season = currentYear; // Adjust based on actual season
+
+      const fixturesData = await fixturesAPI.getByLeague(leagueId, season);
+
+      res.json(fixturesData.response || []);
+    } catch (error) {
+      console.error("Error fetching league fixtures:", error);
+      sendError(res, 500, "Failed to fetch league fixtures");
     }
   })
 );

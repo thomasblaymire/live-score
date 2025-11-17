@@ -109,7 +109,7 @@ describe("ScoreBoard", () => {
       render(<ScoreBoard fixtures={mockFixtures} />);
 
       const liveTab = screen.getByRole("button", { name: "Live" });
-      expect(liveTab).toHaveClass(/bg-gray-700/);
+      expect(liveTab.className).toContain("bg-gray-700");
     });
 
     it("filters to show only live matches when Live tab is clicked", async () => {
@@ -223,7 +223,7 @@ describe("ScoreBoard", () => {
       render(<ScoreBoard fixtures={mockFixtures} />);
 
       const liveStatus = screen.getByText("2H");
-      expect(liveStatus).toHaveClass(/animate-pulse/);
+      expect(liveStatus.className).toContain("animate-pulse");
     });
 
     it("does not show pulsating animation for finished matches", async () => {

@@ -9,6 +9,7 @@ import morgan from "morgan";
 import { Server } from "socket.io";
 import { clientUrl } from "./constants";
 import { corsOptions } from "./helpers";
+import { broadcastsRouter } from "./routes/broadcasts";
 import { favouritesRouter } from "./routes/favourites";
 import { fixturesRouter } from "./routes/fixtures";
 import { leaguesRouter } from "./routes/leagues";
@@ -46,6 +47,7 @@ app.use(leaguesRouter);
 app.use(fixturesRouter);
 app.use(teamsRouter);
 app.use(predictionsRouter);
+app.use(broadcastsRouter);
 
 const httpServer = createServer(app);
 const io = new Server(httpServer, {

@@ -65,6 +65,10 @@ export const apiClient = {
     // Get league standings and top scorers
     getById: (leagueId: string) =>
       fetchAPI<LeagueDetail>(`/api/league/${leagueId}`),
+
+    // Get all fixtures for a league
+    getFixtures: (leagueId: string) =>
+      fetchAPI<Fixture[]>(`/api/league/${leagueId}/fixtures`),
   },
 
   /**
@@ -122,6 +126,15 @@ export const apiClient = {
       fetchAPI<void>(`/api/favourites/${favouriteId}`, {
         method: "DELETE",
       }),
+  },
+
+  /**
+   * Broadcasts
+   */
+  broadcasts: {
+    getByLeague: (leagueId: string | number, country: string = "UK") =>
+      fetchAPI<BroadcastInfo>(`/api/broadcasts/league/${leagueId}?country=${country}`),
+    getAll: () => fetchAPI<BroadcastInfo[]>("/api/broadcasts"),
   },
 };
 
@@ -282,4 +295,19 @@ export interface Favourite {
   itemId: string;
   type: string;
   // Add more fields as needed
+}
+
+export interface Broadcaster {
+  name: string;
+  channels: string[];
+  type: "tv" | "streaming" | "both";
+  requiresSubscription: boolean;
+  logo?: string;
+  url?: string;
+}
+
+export interface BroadcastInfo {
+  leagueId: number;
+  country: string;
+  broadcasters: Broadcaster[];
 }
