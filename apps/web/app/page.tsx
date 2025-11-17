@@ -16,8 +16,13 @@ async function getCompetitions() {
       country: item.country.name,
       logo: item.league.logo,
     }));
-  } catch (error) {
-    console.error("Failed to fetch competitions:", error);
+  } catch (error: any) {
+    // Log but don't crash - gracefully handle rate limits and errors
+    if (error.message?.includes('429')) {
+      console.warn("Competitions API rate limited - using empty state");
+    } else {
+      console.error("Failed to fetch competitions:", error);
+    }
     return [];
   }
 }
@@ -26,8 +31,13 @@ async function getNews() {
   try {
     const newsData = await apiClient.news.getAll();
     return newsData.articles.slice(0, 5); // Get first 5 articles
-  } catch (error) {
-    console.error("Failed to fetch news:", error);
+  } catch (error: any) {
+    // Log but don't crash - gracefully handle rate limits and errors
+    if (error.message?.includes('429')) {
+      console.warn("News API rate limited - using empty state");
+    } else {
+      console.error("Failed to fetch news:", error);
+    }
     return [];
   }
 }
@@ -45,8 +55,13 @@ async function getFixtures() {
     const allFixtures = [...liveFixtures, ...todayFixtures].slice(0, 30);
 
     return transformFixtures(allFixtures);
-  } catch (error) {
-    console.error("Failed to fetch fixtures:", error);
+  } catch (error: any) {
+    // Log but don't crash - gracefully handle rate limits and errors
+    if (error.message?.includes('429')) {
+      console.warn("Fixtures API rate limited - using empty state");
+    } else {
+      console.error("Failed to fetch fixtures:", error);
+    }
     return [];
   }
 }
@@ -58,8 +73,13 @@ async function getStandings() {
 
     // Return all teams from the standings
     return leagueData.league || [];
-  } catch (error) {
-    console.error("Failed to fetch standings:", error);
+  } catch (error: any) {
+    // Log but don't crash - gracefully handle rate limits and errors
+    if (error.message?.includes('429')) {
+      console.warn("Standings API rate limited - using empty state");
+    } else {
+      console.error("Failed to fetch standings:", error);
+    }
     return [];
   }
 }
@@ -78,7 +98,7 @@ export default async function HomePage() {
       <div className="grid grid-cols-1 md:grid-cols-[7fr_17fr] xl:grid-cols-[6fr_12fr_7fr] gap-4 md:gap-6 mt-4 md:mt-8">
         {/* Left Sidebar - Top Competitions */}
         <aside className="hidden md:block">
-          <Card heading="Top Competitions" className="h-[45vh] overflow-auto">
+          <Card heading="Top Competitions" className="h-[80vh] overflow-auto">
             {competitions.length > 0 ? (
               <CompetitionsList competitions={competitions} />
             ) : (

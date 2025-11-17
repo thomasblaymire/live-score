@@ -10,7 +10,7 @@ interface Standing {
   team: {
     id: number;
     name: string;
-    logo: string;
+    logo?: string;
   };
   played: number;
   points: number;
@@ -146,12 +146,14 @@ export function LeagueStandings({
                     <td className="py-2 text-white">
                       <div className="flex items-center gap-2">
                         <div className="w-5 h-5 relative flex-shrink-0">
-                          <Image
-                            src={standing.team.logo}
-                            alt={standing.team.name}
-                            fill
-                            className="object-contain"
-                          />
+                          {standing.team.logo && (
+                            <Image
+                              src={standing.team.logo}
+                              alt={standing.team.name}
+                              fill
+                              className="object-contain"
+                            />
+                          )}
                         </div>
                         <span className="truncate">{standing.team.name}</span>
                       </div>

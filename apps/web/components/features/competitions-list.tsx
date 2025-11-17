@@ -14,13 +14,21 @@ interface CompetitionsListProps {
   competitions: Competition[];
 }
 
+// Helper to create URL-friendly slugs
+function createSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "");
+}
+
 export function CompetitionsList({ competitions }: CompetitionsListProps) {
   return (
     <div className="divide-y divide-gray-800">
       {competitions.map((competition) => (
         <a
           key={competition.id}
-          href={`/league/${competition.id}`}
+          href={`/league/${competition.id}/${createSlug(competition.name)}`}
           className="flex items-center gap-3 p-3 hover:bg-gray-800/30 transition-colors group"
         >
           <div className="w-7 h-7 relative flex-shrink-0">

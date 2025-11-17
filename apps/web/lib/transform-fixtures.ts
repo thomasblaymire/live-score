@@ -17,6 +17,14 @@ interface ScoreBoardFixture {
   league: string;
   leagueLogo: string;
   leagueCountry: string;
+  date?: string;
+  venue?: string;
+  referee?: string;
+  round?: string;
+  halftimeScore?: {
+    home: number | null;
+    away: number | null;
+  };
 }
 
 export function transformFixtures(
@@ -56,8 +64,8 @@ export function transformFixtures(
       id: fixture.id,
       homeTeam: item.teams.home.name,
       awayTeam: item.teams.away.name,
-      homeTeamLogo: item.teams.home.logo,
-      awayTeamLogo: item.teams.away.logo,
+      homeTeamLogo: item.teams.home.logo || "",
+      awayTeamLogo: item.teams.away.logo || "",
       homeScore: item.goals.home,
       awayScore: item.goals.away,
       status: status.short,
@@ -65,6 +73,14 @@ export function transformFixtures(
       league: item.league.name,
       leagueLogo: item.league.logo,
       leagueCountry: item.league.country,
+      date: fixture.date,
+      venue: (item as any).fixture?.venue?.name,
+      referee: (item as any).fixture?.referee,
+      round: (item as any).league?.round,
+      halftimeScore: (item as any).score?.halftime ? {
+        home: (item as any).score.halftime.home,
+        away: (item as any).score.halftime.away,
+      } : undefined,
     };
   });
 }

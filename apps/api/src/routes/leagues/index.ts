@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { catchAsync, sendError } from "../../helpers";
-import { leaguesAPI, standingsAPI, topScorersAPI } from "../../services/football-api";
+import { leaguesAPI, standingsAPI, topScorersAPI, fixturesAPI } from "../../services/football-api";
 
 const router = express.Router();
 
@@ -11,63 +11,35 @@ router.get(
     try {
       const response = await leaguesAPI.getTopLeagues();
 
-      // Filter to top leagues worldwide
+      // Top 10 most popular leagues worldwide (ordered by priority - UK leagues first)
       const topLeagueIds = [
-        // Top 5 European Leagues
         39,  // Premier League (England)
+        40,  // Championship (England)
+        41,  // League One (England)
+        42,  // League Two (England)
+        2,   // Champions League
         140, // La Liga (Spain)
         78,  // Bundesliga (Germany)
         135, // Serie A (Italy)
         61,  // Ligue 1 (France)
-
-        // International Competitions
-        2,   // Champions League
         3,   // Europa League
-        848, // Europa Conference League
-        1,   // World Cup
-        4,   // Euro Championship
-        9,   // Copa America
-
-        // Other European Leagues
-        94,  // Primeira Liga (Portugal)
-        88,  // Eredivisie (Netherlands)
-        144, // Belgian Pro League
-        179, // Scottish Premiership
-        218, // Austrian Bundesliga
-        203, // Super Lig (Turkey)
-        235, // Russian Premier League
-        197, // Greek Super League
-        119, // Danish Superliga
-        103, // Norwegian Eliteserien
-        113, // Swedish Allsvenskan
-
-        // Americas
-        71,  // Serie A (Brazil)
-        253, // MLS (USA)
-        262, // Liga MX (Mexico)
-        128, // Argentine Primera Division
-        13,  // Copa Libertadores
-        11,  // CONMEBOL Copa Sudamericana
-
-        // Middle East & Africa
-        307, // Saudi Pro League
-        188, // Egyptian Premier League
-
-        // Asia & Oceania
-        283, // UAE Pro League
-        98,  // J1 League (Japan)
-        292, // K League 1 (South Korea)
-        169, // Chinese Super League
-        271, // A-League (Australia)
       ];
+
       const leagues = (response.response as any[]) || [];
       const filtered = leagues.filter((league: any) =>
         topLeagueIds.includes(league.league.id)
       );
 
-      console.log(`Found ${filtered.length} out of ${topLeagueIds.length} requested leagues`);
+      // Sort by the order in topLeagueIds to maintain priority
+      const sorted = filtered.sort((a: any, b: any) => {
+        const indexA = topLeagueIds.indexOf(a.league.id);
+        const indexB = topLeagueIds.indexOf(b.league.id);
+        return indexA - indexB;
+      });
 
-      res.json(filtered);
+      console.log(`Found ${sorted.length} out of ${topLeagueIds.length} top leagues`);
+
+      res.json(sorted);
     } catch (error: any) {
       console.error("Error fetching leagues:", error);
       sendError(res, 500, "Failed to fetch leagues from API-Football");
@@ -104,6 +76,31 @@ router.get(
     } catch (error) {
       console.error("Error fetching league details:", error);
       sendError(res, 500, "Failed to fetch league details");
+    }
+  })
+);
+
+// Get league fixtures
+router.get(
+  "/api/league/:league/fixtures",
+  catchAsync(async (req: Request, res: Response) => {
+    const { league } = req.params;
+    const leagueId = parseInt(league);
+
+    if (isNaN(leagueId)) {
+      return sendError(res, 400, "Invalid league ID");
+    }
+
+    try {
+      const currentYear = new Date().getFullYear();
+      const season = currentYear; // Adjust based on actual season
+
+      const fixturesData = await fixturesAPI.getByLeague(leagueId, season);
+
+      res.json(fixturesData.response || []);
+    } catch (error) {
+      console.error("Error fetching league fixtures:", error);
+      sendError(res, 500, "Failed to fetch league fixtures");
     }
   })
 );
